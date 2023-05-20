@@ -1,0 +1,31 @@
+:root {
+    --white: rgb(255, 255, 255);
+    --background-greey: rgb(241,241,241);
+    --logo-green: rgb(31,215,28);
+    --menu-color: rgb(2,48,71);
+  }
+  
+  .logo{
+    color: var(--logo-green);
+    padding-left: 5%;
+  }
+
+  .top-height{
+    height: 12vh;
+    background-color: var(--white);
+  }
+
+  body{
+    background-color: var(--background-greey);
+  }
+
+  .menu-color{
+    color: var(--menu-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+
+  .menu-color:hover{
+    color:var(--logo-green);
+  }
