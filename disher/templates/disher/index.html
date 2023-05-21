@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -11,6 +12,7 @@
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="{%static '/css/main.css'%}">
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row top-height align-items-center">
@@ -24,6 +26,19 @@
                 zaloguj
             </div>
         </div>
+        <div class="row m-1">
+            <div class="col-lg-8 col-md-10 col-sm-10 offset-lg-2 offset-md-1 offset-sm-1">
+                <label for="search" class="search-label mt-2 mb-2">Szukaj</label>
+                <div class="input-group">
+                    <input type="text" class="form-control search-input" id="search" aria-describedby="basic-addon3" placeholder="Wpisz czego szukasz">
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="{% static '/js/script.js' %}"></script>
+
+
 </body>
+
 </html>
