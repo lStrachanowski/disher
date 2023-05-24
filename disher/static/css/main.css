@@ -1,48 +1,101 @@
 :root {
-    --white: rgb(255, 255, 255);
-    --background-greey: rgb(241,241,241);
-    --logo-green: rgb(31,215,28);
-    --menu-color: rgb(2,48,71);
-    --search-label: rgb(105,105,105);
-    --serch-input-border: rgb(167,167,167);
-  }
-  
-  .logo{
-    color: var(--logo-green);
-    padding-left: 5%;
-  }
+  --white: rgb(255, 255, 255);
+  --background-blue: rgb(240, 242, 245);
+  --logo-green: rgb(31, 215, 28);
+  --menu-color: rgb(2, 48, 71);
+  --search-label: rgb(105, 105, 105);
+  --serch-input-border: rgb(167, 167, 167);
+  --recepie-header: rgb(148, 169, 175);
+  --breakfast-color: rgb(95, 173, 86);
+  --second-breakfast-color: rgb(242, 193, 78);
+  --dinner-color: rgb(247, 129, 84);
+}
 
-  .top-height{
-    height: 12vh;
-    background-color: var(--white);
-  }
+body {
+  background-color: var(--background-blue);
+}
 
-  body{
-    background-color: var(--background-greey);
-  }
+.white-background {
+  background-color: var(--white);
+}
 
-  .menu-color{
-    color: var(--menu-color);
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.25s;
-  }
+.recepie-header-color {
+  background-color: var(--recepie-header);
+}
 
-  .menu-color:hover{
-    color:var(--logo-green);
-  }
-  
-  .search-label{
-    color: var(--search-label);
-    font-size: 1.5rem;
-    font-weight: 500;
-  }
+.recepie-header-border{
+  border-radius: 15px 0px 0px 0px;
+}
 
-  .search-input{
-      padding: 20px 20px;
-      margin: 8px 0;
-      font-size: 1.5rem;
-      color: var(--search-label);
-      border-radius: 10px;
-      border:  1px solid var(--serch-input-border);
-  }
+.recepie-meal-color-breakfast{
+  background-color: var(--breakfast-color);
+}
+
+.recepie-meal-color-second-breakfast{
+  background-color: var(--second-breakfast-color);
+}
+
+.recepie-meal-color-dinner{
+  background-color: var(--dinner-color);
+}
+
+.recepie-header-font {
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.recepie-font{
+  font-size: 0.85rem;
+}
+
+.recepie-meal-border{
+  border-radius: 0px 15px 0px 0px;
+}
+.recepie-container{
+  border-radius: 15px;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+}
+
+
+.logo {
+  color: var(--logo-green);
+  padding-left: 5%;
+}
+
+.top-height {
+  height: 12vh;
+  background-color: var(--white);
+}
+
+.menu-color {
+  color: var(--menu-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.menu-color:hover {
+  color: var(--logo-green);
+}
+
+.search-label {
+  color: var(--search-label);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.search-input {
+  padding: 20px 20px;
+  margin: 8px 0;
+  font-size: 1.5rem;
+  color: var(--search-label);
+  border-radius: 10px;
+  border: 1px solid var(--serch-input-border);
+}
+
+
+
+.min-height{
+  min-height: 65px;
+}
