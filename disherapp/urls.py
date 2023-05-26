@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index )
+    path('', views.index , name="index"),
+    path('recepie/<int:id>', views.recepie, name="recepie")
 ]

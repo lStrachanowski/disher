@@ -1,0 +1,69 @@
+{% extends "disher/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-10 align-items-center text-center recepie-container white-background mt-2 m-1">
+            <div class="d-flex row align-items-stretch justify-content-center pb-2">
+                <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height">
+                    <div class="col-2">
+                        <img src="/static/img/iconleft.svg" class="icon-size-full-recpie cursor" onclick="location.href='/'">
+                    </div>
+                    <div class="col-10">
+                        Kanapka z awokado i gruszką
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-center col-4 recepie-meal-breakfast recepie-header-font recepie-meal-color-breakfast recepie-meal-border p-2">
+                    Śniadanie
+                </div>
+
+                <div class="d-flex row col-lg-8 col-sm-12 pt-4 pl-4 pr-4 pb-2 recepie-font recepie-font-spacing text-start mt-1">
+                    <h3 class="font-bold">Kanapka z awokado</h3>
+                    <div class="mt-2">
+                        Chleb opiec w tosterze, aby był chrupiący. Skropić go 2 łyżeczkami oliwy extra virgine.
+                        Awokado rozgnieść widelcem, doprawić solą i świeżo zmielonym czarnym pieprzem. Ułożyć na grzankach, przykryć plasterkami gruszki oraz rukolą. Posypać orzeszkami pinii i skropić pozostałymi 2 łyżeczkami oliwy z oliwek. Doprawić dodatkowo świeżo zmielonym czarnym pieprzem.
+                    </div>
+                    <div class="mt-2">
+                        <h3 class="font-bold">Składniki</h3>
+                        <ul>
+                           <li> 2 kromki razowego chleba z ziarnami, opieczonego w tosterze </li>
+                           <li> 4 łyżeczki oliwy extra virgine</li>
+                           <li> 1/3 dojrzałego awokado</li>
+                           <li> sól morska, świeżo zmielony czarny pieprz</li>
+                           <li> 1/3 dojrzałej gruszki</li>
+                           <li> 2 szczypty rukoli</li>
+                           <li> 1 łyżka orzeszków pinii, zrumienionych na patelni</li>
+                        </ul>
+                    </div>
+                    
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 p-3">
+                    <div class="row justify-content-around">
+                        <div class="col-lg-12 p-1">
+                            <img src="/static/img/iconfire.svg" class="icon-size-full-recpie">
+                        </div>
+                        <div class="col-lg-12 recepie-font font-bold">
+                            350kcal
+                        </div>
+                        <div class="col-lg-12 p-1">
+                            <img src="/static/img/iconclock.svg" class="icon-size-full-recpie">
+                        </div>
+                        <div class="col-lg-12  recepie-font font-bold">
+                            Szybkie
+                        </div>
+                        <div class="col-lg-12 recepie-font-size font-bold greey-font mt-2">
+                            Dodaj do listy..
+                        </div>
+                        <div class=" col-12 d-flex align-items-center justify-content-center">
+                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2">
+                                <div class="cross-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
