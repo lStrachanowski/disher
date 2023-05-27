@@ -146,6 +146,12 @@ a{
     width: 35px;
     border-radius: 50%;
     background-color: var(--blue-add-color);
+    transition: 0.25s;
+}
+
+.add-button:hover{
+  background-color: var(--logo-green);
+  transform: rotate(90deg);
 }
 
 .cross-button{
@@ -173,4 +179,15 @@ a{
 
 .recepie-text-left{
   text-align: left !important;
+}
+
+.min-h{
+  min-height: 170px;
+  max-height: 170px;
+}
+
+@media (max-width: 575.98px) { 
+  .recepie-font{
+    font-size: 0.95rem;
+  }
 }
