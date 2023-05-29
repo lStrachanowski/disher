@@ -66,6 +66,10 @@ a{
   color: var(--greey);
 }
 
+.dark-font{
+  color: var(--menu-color);
+}
+
 .recepie-font-size{
   font-size: 0.85rem;
 }
@@ -75,14 +79,18 @@ a{
   color: var(--search-label);
 }
 
+.dashboard-font{
+  font-size: 2.0rem;
+}
+
 .recepie-meal-border{
   border-radius: 0px 15px 0px 0px;
 }
+
 .recepie-container{
   border-radius: 15px;
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
 }
-
 
 .logo {
   color: var(--logo-green);
@@ -124,8 +132,12 @@ a{
   min-height: 65px;
 }
 
-.icon-size{
+.icon-size-15{
   height: 15px;
+}
+
+.icon-size-30{
+  max-height: 30px;
 }
 
 .icon-size-full-recpie{
@@ -184,6 +196,14 @@ a{
 .min-h{
   min-height: 170px;
   max-height: 170px;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 575.98px) { 
