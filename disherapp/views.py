@@ -8,7 +8,16 @@ def index(request):
     return render(request, "disher/index.html", context)
 
 def recepie(request , id):
-    return render(request, "disher/recepie.html")
+    user_logged = True
+    context = {"user_status": user_logged}
+    return render(request, "disher/recepie.html", context )
 
 def dashboard(request):
-    return render(request,"disher/dashboard.html", {})
+    user_logged = True
+    context = {"user_status": user_logged}
+    return render(request,"disher/dashboard.html", context)
+
+def user_profil(request):
+    user_logged = True
+    context = {"user_status": user_logged}
+    return render(request, "disher/profile.html" ,context )

@@ -206,6 +206,11 @@ a{
   align-items: center;
 }
 
+.content-height{
+  height: 82vh;
+}
+
+
 @media (max-width: 575.98px) { 
   .recepie-font{
     font-size: 0.95rem;
