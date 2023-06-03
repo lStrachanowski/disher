@@ -1,8 +1,16 @@
 {% extends "disher/base.html" %}
 {% load static %}
 {% block content %}
-<div class="container-fluid justify-content-center text-center align-items-center ">
-    <div class="row d-flex align-items-center m-1">
+
+<div class="content-height" id="loader_container">
+    <div class="h-100 d-flex justify-content-center align-items-center">
+        <div class="loader"></div>
+    </div>
+</div>
+
+
+<div class="container-fluid justify-content-center text-center align-items-center" id="content-container">
+    <div class="row d-flex align-items-center m-5">
         <div class="col-12 font-bold greey-font mt-4 dark-font ">Moje przepisy</div>
         <div class="col-12 dashboard-font greey-font">Nic tu nie ma, dodaj przepis</div>
 
@@ -22,5 +30,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}

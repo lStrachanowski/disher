@@ -1,7 +1,12 @@
 {% extends "disher/base.html" %}
 {% load static %}
 {% block content %}
-<div class="container-fluid">
+<div class="content-height" id="loader_container">
+    <div class="h-100 d-flex justify-content-center align-items-center">
+        <div class="loader"></div>
+    </div>
+</div>
+<div class="container-fluid" id="content-container">
     <div class="row m-1">
         <div class="col-lg-8 col-md-10 col-sm-10 offset-lg-2 offset-md-1 offset-sm-1">
             <label for="search" class="search-label mt-2 mb-2">Szukaj</label>
@@ -11,9 +16,8 @@
             </div>
         </div>
     </div>
-    <div class="container mt-3">
+    <div class="container mt-3" >
         <div class="row justify-content-around">
-
             <div class="col-xl-3 col-md-5 col-sm-10  text-center recepie-container white-background mt-2 m-1">
                 <div class="d-flex row align-items-center align-items-stretch">
                     <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
@@ -199,6 +203,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 
 {% endblock %}

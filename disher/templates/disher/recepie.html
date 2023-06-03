@@ -1,7 +1,14 @@
 {% extends "disher/base.html" %}
 {% load static %}
 {% block content %}
-<div class="container mt-3">
+
+<div class="content-height" id="loader_container">
+    <div class="h-100 d-flex justify-content-center align-items-center">
+        <div class="loader"></div>
+    </div>
+</div>
+
+<div class="container mt-3" id="content-container">
     <div class="row justify-content-center">
         <div class="col-10 align-items-center text-center recepie-container white-background mt-2 m-1">
             <div class="d-flex row align-items-stretch justify-content-center pb-2">
@@ -66,4 +73,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
