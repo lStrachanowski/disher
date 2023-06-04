@@ -1,5 +1,9 @@
 {% extends "disher/base.html" %}
+
 {% load static %}
+{% block style %}
+<link rel="stylesheet" href="{%static '/css/dashboard.css'%}">
+{% endblock %}
 {% block content %}
 
 <div class="content-height" id="loader_container">
@@ -10,7 +14,18 @@
 
 
 <div class="container-fluid justify-content-center text-center align-items-center" id="content-container">
-    <div class="row d-flex align-items-center m-5">
+    <div class="row d-flex align-items-center justify-content-center mlg-5 m-1">
+        {% if user_has_recepies %}
+        <div class="col-lg-8 col-12 d-flex align-items-center justify-content-around recepie-container user-recepie-min-height white-background mt-2 m-1" >
+            <div class="greey-font col-lg-2  text-start m-3 font-bold">śniadanie</div>
+            <div class="col-lg-7  text-start">kanapka z awokado i gruszką</div>
+            <div class="col-lg-2  text-end">
+                <img src="/static/img/share.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show">
+                <img src="/static/img/options.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size ">
+            </div>
+        </div>
+
+        {% else%}
         <div class="col-12 font-bold greey-font mt-4 dark-font ">Moje przepisy</div>
         <div class="col-12 dashboard-font greey-font">Nic tu nie ma, dodaj przepis</div>
 
@@ -19,7 +34,11 @@
                 <div class="cross-button"></div>
             </div>
         </div>
+        {% endif %}
 
+        {% if user_has_diet_list %}
+        <div>Lista</div>
+        {% else %}
         <div class="col-12  font-bold greey-font mt-4 dark-font">Moje posiłki</div>
         <div class="col-12 dashboard-font greey-font">Nic tu nie ma, dodaj przepis</div>
 
@@ -28,6 +47,8 @@
                 <div class="cross-button"></div>
             </div>
         </div>
+        {% endif %}
+   
     </div>
 </div>
 

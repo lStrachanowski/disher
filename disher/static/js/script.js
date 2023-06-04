@@ -4,7 +4,7 @@ xhttp.onreadystatechange = function () {
         setTimeout(()=>{
             document.getElementById("loader_container").style.display = "none";
             document.getElementById("content-container").style.display = "block";
-        },1500);
+        },500);
     }
 };
 xhttp.open("GET", "/", true);

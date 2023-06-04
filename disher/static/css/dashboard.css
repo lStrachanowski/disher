@@ -1,0 +1,25 @@
+
+.user-recepie-icons-padding{
+    padding: 5px 10px;
+}
+
+.user-recepie-icons-size{
+    height: 40px;
+    transition: 0.3s;
+}
+
+
+.user-recepie-icons-size:hover{
+    filter: invert(57%) sepia(76%) saturate(294%) hue-rotate(67deg) brightness(90%) contrast(93%);
+}
+
+.user-recepie-icons-show{
+    display: inline-block;
+}
+
+
+@media (max-width: 575.98px) { 
+    .user-recepie-icons-show{
+        display: none;
+    }
+  } 
