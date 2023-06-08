@@ -19,7 +19,7 @@
         <div class="col-12 font-bold m-4 dark-font ">Moje przepisy</div>
 
         <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
-            <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between recepie-container user-recepie-container white-background"
+            <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between  user-recepie-container white-background"
                 id="user-recepie-1">
                 <div class="col-lg-2  text-center m-3 font-bold cursor">śniadanie</div>
                 <div class="col-lg-7  text-start cursor">kanapka z awokado i gruszką</div>
@@ -80,6 +80,13 @@
             </div>
         </div>
         {% endif %}
+        <div class="row col-12">
+            <img src="/static/img/expand.svg" class="user-recepie-icons-size cursor">
+        </div>
+        <div class="row col-12 align-items-center justify-content-center m-3 " >
+            <button class="btn btn-primary col-lg-2 col-md-4 col-8  generate-list-button-color">Utwórz listę zakupów</button>
+        </div>
+
 
         {% if user_has_diet_list %}
         <div>Lista</div>
@@ -95,6 +102,7 @@
         {% endif %}
 
     </div>
+   
 </div>
 
 

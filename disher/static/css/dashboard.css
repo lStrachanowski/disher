@@ -27,18 +27,25 @@
 
 .user-recepie-container{
     border-radius: 15px;
-    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
-    transition: 0.3s;
+    box-shadow: 2px 4px 12px rgba(0,0,0,.08);
+    transition: all .3s cubic-bezier(0,0,.5,1);
   }
   
 .user-recepie-container:hover{
     background-color: var(--user-recepie-hover-color);
     cursor: pointer;
+    padding: 3px;
 }
 
 .user-recepie-container:hover  .user-recepie-icons-size{
     filter: invert(96%) sepia(0%) saturate(722%) hue-rotate(207deg) brightness(119%) contrast(100%);
 }
+
+.generate-list-button-color{
+    background-color: var(--generate-list-button-color);
+    border: var(--generate-list-button-color);
+}
+
 
 @media (max-width: 575.98px) { 
     .user-recepie-icons-show{
