@@ -3,6 +3,7 @@
 {% load static %}
 {% block style %}
 <link rel="stylesheet" href="{%static '/css/dashboard.css'%}">
+<link rel="stylesheet" href="{%static '/css/day.css'%}">
 {% endblock %}
 {% block content %}
 
@@ -19,14 +20,15 @@
         <div class="col-12 font-bold m-4 dark-font ">Moje przepisy</div>
 
         <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
-            <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between  user-recepie-container white-background"
+            <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                 id="user-recepie-1">
                 <div class="col-lg-2  text-center m-3 font-bold cursor">śniadanie</div>
                 <div class="col-lg-7  text-start cursor">kanapka z awokado i gruszką</div>
                 <div class="col-lg-2  text-end">
                     <img src="/static/img/share.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show">
-                    <img src="/static/img/options.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
+                    <img src="/static/img/options.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
                         id="recepie-options-id-click" onclick=optionsClick(1)>
                 </div>
             </div>
@@ -37,7 +39,8 @@
                 <div class="col-lg-7  text-center cursor font-bold dark-font recepie-options-delete"
                     id="recepie-options-delete-click">Usuń</div>
                 <div class="col-lg-2  text-end">
-                    <img src="/static/img/close.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
+                    <img src="/static/img/close.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
                         id="recepie-options-id-close-click" onclick=optionsClick(1)>
                 </div>
             </div>
@@ -52,7 +55,8 @@
                 <div class="col-lg-2  text-end">
                     <img src="/static/img/share.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show">
-                    <img src="/static/img/options.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
+                    <img src="/static/img/options.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
                         id="recepie-options-id-click" onclick=optionsClick(2)>
                 </div>
             </div>
@@ -63,7 +67,8 @@
                 <div class="col-lg-7  text-center cursor font-bold dark-font recepie-options-delete"
                     id="recepie-options-delete-click">Usuń</div>
                 <div class="col-lg-2  text-end">
-                    <img src="/static/img/close.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
+                    <img src="/static/img/close.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
                         id="recepie-options-id-close-click" onclick=optionsClick(2)>
                 </div>
             </div>
@@ -83,26 +88,344 @@
         <div class="row col-12">
             <img src="/static/img/expand.svg" class="user-recepie-icons-size cursor">
         </div>
-        <div class="row col-12 align-items-center justify-content-center m-3 " >
-            <button class="btn btn-primary col-lg-2 col-md-4 col-8  generate-list-button-color">Utwórz listę zakupów</button>
+        <div class="row col-12 align-items-center justify-content-center m-3 ">
+            <button class="btn btn-primary col-lg-2 col-md-4 col-8  generate-list-button-color">Utwórz listę
+                zakupów</button>
         </div>
 
 
         {% if user_has_diet_list %}
-        <div>Lista</div>
-        {% else %}
-        <div class="col-12  font-bold greey-font mt-4 dark-font">Moje posiłki</div>
-        <div class="col-12 dashboard-font greey-font">Nic tu nie ma, dodaj przepis</div>
+        <div class="container-fluid">
+            <div class="row align-items-stretch justify-content-center mt-3">
+                <div class="col-lg-3">
+                    <div class="d-flex form-check text-start align-items-center">
+                        <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label p-2" for="flexCheckDefault">
+                            Dodaj do listy zakupów
+                        </label>
+                    </div>
+                    <div class="recepie-container white-background">
+                        <div
+                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
+                            <div class="col-5 text-start p-3">
+                                Dzień 1
+                            </div>
+                            <div class="col-5 text-end">
+                                2500 kcal
+                            </div>
+                            <div class="col-2 text-end p-2">
+                                <img src="/static/img/options.svg"
+                                    class="day-options-icon-color day-icons-options-size">
+                            </div>
+                        </div>
 
-        <div class="col-12 d-flex justify-content-center">
-            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
-                <div class="cross-button"></div>
+                        <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
+                            data-bs-target="#collapseBreakfast" aria-expanded="false" aria-controls="collapseBreakfast">
+                            <div class="col-6 text-start p-2">
+                                Śniadanie
+                            </div>
+                            <div class="col-5">
+                                456 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseBreakfast">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Kanapka z awokado
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapse2Breakfast" aria-expanded="false"
+                            aria-controls="collapse2Breakfast">
+                            <div class="col-6 text-start p-2">
+                                II śniadanie
+                            </div>
+                            <div class="col-5">
+                                250 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+
+                        <div class="collapse" id="collapse2Breakfast">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Szaszłyki warzywne na grilla
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapseDiner" aria-expanded="false" aria-controls="collapseDiner">
+                            <div class="col-6 text-start p-2">
+                                Obiad
+                            </div>
+                            <div class="col-5">
+                                769 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseDiner">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Pappardelle z kurczakiem
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSnack" aria-expanded="false" aria-controls="collapseSnack">
+                            <div class="col-6 text-start p-2">
+                                Przekąska
+                            </div>
+                            <div class="col-5">
+                                300 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseSnack">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Tarta truskawkowa
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSupper" aria-expanded="false" aria-controls="collapseSupper">
+                            <div class="col-6 text-start p-2">
+                                Kolacja
+                            </div>
+                            <div class="col-5">
+                                412 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseSupper">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Lekka sałatka
+                            </div>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
+                                <div class="cross-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="d-flex form-check text-start align-items-center">
+                        <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label p-2" for="flexCheckDefault">
+                            Dodaj do listy zakupów
+                        </label>
+                    </div>
+                    <div class="recepie-container white-background">
+                        <div
+                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
+                            <div class="col-5 text-start p-3">
+                                Dzień 1
+                            </div>
+                            <div class="col-5 text-end">
+                                2500 kcal
+                            </div>
+                            <div class="col-2 text-end p-2">
+                                <img src="/static/img/options.svg"
+                                    class="day-options-icon-color day-icons-options-size">
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
+                            data-bs-target="#collapseBreakfast2" aria-expanded="false" aria-controls="collapseBreakfast2">
+                            <div class="col-6 text-start p-2">
+                                Śniadanie
+                            </div>
+                            <div class="col-5">
+                                456 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseBreakfast2">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Kanapka z awokado
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapseDiner2" aria-expanded="false" aria-controls="collapseDiner2">
+                            <div class="col-6 text-start p-2">
+                                Obiad
+                            </div>
+                            <div class="col-5">
+                                769 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseDiner2">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Pappardelle z kurczakiem
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSnack2" aria-expanded="false" aria-controls="collapseSnack2">
+                            <div class="col-6 text-start p-2">
+                                Przekąska
+                            </div>
+                            <div class="col-5">
+                                300 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseSnack2">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Tarta truskawkowa
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSupper2" aria-expanded="false" aria-controls="collapseSupper2">
+                            <div class="col-6 text-start p-2">
+                                Kolacja
+                            </div>
+                            <div class="col-5">
+                                412 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseSupper2">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Lekka sałatka
+                            </div>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
+                                <div class="cross-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="d-flex form-check text-start align-items-center">
+                        <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label p-2" for="flexCheckDefault">
+                            Dodaj do listy zakupów
+                        </label>
+                    </div>
+                    <div class="recepie-container white-background">
+                        <div
+                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
+                            <div class="col-5 text-start p-3">
+                                Dzień 3
+                            </div>
+                            <div class="col-5 text-end">
+                                1950 kcal
+                            </div>
+                            <div class="col-2 text-end p-2">
+                                <img src="/static/img/options.svg"
+                                    class="day-options-icon-color day-icons-options-size">
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
+                            data-bs-target="#collapseBreakfast3" aria-expanded="false" aria-controls="collapseBreakfast3">
+                            <div class="col-6 text-start p-2">
+                                Śniadanie
+                            </div>
+                            <div class="col-5">
+                                456 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseBreakfast3">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Kanapka z awokado
+                            </div>
+                        </div>
+
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapseDiner3" aria-expanded="false" aria-controls="collapseDiner3">
+                            <div class="col-6 text-start p-2">
+                                Obiad
+                            </div>
+                            <div class="col-5">
+                                769 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseDiner3">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Pappardelle z kurczakiem
+                            </div>
+                        </div>
+
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSupper3" aria-expanded="false" aria-controls="collapseSupper3">
+                            <div class="col-6 text-start p-2">
+                                Kolacja
+                            </div>
+                            <div class="col-5">
+                                412 kcal
+                            </div>
+                            <div class="col-1">
+                                <img src="/static/img/options.svg" class="day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseSupper3">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card">
+                                Lekka sałatka
+                            </div>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
+                                <div class="cross-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
-        {% endif %}
 
+        </div>
     </div>
-   
+
+
+    {% else %}
+    <div class="col-12  font-bold greey-font mt-4 dark-font">Moje posiłki</div>
+    <div class="col-12 dashboard-font greey-font">Nic tu nie ma, dodaj przepis</div>
+
+    <div class="col-12 d-flex justify-content-center">
+        <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
+            <div class="cross-button"></div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
 </div>
 
 

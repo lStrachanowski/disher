@@ -19,7 +19,7 @@ def recepie(request , id):
 def dashboard(request):
     user_status = check_if_user_is_logged()
     user_has_recepies = True
-    user_has_diet_list = False
+    user_has_diet_list = True
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies, "user_has_diet_list": user_has_diet_list}
     return render(request,"disher/dashboard.html", context)
 
