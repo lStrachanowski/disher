@@ -27,3 +27,9 @@ def user_profil(request):
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request, "disher/profile.html" ,context )
+
+def shoplist(request):
+    user_status = check_if_user_is_logged()
+    context = {"user_status": user_status}
+    return render(request, "disher/shoplist.html" ,context )
+
