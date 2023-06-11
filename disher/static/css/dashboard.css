@@ -18,6 +18,7 @@
 
 .recepie-options-delete:hover{
     color: var(--red);
+    font-weight: 600;
 }
 
 .user-recepie-options-id{

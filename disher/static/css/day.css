@@ -50,3 +50,24 @@
     z-index: 0;
     font-weight: 600;
 }
+
+.day-options{
+    display: none !important;
+}
+
+.hide-element{
+    display: none !important;
+}
+
+.show-element{
+    display:flex !important;
+}
+
+.day-options:hover{
+    background: #F3F3F3;
+}
+
+
+.day-options-delete:hover{
+    color: var(--red);
+}

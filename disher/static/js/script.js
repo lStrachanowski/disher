@@ -33,3 +33,30 @@ let optionsClick = (id) => {
             }
     }
 }
+
+
+// Is showing options for user day elements
+let dayOptionsClick =(name, id) =>{
+    elementId = `${name}-${id}`;
+    optionsId = `${name}-option-${id}`;
+    parentElement = document.getElementById(elementId);
+    optionElement = document.getElementById(optionsId);
+    collapseElement = document.getElementById("collapseBreakfast");
+    idList = document.querySelectorAll("[id^="+`${name}`+"]");
+    for(let i=0 ; i< idList.length; i++){
+        if(elementId == idList[i].id){
+            if (!parentElement.classList.contains("hide-element")) {
+                parentElement.classList.add("hide-element");
+                optionElement.classList.add("show-element");
+                collapseElement.classList.add("hide-element")
+            } else {
+                parentElement.classList.remove("hide-element");
+                optionElement.classList.remove("show-element");
+                collapseElement.classList.remove("hide-element");
+                collapseElement.classList.remove("show");
+            }
+        }else{
+
+        }
+    }
+} 
