@@ -60,3 +60,26 @@ let dayOptionsClick =(name, id) =>{
         }
     }
 } 
+
+
+// Is showing options for day edit elements
+let dayEditOptionsClick =(name) =>{
+    elementId = `${name}-edit`;
+    optionsId = `${name}-edit-options`;
+    parentElement = document.getElementById(elementId);
+    optionElement = document.getElementById(optionsId);
+    idList = document.querySelectorAll("[id^="+`${name}`+"]");
+    for(let i=0 ; i< idList.length; i++){
+        if(elementId == idList[i].id){
+            if (!parentElement.classList.contains("hide-element")) {
+                parentElement.classList.add("hide-element");
+                optionElement.classList.add("show-element");
+            } else {
+                parentElement.classList.remove("hide-element");
+                optionElement.classList.remove("show-element");
+            }
+        }else{
+
+        }
+    }
+} 

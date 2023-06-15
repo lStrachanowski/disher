@@ -106,7 +106,7 @@
                     </div>
                     <div class="recepie-container white-background">
                         <div
-                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
+                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor" id="day1-edit">
                             <div class="col-5 text-start p-3">
                                 Dzień 1
                             </div>
@@ -115,12 +115,30 @@
                             </div>
                             <div class="col-2 text-end p-2">
                                 <img src="/static/img/options.svg"
-                                    class="day-options-icon-color day-icons-options-size">
+                                    class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('day1')">
+                            </div>
+                        </div>
+                        <!-- Odstęp między opcjami  -->
+
+                        <div
+                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options" id="day1-edit-options" >
+
+                            <div class="col-6 p-3">
+                                Zmień nazwę
+                            </div>
+                            <div class="col-4">
+                                Kopiuj
+                            </div>
+                            <div class="col-2 text-end p-2">
+                                <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('day1')">
                             </div>
                         </div>
 
+
+
                         <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
-                            data-bs-target="#collapseBreakfast" aria-expanded="false" aria-controls="collapseBreakfast" id="day1-1">
+                            data-bs-target="#collapseBreakfast" aria-expanded="false" aria-controls="collapseBreakfast"
+                            id="day1-1">
                             <div class="col-6 text-start p-2">
                                 Śniadanie
                             </div>
@@ -128,7 +146,8 @@
                                 456 kcal
                             </div>
                             <div class="col-1">
-                                <img src="/static/img/options.svg" class="day-icons-options-size" onclick="dayOptionsClick('day1',1)">
+                                <img src="/static/img/options.svg" class="day-icons-options-size"
+                                    onclick="dayOptionsClick('day1',1)">
                             </div>
                         </div>
                         <div class="collapse" id="collapseBreakfast">
@@ -146,12 +165,13 @@
                                 Usuń
                             </div>
                             <div class="col-1">
-                                <img src="/static/img/close.svg" class="day-icons-options-size" onclick="dayOptionsClick('day1',1)">
+                                <img src="/static/img/close.svg" class="day-icons-options-size"
+                                    onclick="dayOptionsClick('day1',1)">
                             </div>
 
                         </div>
 
-                        
+
 
                         <div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse"
                             data-bs-target="#collapse2Breakfast" aria-expanded="false"
@@ -258,7 +278,8 @@
                         </div>
 
                         <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
-                            data-bs-target="#collapseBreakfast2" aria-expanded="false" aria-controls="collapseBreakfast2">
+                            data-bs-target="#collapseBreakfast2" aria-expanded="false"
+                            aria-controls="collapseBreakfast2">
                             <div class="col-6 text-start p-2">
                                 Śniadanie
                             </div>
@@ -360,7 +381,8 @@
                         </div>
 
                         <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
-                            data-bs-target="#collapseBreakfast3" aria-expanded="false" aria-controls="collapseBreakfast3">
+                            data-bs-target="#collapseBreakfast3" aria-expanded="false"
+                            aria-controls="collapseBreakfast3">
                             <div class="col-6 text-start p-2">
                                 Śniadanie
                             </div>

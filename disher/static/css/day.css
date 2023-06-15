@@ -55,6 +55,10 @@
     display: none !important;
 }
 
+.day-edit-options{
+    display: none !important;
+}
+
 .hide-element{
     display: none !important;
 }

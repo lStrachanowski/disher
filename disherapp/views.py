@@ -33,3 +33,9 @@ def shoplist(request):
     context = {"user_status": user_status}
     return render(request, "disher/shoplist.html" ,context )
 
+
+def add_recepie(request):
+    user_status = check_if_user_is_logged()
+    context = {"user_status": user_status}
+    return render(request, "disher/addrecepie.html" ,context )
+

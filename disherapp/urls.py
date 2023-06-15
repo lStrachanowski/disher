@@ -8,5 +8,6 @@ urlpatterns = [
     path('recepie/<int:id>', views.recepie, name="recepie"),
     path('user/dashboard', views.dashboard, name="dashboard"),
     path('user/profile', views.user_profil, name="profile"),
-    path('user/shoplist', views.shoplist, name="shoplist")
+    path('user/shoplist', views.shoplist, name="shoplist"),
+    path('user/add/recepie', views.add_recepie, name="addrecepie")
 ]
