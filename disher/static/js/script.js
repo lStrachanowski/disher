@@ -83,3 +83,19 @@ let dayEditOptionsClick =(name) =>{
         }
     }
 } 
+
+
+let dayChecked =(name)=>{
+    elementName = name.split("-");
+    checkBox = document.getElementById(name);
+    container = document.getElementById(name);
+    containerBody = document.getElementById(elementName[0]);
+    containerHeader = document.getElementById(elementName[0]+"-edit");
+      if(checkBox.checked){
+        containerBody.style.backgroundColor = "var(--bs-gray-200)";
+        containerHeader.style.backgroundColor = "var(--bs-gray-600)";
+    }else{
+        containerBody.style.backgroundColor = "var(--white)";
+        containerHeader.style.backgroundColor = "var(--breakfast-color)";
+    }
+}
