@@ -47,6 +47,12 @@
     border: var(--generate-list-button-color);
 }
 
+.generate-shoplist-button-color{
+    background-color: var(--menu-color);
+}
+.generate-shoplist-button{
+    display: none !important;
+}
 
 @media (max-width: 575.98px) { 
     .user-recepie-icons-show{
