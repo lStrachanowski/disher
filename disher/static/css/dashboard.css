@@ -49,6 +49,7 @@
 
 .generate-shoplist-button-color{
     background-color: var(--menu-color);
+    border-color: var(--menu-color) !important;
 }
 .generate-shoplist-button{
     display: none !important;

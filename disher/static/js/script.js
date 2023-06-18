@@ -84,7 +84,7 @@ let dayEditOptionsClick =(name) =>{
     }
 } 
 
-
+// Is chcanging color of daycontainer and showing generate shoplist button
 let dayChecked =(name)=>{
     elementName = name.split("-");
     checkBox = document.getElementById(name);
