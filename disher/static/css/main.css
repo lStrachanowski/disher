@@ -167,6 +167,7 @@ a{
     width: 35px;
     border-radius: 50%;
     background-color: var(--blue-add-color);
+    border: none;
     transition: 0.25s;
 }
 

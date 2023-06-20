@@ -104,3 +104,16 @@ let dayChecked =(name)=>{
         document.getElementById("generateShopList").style.display = "none";
     }
 }
+
+
+// let showModal =() =>{
+//     // Get a reference to the modal element
+// const myModal = document.getElementById('exampleModalCenter');
+
+// // Create a new Bootstrap Modal instance
+// const modal = new bootstrap.Modal(myModal);
+
+// // Show the modal
+// modal.show();
+
+// }

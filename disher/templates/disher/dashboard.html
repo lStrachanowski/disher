@@ -73,7 +73,9 @@
                 </div>
             </div>
         </div>
-
+        <div class="row col-12">
+            <img src="/static/img/expand.svg" class="user-recepie-icons-size cursor">
+        </div>
 
         {% else%}
         <div class="col-12 font-bold greey-font mt-4 dark-font ">Moje przepisy</div>
@@ -84,33 +86,36 @@
                 <div class="cross-button"></div>
             </div>
         </div>
+
         {% endif %}
-        <div class="row col-12">
-            <img src="/static/img/expand.svg" class="user-recepie-icons-size cursor">
-        </div>
+
+
+        {% if user_has_diet_list %}
         <div class="row col-12 align-items-center justify-content-center m-3 ">
             <button class="btn btn-primary col-lg-2 col-md-4 col-8  generate-list-button-color" id="createShopList">
                 Utwórz listę zakupów
             </button>
-            <button class="btn btn-primary col-lg-2 col-md-4 col-8  generate-shoplist-button-color generate-shoplist-button" id="generateShopList"  onclick="location.href = '/user/shoplist'">
+            <button
+                class="btn btn-primary col-lg-2 col-md-4 col-8  generate-shoplist-button-color generate-shoplist-button"
+                id="generateShopList" onclick="location.href = '/user/shoplist'">
                 Generuj listę zakupów
             </button>
         </div>
 
-
-        {% if user_has_diet_list %}
         <div class="container-fluid">
             <div class="row align-items-stretch justify-content-center mt-3">
-                <div class="col-lg-3">
+
+                <div class="col-lg-3 col-md-6">
                     <div class="d-flex form-check text-start align-items-center">
-                        <input class="form-check-input p-2" type="checkbox" value="" id="day1-checkbox" onclick="dayChecked('day1-checkbox')">
+                        <input class="form-check-input p-2" type="checkbox" value="" id="day1-checkbox"
+                            onclick="dayChecked('day1-checkbox')">
                         <label class="form-check-label p-2" for="flexCheckDefault">
                             Dodaj do listy zakupów
                         </label>
                     </div>
                     <div class="recepie-container white-background" id="day1">
-                        <div
-                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor" id="day1-edit">
+                        <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor"
+                            id="day1-edit">
                             <div class="col-5 text-start p-3">
                                 Dzień 1
                             </div>
@@ -118,14 +123,14 @@
                                 2500 kcal
                             </div>
                             <div class="col-2 text-end p-2">
-                                <img src="/static/img/options.svg"
-                                    class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('day1')">
+                                <img src="/static/img/options.svg" class="day-options-icon-color day-icons-options-size"
+                                    onclick="dayEditOptionsClick('day1')">
                             </div>
                         </div>
                         <!-- Odstęp między opcjami  -->
 
-                        <div
-                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options" id="day1-edit-options" >
+                        <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options"
+                            id="day1-edit-options">
 
                             <div class="col-6 p-3">
                                 Zmień nazwę
@@ -134,7 +139,8 @@
                                 Kopiuj
                             </div>
                             <div class="col-2 text-end p-2">
-                                <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('day1')">
+                                <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size"
+                                    onclick="dayEditOptionsClick('day1')">
                             </div>
                         </div>
 
@@ -155,7 +161,8 @@
                             </div>
                         </div>
                         <div class="collapse" id="collapseBreakfast">
-                            <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/1'">
+                            <div class="card card-body m-3 p-3 align-items-center day-element-card cursor"
+                                onclick="location.href='/recepie/1'">
                                 Kanapka z awokado
                             </div>
                         </div>
@@ -252,14 +259,15 @@
                         </div>
 
                         <div class="col-12 d-flex justify-content-center">
-                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
+                            <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
+                                type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <div class="cross-button"></div>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <div class="d-flex form-check text-start align-items-center">
                         <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label p-2" for="flexCheckDefault">
@@ -270,7 +278,7 @@
                         <div
                             class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
                             <div class="col-5 text-start p-3">
-                                Dzień 1
+                                Dzień 2
                             </div>
                             <div class="col-5 text-end">
                                 2500 kcal
@@ -362,7 +370,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <div class="d-flex form-check text-start align-items-center">
                         <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label p-2" for="flexCheckDefault">
@@ -449,11 +457,110 @@
                     </div>
                 </div>
 
+                <!-- Empty day -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex form-check text-start align-items-center">
+                        <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label p-2" for="flexCheckDefault">
+                            Dodaj do listy zakupów
+                        </label>
+                    </div>
+                    <div class="recepie-container white-background">
+                        <div
+                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
+                            <div class="col-5 text-start p-3">
+                                Dzień 4
+                            </div>
+                            <div class="col-5 text-end">
+                                0 kcal
+                            </div>
+                            <div class="col-2 text-end p-2">
+                                <img src="/static/img/options.svg"
+                                    class="day-options-icon-color day-icons-options-size">
+                            </div>
+                        </div>
+                        <div class="col-12 empty-day-font greey-font">Dodaj posiłek</div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
+                                <div class="cross-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty meal  -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex form-check text-start align-items-center">
+                        <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label p-2" for="flexCheckDefault">
+                            Dodaj do listy zakupów
+                        </label>
+                    </div>
+                    <div class="recepie-container white-background">
+                        <div
+                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
+                            <div class="col-5 text-start p-3">
+                                Dzień 4
+                            </div>
+                            <div class="col-5 text-end">
+                                0 kcal
+                            </div>
+                            <div class="col-2 text-end p-2">
+                                <img src="/static/img/options.svg"
+                                    class="day-options-icon-color day-icons-options-size">
+                            </div>
+                        </div>
+
+                        <div class="d-flex day-element m-3 p-2 align-items-center">
+                            <div class="col-6 text-center p-2">
+                                Śniadanie
+                            </div>
+                            <div class="col-4">
+                            </div>
+                            <div class="col-2 align-items-center justify-content-center">
+                                <div class="add-button add-button-day d-flex align-items-center justify-content-center cursor">
+                                    <div class="cross-button cross-button-day"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
+                                <div class="cross-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Wybierz posiłek</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <select class="form-select" aria-label="Default select example">
+                        <option value="0" selected>Śniadanie</option>
+                        <option value="1">2 Śniadanie</option>
+                        <option value="2">Obiad</option>
+                        <option value="3">Przekąska</option>
+                        <option value="4">Kolacja</option>
+                    </select>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Dodaj</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {% else %}
     <div class="col-12  font-bold greey-font mt-4 dark-font">Moje posiłki</div>

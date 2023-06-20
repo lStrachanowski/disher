@@ -76,3 +76,26 @@
     color: var(--red);
 }
 
+.modal-footer{
+    border-top: none !important;
+}
+
+.modal-header {
+    padding: 0.75rem 0.75rem !important;
+}
+
+.add-button-day{
+    height: 22px !important;
+    width: 22px !important;
+}
+
+.cross-button-day{
+    height: 1.75px !important;
+    width: 10px !important;
+  }
+  
+  .cross-button-day:after{
+    height: 1.75px !important; 
+    width: 10px !important;
+  }
+  
