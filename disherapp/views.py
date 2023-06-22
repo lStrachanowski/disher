@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def check_if_user_is_logged():
-    user_is_logged = True
+    user_is_logged = False
     return user_is_logged
 
 def index(request):
@@ -38,4 +38,20 @@ def add_recepie(request):
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request, "disher/addrecepie.html" ,context )
+
+def login(request):
+    user_status = check_if_user_is_logged()
+    context = {"user_status": user_status}
+    return render(request,"disher/login.html", context)
+
+def register(request):
+    user_status = check_if_user_is_logged()
+    context = {"user_status": user_status}
+    return render(request,"disher/register.html", context)
+
+def reset(request):
+    user_status = check_if_user_is_logged()
+    context = {"user_status": user_status}
+    return render(request,"disher/reset.html", context)
+
 
