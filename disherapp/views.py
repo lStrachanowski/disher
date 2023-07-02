@@ -1,12 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.contrib.auth.models import User
 
 def check_if_user_is_logged():
-    user_is_logged = False
+    user_is_logged = True
     return user_is_logged
 
 def index(request):
+    superuser_exists = User.objects.filter(is_superuser=True).exists()
+    print(superuser_exists)
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request, "disher/index.html", context)
