@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 
 def check_if_user_is_logged():
     user_is_logged = False
@@ -41,6 +41,12 @@ def add_recepie(request):
     return render(request, "disher/addrecepie.html" ,context )
 
 def login(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user_email = form.cleaned_data["user_email"]
+            user_password =  form.cleaned_data["user_password"]
+            print(user_email,user_password)
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request,"disher/login.html", context)

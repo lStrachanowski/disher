@@ -5,3 +5,7 @@ class RegisterForm(forms.Form):
     user_email = forms.EmailField()
     user_password =  forms.CharField(max_length=32, widget=forms.PasswordInput)
     confirm_user_password = forms.CharField(max_length=32, widget=forms.PasswordInput)
+
+class LoginForm(forms.Form):
+    user_email = forms.EmailField()
+    user_password =  forms.CharField(max_length=32, widget=forms.PasswordInput)
