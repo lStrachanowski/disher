@@ -1,14 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from .forms import RegisterForm
 
 def check_if_user_is_logged():
-    user_is_logged = True
+    user_is_logged = False
     return user_is_logged
 
 def index(request):
-    superuser_exists = User.objects.filter(is_superuser=True).exists()
-    print(superuser_exists)
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request, "disher/index.html", context)
@@ -47,6 +46,14 @@ def login(request):
     return render(request,"disher/login.html", context)
 
 def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user_name = form.cleaned_data["user_name"]
+            user_email = form.cleaned_data["user_email"]
+            user_password =  form.cleaned_data["user_password"]
+            confirm_user_password = form.cleaned_data["confirm_user_password"]
+            print(user_name,user_email,user_password,confirm_user_password)
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request,"disher/register.html", context)
