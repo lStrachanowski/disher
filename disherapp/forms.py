@@ -9,3 +9,6 @@ class RegisterForm(forms.Form):
 class LoginForm(forms.Form):
     user_email = forms.EmailField()
     user_password =  forms.CharField(max_length=32, widget=forms.PasswordInput)
+
+class ResetForm(forms.Form):
+    user_email = forms.EmailField()
