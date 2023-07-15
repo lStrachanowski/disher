@@ -1,56 +1,71 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from .forms import RegisterForm, LoginForm, ResetForm
 
-def check_if_user_is_logged():
-    user_is_logged = False
-    return user_is_logged
+from .methods import check_if_user_is_logged, check_user
+
+
 
 def index(request):
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request, "disher/index.html", context)
 
-def recepie(request , id):
+
+def recepie(request, id):
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
-    return render(request, "disher/recepie.html", context )
+    return render(request, "disher/recepie.html", context)
+
 
 def dashboard(request):
     user_status = check_if_user_is_logged()
     user_has_recepies = True
     user_has_diet_list = True
-    context = {"user_status": user_status, "user_has_recepies": user_has_recepies, "user_has_diet_list": user_has_diet_list}
-    return render(request,"disher/dashboard.html", context)
+    context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
+               "user_has_diet_list": user_has_diet_list}
+    return render(request, "disher/dashboard.html", context)
+
 
 def user_profil(request):
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
-    return render(request, "disher/profile.html" ,context )
+    return render(request, "disher/profile.html", context)
+
 
 def shoplist(request):
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
-    return render(request, "disher/shoplist.html" ,context )
+    return render(request, "disher/shoplist.html", context)
 
 
 def add_recepie(request):
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
-    return render(request, "disher/addrecepie.html" ,context )
+    return render(request, "disher/addrecepie.html", context)
+
 
 def login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            user_email = form.cleaned_data["user_email"]
-            user_password =  form.cleaned_data["user_password"]
-            print(user_email,user_password)
+            user_name = form.cleaned_data["user_name"]
+            user_password = form.cleaned_data["user_password"]
+            user = authenticate(request, username=user_name, password=user_password)
+            if user is not None:    
+                if user.is_active:
+                    print("Hello " + user_name)
+                else:
+                    print("Your account is not active. PLease activate first")
+            else:
+                print("User doesen`t exist")
 
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
-    return render(request,"disher/login.html", context)
+    return render(request, "disher/login.html", context)
+
 
 def register(request):
     if request.method == "POST":
@@ -58,11 +73,17 @@ def register(request):
         if form.is_valid():
             user_name = form.cleaned_data["user_name"]
             user_email = form.cleaned_data["user_email"]
-            user_password =  form.cleaned_data["user_password"]
+            user_password = form.cleaned_data["user_password"]
             confirm_user_password = form.cleaned_data["confirm_user_password"]
+            if check_user(user_name):
+                print("Is taken ")
+            else:
+                print("No in list")
             if user_password == confirm_user_password:
-                print(user_name,user_email,user_password,confirm_user_password)
-                user = User.objects.create_user(user_name, user_email, user_password)
+                print(user_name, user_email,
+                      user_password, confirm_user_password)
+                user = User.objects.create_user(
+                    user_name, user_email, user_password)
                 user.is_active = False
                 user.save()
                 print("Użytkownik utworzony")
@@ -70,7 +91,8 @@ def register(request):
                 print("Hasła się nie zgadzają")
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
-    return render(request,"disher/register.html", context)
+    return render(request, "disher/register.html", context)
+
 
 def reset(request):
     if request.method == "POST":
@@ -80,6 +102,4 @@ def reset(request):
             print(user_email)
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
-    return render(request,"disher/reset.html", context)
-
-
+    return render(request, "disher/reset.html", context)
