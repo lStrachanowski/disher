@@ -47,6 +47,7 @@ def login(request):
             user_email = form.cleaned_data["user_email"]
             user_password =  form.cleaned_data["user_password"]
             print(user_email,user_password)
+
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request,"disher/login.html", context)
@@ -59,7 +60,14 @@ def register(request):
             user_email = form.cleaned_data["user_email"]
             user_password =  form.cleaned_data["user_password"]
             confirm_user_password = form.cleaned_data["confirm_user_password"]
-            print(user_name,user_email,user_password,confirm_user_password)
+            if user_password == confirm_user_password:
+                print(user_name,user_email,user_password,confirm_user_password)
+                user = User.objects.create_user(user_name, user_email, user_password)
+                user.is_active = False
+                user.save()
+                print("Użytkownik utworzony")
+            else:
+                print("Hasła się nie zgadzają")
     user_status = check_if_user_is_logged()
     context = {"user_status": user_status}
     return render(request,"disher/register.html", context)
