@@ -1,27 +1,31 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm
-
-from .methods import check_if_user_is_logged, check_user
+from .methods import CheckIfUserIsLogged,Logout_user, check_user
 
 
 
 def index(request):
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
+    print(login_status.get_user_status(request))
     return render(request, "disher/index.html", context)
 
 
 def recepie(request, id):
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/recepie.html", context)
 
-
+@login_required(login_url='/login')
 def dashboard(request):
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     user_has_recepies = True
     user_has_diet_list = True
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
@@ -30,24 +34,27 @@ def dashboard(request):
 
 
 def user_profil(request):
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/profile.html", context)
 
 
 def shoplist(request):
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/shoplist.html", context)
 
 
 def add_recepie(request):
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/addrecepie.html", context)
 
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -56,13 +63,17 @@ def login(request):
             user = authenticate(request, username=user_name, password=user_password)
             if user is not None:    
                 if user.is_active:
-                    print("Hello " + user_name)
+                    login(request, user)
+                    login_status = CheckIfUserIsLogged()
+                    login_status.set_user_status_to_logged(request)
+                    return redirect('/user/dashboard')
                 else:
                     print("Your account is not active. PLease activate first")
             else:
                 print("User doesen`t exist")
 
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/login.html", context)
 
@@ -89,7 +100,8 @@ def register(request):
                 print("Użytkownik utworzony")
             else:
                 print("Hasła się nie zgadzają")
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/register.html", context)
 
@@ -100,6 +112,13 @@ def reset(request):
         if form.is_valid():
             user_email = form.cleaned_data["user_email"]
             print(user_email)
-    user_status = check_if_user_is_logged()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/reset.html", context)
+
+def logout_view(request):
+    logout_user = Logout_user()
+    logout_user.logout(request)
+    logout(request)
+    return redirect("/")

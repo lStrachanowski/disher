@@ -107,7 +107,8 @@ a{
 }
 
 .top-height {
-  height: 12vh;
+  min-height: 80px;
+  height: 11vh;
   background-color: var(--white);
 }
 
