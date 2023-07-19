@@ -4,15 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm
-from .methods import CheckIfUserIsLogged,Logout_user, check_user
-
+from .methods import CheckIfUserIsLogged, Logout_user, check_user
+from django.contrib import messages
 
 
 def index(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
-    print(login_status.get_user_status(request))
     return render(request, "disher/index.html", context)
 
 
@@ -21,6 +20,7 @@ def recepie(request, id):
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/recepie.html", context)
+
 
 @login_required(login_url='/login')
 def dashboard(request):
@@ -60,17 +60,22 @@ def login_view(request):
         if form.is_valid():
             user_name = form.cleaned_data["user_name"]
             user_password = form.cleaned_data["user_password"]
-            user = authenticate(request, username=user_name, password=user_password)
-            if user is not None:    
+            user = authenticate(request, username=user_name,
+                                password=user_password)
+            if user is not None:
                 if user.is_active:
                     login(request, user)
                     login_status = CheckIfUserIsLogged()
                     login_status.set_user_status_to_logged(request)
                     return redirect('/user/dashboard')
-                else:
-                    print("Your account is not active. PLease activate first")
             else:
-                print("User doesen`t exist")
+                if check_user(user_name):
+                    messages.error(request,'Password is not correct or you have not activated the account.')
+                    return redirect('/login')
+                else:
+                    messages.error(request,'User name and password is not correct.')
+                    return redirect('/login')
+
 
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
@@ -97,7 +102,7 @@ def register(request):
                     user_name, user_email, user_password)
                 user.is_active = False
                 user.save()
-                print("Użytkownik utworzony")
+                print("Użytkownik " + user_name + " utworzony")
             else:
                 print("Hasła się nie zgadzają")
     login_status = CheckIfUserIsLogged()
@@ -116,6 +121,7 @@ def reset(request):
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/reset.html", context)
+
 
 def logout_view(request):
     logout_user = Logout_user()

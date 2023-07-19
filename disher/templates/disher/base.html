@@ -57,10 +57,11 @@
                     <div class="col-3">
                         <img src="/static/img/user.svg" class="icon-size-30">
                     </div>
-
-                    {% if user.is_authenticated %}
-                    <div class="col-lg-5 col-9 p-3 font-bold">{{user.username}}</div>
-                    {% endif %}
+                    <div class="col-lg-5 col-9 p-3 font-bold">
+                        {% if user.is_authenticated %}
+                            {{ user.username }}
+                        {% endif %}
+                    </div>
                 </div>
 
                 <div class="row align-items-center justify-content-center d-sm-none">

@@ -3,10 +3,8 @@
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-        setTimeout(() => {
-            document.getElementById("loader_container").style.display = "none";
-            document.getElementById("content-container").style.display = "block";
-        }, 500);
+        document.getElementById("loader_container").style.display = "none";
+        document.getElementById("content-container").style.display = "block";
     }
 };
 xhttp.open("GET", "/", true);
@@ -117,3 +115,8 @@ let dayChecked =(name)=>{
 // modal.show();
 
 // }
+
+// Is hiding message container in login and register form. 
+let hideMessage = () =>{
+    document.getElementById("messageBox").style.display = "none";
+}
