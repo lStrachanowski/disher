@@ -92,19 +92,20 @@ def register(request):
             user_password = form.cleaned_data["user_password"]
             confirm_user_password = form.cleaned_data["confirm_user_password"]
             if check_user(user_name):
-                print("Is taken ")
-            else:
-                print("No in list")
+                messages.error(request,'User name is already taken. Try other user name')
+                return redirect('/register')
             if user_password == confirm_user_password:
-                print(user_name, user_email,
-                      user_password, confirm_user_password)
-                user = User.objects.create_user(
-                    user_name, user_email, user_password)
-                user.is_active = False
-                user.save()
-                print("Użytkownik " + user_name + " utworzony")
+                messages.success(request,'User registred please check your email to activate')
+                # print(user_name, user_email,
+                #     user_password, confirm_user_password)
+                # user = User.objects.create_user(
+                #     user_name, user_email, user_password)
+                # user.is_active = False
+                # user.save()
+                return redirect('/success')  
             else:
-                print("Hasła się nie zgadzają")
+                messages.error(request,'Passwords don`t match.')
+                return redirect('/register')  
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
@@ -128,3 +129,7 @@ def logout_view(request):
     logout_user.logout(request)
     logout(request)
     return redirect("/")
+
+def success(request):
+    return render(request, "disher/success.html")
+

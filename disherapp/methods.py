@@ -15,7 +15,5 @@ class Logout_user:
         request.session['is_logged'] = False
 
 def check_user(username):
-    if User.objects.filter(username = username).exists():
-        return True
-    else:
-        return False
+    status = User.objects.filter(username = username).exists()
+    return status

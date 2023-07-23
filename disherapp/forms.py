@@ -11,14 +11,6 @@ class RegisterForm(forms.Form):
     confirm_user_password = forms.CharField(
         max_length=32, widget=forms.PasswordInput, required=True)
 
-    def clean(self):
-        cleaned_data = super().clean()
-        user_password = cleaned_data.get('user_password')
-        confirm_user_password = cleaned_data.get('confirm_user_password')
-        if user_password != confirm_user_password:
-            raise ValidationError("Passwords don`t math")
-
-
 class LoginForm(forms.Form):
     user_name = forms.CharField(label="Your name", min_length=3, max_length=100,
                                 required=True, error_messages={'required': 'Enter your name'})
