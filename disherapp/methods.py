@@ -17,3 +17,7 @@ class Logout_user:
 def check_user(username):
     status = User.objects.filter(username = username).exists()
     return status
+
+def check_email(email):
+     status = User.objects.filter(email = email).exists()
+     return status

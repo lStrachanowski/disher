@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm
-from .methods import CheckIfUserIsLogged, Logout_user, check_user
+from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email
 from django.contrib import messages
 
 
@@ -94,8 +94,11 @@ def register(request):
             if check_user(user_name):
                 messages.error(request,'User name is already taken. Try other user name')
                 return redirect('/register')
+            if check_email(user_email):
+                messages.error(request, 'Email is not unique.' )
+                return redirect('/register')
             if user_password == confirm_user_password:
-                messages.success(request,'User registred please check your email to activate')
+                messages.success(request,'User registred please check your email to activate account.')
                 # print(user_name, user_email,
                 #     user_password, confirm_user_password)
                 # user = User.objects.create_user(
