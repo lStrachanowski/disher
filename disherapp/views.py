@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email
 from django.contrib import messages
+from django.contrib.sessions.models import Session
+ 
 
 
 def index(request):
@@ -55,6 +57,13 @@ def add_recepie(request):
 
 
 def login_view(request):
+    # Clearing messages storage
+    storage = messages.get_messages(request)
+    for _ in storage:
+        pass
+    for _ in list(storage._loaded_messages):
+        del storage._loaded_messages[0]
+
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -76,7 +85,6 @@ def login_view(request):
                     messages.error(request,'User name and password is not correct.')
                     return redirect('/login')
 
-
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
@@ -84,6 +92,7 @@ def login_view(request):
 
 
 def register(request):
+    list(messages.get_messages(request))
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -109,6 +118,7 @@ def register(request):
             else:
                 messages.error(request,'Passwords don`t match.')
                 return redirect('/register')  
+    
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
