@@ -57,13 +57,6 @@ def add_recepie(request):
 
 
 def login_view(request):
-    # Clearing messages storage
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
-    for _ in list(storage._loaded_messages):
-        del storage._loaded_messages[0]
-
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -79,10 +72,10 @@ def login_view(request):
                     return redirect('/user/dashboard')
             else:
                 if check_user(user_name):
-                    messages.error(request,'Password is not correct or you have not activated the account.')
+                    messages.error(request,'Password is not correct or you have not activated the account.', extra_tags="login")
                     return redirect('/login')
                 else:
-                    messages.error(request,'User name and password is not correct.')
+                    messages.error(request,'User name and password is not correct.', extra_tags="login")
                     return redirect('/login')
 
     login_status = CheckIfUserIsLogged()
@@ -92,7 +85,6 @@ def login_view(request):
 
 
 def register(request):
-    list(messages.get_messages(request))
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -101,13 +93,13 @@ def register(request):
             user_password = form.cleaned_data["user_password"]
             confirm_user_password = form.cleaned_data["confirm_user_password"]
             if check_user(user_name):
-                messages.error(request,'User name is already taken. Try other user name')
+                messages.error(request,'User name is already taken. Try other user name', extra_tags="register")
                 return redirect('/register')
             if check_email(user_email):
-                messages.error(request, 'Email is not unique.' )
+                messages.error(request, 'Email is not unique.', extra_tags="register")
                 return redirect('/register')
             if user_password == confirm_user_password:
-                messages.success(request,'User registred please check your email to activate account.')
+                messages.success(request,'User registred please check your email to activate account.', extra_tags="register")
                 # print(user_name, user_email,
                 #     user_password, confirm_user_password)
                 # user = User.objects.create_user(
@@ -116,7 +108,7 @@ def register(request):
                 # user.save()
                 return redirect('/success')  
             else:
-                messages.error(request,'Passwords don`t match.')
+                messages.error(request,'Passwords don`t match.', extra_tags="register")
                 return redirect('/register')  
     
     login_status = CheckIfUserIsLogged()

@@ -17,19 +17,14 @@
                 {% if messages %}
                 <div class="justify-content-center align-items-center" id="messageBox">
                     {% for message in messages %}
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn-close text-right" aria-label="Close" onclick="hideMessage()"></button>
-                    </div>
-                    {% if message.tags == "success" %}
-                    <div class="mt-3 alert alert-success text-center" role="alert">
-                        {{ message }}  
-                    </div>
-                    {% endif %}
-                    {% if message.tags == "error" %}
-                    <div class="mt-3 alert alert-danger text-center" role="alert">
-                        {{ message }}  
-                    </div>
-                    {% endif %}
+                        {% if message.extra_tags == "register" %}
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn-close text-right" aria-label="Close" onclick="hideMessage()"></button>
+                                </div>
+                                <div class="mt-3 alert alert-danger text-center" role="alert">
+                                    {{ message }}  
+                                </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
                 {% endif %}
