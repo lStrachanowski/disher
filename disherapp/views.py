@@ -146,3 +146,5 @@ def logout_view(request):
 def success(request):
     return render(request, "disher/success.html")
 
+def activate(request):
+    print("activate")
