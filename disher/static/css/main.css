@@ -288,6 +288,10 @@ a{
   border-color: var(--blue-add-color) var(--background-blue) transparent transparent;
   animation: rotation 1.5s linear infinite;
 }
+
+.img-size{
+  width: 100%;
+}
     
 @keyframes rotation {
   0% {
