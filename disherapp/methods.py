@@ -14,6 +14,7 @@ class Logout_user:
     def logout(self,request):
         request.session['is_logged'] = False
 
+
 def check_user(username):
     status = User.objects.filter(username = username).exists()
     return status
@@ -21,3 +22,8 @@ def check_user(username):
 def check_email(email):
      status = User.objects.filter(email = email).exists()
      return status
+
+def activate_email(email):
+    user = User.objects.get(email = email)
+    user.is_active = True
+    user.save() 

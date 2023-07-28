@@ -4,9 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm
-from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email
+from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email
 from django.contrib import messages
-from django.contrib.sessions.models import Session
+from django.core.signing import Signer
+from django.core import signing
  
 
 
@@ -34,7 +35,7 @@ def dashboard(request):
                "user_has_diet_list": user_has_diet_list}
     return render(request, "disher/dashboard.html", context)
 
-
+@login_required(login_url='/login')
 def user_profil(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
@@ -100,12 +101,14 @@ def register(request):
                 return redirect('/register')
             if user_password == confirm_user_password:
                 messages.success(request,'User registred please check your email to activate account.', extra_tags="register")
-                # print(user_name, user_email,
-                #     user_password, confirm_user_password)
-                # user = User.objects.create_user(
-                #     user_name, user_email, user_password)
-                # user.is_active = False
-                # user.save()
+                user = User.objects.create_user(
+                    user_name, user_email, user_password)
+                user.is_active = False
+                user.save()
+                signer = Signer()
+                signed_obj = signer.sign_object({"email": user_email })
+                token = signing.dumps(signed_obj)
+                print("http://127.0.0.1:8000/activate/"+ token)
                 return redirect('/success')  
             else:
                 messages.error(request,'Passwords don`t match.', extra_tags="register")
@@ -138,5 +141,14 @@ def logout_view(request):
 def success(request):
     return render(request, "disher/success.html")
 
-def activate(request):
-    print("activate")
+def activate(request, token):
+    signer = Signer()
+    token = signing.loads(token)
+    obj = signer.unsign_object(token)
+    if check_email(obj['email']):
+        activate_email(obj['email'])
+        return redirect("/activated")
+    return redirect("/")
+
+def user_activated(request):
+    return render(request, "disher/activated.html")
