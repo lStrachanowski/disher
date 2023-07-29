@@ -14,20 +14,23 @@ class Logout_user:
     def logout(self,request):
         request.session['is_logged'] = False
 
-
+# Checks if username exist
 def check_user(username):
     status = User.objects.filter(username = username).exists()
     return status
 
+# Checks if user email exist
 def check_email(email):
      status = User.objects.filter(email = email).exists()
      return status
 
+# Is activating accoutnt
 def activate_email(email):
     user = User.objects.get(email = email)
     user.is_active = True
     user.save() 
 
+# Is reseting user password
 def reset_password(email, password):
      print(email,password)
      user = User.objects.get(email = email)

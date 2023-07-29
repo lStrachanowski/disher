@@ -65,19 +65,23 @@ def login_view(request):
             user_password = form.cleaned_data["user_password"]
             user = authenticate(request, username=user_name,
                                 password=user_password)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    login_status = CheckIfUserIsLogged()
-                    login_status.set_user_status_to_logged(request)
-                    return redirect('/user/dashboard')
-            else:
-                if check_user(user_name):
-                    messages.error(request,'Password is not correct or you have not activated the account.', extra_tags="login")
-                    return redirect('/login')
+            try:
+                if user is not None:
+                    if user.is_active:
+                        login(request, user)
+                        login_status = CheckIfUserIsLogged()
+                        login_status.set_user_status_to_logged(request)
+                        return redirect('/user/dashboard')
                 else:
-                    messages.error(request,'User name and password is not correct.', extra_tags="login")
-                    return redirect('/login')
+                    if check_user(user_name):
+                        messages.error(request,'Password is not correct or you have not activated the account.', extra_tags="login")
+                        return redirect('/login')
+                    else:
+                        messages.error(request,'User name and password is not correct.', extra_tags="login")
+                        return redirect('/login')
+            except Exception as e:
+                messages.error(request,e, extra_tags="register")
+                return redirect('/login')
 
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
@@ -93,27 +97,30 @@ def register(request):
             user_email = form.cleaned_data["user_email"]
             user_password = form.cleaned_data["user_password"]
             confirm_user_password = form.cleaned_data["confirm_user_password"]
-            if check_user(user_name):
-                messages.error(request,'User name is already taken. Try other user name', extra_tags="register")
-                return redirect('/register')
-            if check_email(user_email):
-                messages.error(request, 'Email is not unique.', extra_tags="register")
-                return redirect('/register')
-            if user_password == confirm_user_password:
-                user = User.objects.create_user(
-                    user_name, user_email, user_password)
-                user.is_active = False
-                user.save()
-                signer = Signer()
-                signed_obj = signer.sign_object({"email": user_email })
-                token = signing.dumps(signed_obj)
-                print("http://127.0.0.1:8000/activate/"+ token)
-                messages.success(request,'Account created. Please activate account. ')
-                return redirect('/success')  
-            else:
-                messages.error(request,'Passwords don`t match.', extra_tags="register")
+            try:
+                if check_user(user_name):
+                    messages.error(request,'User name is already taken. Try other user name', extra_tags="register")
+                    return redirect('/register')
+                if check_email(user_email):
+                    messages.error(request, 'Email is already used. Try other email.', extra_tags="register")
+                    return redirect('/register')
+                if user_password == confirm_user_password:
+                    user = User.objects.create_user(
+                        user_name, user_email, user_password)
+                    user.is_active = False
+                    user.save()
+                    signer = Signer()
+                    signed_obj = signer.sign_object({"email": user_email })
+                    token = signing.dumps(signed_obj)
+                    print("http://127.0.0.1:8000/activate/"+ token)
+                    messages.success(request,'Account created. Please activate account. ')
+                    return redirect('/success')  
+                else:
+                    messages.error(request,'Passwords don`t match.', extra_tags="register")
+                    return redirect('/register')  
+            except Exception as e:
+                messages.error(request,e, extra_tags="register")
                 return redirect('/register')  
-    
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
@@ -124,14 +131,17 @@ def reset(request):
     if request.method == "POST":
         form = ResetForm(request.POST)
         if form.is_valid():
-            user_email = form.cleaned_data["user_email"]
-            signer = Signer()
-            signed_obj = signer.sign_object({"email": user_email })
-            token = signing.dumps(signed_obj)
-            print("http://127.0.0.1:8000/reset/"+ token)
-            messages.success(request,'On your email was sent reset link.')
-            return redirect('/success')  
-
+            try:
+                user_email = form.cleaned_data["user_email"]
+                signer = Signer()
+                signed_obj = signer.sign_object({"email": user_email })
+                token = signing.dumps(signed_obj)
+                print("http://127.0.0.1:8000/reset/"+ token)
+                messages.success(request,'On your email was sent reset link.')
+                return redirect('/success')  
+            except Exception as e:
+                messages.error(request, e, extra_tags="register")
+                return render(request, "disher/reset.html", context) 
 
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
@@ -152,10 +162,14 @@ def activate(request, token):
     signer = Signer()
     token = signing.loads(token)
     obj = signer.unsign_object(token)
-    if check_email(obj['email']):
-        activate_email(obj['email'])
-        messages.success(request,'Your accourt was activatet. Please login. ')
-        return redirect("/activated")
+    try:
+        if check_email(obj['email']):
+            activate_email(obj['email'])
+            messages.success(request,'Your accourt was activatet. Please login. ')
+            return redirect("/activated")
+    except Exception as e:
+            messages.error(request, e, extra_tags="register")
+            return redirect("/activated")
     return redirect("/")
 
 def user_activated(request):
@@ -170,11 +184,15 @@ def reset_password_view(request, token):
             signer = Signer()
             token = signing.loads(token)
             obj = signer.unsign_object(token)
-            if user_password == confirm_user_password:
-                if check_email(obj['email']):
-                    reset_password(obj['email'], user_password)
-                    messages.success(request,'Yout password was changed. Please log in with new password.')
-                    return redirect('/success') 
-            else:
-                    messages.error(request, 'Passwords don`t match. PLease check passwords', extra_tags="register")
+            try:
+                if user_password == confirm_user_password:
+                    if check_email(obj['email']):
+                        reset_password(obj['email'], user_password)
+                        messages.success(request,'Yout password was changed. Please log in with new password.')
+                        return redirect('/success') 
+                else:
+                        messages.error(request, 'Passwords don`t match. PLease check passwords', extra_tags="register")
+            except Exception as e:
+                messages.error(request, e, extra_tags="register")
+                return render(request, "disher/resetPassword.html")     
     return render(request, "disher/resetPassword.html")
