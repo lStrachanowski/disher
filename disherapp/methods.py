@@ -27,3 +27,9 @@ def activate_email(email):
     user = User.objects.get(email = email)
     user.is_active = True
     user.save() 
+
+def reset_password(email, password):
+     print(email,password)
+     user = User.objects.get(email = email)
+     user.set_password(password)
+     user.save() 

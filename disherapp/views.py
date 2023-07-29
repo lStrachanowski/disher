@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, ResetForm
-from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email
+from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm
+from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
 from django.contrib import messages
 from django.core.signing import Signer
 from django.core import signing
@@ -125,7 +125,11 @@ def reset(request):
         form = ResetForm(request.POST)
         if form.is_valid():
             user_email = form.cleaned_data["user_email"]
-            print(user_email)
+            signer = Signer()
+            signed_obj = signer.sign_object({"email": user_email })
+            token = signing.dumps(signed_obj)
+            print("http://127.0.0.1:8000/reset/"+ token)
+            return redirect('/success')  
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
@@ -152,3 +156,18 @@ def activate(request, token):
 
 def user_activated(request):
     return render(request, "disher/activated.html")
+
+def reset_password_view(request, token):
+    if request.method == "POST":
+        form = ResetPasswordForm(request.POST)
+        if form.is_valid():
+            user_password = form.cleaned_data["user_password"]
+            confirm_user_password = form.cleaned_data["confirm_user_password"]
+            signer = Signer()
+            token = signing.loads(token)
+            obj = signer.unsign_object(token)
+            if user_password == confirm_user_password:
+                if check_email(obj['email']):
+                    reset_password(obj['email'], user_password)
+                    return redirect('/success') 
+    return render(request, "disher/resetPassword.html")

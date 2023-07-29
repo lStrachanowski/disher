@@ -20,3 +20,9 @@ class LoginForm(forms.Form):
 
 class ResetForm(forms.Form):
     user_email = forms.EmailField(required=True)
+
+class ResetPasswordForm(forms.Form):
+    user_password = forms.CharField(
+        min_length=6, max_length=32, widget=forms.PasswordInput, required=True)
+    confirm_user_password = forms.CharField(
+        max_length=32, widget=forms.PasswordInput, required=True)
