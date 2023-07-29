@@ -100,7 +100,6 @@ def register(request):
                 messages.error(request, 'Email is not unique.', extra_tags="register")
                 return redirect('/register')
             if user_password == confirm_user_password:
-                messages.success(request,'User registred please check your email to activate account.', extra_tags="register")
                 user = User.objects.create_user(
                     user_name, user_email, user_password)
                 user.is_active = False
@@ -109,6 +108,7 @@ def register(request):
                 signed_obj = signer.sign_object({"email": user_email })
                 token = signing.dumps(signed_obj)
                 print("http://127.0.0.1:8000/activate/"+ token)
+                messages.success(request,'Account created. Please activate account. ')
                 return redirect('/success')  
             else:
                 messages.error(request,'Passwords don`t match.', extra_tags="register")
@@ -129,7 +129,10 @@ def reset(request):
             signed_obj = signer.sign_object({"email": user_email })
             token = signing.dumps(signed_obj)
             print("http://127.0.0.1:8000/reset/"+ token)
+            messages.success(request,'On your email was sent reset link.')
             return redirect('/success')  
+
+
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
@@ -151,6 +154,7 @@ def activate(request, token):
     obj = signer.unsign_object(token)
     if check_email(obj['email']):
         activate_email(obj['email'])
+        messages.success(request,'Your accourt was activatet. Please login. ')
         return redirect("/activated")
     return redirect("/")
 
@@ -169,5 +173,8 @@ def reset_password_view(request, token):
             if user_password == confirm_user_password:
                 if check_email(obj['email']):
                     reset_password(obj['email'], user_password)
+                    messages.success(request,'Yout password was changed. Please log in with new password.')
                     return redirect('/success') 
+            else:
+                    messages.error(request, 'Passwords don`t match. PLease check passwords', extra_tags="register")
     return render(request, "disher/resetPassword.html")
