@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import Product, Dish, User_Day
 
 admin.site.register(Product)

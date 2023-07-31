@@ -32,7 +32,6 @@ def activate_email(email):
 
 # Is reseting user password
 def reset_password(email, password):
-     print(email,password)
      user = User.objects.get(email = email)
      user.set_password(password)
      user.save() 
