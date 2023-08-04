@@ -44,7 +44,19 @@ class ProductOperations:
                 print("Product not found")
         except Exception as e:
             print(e)
-
+    
+    def updateProduct(self, name, calories, quantity):
+        try:
+            product_object = Product.objects.filter(product_name=name)
+            if product_object:
+                product_object.update(product_name=name, product_calories=calories, product_quantity=quantity)
+                print("Product updated")
+            else:
+                print("Product not found")
+        except Exception as e:
+            print(e)
+            return
+    
 
 class DishOperations:
     def createDish(self, preparation_time, dish_type, name, calories, description, owner, products=None):

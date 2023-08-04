@@ -58,7 +58,8 @@ def add_recepie(request):
     return render(request, "disher/addrecepie.html", context)
 
 def login_view(request):
-
+    test_product = ProductOperations()
+    test_product.updateProduct("pierś z kurczaka", 583, 10)
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
