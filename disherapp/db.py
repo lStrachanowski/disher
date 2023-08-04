@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from disher.models import Product
+from disher.models import Product, Dish
 
 class ProductOperations:
     def createProduct(self, name, calories, quantity):
@@ -7,18 +7,29 @@ class ProductOperations:
             check_product = Product.objects.get(product_name=name)
             print("Already exist")
         except Product.DoesNotExist:
-            product = Product(product_name=name, product_calories=calories, product_quantity=quantity)
+            product = Product(
+                product_name=name, 
+                product_calories=calories, 
+                product_quantity=quantity)
             product.save()
             print("Product created")
         except Exception as e:
             print(e)
 
-    def findProductId(self, name):
+    def findProduct(self, name):
         try:
             product = Product.objects.get(product_name=name)
-            return product.product_id
+            return product.id
         except Exception as e:
             print(e)
+            return
+    def returnProductName(self, id):
+        try:
+            product = Product.objects.get(id=id)
+            return product.product_name
+        except Exception as e:
+            print(e)
+            return
 
     def deleteProduct(self, name):
         try:
@@ -31,3 +42,28 @@ class ProductOperations:
                 print("Product not found")
         except Exception as e:
             print(e)
+
+class DishOperations:
+    def createDish(self, preparation_time, dish_type, name, calories, description, owner, products=None):
+        try:
+            dish_object = Dish(
+                preparation_time=preparation_time, 
+                dish_type=dish_type, 
+                dish_name=name, 
+                dish_calories = calories, 
+                dish_description=description, 
+                dish_owner=owner)
+            dish_object.save()
+            if products is not None:
+                dish_object.dish_products.add(*products)
+            print("Dish created")
+        except Exception as e:
+            print(e)
+            return
+    def getDish(self, name):
+        try:
+            dish_objcet = Dish.objects.get(dish_name=name)
+            return dish_objcet
+        except Exception as e:
+            print(e)
+            return 

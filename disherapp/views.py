@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
-from .db import ProductOperations
+from .db import ProductOperations, DishOperations
 from django.contrib import messages
 from django.core.signing import Signer
 from django.core import signing
@@ -58,6 +58,7 @@ def add_recepie(request):
     return render(request, "disher/addrecepie.html", context)
 
 def login_view(request):
+    
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
