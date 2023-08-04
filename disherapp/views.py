@@ -58,7 +58,7 @@ def add_recepie(request):
     return render(request, "disher/addrecepie.html", context)
 
 def login_view(request):
-    
+
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
