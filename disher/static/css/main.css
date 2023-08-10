@@ -10,23 +10,23 @@
   --breakfast-color: rgb(95, 173, 86);
   --second-breakfast-color: rgb(242, 193, 78);
   --dinner-color: rgb(247, 129, 84);
-  --blue-add-color: rgb(95,168,211);
-  --snack-color:rgb(180, 67, 108);
-  --supper-color:rgb(121,104,110);
-  --greey: rgb(194,194,194);
-  --red:rgb(231,56,56);
-  --user-recepie-hover-color:rgb(245, 232, 213);
-  --generate-list-button-color:rgb(148,169,175);
-  --day-item-hover:rgb(255, 211, 117);
+  --blue-add-color: rgb(95, 168, 211);
+  --snack-color: rgb(180, 67, 108);
+  --supper-color: rgb(121, 104, 110);
+  --greey: rgb(194, 194, 194);
+  --red: rgb(231, 56, 56);
+  --user-recepie-hover-color: rgb(245, 232, 213);
+  --generate-list-button-color: rgb(148, 169, 175);
+  --day-item-hover: rgb(255, 211, 117);
 }
 
 body {
   background-color: var(--background-blue);
 }
 
-a{
+a {
   color: var(--search-label);
-  text-decoration:none;
+  text-decoration: none;
 }
 
 .white-background {
@@ -39,30 +39,30 @@ a{
 
 .recepie-header-color:hover {
   background-color: var(--recepie-header-hover);
-  transition: all .3s cubic-bezier(0,0,.5,1);
+  transition: all .3s cubic-bezier(0, 0, .5, 1);
 }
 
-.recepie-header-border{
+.recepie-header-border {
   border-radius: 15px 0px 0px 0px;
 }
 
-.recepie-meal-color-breakfast{
+.recepie-meal-color-breakfast {
   background-color: var(--breakfast-color);
 }
 
-.recepie-meal-color-second-breakfast{
+.recepie-meal-color-second-breakfast {
   background-color: var(--second-breakfast-color);
 }
 
-.recepie-meal-color-dinner{
+.recepie-meal-color-dinner {
   background-color: var(--dinner-color);
 }
 
-.recepie-meal-color-snack{
+.recepie-meal-color-snack {
   background-color: var(--snack-color);
 }
 
-.recepie-meal-color-supper{
+.recepie-meal-color-supper {
   background-color: var(--supper-color);
 }
 
@@ -72,38 +72,38 @@ a{
   font-weight: 600;
 }
 
-.greey-font{
+.greey-font {
   color: var(--greey);
 }
 
-.dark-font{
+.dark-font {
   color: var(--menu-color);
 }
 
-.recepie-font-size{
+.recepie-font-size {
   font-size: 0.85rem;
 }
 
-.recepie-font{
+.recepie-font {
   font-size: 0.85rem;
   color: var(--search-label);
 }
 
-.dashboard-font{
+.dashboard-font {
   font-size: 2.0rem;
 }
 
-.recepie-meal-border{
+.recepie-meal-border {
   border-radius: 0px 15px 0px 0px;
 }
 
-.recepie-container{
+.recepie-container {
   border-radius: 15px;
-  box-shadow: 2px 4px 12px rgba(0,0,0,.08);
-  transition: all .3s cubic-bezier(0,0,.5,1);
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
+  transition: all .3s cubic-bezier(0, 0, .5, 1);
 }
 
-.recepie-container:hover{
+.recepie-container:hover {
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.24);
 }
 
@@ -144,46 +144,46 @@ a{
   border: 1px solid var(--serch-input-border);
 }
 
-.min-height{
+.min-height {
   min-height: 65px;
 }
 
-.icon-size-15{
+.icon-size-15 {
   height: 15px;
 }
 
-.icon-size-30{
+.icon-size-30 {
   max-height: 30px;
 }
 
-.icon-size-full-recpie{
+.icon-size-full-recpie {
   height: 25px;
   margin: 5px;
 }
 
-.recepie-font-spacing{
+.recepie-font-spacing {
   line-height: 1.1rem;
 }
 
-.font-bold{
+.font-bold {
   font-weight: 600;
 }
 
-.add-button{
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    background-color: var(--blue-add-color);
-    border: none;
-    transition: 0.25s;
+.add-button {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: var(--blue-add-color);
+  border: none;
+  transition: 0.25s;
 }
 
-.add-button:hover{
+.add-button:hover {
   background-color: var(--logo-green);
   transform: rotate(90deg);
 }
 
-.cross-button{
+.cross-button {
   height: 3px;
   width: 20px;
   background-color: var(--white);
@@ -191,7 +191,7 @@ a{
   position: relative;
 }
 
-.cross-button:after{
+.cross-button:after {
   content: '';
   height: 3px;
   width: 20px;
@@ -202,7 +202,7 @@ a{
   left: 0px;
 }
 
-.minus-button{
+.minus-button {
   height: 3px;
   width: 20px;
   background-color: var(--white);
@@ -210,7 +210,7 @@ a{
   position: relative;
 }
 
-.add-button-shoplist{
+.add-button-shoplist {
   height: 35px;
   width: 35px;
   border-radius: 50%;
@@ -218,37 +218,40 @@ a{
   transition: 0.25s;
 }
 
-.minus-button:hover, .add-button-shoplist:hover{
+.minus-button:hover,
+.add-button-shoplist:hover {
   background-color: var(--menu-color);
 }
 
 
-.cursor{
+.cursor {
   cursor: pointer;
 }
 
-.recepie-text-left{
+.recepie-text-left {
   text-align: left !important;
 }
 
-.min-h{
+.min-h {
   min-height: 170px;
   max-height: 170px;
 }
 
 .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
+  min-height: 100%;
+  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh;
+  /* These two lines are counted as one :-)       */
 
   display: flex;
   align-items: center;
 }
 
-.content-height{
+.content-height {
   height: 82vh;
 }
 
-.person-font{
+.person-font {
   font-size: 1.5rem;
 }
 
@@ -263,9 +266,10 @@ a{
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
+
 .loader::after,
 .loader::before {
-  content: '';  
+  content: '';
   box-sizing: border-box;
   position: absolute;
   left: 0;
@@ -282,6 +286,7 @@ a{
   animation: rotationBack 0.5s linear infinite;
   transform-origin: center center;
 }
+
 .loader::before {
   width: 32px;
   height: 32px;
@@ -289,38 +294,80 @@ a{
   animation: rotation 1.5s linear infinite;
 }
 
-.img-size{
+.img-size {
   width: 100%;
 }
-    
+
+.img-index {
+  margin: 2%;
+  max-height: 80vh;
+  margin-left: 5%;
+  max-width: 95%;
+}
+
+.index-image-text{
+  padding: 5px;
+  color: var(--breakfast-color);
+  text-shadow: 0 5.36px 4.896px rgba(0, 0, 0, 0.1);
+  line-height: 1.0;
+  font-size: 3vw;
+  line-height: 1.14286;
+  font-weight: 600;
+  letter-spacing: .007em;
+  font-family: SF Pro Display, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.image-top-text-lower{
+  color: rgb(240, 240, 240);
+  background-color: #3ca8c4;
+  padding: 5px;
+}
+
+
+.image-top-text{
+  font-size: 4vw;
+}
+
+.index-button{
+  margin: 1px;
+}
+
+.start-50 {
+  left: 70% !important;
+  width: max-content;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
-} 
+}
+
 @keyframes rotationBack {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(-360deg);
   }
 }
-    
-#loader_container{
+
+#loader_container {
   display: block;
   justify-content: center;
 }
 
-#content-container{
+#content-container {
   display: none;
 }
 
-@media (max-width: 575.98px) { 
-  .recepie-font{
+@media (max-width: 575.98px) {
+  .recepie-font {
     font-size: 0.95rem;
   }
 }
