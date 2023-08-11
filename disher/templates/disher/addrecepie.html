@@ -19,18 +19,32 @@
         <form>
             <div class="row">
                 <div class="form-group col-lg-12 col-12">
-                    <label for="exampleFormControlInput1">Name</label>
+                    <label for="exampleFormControlInput1">Nazwa potrawy</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1">
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="form-group col-lg-6 col-12">
+                <div class="form-group col-lg-4 col-12">
                     <label for="exampleFormControlInput1" >Kaloryczność </label>
                     <input type="text" class="form-control " id="exampleFormControlInput1">
                 </div>
-                <div class="form-group col-lg-6 col-12">
-                    <label for="exampleFormControlInput1">Czas przygotwania</label>
-                    <input type="text" class="form-control " id="exampleFormControlInput1">
+                <div class="form-group col-lg-4 col-12">
+                    <label for="duration" >Czas przygotwania </label>
+                    <select class="form-control" name="duration">
+                        <option value="Quick" >Szybki ( < 30 min ) </option>
+                        <option value="Medium" >Średni ( 30-60 min ) </option>
+                        <option value="Long" >Długi ( > 60  min ) </option>
+                      </select>
+                </div>
+                <div class="form-group col-lg-4 col-12">
+                    <label for="duration" >Typ posiłku</label>
+                    <select class="form-control" name="typeOfMeal">
+                        <option value="Breakfast" >Śniadanie</option>
+                        <option value="Brunch" >2 Śniadanie</option>
+                        <option value="Dinner" >Obiad</option>
+                        <option value="Dessert" >Przekąska</option>
+                        <option value="Supper" >Kolacja</option>
+                    </select>
                 </div>
             </div>
             <div class="row text-center mt-3">
@@ -44,18 +58,31 @@
 
             <div class="row mt-1">
                 <div class="form-group col-lg-6 col-12">
-                    <label for="exampleFormControlInput1" >Nazwa</label>
-                    <input type="text" class="form-control " id="exampleFormControlInput1">
+                    <label for="resecpieName" >Nazwa</label>
+                    <input type="text" class="form-control " id="resecpieName" >
                 </div>
-                <div class="form-group col-lg-6 col-12">
-                    <label for="exampleFormControlInput1">Ilość</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1">
+                <div class="form-group col-lg-3 col-12">
+                    <label for="recepueQuantity">Ilość</label>
+                    <input type="text" class="form-control" id="recepueQuantity">
+                </div>
+
+                <div class="form-group col-lg-3 col-12">
+                    <label for="unit">Jednostka</label>
+                    <select class="form-control" name="unit">
+                        <option value="kg">kg</option>
+                        <option value="gr">gr</option>
+                        <option value="ml">ml</option>
+                      </select>
                 </div>
             </div>
+            <div class="row m-4 justify-content-center align-items-center ">
+                <div class="col-lg-4 col-sm-3 mt-2  btn btn-success">Zapisz składnik</div>
+            </div>
+
 
             <div class="form-group mt-2">
-                <label for="exampleFormControlTextarea1">Opis przygotowania</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="recepieDescription">Opis przygotowania</label>
+                <textarea class="form-control" id="recepieDescription" rows="3"></textarea>
             </div>
 
             <div class="row m-4 justify-content-center align-items-center ">
