@@ -120,3 +120,44 @@ let dayChecked =(name)=>{
 let hideMessage = () =>{
     document.getElementById("messageBox").style.display = "none";
 }
+
+
+// Prevents select meal modal form refersing the page after submit
+document.getElementById("modalForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+});
+                            
+
+
+/**Is creating element in user day
+ * 
+ * @param {string} id - Element id
+ * 
+ * */
+let addDishMeal = (id) =>{
+    let selectedValue = document.getElementById("selectedMeal").value;
+
+    translateTable = {
+        "Breakfast": "Śniadanie",
+        "Brunch" : "2 Śniadanie" , 
+        "Dinner" : "Obiad" ,
+        "Dessert" : "Przekąska" , 
+        "Supper" : "Kolacja" ,
+    }
+
+    let mealName = translateTable[translateTable];
+    const mealElementTemplate = `<div class="d-flex day-element m-3 p-2 align-items-center">
+                                <div class="col-6 text-center p-2">
+                                    ${mealName}
+                                </div>
+                            <div class="col-4">
+                            </div>
+                            <div class="col-2 align-items-center justify-content-center">
+                                <div class="add-button add-button-day d-flex align-items-center justify-content-center cursor">
+                                    <div class="cross-button cross-button-day"></div>
+                                </div>
+                            </div>
+                            </div>`
+    let selectedDay = document.getElementById(id);
+    selectedDay.insertAdjacentHTML('beforebegin', mealElementTemplate);
+}

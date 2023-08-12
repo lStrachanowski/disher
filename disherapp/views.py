@@ -32,6 +32,9 @@ def dashboard(request):
     user_status = login_status.get_user_status(request)
     user_has_recepies = True
     user_has_diet_list = True
+    if request.method == "POST":
+        selected_meal = request.POST.get('selectedMeal')
+        print(selected_meal)
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
                "user_has_diet_list": user_has_diet_list}
     return render(request, "disher/dashboard.html", context)
@@ -58,8 +61,6 @@ def add_recepie(request):
     return render(request, "disher/addrecepie.html", context)
 
 def login_view(request):
-    test_product = ProductOperations()
-    test_product.updateProduct("pierś z kurczaka", 583, 10)
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():

@@ -474,7 +474,7 @@
                             Dodaj do listy zakupów
                         </label>
                     </div>
-                    <div class="recepie-container white-background">
+                    <div class="recepie-container white-background"  id="day4">
                         <div
                             class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
                             <div class="col-5 text-start p-3">
@@ -488,11 +488,12 @@
                                     class="day-options-icon-color day-icons-options-size">
                             </div>
                         </div>
-                        <div class="col-12 empty-day-font greey-font">Dodaj posiłek</div>
+                        <div class="col-12 empty-day-font greey-font" id="day4Add">Dodaj posiłek</div>
                         <div class="col-12 d-flex justify-content-center">
-                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
+                            <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
+                                type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <div class="cross-button"></div>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -538,6 +539,7 @@
                                 <div class="cross-button"></div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -575,18 +577,23 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Wybierz posiłek</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="0" selected>Śniadanie</option>
-                        <option value="1">2 Śniadanie</option>
-                        <option value="2">Obiad</option>
-                        <option value="3">Przekąska</option>
-                        <option value="4">Kolacja</option>
-                    </select>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Dodaj</button>
-                </div>
+
+                <form method="post" id="modalForm">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <select class="form-select" aria-label="Default select example" name="selectedMeal" id="selectedMeal">
+                            <option value="Breakfast" selected>Śniadanie</option>
+                            <option value="Brunch" >2 Śniadanie</option>
+                            <option value="Dinner" >Obiad</option>
+                            <option value="Dessert" >Przekąska</option>
+                            <option value="Supper" >Kolacja</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="addDishMeal('day4Add','test');">Dodaj</button>
+                    </div>
+                </form>
+                
             </div>
         </div>
     </div>
