@@ -18,31 +18,31 @@ let optionsClick = (id) => {
     optionElement = document.getElementById(optionsId);
     idList = document.querySelectorAll("[id^='user']");
     for (let i = 0; i < idList.length; i++) {
-            if (elementId == idList[i].id){
-                if (parentElement.style.display !== "none") {
-                    parentElement.style.cssText = 'display:none !important';
-                    optionElement.style.cssText = 'display:inline-flex!important';
-                } else {
-                    parentElement.style.cssText = 'display:inline-flex !important';
-                    optionElement.style.cssText = 'display:none !important';
-                }
-            }else{
-
+        if (elementId == idList[i].id) {
+            if (parentElement.style.display !== "none") {
+                parentElement.style.cssText = 'display:none !important';
+                optionElement.style.cssText = 'display:inline-flex!important';
+            } else {
+                parentElement.style.cssText = 'display:inline-flex !important';
+                optionElement.style.cssText = 'display:none !important';
             }
+        } else {
+
+        }
     }
 }
 
 
 // Is showing options for user day elements
-let dayOptionsClick =(name, id) =>{
+let dayOptionsClick = (name, id) => {
     elementId = `${name}-${id}`;
     optionsId = `${name}-option-${id}`;
     parentElement = document.getElementById(elementId);
     optionElement = document.getElementById(optionsId);
     collapseElement = document.getElementById("collapseBreakfast");
-    idList = document.querySelectorAll("[id^="+`${name}`+"]");
-    for(let i=0 ; i< idList.length; i++){
-        if(elementId == idList[i].id){
+    idList = document.querySelectorAll("[id^=" + `${name}` + "]");
+    for (let i = 0; i < idList.length; i++) {
+        if (elementId == idList[i].id) {
             if (!parentElement.classList.contains("hide-element")) {
                 parentElement.classList.add("hide-element");
                 optionElement.classList.add("show-element");
@@ -53,22 +53,22 @@ let dayOptionsClick =(name, id) =>{
                 collapseElement.classList.remove("hide-element");
                 collapseElement.classList.remove("show");
             }
-        }else{
+        } else {
 
         }
     }
-} 
+}
 
 
 // Is showing options for day edit elements
-let dayEditOptionsClick =(name) =>{
+let dayEditOptionsClick = (name) => {
     elementId = `${name}-edit`;
     optionsId = `${name}-edit-options`;
     parentElement = document.getElementById(elementId);
     optionElement = document.getElementById(optionsId);
-    idList = document.querySelectorAll("[id^="+`${name}`+"]");
-    for(let i=0 ; i< idList.length; i++){
-        if(elementId == idList[i].id){
+    idList = document.querySelectorAll("[id^=" + `${name}` + "]");
+    for (let i = 0; i < idList.length; i++) {
+        if (elementId == idList[i].id) {
             if (!parentElement.classList.contains("hide-element")) {
                 parentElement.classList.add("hide-element");
                 optionElement.classList.add("show-element");
@@ -76,26 +76,26 @@ let dayEditOptionsClick =(name) =>{
                 parentElement.classList.remove("hide-element");
                 optionElement.classList.remove("show-element");
             }
-        }else{
+        } else {
 
         }
     }
-} 
+}
 
 // Is chcanging color of daycontainer and showing generate shoplist button
-let dayChecked =(name)=>{
+let dayChecked = (name) => {
     elementName = name.split("-");
     checkBox = document.getElementById(name);
     container = document.getElementById(name);
     containerBody = document.getElementById(elementName[0]);
-    containerHeader = document.getElementById(elementName[0]+"-edit");
-      if(checkBox.checked){
+    containerHeader = document.getElementById(elementName[0] + "-edit");
+    if (checkBox.checked) {
         containerBody.style.backgroundColor = "var(--bs-gray-200)";
         containerHeader.style.backgroundColor = "var(--bs-gray-600)";
         document.getElementById("createShopList").style.display = "none";
         document.getElementById("generateShopList").classList.remove("generate-shoplist-button");
         document.getElementById("generateShopList").style.display = "block";
-    }else{
+    } else {
         containerBody.style.backgroundColor = "var(--white)";
         containerHeader.style.backgroundColor = "var(--breakfast-color)";
         document.getElementById("createShopList").style.display = "block";
@@ -117,47 +117,49 @@ let dayChecked =(name)=>{
 // }
 
 // Is hiding message container in login and register form. 
-let hideMessage = () =>{
+let hideMessage = () => {
     document.getElementById("messageBox").style.display = "none";
 }
 
 
 // Prevents select meal modal form refersing the page after submit
-document.getElementById("modalForm").addEventListener("submit", function(event) {
+document.getElementById("modalForm").addEventListener("submit", function (event) {
     event.preventDefault();
 });
-                            
+
 
 
 /**Is creating element in user day
  * 
  * @param {string} id - Element id
+ * @returns {number} The sum of the two numbers.
  * 
  * */
-let addDishMeal = (id) =>{
+let addDishMeal = (id) => {
     let selectedValue = document.getElementById("selectedMeal").value;
 
     translateTable = {
         "Breakfast": "Śniadanie",
-        "Brunch" : "2 Śniadanie" , 
-        "Dinner" : "Obiad" ,
-        "Dessert" : "Przekąska" , 
-        "Supper" : "Kolacja" ,
+        "Brunch": "2 Śniadanie",
+        "Dinner": "Obiad",
+        "Dessert": "Przekąska",
+        "Supper": "Kolacja",
     }
 
-    let mealName = translateTable[translateTable];
+    let mealName = translateTable[selectedValue];
     const mealElementTemplate = `<div class="d-flex day-element m-3 p-2 align-items-center">
-                                <div class="col-6 text-center p-2">
-                                    ${mealName}
-                                </div>
-                            <div class="col-4">
-                            </div>
-                            <div class="col-2 align-items-center justify-content-center">
-                                <div class="add-button add-button-day d-flex align-items-center justify-content-center cursor">
-                                    <div class="cross-button cross-button-day"></div>
-                                </div>
-                            </div>
-                            </div>`
+    <div class="col-6 text-start p-2">
+       ${mealName}
+    </div>
+    <div class="col-3">
+    </div>
+    <div class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor">
+    <div class="cross-button cross-button-day"></div>
+    </div>
+    <div class="col-2 text-end">
+        <img src="/static/img/close.svg" class="day-icons-options-size">
+    </div>
+    </div>`
     let selectedDay = document.getElementById(id);
     selectedDay.insertAdjacentHTML('beforebegin', mealElementTemplate);
 }
