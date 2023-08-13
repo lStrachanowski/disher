@@ -1,4 +1,4 @@
-
+var dayId = "";
 
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
@@ -104,17 +104,18 @@ let dayChecked = (name) => {
 }
 
 
-// let showModal =() =>{
-//     // Get a reference to the modal element
-// const myModal = document.getElementById('exampleModalCenter');
+let showModal = (id) => {
+    dayId = id;
+    // Get a reference to the modal element
+    const myModal = document.getElementById('staticBackdrop');
 
-// // Create a new Bootstrap Modal instance
-// const modal = new bootstrap.Modal(myModal);
+    // Create a new Bootstrap Modal instance
+    const modal = new bootstrap.Modal(myModal);
 
-// // Show the modal
-// modal.show();
+    // Show the modal
+    modal.show();
 
-// }
+}
 
 // Is hiding message container in login and register form. 
 let hideMessage = () => {
@@ -122,7 +123,7 @@ let hideMessage = () => {
 }
 
 
-// Prevents select meal modal form refersing the page after submit
+// Prevents select meal modal form refershing the page after submit
 document.getElementById("modalForm").addEventListener("submit", function (event) {
     event.preventDefault();
 });
@@ -132,12 +133,12 @@ document.getElementById("modalForm").addEventListener("submit", function (event)
 /**Is creating element in user day
  * 
  * @param {string} id - Element id
- * @returns {number} The sum of the two numbers.
  * 
  * */
 let addDishMeal = (id) => {
-    let selectedValue = document.getElementById("selectedMeal").value;
 
+    let selectedValue = document.getElementById("selectedMeal").value;
+    let elementId = dayId + "-" + selectedValue;
     translateTable = {
         "Breakfast": "Śniadanie",
         "Brunch": "2 Śniadanie",
@@ -147,8 +148,18 @@ let addDishMeal = (id) => {
     }
 
     let mealName = translateTable[selectedValue];
-    const mealElementTemplate = `<div class="d-flex day-element m-3 p-2 align-items-center">
-    <div class="col-6 text-start p-2">
+    if (document.getElementById(elementId)) {
+        if (confirm("Masz już śniadanie , chcesz dodać kolejne ?")) {
+            console.log(selectedValue);
+            let number = document.getElementsByClassName(selectedValue).length;
+            console.log(number);
+            elementId = elementId + "-" + number
+          } else {
+            return false
+        }
+    }
+    const mealElementTemplate = `<div class="d-flex day-element m-3 p-2 align-items-center" id=${elementId}>
+    <div class="col-6 text-start p-2 ${selectedValue}">
        ${mealName}
     </div>
     <div class="col-3">
@@ -157,9 +168,19 @@ let addDishMeal = (id) => {
     <div class="cross-button cross-button-day"></div>
     </div>
     <div class="col-2 text-end">
-        <img src="/static/img/close.svg" class="day-icons-options-size">
+        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteElement('${elementId}');">
     </div>
     </div>`
     let selectedDay = document.getElementById(id);
     selectedDay.insertAdjacentHTML('beforebegin', mealElementTemplate);
+}
+
+/**Is deleting element in user day
+ * 
+ * @param {string} id - Element id
+ * 
+ * */
+let deleteElement = (id) => {
+    let selectedElement = document.getElementById(id);
+    selectedElement.remove();
 }

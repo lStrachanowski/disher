@@ -474,7 +474,7 @@
                             Dodaj do listy zakupów
                         </label>
                     </div>
-                    <div class="recepie-container white-background"  id="day4">
+                    <div class="recepie-container white-background"  id="day-4">
                         <div
                             class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
                             <div class="col-5 text-start p-3">
@@ -488,12 +488,13 @@
                                     class="day-options-icon-color day-icons-options-size">
                             </div>
                         </div>
-                        <div class="col-12 empty-day-font greey-font" id="day4Add">Dodaj posiłek</div>
+                        <div class="col-12 empty-day-font greey-font" id="day-4-add">Dodaj posiłek</div>
                         <div class="col-12 d-flex justify-content-center">
                             <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
-                                type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                <div class="cross-button"></div>
-                            </button>
+                            type="button" onclick="showModal('day-4');">
+                            <div class="cross-button"></div>
+                        </button>
+
                         </div>
                     </div>
                 </div>
@@ -545,7 +546,7 @@
                         </select>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="addDishMeal('day4Add','test');">Dodaj</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="addDishMeal('day-4-add','test');">Dodaj</button>
                     </div>
                 </form>
                 
