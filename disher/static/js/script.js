@@ -119,6 +119,7 @@ let showMealModal = (id) => {
 
 let showSearchMealModal = (id) => {
     dayId = id;
+    globalElementId = id.split("-").slice(1,).join("-");
     // Get a reference to the modal element
     const myModal = document.getElementById('staticBackdropSearch');
 
@@ -175,6 +176,7 @@ let addDishMeal = (id) => {
             elementId = elementId + "-" + number
             globalElementId = elementId;
         } else {
+            globalElementId = elementId;
             return false
         }
     }
@@ -195,7 +197,6 @@ let addDishMeal = (id) => {
     `
     let selectedDay = document.getElementById(id);
     selectedDay.insertAdjacentHTML('beforebegin', mealElementTemplate);
-    // selectedDay.insertAdjacentHTML('afterend', mealElementTemplate);
 }
 
 
