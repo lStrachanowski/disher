@@ -1,5 +1,5 @@
 var dayId = "";
-
+var globalElementId = ""
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -104,10 +104,23 @@ let dayChecked = (name) => {
 }
 
 
-let showModal = (id) => {
+let showMealModal = (id) => {
     dayId = id;
     // Get a reference to the modal element
     const myModal = document.getElementById('staticBackdrop');
+
+    // Create a new Bootstrap Modal instance
+    const modal = new bootstrap.Modal(myModal);
+
+    // Show the modal
+    modal.show();
+
+}
+
+let showSearchMealModal = (id) => {
+    dayId = id;
+    // Get a reference to the modal element
+    const myModal = document.getElementById('staticBackdropSearch');
 
     // Create a new Bootstrap Modal instance
     const modal = new bootstrap.Modal(myModal);
@@ -129,6 +142,11 @@ document.getElementById("modalForm").addEventListener("submit", function (event)
 });
 
 
+// Prevents select meal modal form refershing the page after submit
+document.getElementById("modalFormSearch").addEventListener("submit", function (event) {
+    event.preventDefault();
+});
+
 
 /**Is creating element in user day
  * 
@@ -139,6 +157,7 @@ let addDishMeal = (id) => {
 
     let selectedValue = document.getElementById("selectedMeal").value;
     let elementId = dayId + "-" + selectedValue;
+    globalElementId = elementId;
     translateTable = {
         "Breakfast": "Śniadanie",
         "Brunch": "2 Śniadanie",
@@ -154,26 +173,55 @@ let addDishMeal = (id) => {
             let number = document.getElementsByClassName(selectedValue).length;
             console.log(number);
             elementId = elementId + "-" + number
-          } else {
+            globalElementId = elementId;
+        } else {
             return false
         }
     }
-    const mealElementTemplate = `<div class="d-flex day-element m-3 p-2 align-items-center" id=${elementId}>
+    const mealElementTemplate =
+        `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id=${elementId}>
     <div class="col-6 text-start p-2 ${selectedValue}">
        ${mealName}
     </div>
     <div class="col-3">
     </div>
-    <div class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor">
-    <div class="cross-button cross-button-day"></div>
+    <div class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}')">
+    <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
     </div>
     <div class="col-2 text-end">
         <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteElement('${elementId}');">
     </div>
-    </div>`
+    </div>
+    `
     let selectedDay = document.getElementById(id);
     selectedDay.insertAdjacentHTML('beforebegin', mealElementTemplate);
+    // selectedDay.insertAdjacentHTML('afterend', mealElementTemplate);
 }
+
+
+
+/**Is creating element in user selected
+ * 
+ * @param {string} id - Element id
+ * 
+ * */
+let addMealToDay = (id) =>{
+    console.log(globalElementId);
+    let collapseMEal = document.getElementById(globalElementId + "-collapse");
+    if(!collapseMEal){
+        const mealElementTemplate =`
+        <div class="collapse" id="${globalElementId}-collapse">
+        <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/1'">
+            Kanapka z awokado
+        </div>
+        </div>`
+        let selectedDay = document.getElementById(globalElementId);
+        selectedDay.insertAdjacentHTML('afterend', mealElementTemplate);
+    }else{
+        alert("Już masz dodany posiłek ");
+    }
+}
+
 
 /**Is deleting element in user day
  * 
@@ -183,4 +231,9 @@ let addDishMeal = (id) => {
 let deleteElement = (id) => {
     let selectedElement = document.getElementById(id);
     selectedElement.remove();
+    let selectedElementCollapse = document.getElementById(id+"-collapse");
+    if (selectedElementCollapse){
+        selectedElementCollapse.remove();
+    }
+    
 }

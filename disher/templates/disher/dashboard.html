@@ -75,23 +75,25 @@
         </div>
 
         <div class="col-12 d-flex justify-content-center">
-            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" onclick="location.href='/user/add/recepie'">
+            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
+                onclick="location.href='/user/add/recepie'">
                 <div class="cross-button"></div>
             </div>
         </div>
-        
+
         <div class="row col-12">
             <img src="/static/img/expand.svg" class="user-recepie-icons-size cursor">
         </div>
 
-    
+
 
         {% else%}
         <div class="col-12 font-bold greey-font mt-4 dark-font ">Moje przepisy</div>
         <div class="col-12 dashboard-font greey-font">Nic tu nie ma, dodaj przepis</div>
 
         <div class="col-12 d-flex justify-content-center">
-            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" onclick="location.href='/user/add/recepie'">
+            <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
+                onclick="location.href='/user/add/recepie'">
                 <div class="cross-button"></div>
             </div>
         </div>
@@ -474,7 +476,7 @@
                             Dodaj do listy zakupów
                         </label>
                     </div>
-                    <div class="recepie-container white-background"  id="day-4">
+                    <div class="recepie-container white-background" id="day-4">
                         <div
                             class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor">
                             <div class="col-5 text-start p-3">
@@ -491,9 +493,9 @@
                         <div class="col-12 empty-day-font greey-font" id="day-4-add">Dodaj posiłek</div>
                         <div class="col-12 d-flex justify-content-center">
                             <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
-                            type="button" onclick="showModal('day-4');">
-                            <div class="cross-button"></div>
-                        </button>
+                                type="button" onclick="showMealModal('day-4-add');">
+                                <div class="cross-button"></div>
+                            </button>
 
                         </div>
                     </div>
@@ -524,7 +526,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal dodawania posiłków-->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -537,22 +539,51 @@
                 <form method="post" id="modalForm">
                     {% csrf_token %}
                     <div class="modal-body">
-                        <select class="form-select" aria-label="Default select example" name="selectedMeal" id="selectedMeal">
+                        <select class="form-select" aria-label="Default select example" name="selectedMeal"
+                            id="selectedMeal">
                             <option value="Breakfast" selected>Śniadanie</option>
-                            <option value="Brunch" >2 Śniadanie</option>
-                            <option value="Dinner" >Obiad</option>
-                            <option value="Dessert" >Przekąska</option>
-                            <option value="Supper" >Kolacja</option>
+                            <option value="Brunch">2 Śniadanie</option>
+                            <option value="Dinner">Obiad</option>
+                            <option value="Dessert">Przekąska</option>
+                            <option value="Supper">Kolacja</option>
                         </select>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="addDishMeal('day-4-add','test');">Dodaj</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
+                            onclick="addDishMeal('day-4-add','test');">Dodaj</button>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     </div>
+
+    <!-- Modal wyszukiwania posiłków do dodania -->
+
+    <div class="modal fade" id="staticBackdropSearch" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Wybierz posiłek</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form method="post" id="modalFormSearch">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        Lista posiłków 
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="addMealToDay('day-4-add');">Dodaj</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
 
     {% else %}
     <div class="col-12  font-bold greey-font mt-4 dark-font">Moje posiłki</div>
