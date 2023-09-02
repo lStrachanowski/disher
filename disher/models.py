@@ -5,6 +5,9 @@ class Product(models.Model):
     product_name = models.CharField(max_length=50)
     product_calories = models.IntegerField()
     product_quantity = models.IntegerField()
+    product_protein = models.DecimalField(max_digits=5, decimal_places=2)
+    product_fat = models.DecimalField(max_digits=5, decimal_places=2)
+    product_carbs = models.DecimalField(max_digits=5, decimal_places=2)
 
 class Dish(models.Model):
     dish_duration = [

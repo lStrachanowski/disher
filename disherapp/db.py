@@ -3,7 +3,7 @@ from disher.models import Product, Dish
 
 
 class ProductOperations:
-    def createProduct(self, name, calories, quantity):
+    def createProduct(self, name, calories, quantity, protein, fat, carbs):
         try:
             check_product = Product.objects.get(product_name=name)
             print("Already exist")
@@ -11,7 +11,10 @@ class ProductOperations:
             product = Product(
                 product_name=name,
                 product_calories=calories,
-                product_quantity=quantity)
+                product_quantity=quantity,
+                product_protein=protein,
+                product_fat=fat,
+                product_carbs=carbs)
             product.save()
             print("Product created")
         except Exception as e:
@@ -44,19 +47,20 @@ class ProductOperations:
                 print("Product not found")
         except Exception as e:
             print(e)
-    
-    def updateProduct(self, name, calories, quantity):
+
+    def updateProduct(self, name, calories, quantity, protein, fat, carbs):
         try:
             product_object = Product.objects.filter(product_name=name)
             if product_object:
-                product_object.update(product_name=name, product_calories=calories, product_quantity=quantity)
+                product_object.update(product_name=name, product_calories=calories, product_quantity=quantity,
+                                      product_protein=protein, product_fat=fat, product_carbs=carbs)
                 print("Product updated")
             else:
                 print("Product not found")
         except Exception as e:
             print(e)
             return
-    
+
 
 class DishOperations:
     def createDish(self, preparation_time, dish_type, name, calories, description, owner, products=None):
@@ -94,4 +98,3 @@ class DishOperations:
                 print("Dish not found")
         except Exception as e:
             print(e)
-

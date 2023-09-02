@@ -32,6 +32,7 @@ def dashboard(request):
     user_status = login_status.get_user_status(request)
     user_has_recepies = True
     user_has_diet_list = True
+    
     if request.method == "POST":
         selected_meal = request.POST.get('selectedMeal')
         print(selected_meal)
