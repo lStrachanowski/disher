@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
@@ -30,6 +31,13 @@ class Dish(models.Model):
     dish_description = models.CharField(null=True, max_length=1000)
     dish_owner = models.CharField(max_length=50)
     dish_products = models.ManyToManyField(Product) 
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.dish_name)
+        super(Dish, self).save(*args, **kwargs)
+
     
 
 class User_Day(models.Model):

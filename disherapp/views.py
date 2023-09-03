@@ -21,7 +21,7 @@ def index(request):
     return render(request, "disher/index.html", context)
 
 
-def recepie(request, id):
+def recepie(request, slug):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
