@@ -98,3 +98,11 @@ class DishOperations:
                 print("Dish not found")
         except Exception as e:
             print(e)
+
+    def getAllDishes(self):
+        try:
+            all_dishes = Dish.objects.all()
+            return all_dishes
+        except Exception as e:
+            print(e)
+
