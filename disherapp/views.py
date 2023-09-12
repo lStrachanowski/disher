@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
-from .db import ProductOperations, DishOperations
+from .db import ProductOperations, DishOperations, ProductAmountOperations
 from django.contrib import messages
 from django.core.signing import Signer
 from django.core import signing
@@ -22,9 +22,22 @@ def index(request):
 
 
 def recepie(request, slug):
+    recepies_data = DishOperations()
+    recepie_for_template = recepies_data.getDishData(slug)
+
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
-    context = {"user_status": user_status}
+
+    test_product = ProductOperations()
+    test_dish = DishOperations()
+
+    amount = ProductAmountOperations()
+    p1 = test_dish.getDish(test_dish.getDishData(slug).dish_name)
+    recepie_products_amounts = amount.getAllAmounts(p1)
+    print(recepie_products_amounts)
+
+    ingridients = recepie_products_amounts
+    context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients}
     return render(request, "disher/recepie.html", context)
 
 

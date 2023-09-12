@@ -1,5 +1,39 @@
 from django.contrib.auth.models import User
-from disher.models import Product, Dish
+from disher.models import Product, Dish, Product_Amount
+
+class ProductAmountOperations:
+    def createAmount(self, name, amount, dish_name):
+        try:
+            check_product = Product_Amount.objects.get(product_name=name)
+            print("Already exist")
+        except Product_Amount.DoesNotExist:
+            amount = Product_Amount(product_name=name, product_amount = amount)
+            amount.save()
+            amount.dish.set([dish_name])
+            amount.save()
+            print("Amount created")
+        except Exception as e:
+            print(e)
+            return
+        
+    def getAmount(self, dish, name):
+        try:
+            amount = Product_Amount.objects.filter(dish = dish)
+            result = [a for a in amount if a.product_name == name]
+            return result[0].product_amount
+        except Exception as e:
+            print(e)
+            return
+        
+    def getAllAmounts(self, dish):
+        try:
+            product_list = Product_Amount.objects.filter(dish = dish)
+            return [[p.product_name, int(p.product_amount)] for p in product_list]
+        except Exception as e:
+            print(e)
+            return
+        
+
 
 
 class ProductOperations:
@@ -19,6 +53,7 @@ class ProductOperations:
             print("Product created")
         except Exception as e:
             print(e)
+            return
 
     def findProduct(self, name):
         try:
@@ -87,6 +122,15 @@ class DishOperations:
         except Exception as e:
             print(e)
             return
+        
+    def getDishData(self, slug):
+        try:
+            dish_objcet = Dish.objects.get(slug=slug)
+            return dish_objcet
+        except Exception as e:
+            print(e)
+            return
+
 
     def deleteDish(self, name):
         try:

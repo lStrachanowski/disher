@@ -10,6 +10,8 @@ class Product(models.Model):
     product_fat = models.DecimalField(max_digits=5, decimal_places=2)
     product_carbs = models.DecimalField(max_digits=5, decimal_places=2)
 
+
+
 class Dish(models.Model):
     dish_duration = [
         ("S", "Small"),
@@ -38,7 +40,11 @@ class Dish(models.Model):
             self.slug = slugify(self.dish_name)
         super(Dish, self).save(*args, **kwargs)
 
-    
+class Product_Amount(models.Model):
+    id = models.AutoField(primary_key=True)
+    product_name = models.CharField(null=True, max_length=50)
+    product_amount = models.DecimalField(max_digits=5,decimal_places=2)
+    dish = models.ManyToManyField(Dish)
 
 class User_Day(models.Model):
     id = models.AutoField(primary_key=True)
