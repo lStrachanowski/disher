@@ -28,13 +28,11 @@ def recepie(request, slug):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
 
-    test_product = ProductOperations()
-    test_dish = DishOperations()
+    dish_data = DishOperations()
 
     amount = ProductAmountOperations()
-    p1 = test_dish.getDish(test_dish.getDishData(slug).dish_name)
-    recepie_products_amounts = amount.getAllAmounts(p1)
-    print(recepie_products_amounts)
+    products = dish_data.getDish(dish_data.getDishData(slug).dish_name)
+    recepie_products_amounts = amount.getAllAmounts(products)
 
     ingridients = recepie_products_amounts
     context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients}
@@ -47,11 +45,15 @@ def dashboard(request):
     user_status = login_status.get_user_status(request)
     user_has_recepies = True
     user_has_diet_list = True
+
+    recepies_data = DishOperations()
+    recepies_for_template = recepies_data.getAllDishes()
+
     if request.method == "POST":
         selected_meal = request.POST.get('selectedMeal')
         print(selected_meal)
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
-               "user_has_diet_list": user_has_diet_list}
+               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template}
     return render(request, "disher/dashboard.html", context)
 
 

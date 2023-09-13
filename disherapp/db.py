@@ -32,8 +32,6 @@ class ProductAmountOperations:
         except Exception as e:
             print(e)
             return
-        
-
 
 
 class ProductOperations:
