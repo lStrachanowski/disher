@@ -168,8 +168,9 @@ let addDishMeal = (id) => {
     }
 
     let mealName = translateTable[selectedValue];
+    let mealNAmeLowerCase = mealName.toLowerCase();
     if (document.getElementById(elementId)) {
-        if (confirm("Masz już śniadanie , chcesz dodać kolejne ?")) {
+        if (confirm(`Masz już ${mealNAmeLowerCase}, chcesz dodać kolejne ?`)) {
             console.log(selectedValue);
             let number = document.getElementsByClassName(selectedValue).length;
             console.log(number);
@@ -206,13 +207,13 @@ let addDishMeal = (id) => {
  * @param {string} id - Element id
  * 
  * */
-let addMealToDay = (id) =>{
+let addMealToDay = (id, slug, dish) =>{
     let collapseMEal = document.getElementById(globalElementId + "-collapse");
     if(!collapseMEal){
         const mealElementTemplate =`
         <div class="collapse" id="${globalElementId}-collapse">
-        <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/1'">
-            Kanapka z awokado
+        <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/'+'${slug}'">
+            ${dish}
         </div>
         </div>`
         let selectedDay = document.getElementById(globalElementId);
