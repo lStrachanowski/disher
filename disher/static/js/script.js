@@ -187,9 +187,9 @@ let addDishMeal = (id) => {
     </div>
     <div class="col-3">
     </div>
-    <div class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}')">
+    <button class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}')">
     <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
-    </div>
+    </button>
     <div class="col-2 text-end">
         <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteElement('${elementId}');">
     </div>
@@ -207,7 +207,6 @@ let addDishMeal = (id) => {
  * 
  * */
 let addMealToDay = (id) =>{
-    console.log(globalElementId);
     let collapseMEal = document.getElementById(globalElementId + "-collapse");
     if(!collapseMEal){
         const mealElementTemplate =`

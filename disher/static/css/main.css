@@ -176,6 +176,8 @@ a {
   background-color: var(--blue-add-color);
   border: none;
   transition: 0.25s;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-button:hover {

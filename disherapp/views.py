@@ -49,9 +49,10 @@ def dashboard(request):
     recepies_data = DishOperations()
     recepies_for_template = recepies_data.getAllDishes()
 
-    if request.method == "POST":
-        selected_meal = request.POST.get('selectedMeal')
-        print(selected_meal)
+    # if request.method == "POST":
+    #     selected_meal = request.POST.get('selectedMeal')
+    #     print(selected_meal)
+    
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
                "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template}
     return render(request, "disher/dashboard.html", context)
