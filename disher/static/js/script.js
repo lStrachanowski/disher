@@ -138,15 +138,21 @@ let hideMessage = () => {
 
 
 // Prevents select meal modal form refershing the page after submit
-document.getElementById("modalForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-});
+if(document.getElementById("modalForm")){
+    document.getElementById("modalForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+    });
+}
+
 
 
 // Prevents select meal modal form refershing the page after submit
-document.getElementById("modalFormSearch").addEventListener("submit", function (event) {
-    event.preventDefault();
-});
+if(document.getElementById("modalFormSearch")){
+    document.getElementById("modalFormSearch").addEventListener("submit", function (event) {
+        event.preventDefault();
+    });
+}
+
 
 
 /**Is creating element in user day
