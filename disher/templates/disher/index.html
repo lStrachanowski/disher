@@ -33,139 +33,140 @@
                 {% for recepie in recepies %}
 
                 <div class="col-xl-3 col-lg-5 col-md-10  text-center recepie-container white-background m-3"
-                id="{{recepie.id}}">
-                <div class="d-flex row align-items-center align-items-stretch">
-                    <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
-                        onclick="location.href='/recepie/{{recepie.slug}}'">
-                        {{recepie.dish_name}}</div>
-                    {% if recepie.dish_type == 'B' %}
-                    <div
-                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-breakfast recepie-meal-border p-2">
+                    id="{{recepie.id}}">
+                    <div class="d-flex row align-items-center align-items-stretch">
+                        <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
+                            onclick="location.href='/recepie/{{recepie.slug}}'">
+                            {{recepie.dish_name}}</div>
                         {% if recepie.dish_type == 'B' %}
-                        Śniadanie
-                        {% elif recepie.dish_type == 'B2' %}
-                        2 Śniadanie
-                        {% elif recepie.dish_type == 'D' %}
-                        Obiad
-                        {% elif recepie.dish_type == 'D2' %}
-                        Przekąska
-                        {% elif recepie.dish_type == 'S' %}
-                        Kolacja
-                        {% endif%}
-                    </div>
-                    {% elif recepie.dish_type == 'B2' %}
-                    <div
-                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-second-breakfast recepie-meal-border p-2">
-                        {% if recepie.dish_type == 'B' %}
-                        Śniadanie
-                        {% elif recepie.dish_type == 'B2' %}
-                        2 Śniadanie
-                        {% elif recepie.dish_type == 'D' %}
-                        Obiad
-                        {% elif recepie.dish_type == 'D2' %}
-                        Przekąska
-                        {% elif recepie.dish_type == 'S' %}
-                        Kolacja
-                        {% endif%}
-                    </div>
-                    {% elif recepie.dish_type == 'D' %}
-                    <div
-                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-dinner recepie-meal-border p-2">
-                        {% if recepie.dish_type == 'B' %}
-                        Śniadanie
-                        {% elif recepie.dish_type == 'B2' %}
-                        2 Śniadanie
-                        {% elif recepie.dish_type == 'D' %}
-                        Obiad
-                        {% elif recepie.dish_type == 'D2' %}
-                        Przekąska
-                        {% elif recepie.dish_type == 'S' %}
-                        Kolacja
-                        {% endif%}
-                    </div>
-                    {% elif recepie.dish_type == 'D2' %}
-                    <div
-                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-snack recepie-meal-border p-2">
-                        {% if recepie.dish_type == 'B' %}
-                        Śniadanie
-                        {% elif recepie.dish_type == 'B2' %}
-                        2 Śniadanie
-                        {% elif recepie.dish_type == 'D' %}
-                        Obiad
-                        {% elif recepie.dish_type == 'D2' %}
-                        Przekąska
-                        {% elif recepie.dish_type == 'S' %}
-                        Kolacja
-                        {% endif%}
-                    </div>
-                    {% elif recepie.dish_type == 'S' %}
-                    <div
-                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-supper recepie-meal-border p-2">
-                        {% if recepie.dish_type == 'B' %}
-                        Śniadanie
-                        {% elif recepie.dish_type == 'B2' %}
-                        2 Śniadanie
-                        {% elif recepie.dish_type == 'D' %}
-                        Obiad
-                        {% elif recepie.dish_type == 'D2' %}
-                        Przekąska
-                        {% elif recepie.dish_type == 'S' %}
-                        Kolacja
-                        {% endif%}
-                    </div>
-                    {% endif %}
-
-                    <div class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
-                        <div class="col-12 min-h ">
-                            {{recepie.dish_description}}
-                        </div>
-                        <div class="col-12">
-                            <a href="/recepie/{{recepie.slug}}" class="font-bold">więcej...</a>
-                        </div>
-                    </div>
-                    <div class="col-4 p-2">
-                        <div class="row justify-content-around">
-                            <div class="col-lg-12 p-1">
-                                <img src="/static/img/iconfire.svg" class="icon-size-15">
-                            </div>
-                            <div class="col-lg-12 recepie-font font-bold">
-                                {{recepie.dish_calories}} kcal
-                            </div>
-                            <div class="col-lg-12 p-1">
-                                <img src="/static/img/iconclock.svg" class="icon-size-15">
-                            </div>
-                            <div class="col-lg-12 recepie-font font-bold">
-                                {% if recepie.preparation_time == 'S' %}
-                                Szybkie
-                                {% elif recepie.preparation_time == 'M' %}
-                                Średni
-                                {% elif recepie.preparation_time == 'L' %}
-                                Długi
-                                {% endif%}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 d-flex justify-content-center">
                         <div
-                            class="d-flex align-items-center justify-content-center cursor m-2 mb-3">
-                            <button
-                                class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
-                                data-bs-dismiss="modal" type="button"
-                                onclick="addMealToDay('day-4-add', '{{recepie.slug}}', '{{recepie.dish_name}}');">
-                                <div class="cross-button"></div>
-                            </button>
+                            class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-breakfast recepie-meal-border p-2">
+                            {% if recepie.dish_type == 'B' %}
+                            Śniadanie
+                            {% elif recepie.dish_type == 'B2' %}
+                            2 Śniadanie
+                            {% elif recepie.dish_type == 'D' %}
+                            Obiad
+                            {% elif recepie.dish_type == 'D2' %}
+                            Przekąska
+                            {% elif recepie.dish_type == 'S' %}
+                            Kolacja
+                            {% endif%}
+                        </div>
+                        {% elif recepie.dish_type == 'B2' %}
+                        <div
+                            class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-second-breakfast recepie-meal-border p-2">
+                            {% if recepie.dish_type == 'B' %}
+                            Śniadanie
+                            {% elif recepie.dish_type == 'B2' %}
+                            2 Śniadanie
+                            {% elif recepie.dish_type == 'D' %}
+                            Obiad
+                            {% elif recepie.dish_type == 'D2' %}
+                            Przekąska
+                            {% elif recepie.dish_type == 'S' %}
+                            Kolacja
+                            {% endif%}
+                        </div>
+                        {% elif recepie.dish_type == 'D' %}
+                        <div
+                            class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-dinner recepie-meal-border p-2">
+                            {% if recepie.dish_type == 'B' %}
+                            Śniadanie
+                            {% elif recepie.dish_type == 'B2' %}
+                            2 Śniadanie
+                            {% elif recepie.dish_type == 'D' %}
+                            Obiad
+                            {% elif recepie.dish_type == 'D2' %}
+                            Przekąska
+                            {% elif recepie.dish_type == 'S' %}
+                            Kolacja
+                            {% endif%}
+                        </div>
+                        {% elif recepie.dish_type == 'D2' %}
+                        <div
+                            class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-snack recepie-meal-border p-2">
+                            {% if recepie.dish_type == 'B' %}
+                            Śniadanie
+                            {% elif recepie.dish_type == 'B2' %}
+                            2 Śniadanie
+                            {% elif recepie.dish_type == 'D' %}
+                            Obiad
+                            {% elif recepie.dish_type == 'D2' %}
+                            Przekąska
+                            {% elif recepie.dish_type == 'S' %}
+                            Kolacja
+                            {% endif%}
+                        </div>
+                        {% elif recepie.dish_type == 'S' %}
+                        <div
+                            class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-supper recepie-meal-border p-2">
+                            {% if recepie.dish_type == 'B' %}
+                            Śniadanie
+                            {% elif recepie.dish_type == 'B2' %}
+                            2 Śniadanie
+                            {% elif recepie.dish_type == 'D' %}
+                            Obiad
+                            {% elif recepie.dish_type == 'D2' %}
+                            Przekąska
+                            {% elif recepie.dish_type == 'S' %}
+                            Kolacja
+                            {% endif%}
+                        </div>
+                        {% endif %}
+
+                        <div class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
+                            <div class="col-12 min-h ">
+                                {{recepie.dish_description}}
+                            </div>
+                            <div class="col-12">
+                                <a href="/recepie/{{recepie.slug}}" class="font-bold">więcej...</a>
+                            </div>
+                        </div>
+                        <div class="col-4 p-2">
+                            <div class="row justify-content-around">
+                                <div class="col-lg-12 p-1">
+                                    <img src="/static/img/iconfire.svg" class="icon-size-15">
+                                </div>
+                                <div class="col-lg-12 recepie-font font-bold">
+                                    {{recepie.dish_calories}} kcal
+                                </div>
+                                <div class="col-lg-12 p-1">
+                                    <img src="/static/img/iconclock.svg" class="icon-size-15">
+                                </div>
+                                <div class="col-lg-12 recepie-font font-bold">
+                                    {% if recepie.preparation_time == 'S' %}
+                                    Szybkie
+                                    {% elif recepie.preparation_time == 'M' %}
+                                    Średni
+                                    {% elif recepie.preparation_time == 'L' %}
+                                    Długi
+                                    {% endif%}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="d-flex align-items-center justify-content-center cursor m-2 mb-3">
+                                {% if user.is_authenticated %}
+                                <button
+                                    class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
+                                    data-bs-dismiss="modal" type="button" onclick="location.href='/user/dashboard'">
+                                    <div class="cross-button"></div>
+                                </button>
+                                {% else %}
+                                <button
+                                    class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
+                                    data-bs-dismiss="modal" type="button" onclick="location.href='/login'">
+                                    <div class="cross-button"></div>
+                                </button>
+
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
                 {% endfor %}
             </div>
         </div>
     </div>
-
-
-
-
-
     {% endblock %}
