@@ -153,6 +153,33 @@ if(document.getElementById("modalFormSearch")){
     });
 }
 
+// Template with meal element added to user day
+let dishElementTemplate = (elementId, mealName, selectedValue) =>{
+    return         `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id=${elementId}>
+    <div class="col-6 text-start p-2 ${selectedValue}">
+       ${mealName}
+    </div>
+    <div class="col-3">
+    </div>
+    <button class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}')">
+    <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
+    </button>
+    <div class="col-2 text-end">
+        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteElement('${elementId}');">
+    </div>
+    </div>
+    `
+}
+
+let mealElementTemplate = (globalElementId, slug, dish) =>{
+    return `<div class="collapse" id="${globalElementId}-collapse">
+    <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/'+'${slug}'">
+        ${dish}
+    </div>
+    </div>`
+}
+
+
 
 
 /**Is creating element in user day
@@ -187,28 +214,14 @@ let addDishMeal = (id) => {
             return false
         }
     }
-    const mealElementTemplate =
-        `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id=${elementId}>
-    <div class="col-6 text-start p-2 ${selectedValue}">
-       ${mealName}
-    </div>
-    <div class="col-3">
-    </div>
-    <button class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}')">
-    <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
-    </button>
-    <div class="col-2 text-end">
-        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteElement('${elementId}');">
-    </div>
-    </div>
-    `
+    const htmlTemplate = dishElementTemplate(elementId, mealName, selectedValue);
     let selectedDay = document.getElementById(id);
-    selectedDay.insertAdjacentHTML('beforebegin', mealElementTemplate);
+    selectedDay.insertAdjacentHTML('beforebegin', htmlTemplate);
 }
 
 
 
-/**Is creating element in user selected
+/**Is creating element in user selected dish
  * 
  * @param {string} id - Element id
  * 
@@ -216,14 +229,10 @@ let addDishMeal = (id) => {
 let addMealToDay = (id, slug, dish) =>{
     let collapseMEal = document.getElementById(globalElementId + "-collapse");
     if(!collapseMEal){
-        const mealElementTemplate =`
-        <div class="collapse" id="${globalElementId}-collapse">
-        <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/'+'${slug}'">
-            ${dish}
-        </div>
-        </div>`
+        const htmlTemplate = mealElementTemplate(globalElementId, slug, dish);
         let selectedDay = document.getElementById(globalElementId);
-        selectedDay.insertAdjacentHTML('afterend', mealElementTemplate);
+        selectedDay.insertAdjacentHTML('afterend', htmlTemplate);
+    
     }else{
         alert("Już masz dodany posiłek ");
     }
