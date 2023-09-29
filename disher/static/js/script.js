@@ -1,5 +1,8 @@
 var dayId = "";
-var globalElementId = ""
+var globalElementId = "";
+var globalMealName = "";
+var globalSelectedValue = "";
+
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -138,7 +141,7 @@ let hideMessage = () => {
 
 
 // Prevents select meal modal form refershing the page after submit
-if(document.getElementById("modalForm")){
+if (document.getElementById("modalForm")) {
     document.getElementById("modalForm").addEventListener("submit", function (event) {
         event.preventDefault();
     });
@@ -147,15 +150,15 @@ if(document.getElementById("modalForm")){
 
 
 // Prevents select meal modal form refershing the page after submit
-if(document.getElementById("modalFormSearch")){
+if (document.getElementById("modalFormSearch")) {
     document.getElementById("modalFormSearch").addEventListener("submit", function (event) {
         event.preventDefault();
     });
 }
 
 // Template with meal element added to user day
-let dishElementTemplate = (elementId, mealName, selectedValue) =>{
-    return         `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id=${elementId}>
+let dishElementTemplate = (elementId, mealName, selectedValue) => {
+    return `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id=${elementId}>
     <div class="col-6 text-start p-2 ${selectedValue}">
        ${mealName}
     </div>
@@ -171,7 +174,7 @@ let dishElementTemplate = (elementId, mealName, selectedValue) =>{
     `
 }
 
-let mealElementTemplate = (globalElementId, slug, dish) =>{
+let mealElementTemplate = (globalElementId, slug, dish) => {
     return `<div class="collapse" id="${globalElementId}-collapse">
     <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/'+'${slug}'">
         ${dish}
@@ -179,6 +182,41 @@ let mealElementTemplate = (globalElementId, slug, dish) =>{
     </div>`
 }
 
+
+let mealOptions = (id) => {
+    return `<div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options"
+    id="${id}-edit-options">
+    <div class="col-6 p-3">
+        Usuń
+    </div>
+    <div class="col-4">
+        Kopiuj
+    </div>
+    <div class="col-2 text-end p-2">
+        <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size"
+            onclick="dayEditOptionsClick('${id}')">
+    </div>
+    </div>
+    `
+}
+
+let mealHtmlElement = (id , mealName, calories) =>{
+    return `
+    <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
+    data-bs-target="#${globalElementId}-collapse" aria-expanded="false" aria-controls="${globalElementId}-collapse"
+    id="${id}">
+    <div class="col-6 text-start p-2">
+        ${mealName}
+    </div>
+    <div class="col-5">
+        ${calories} kcal
+    </div>
+    <div class="col-1">
+        <img src="/static/img/options.svg" class="day-icons-options-size"
+            onclick="dayOptionsClick('${id}',1)">
+    </div>
+    </div>`
+}
 
 
 
@@ -202,11 +240,11 @@ let addDishMeal = (id) => {
 
     let mealName = translateTable[selectedValue];
     let mealNAmeLowerCase = mealName.toLowerCase();
+    globalMealName = mealName;
+    globalSelectedValue = selectedValue;
     if (document.getElementById(elementId)) {
         if (confirm(`Masz już ${mealNAmeLowerCase}, chcesz dodać kolejne ?`)) {
-            console.log(selectedValue);
             let number = document.getElementsByClassName(selectedValue).length;
-            console.log(number);
             elementId = elementId + "-" + number
             globalElementId = elementId;
         } else {
@@ -226,14 +264,24 @@ let addDishMeal = (id) => {
  * @param {string} id - Element id
  * 
  * */
-let addMealToDay = (id, slug, dish) =>{
+let addMealToDay = (id, slug, dish, calories) => {
     let collapseMEal = document.getElementById(globalElementId + "-collapse");
-    if(!collapseMEal){
-        const htmlTemplate = mealElementTemplate(globalElementId, slug, dish);
+    if (!collapseMEal) {
+        const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
         let selectedDay = document.getElementById(globalElementId);
-        selectedDay.insertAdjacentHTML('afterend', htmlTemplate);
-    
-    }else{
+        selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
+        selectedDay.remove();
+        let selectedMeal = document.getElementById(globalElementId+"-collapse");
+        selectedMeal.remove();
+
+        let selectedParent = document.getElementById(id);
+        let newSelectedDay = mealHtmlElement(globalElementId, globalMealName, calories);
+        selectedParent.insertAdjacentHTML('beforebegin', newSelectedDay);
+
+        let newSelectedMeal = document.getElementById(globalElementId);
+        newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
+
+    } else {
         alert("Już masz dodany posiłek ");
     }
 }
@@ -247,9 +295,9 @@ let addMealToDay = (id, slug, dish) =>{
 let deleteElement = (id) => {
     let selectedElement = document.getElementById(id);
     selectedElement.remove();
-    let selectedElementCollapse = document.getElementById(id+"-collapse");
-    if (selectedElementCollapse){
+    let selectedElementCollapse = document.getElementById(id + "-collapse");
+    if (selectedElementCollapse) {
         selectedElementCollapse.remove();
     }
-    
+
 }
