@@ -37,9 +37,9 @@ let optionsClick = (id) => {
 
 
 // Is showing options for user day elements
-let dayOptionsClick = (name, id) => {
-    elementId = `${name}-${id}`;
-    optionsId = `${name}-option-${id}`;
+let dayOptionsClick = (name) => {
+    elementId = `${name}`;
+    optionsId = `${name}-edit-options`;
     parentElement = document.getElementById(elementId);
     optionElement = document.getElementById(optionsId);
     collapseElement = document.getElementById("collapseBreakfast");
@@ -63,27 +63,68 @@ let dayOptionsClick = (name, id) => {
 }
 
 
+// Is showing options for user day elements
+// let dayOptionsClick = (name, id) => {
+//     elementId = `${name}-${id}`;
+//     optionsId = `${name}-option-${id}`;
+//     parentElement = document.getElementById(elementId);
+//     optionElement = document.getElementById(optionsId);
+//     collapseElement = document.getElementById("collapseBreakfast");
+//     idList = document.querySelectorAll("[id^=" + `${name}` + "]");
+//     for (let i = 0; i < idList.length; i++) {
+//         if (elementId == idList[i].id) {
+//             if (!parentElement.classList.contains("hide-element")) {
+//                 parentElement.classList.add("hide-element");
+//                 optionElement.classList.add("show-element");
+//                 collapseElement.classList.add("hide-element")
+//             } else {
+//                 parentElement.classList.remove("hide-element");
+//                 optionElement.classList.remove("show-element");
+//                 collapseElement.classList.remove("hide-element");
+//                 collapseElement.classList.remove("show");
+//             }
+//         } else {
+
+//         }
+//     }
+// }
+
+
 // Is showing options for day edit elements
 let dayEditOptionsClick = (name) => {
-    elementId = `${name}-edit`;
+    elementId = `${name}`;
     optionsId = `${name}-edit-options`;
     parentElement = document.getElementById(elementId);
     optionElement = document.getElementById(optionsId);
-    idList = document.querySelectorAll("[id^=" + `${name}` + "]");
-    for (let i = 0; i < idList.length; i++) {
-        if (elementId == idList[i].id) {
-            if (!parentElement.classList.contains("hide-element")) {
-                parentElement.classList.add("hide-element");
-                optionElement.classList.add("show-element");
-            } else {
-                parentElement.classList.remove("hide-element");
-                optionElement.classList.remove("show-element");
-            }
-        } else {
-
-        }
+    if (!parentElement.classList.contains("hide-element")) {
+        parentElement.classList.add("hide-element");
+        optionElement.classList.add("show-element");
+    } else {
+        parentElement.classList.remove("hide-element");
+        optionElement.classList.remove("show-element");
     }
 }
+
+// let dayEditOptionsClick = (name) => {
+//     elementId = `${name}-edit`;
+//     optionsId = `${name}-edit-options`;
+//     parentElement = document.getElementById(elementId);
+//     optionElement = document.getElementById(optionsId);
+//     idList = document.querySelectorAll("[id^=" + `${name}` + "]");
+//     for (let i = 0; i < idList.length; i++) {
+//         if (elementId == idList[i].id) {
+//             if (!parentElement.classList.contains("hide-element")) {
+//                 parentElement.classList.add("hide-element");
+//                 optionElement.classList.add("show-element");
+//             } else {
+//                 parentElement.classList.remove("hide-element");
+//                 optionElement.classList.remove("show-element");
+//             }
+//         } else {
+
+//         }
+//     }
+// }
 
 // Is chcanging color of daycontainer and showing generate shoplist button
 let dayChecked = (name) => {
@@ -184,7 +225,7 @@ let mealElementTemplate = (globalElementId, slug, dish) => {
 
 
 let mealOptions = (id) => {
-    return `<div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options"
+    return `<div class="d-flex day-element day-options m-3 p-2 align-items-center"
     id="${id}-edit-options">
     <div class="col-6 p-3">
         Usuń
@@ -200,7 +241,7 @@ let mealOptions = (id) => {
     `
 }
 
-let mealHtmlElement = (id , mealName, calories) =>{
+let mealHtmlElement = (id, mealName, calories) => {
     return `
     <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
     data-bs-target="#${globalElementId}-collapse" aria-expanded="false" aria-controls="${globalElementId}-collapse"
@@ -271,7 +312,7 @@ let addMealToDay = (id, slug, dish, calories) => {
         let selectedDay = document.getElementById(globalElementId);
         selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
         selectedDay.remove();
-        let selectedMeal = document.getElementById(globalElementId+"-collapse");
+        let selectedMeal = document.getElementById(globalElementId + "-collapse");
         selectedMeal.remove();
 
         let selectedParent = document.getElementById(id);
@@ -280,6 +321,9 @@ let addMealToDay = (id, slug, dish, calories) => {
 
         let newSelectedMeal = document.getElementById(globalElementId);
         newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
+
+        let mealOptionsTemplate = mealOptions(globalElementId);
+        newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
 
     } else {
         alert("Już masz dodany posiłek ");
