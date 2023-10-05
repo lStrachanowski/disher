@@ -63,33 +63,6 @@ let dayOptionsClick = (name) => {
 }
 
 
-// Is showing options for user day elements
-// let dayOptionsClick = (name, id) => {
-//     elementId = `${name}-${id}`;
-//     optionsId = `${name}-option-${id}`;
-//     parentElement = document.getElementById(elementId);
-//     optionElement = document.getElementById(optionsId);
-//     collapseElement = document.getElementById("collapseBreakfast");
-//     idList = document.querySelectorAll("[id^=" + `${name}` + "]");
-//     for (let i = 0; i < idList.length; i++) {
-//         if (elementId == idList[i].id) {
-//             if (!parentElement.classList.contains("hide-element")) {
-//                 parentElement.classList.add("hide-element");
-//                 optionElement.classList.add("show-element");
-//                 collapseElement.classList.add("hide-element")
-//             } else {
-//                 parentElement.classList.remove("hide-element");
-//                 optionElement.classList.remove("show-element");
-//                 collapseElement.classList.remove("hide-element");
-//                 collapseElement.classList.remove("show");
-//             }
-//         } else {
-
-//         }
-//     }
-// }
-
-
 // Is showing options for day edit elements
 let dayEditOptionsClick = (name) => {
     elementId = `${name}`;
@@ -104,27 +77,6 @@ let dayEditOptionsClick = (name) => {
         optionElement.classList.remove("show-element");
     }
 }
-
-// let dayEditOptionsClick = (name) => {
-//     elementId = `${name}-edit`;
-//     optionsId = `${name}-edit-options`;
-//     parentElement = document.getElementById(elementId);
-//     optionElement = document.getElementById(optionsId);
-//     idList = document.querySelectorAll("[id^=" + `${name}` + "]");
-//     for (let i = 0; i < idList.length; i++) {
-//         if (elementId == idList[i].id) {
-//             if (!parentElement.classList.contains("hide-element")) {
-//                 parentElement.classList.add("hide-element");
-//                 optionElement.classList.add("show-element");
-//             } else {
-//                 parentElement.classList.remove("hide-element");
-//                 optionElement.classList.remove("show-element");
-//             }
-//         } else {
-
-//         }
-//     }
-// }
 
 // Is chcanging color of daycontainer and showing generate shoplist button
 let dayChecked = (name) => {
