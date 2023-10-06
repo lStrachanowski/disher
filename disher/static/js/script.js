@@ -179,7 +179,7 @@ let mealElementTemplate = (globalElementId, slug, dish) => {
 let mealOptions = (id) => {
     return `<div class="d-flex day-element day-options m-3 p-2 align-items-center"
     id="${id}-edit-options">
-    <div class="col-6 p-3">
+    <div class="col-6">
         Usuń
     </div>
     <div class="col-4">
