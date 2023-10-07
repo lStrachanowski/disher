@@ -37,35 +37,43 @@ let optionsClick = (id) => {
 
 
 // Is showing options for user day elements
-let dayOptionsClick = (name) => {
+let mealOptionsClick = (name) => {
     elementId = `${name}`;
     optionsId = `${name}-edit-options`;
     parentElement = document.getElementById(elementId);
     optionElement = document.getElementById(optionsId);
     collapseElement = document.getElementById("collapseBreakfast");
-    idList = document.querySelectorAll("[id^=" + `${name}` + "]");
-    for (let i = 0; i < idList.length; i++) {
-        if (elementId == idList[i].id) {
-            if (!parentElement.classList.contains("hide-element")) {
-                parentElement.classList.add("hide-element");
-                optionElement.classList.add("show-element");
-                collapseElement.classList.add("hide-element")
-            } else {
-                parentElement.classList.remove("hide-element");
-                optionElement.classList.remove("show-element");
-                collapseElement.classList.remove("hide-element");
-                collapseElement.classList.remove("show");
-            }
-        } else {
-
-        }
+    if (!parentElement.classList.contains("hide-element")) {
+        parentElement.classList.add("hide-element");
+        optionElement.classList.add("show-element");
+        collapseElement.classList.add("hide-element")
+    } else {
+        parentElement.classList.remove("hide-element");
+        optionElement.classList.remove("show-element");
+        collapseElement.classList.remove("hide-element");
+        collapseElement.classList.remove("show");
     }
 }
 
 
 // Is showing options for day edit elements
-let dayEditOptionsClick = (name) => {
+let mealEditOptionsClick = (name) => {
     elementId = `${name}`;
+    optionsId = `${name}-edit-options`;
+    parentElement = document.getElementById(elementId);
+    optionElement = document.getElementById(optionsId);
+    if (!parentElement.classList.contains("hide-element")) {
+        parentElement.classList.add("hide-element");
+        optionElement.classList.add("show-element");
+    } else {
+        parentElement.classList.remove("hide-element");
+        optionElement.classList.remove("show-element");
+    }
+}
+
+// Is showing options for day edit elements
+let dayEditOptionsClick = (name) => {
+    elementId = `${name}-edit`;
     optionsId = `${name}-edit-options`;
     parentElement = document.getElementById(elementId);
     optionElement = document.getElementById(optionsId);
@@ -187,7 +195,7 @@ let mealOptions = (id) => {
     </div>
     <div class="col-2 text-end p-2">
         <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size"
-            onclick="dayEditOptionsClick('${id}')">
+            onclick="mealEditOptionsClick('${id}')">
     </div>
     </div>
     `
@@ -206,7 +214,7 @@ let mealHtmlElement = (id, mealName, calories) => {
     </div>
     <div class="col-1">
         <img src="/static/img/options.svg" class="day-icons-options-size"
-            onclick="dayOptionsClick('${id}',1)">
+            onclick="mealOptionsClick('${id}')">
     </div>
     </div>`
 }

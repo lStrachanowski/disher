@@ -125,32 +125,35 @@
         <div class="container-fluid">
             <div class="row align-items-stretch justify-content-center mt-3">
 
+
+                <!-- Empty day -->
                 <div class="col-lg-3 col-md-6">
                     <div class="d-flex form-check text-start align-items-center">
-                        <input class="form-check-input p-2" type="checkbox" value="" id="day1-checkbox"
-                            onclick="dayChecked('day1-checkbox')">
+                        <input class="form-check-input p-2" type="checkbox" value="" id="day4-checkbox"
+                            onclick="dayChecked('day4-checkbox')">
                         <label class="form-check-label p-2" for="flexCheckDefault">
                             Dodaj do listy zakupów
                         </label>
                     </div>
-                    <div class="recepie-container white-background" id="day1">
+                    <div class="recepie-container white-background" id="day4">
+                        <!-- Naglowek dnia -->
                         <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor"
-                            id="day1-edit">
+                            id="day4-edit">
                             <div class="col-5 text-start p-3">
-                                Dzień 1
+                                Dzień 4
                             </div>
                             <div class="col-5 text-end">
-                                2500 kcal
+                                0 kcal
                             </div>
                             <div class="col-2 text-end p-2">
                                 <img src="/static/img/options.svg" class="day-options-icon-color day-icons-options-size"
-                                    onclick="dayEditOptionsClick('day1')">
+                                    onclick="dayEditOptionsClick('day4')">
                             </div>
                         </div>
-                        <!-- Odstęp między opcjami  -->
 
+                        <!-- Edycja naglowka dnia -->
                         <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options"
-                            id="day1-edit-options">
+                            id="day4-edit-options">
 
                             <div class="col-6 p-3">
                                 Usuń
@@ -160,77 +163,12 @@
                             </div>
                             <div class="col-2 text-end p-2">
                                 <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size"
-                                    onclick="dayEditOptionsClick('day1')">
-                            </div>
-                        </div>
-
-                        <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
-                            data-bs-target="#collapseBreakfast" aria-expanded="false" aria-controls="collapseBreakfast"
-                            id="day1-1">
-                            <div class="col-6 text-start p-2">
-                                Śniadanie
-                            </div>
-                            <div class="col-5">
-                                456 kcal
-                            </div>
-                            <div class="col-1">
-                                <img src="/static/img/options.svg" class="day-icons-options-size"
-                                    onclick="dayOptionsClick('day1',1)">
-                            </div>
-                        </div>
-                        <div class="collapse" id="collapseBreakfast">
-                            <div class="card card-body m-3 p-3 align-items-center day-element-card cursor"
-                                onclick="location.href='/recepie/1'">
-                                Kanapka z awokado
-                            </div>
-                        </div>
-
-                        <div class="d-flex day-element day-options m-3 p-2 align-items-center" id="day1-option-1">
-                            <div class="col-6 text-center p-2">
-                                Edytuj
-                            </div>
-                            <div class="col-5 day-options-delete">
-                                Usuń
-                            </div>
-                            <div class="col-1">
-                                <img src="/static/img/close.svg" class="day-icons-options-size"
-                                    onclick="dayOptionsClick('day1',1)">
+                                    onclick="dayEditOptionsClick('day4')">
                             </div>
                         </div>
 
 
-                        <div class="col-12 d-flex justify-content-center">
-                            <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
-                                type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                <div class="cross-button"></div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Empty day -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex form-check text-start align-items-center">
-                        <input class="form-check-input p-2" type="checkbox" value="" id="day4-checkbox" onclick="dayChecked('day4-checkbox')">
-                        <label class="form-check-label p-2" for="flexCheckDefault">
-                            Dodaj do listy zakupów
-                        </label>
-                    </div>
-                    <div class="recepie-container white-background" id="day4">
-                        <div
-                            class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor"
-                            id="day4-edit">
-                            <div class="col-5 text-start p-3">
-                                Dzień 4
-                            </div>
-                            <div class="col-5 text-end">
-                                0 kcal
-                            </div>
-                            <div class="col-2 text-end p-2">
-                                <img src="/static/img/options.svg"
-                                    class="day-options-icon-color day-icons-options-size">
-                            </div>
-                        </div>
                         <div class="col-12 empty-day-font greey-font" id="day-4-add">Dodaj posiłek</div>
                         <div class="col-12 d-flex justify-content-center">
                             <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
@@ -240,6 +178,7 @@
 
                         </div>
                     </div>
+
                 </div>
 
 
@@ -463,9 +402,8 @@
         </div>
     </div>
 
-
-
     {% else %}
+
     <div class="col-12  font-bold greey-font mt-4 dark-font">Moje posiłki</div>
     <div class="col-12 dashboard-font greey-font">Nic tu nie ma, dodaj przepis</div>
 
