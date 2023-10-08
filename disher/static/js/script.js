@@ -3,6 +3,14 @@ var globalElementId = "";
 var globalMealName = "";
 var globalSelectedValue = "";
 
+var translateTable = {
+    "Breakfast": "Śniadanie",
+    "Brunch": "2 Śniadanie",
+    "Dinner": "Obiad",
+    "Dessert": "Przekąska",
+    "Supper": "Kolacja",
+}
+
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -201,7 +209,7 @@ let mealOptions = (id) => {
     `
 }
 
-let mealHtmlElement = (id, mealName, calories) => {
+let mealElementWithData = (id, mealName, calories) => {
     return `
     <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
     data-bs-target="#${globalElementId}-collapse" aria-expanded="false" aria-controls="${globalElementId}-collapse"
@@ -231,14 +239,6 @@ let addDishMeal = (id) => {
     let selectedValue = document.getElementById("selectedMeal").value;
     let elementId = dayId + "-" + selectedValue;
     globalElementId = elementId;
-    translateTable = {
-        "Breakfast": "Śniadanie",
-        "Brunch": "2 Śniadanie",
-        "Dinner": "Obiad",
-        "Dessert": "Przekąska",
-        "Supper": "Kolacja",
-    }
-
     let mealName = translateTable[selectedValue];
     let mealNAmeLowerCase = mealName.toLowerCase();
     globalMealName = mealName;
@@ -266,6 +266,7 @@ let addDishMeal = (id) => {
  * 
  * */
 let addMealToDay = (id, slug, dish, calories) => {
+    let mealName = translateTable[globalElementId.split("-")[3]];
     let collapseMEal = document.getElementById(globalElementId + "-collapse");
     if (!collapseMEal) {
         const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
@@ -276,7 +277,8 @@ let addMealToDay = (id, slug, dish, calories) => {
         selectedMeal.remove();
 
         let selectedParent = document.getElementById(id);
-        let newSelectedDay = mealHtmlElement(globalElementId, globalMealName, calories);
+        elementId = id.split("-").slice(1,).join("-");
+        let newSelectedDay = mealElementWithData(globalElementId, mealName, calories);
         selectedParent.insertAdjacentHTML('beforebegin', newSelectedDay);
 
         let newSelectedMeal = document.getElementById(globalElementId);
