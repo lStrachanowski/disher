@@ -54,13 +54,19 @@ let mealOptionsClick = (name) => {
     if (!parentElement.classList.contains("hide-element")) {
         parentElement.classList.add("hide-element");
         optionElement.classList.add("show-element");
-        collapseElement.classList.add("hide-element")
+        if (collapseElement) {
+            collapseElement.classList.add("hide-element");
+        }
+
     } else {
         parentElement.classList.remove("hide-element");
         optionElement.classList.remove("show-element");
         collapseElement.classList.remove("hide-element");
         collapseElement.classList.remove("show");
     }
+    
+    let recepieDiv = document.getElementById(name + '-collapse');
+    recepieDiv.classList.add("hide-element");
 }
 
 
@@ -77,6 +83,12 @@ let mealEditOptionsClick = (name) => {
         parentElement.classList.remove("hide-element");
         optionElement.classList.remove("show-element");
     }
+    let recepieDiv = document.getElementById(name + '-collapse');
+
+    recepieDiv.classList.remove("hide-element");
+    if(recepieDiv.classList.contains('show') ){
+        recepieDiv.classList.remove('show');
+     }
 }
 
 // Is showing options for day edit elements
@@ -165,6 +177,7 @@ if (document.getElementById("modalFormSearch")) {
     });
 }
 
+
 // Template with meal element added to user day
 let dishElementTemplate = (elementId, mealName, selectedValue) => {
     return `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id=${elementId}>
@@ -202,8 +215,8 @@ let mealOptions = (id) => {
         Kopiuj
     </div>
     <div class="col-2 text-end p-2">
-        <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size"
-            onclick="mealEditOptionsClick('${id}')">
+        <img src="/static/img/close.svg" class="day-icons-options-size"
+            onclick="mealEditOptionsClick('${id}')" id="close-img-${id}">
     </div>
     </div>
     `
@@ -220,9 +233,9 @@ let mealElementWithData = (id, mealName, calories) => {
     <div class="col-5">
         ${calories} kcal
     </div>
-    <div class="col-1">
+    <div class="col-1" onclick="mealOptionsClick('${id}')">
         <img src="/static/img/options.svg" class="day-icons-options-size"
-            onclick="mealOptionsClick('${id}')">
+             id="img-${globalElementId}">
     </div>
     </div>`
 }
@@ -290,6 +303,7 @@ let addMealToDay = (id, slug, dish, calories) => {
     } else {
         alert("Już masz dodany posiłek ");
     }
+
 }
 
 
