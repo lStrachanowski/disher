@@ -240,7 +240,58 @@ let mealElementWithData = (id, mealName, calories) => {
     </div>`
 }
 
+let dayElementTemplate = (id, number) =>{
+    return `<div class="col-lg-3 col-md-6">
+    <div class="d-flex form-check text-start align-items-center">
+        <input class="form-check-input p-2" type="checkbox" value="" id="${id}-checkbox" onclick="dayChecked('${id}-checkbox')">
+        <label class="form-check-label p-2" for="flexCheckDefault">
+            Dodaj do listy zakupów
+        </label>
+    </div>
+    <div class="recepie-container white-background" id="${id}">
+        <!-- Naglowek dnia -->
+        <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor" id="${id}-edit">
+            <div class="col-5 text-start p-3">
+                Dzień ${number}
+            </div>
+            <div class="col-5 text-end">
+                0 kcal
+            </div>
+            <div class="col-2 text-end p-2">
+                <img src="/static/img/options.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('${id}')">
+            </div>
+        </div>
 
+        <!-- Edycja naglowka dnia -->
+        <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options" id="${id}-edit-options">
+
+            <div class="col-6 p-3">
+                Usuń
+            </div>
+            <div class="col-4">
+                Kopiuj
+            </div>
+            <div class="col-2 text-end p-2">
+                <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('${id}')">
+            </div>
+        </div>
+
+        <div class="col-12 empty-day-font greey-font" id="day-${number}-add">Dodaj posiłek</div>
+        <div class="col-12 d-flex justify-content-center">
+            <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" type="button" onclick="showMealModal('day-${number}-add');">
+                <div class="cross-button"></div>
+            </button>
+
+        </div>
+    </div>
+
+</div>`
+}
+
+let buttonTemplate = (id) =>{
+    return `<button type="submit" class="btn btn-success" data-bs-dismiss="modal"
+    onclick="addDishMeal('day-${id}-add');">Dodaj</button>`
+}
 
 /**Is creating element in user day
  * 
@@ -248,7 +299,7 @@ let mealElementWithData = (id, mealName, calories) => {
  * 
  * */
 let addDishMeal = (id) => {
-
+    console.log(id);
     let selectedValue = document.getElementById("selectedMeal").value;
     let elementId = dayId + "-" + selectedValue;
     globalElementId = elementId;
@@ -269,6 +320,10 @@ let addDishMeal = (id) => {
     const htmlTemplate = dishElementTemplate(elementId, mealName, selectedValue);
     let selectedDay = document.getElementById(id);
     selectedDay.insertAdjacentHTML('beforebegin', htmlTemplate);
+    console.log(id);
+    // let modalTemplate = document.getElementById('dayAddButtonID');
+    // modalTemplate.insertAdjacentHTML('beforeend', buttonTemplate(id) );
+
 }
 
 
@@ -306,6 +361,10 @@ let addMealToDay = (id, slug, dish, calories) => {
 
 }
 
+let addDay = (id) =>{
+    let parent = document.getElementById("mainDashboard");
+    parent.insertAdjacentHTML('afterend', dayElementTemplate("day"+id, id));
+}
 
 /**Is deleting element in user day
  * 
@@ -315,7 +374,7 @@ let addMealToDay = (id, slug, dish, calories) => {
 let deleteElement = (id) => {
     let selectedElement = document.getElementById(id);
     selectedElement.remove();
-    let selectedElementCollapse = document.getElementById(id + "-collapse");
+    let selectedElementCollapse = document.getElementById("day"+ id + "-collapse");
     if (selectedElementCollapse) {
         selectedElementCollapse.remove();
     }
