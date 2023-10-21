@@ -26,3 +26,11 @@ class ResetPasswordForm(forms.Form):
         min_length=6, max_length=32, widget=forms.PasswordInput, required=True)
     confirm_user_password = forms.CharField(
         max_length=32, widget=forms.PasswordInput, required=True)
+
+
+class DishForm(forms.Form):
+    dish_title = forms.CharField( min_length=3, max_length=100, required=True)
+    dish_calories = forms.IntegerField( required=True)
+    dishDescription = forms.CharField( max_length=1000, required=True)
+    duration = forms.CharField( min_length=3, max_length=100, required=True)
+    type_of_meal = forms.CharField( min_length=3, max_length=100, required=True)

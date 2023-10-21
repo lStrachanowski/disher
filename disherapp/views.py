@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm
+from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
 from .db import ProductOperations, DishOperations, ProductAmountOperations
 from django.contrib import messages
@@ -77,6 +77,16 @@ def add_recepie(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
+    if request.method == "POST":
+        form = DishForm(request.POST)
+        if form.is_valid():
+            recepie_title = form.cleaned_data["dish_title"]
+            dish_calories = form.cleaned_data["dish_calories"]
+            dish_description = form.cleaned_data["dishDescription"]
+            duration = form.cleaned_data["duration"]
+            type_of_meal = form.cleaned_data["type_of_meal"]
+            print(recepie_title, dish_calories, dish_description, duration, type_of_meal)
+
     return render(request, "disher/addrecepie.html", context)
 
 

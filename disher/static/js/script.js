@@ -380,3 +380,24 @@ let deleteElement = (id) => {
     }
 
 }
+
+
+
+// Shows products fields in add recepie route
+if (document.getElementById("addProductButton")) {
+    document.getElementById("addProductButton").addEventListener("click", function (event) {
+        event.preventDefault();
+        let inputsFields = document.getElementById("addProductInputFields");
+        let saveProductBtn = document.getElementById("saveProductButtonContainer");
+        inputsFields.classList.remove("hide-element");
+        saveProductBtn.classList.remove("hide-element");
+    });
+}
+
+// Is hiding products fields in add recepie route
+let hideAddedProduct = () =>{
+        let inputsFields = document.getElementById("addProductInputFields");
+        let saveProductBtn = document.getElementById("saveProductButtonContainer");
+        inputsFields.classList.add("hide-element");
+        saveProductBtn.classList.add("hide-element");
+}

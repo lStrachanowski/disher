@@ -14,31 +14,33 @@
 </div>
 
 
-<div class="container-fluid justify-content-center align-items-center mt-5 col-lg-6 col-12">
+<div class="container-fluid justify-content-center align-items-center mt-5 col-lg-6 col-12" id="content-container">
     <div class="row d-flex mt-2 m-1">
-        <form>
+        <form action="" method="post" id="recepie_add">
+            {% csrf_token %}
+            {{ form.as_p }}
             <div class="row">
                 <div class="form-group col-lg-12 col-12">
-                    <label for="exampleFormControlInput1">Nazwa potrawy</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1">
+                    <label for="dish_title">Nazwa potrawy</label>
+                    <input type="text" class="form-control" id="dish_title" name="dish_title" required>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="form-group col-lg-4 col-12">
-                    <label for="exampleFormControlInput1" >Kaloryczność </label>
-                    <input type="text" class="form-control " id="exampleFormControlInput1">
+                    <label for="dish_calories" >Kaloryczność </label>
+                    <input type="text" class="form-control " id="dish_calories" name="dish_calories" required>
                 </div>
                 <div class="form-group col-lg-4 col-12">
                     <label for="duration" >Czas przygotwania </label>
-                    <select class="form-control" name="duration">
+                    <select class="form-control" name="duration" id="duration" required>
                         <option value="Quick" >Szybki ( < 30 min ) </option>
                         <option value="Medium" >Średni ( 30-60 min ) </option>
                         <option value="Long" >Długi ( > 60  min ) </option>
                       </select>
                 </div>
                 <div class="form-group col-lg-4 col-12">
-                    <label for="duration" >Typ posiłku</label>
-                    <select class="form-control" name="typeOfMeal">
+                    <label for="type_of_meal" >Typ posiłku</label>
+                    <select class="form-control" name="type_of_meal" id="type_of_meal" required>
                         <option value="Breakfast" >Śniadanie</option>
                         <option value="Brunch" >2 Śniadanie</option>
                         <option value="Dinner" >Obiad</option>
@@ -47,46 +49,67 @@
                     </select>
                 </div>
             </div>
+
             <div class="row text-center mt-3">
-                <h4 class="font-bold">Dodaj składniki</h4>
-            </div>
-            <div class="col-12 d-flex justify-content-center">
-                <div class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3">
-                    <div class="cross-button"></div>
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="col-12 d-flex align-items-center justify-content-around mb-1">
+                        <div class="col-lg-2  text-center dark-font font-bold">Produkt</div>
+                        <div class="col-lg-7  text-start dark-font font-bold ">Ilość</div>
+                        <div class="col-lg-2  text-center"></div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
+                    <div
+                        class="col-12 d-flex align-items-center justify-content-around  recepie-container  white-background cursor">
+                        <div class="col-lg-2  text-center m-3 font-bold cursor">Kasza jaglana</div>
+                        <div class="col-lg-7  text-start cursor">100 gr</div>
+                        <div class="col-lg-2  text-center">usuń</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row mt-1">
+            <div class="row text-center mt-3">
+                <h4 class="font-bold">Dodaj składniki</h4>
+            </div>
+               <div class="col-12 d-flex justify-content-center">
+                <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" type="button" id="addProductButton">
+                    <div class="cross-button"></div>
+                </button>
+            </div>
+
+            <div class="row mt-1 hide-element" id="addProductInputFields">
                 <div class="form-group col-lg-6 col-12">
-                    <label for="resecpieName" >Nazwa</label>
-                    <input type="text" class="form-control " id="resecpieName" >
+                    <label for="productName" >Nazwa</label>
+                    <input type="text" class="form-control " id="productName" name="productName">
                 </div>
                 <div class="form-group col-lg-3 col-12">
-                    <label for="recepueQuantity">Ilość</label>
-                    <input type="text" class="form-control" id="recepueQuantity">
+                    <label for="productQuantity">Ilość</label>
+                    <input type="number" class="form-control" id="productQuantity" name="productQuantity" >
                 </div>
 
                 <div class="form-group col-lg-3 col-12">
                     <label for="unit">Jednostka</label>
-                    <select class="form-control" name="unit">
+                    <select class="form-control" name="unit" id="unit">
                         <option value="kg">kg</option>
                         <option value="gr">gr</option>
                         <option value="ml">ml</option>
                       </select>
                 </div>
             </div>
-            <div class="row m-4 justify-content-center align-items-center ">
-                <div class="col-lg-4 col-sm-3 mt-2  btn btn-success">Zapisz składnik</div>
+            <div class="row m-4 justify-content-center align-items-center hide-element" id="saveProductButtonContainer">
+                <button class="col-lg-3 col-sm-3 m-2  btn btn-success" type="button" onclick="hideAddedProduct()"  id="saveProductButton">Zapisz</button>
+                <button class="col-lg-3 col-sm-3 m-2  btn btn-danger" type="button" onclick="hideAddedProduct()"  id="saveProductButton">Anuluj</button>
             </div>
+
 
 
             <div class="form-group mt-2">
-                <label for="recepieDescription">Opis przygotowania</label>
-                <textarea class="form-control" id="recepieDescription" rows="3"></textarea>
+                <label for="dishDescription">Opis przygotowania</label>
+                <textarea class="form-control" id="dishDescription" name="dishDescription" rows="3" required></textarea>
             </div>
 
             <div class="row m-4 justify-content-center align-items-center ">
-                <div class="col-lg-4 col-sm-3 mt-2  btn btn-success">Zapisz</div>
+                <button class="col-lg-4 col-sm-3 mt-2  btn btn-success" type="submit">Zapisz</button>
             </div>
 
         </form>
