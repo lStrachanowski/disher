@@ -241,7 +241,7 @@ let mealElementWithData = (id, mealName, calories) => {
 }
 
 let dayElementTemplate = (id, number) =>{
-    return `<div class="col-lg-3 col-md-6">
+    return `<div class="col-lg-3 col-md-6" id="${id}-container">
     <div class="d-flex form-check text-start align-items-center">
         <input class="form-check-input p-2" type="checkbox" value="" id="${id}-checkbox" onclick="dayChecked('${id}-checkbox')">
         <label class="form-check-label p-2" for="flexCheckDefault">
@@ -265,7 +265,7 @@ let dayElementTemplate = (id, number) =>{
         <!-- Edycja naglowka dnia -->
         <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options" id="${id}-edit-options">
 
-            <div class="col-6 p-3">
+            <div class="col-6 p-3" onclick="deleteDay('${id}')">
                 Usuń
             </div>
             <div class="col-4">
@@ -393,4 +393,14 @@ let deleteMealOptionElement = (id) => {
     selectedOptionsElement.remove();
     let selectedOptionsElementCollapse = document.getElementById(id + "-collapse");
     selectedOptionsElementCollapse.remove();
+}
+
+/**Is deleting day
+ * 
+ * @param {string} id - Element id
+ * 
+ * */
+let deleteDay = (id) =>{
+    let dayElement = document.getElementById(id + '-container');
+    dayElement.remove();
 }
