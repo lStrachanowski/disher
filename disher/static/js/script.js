@@ -190,7 +190,7 @@ let dishElementTemplate = (elementId, mealName, selectedValue) => {
     <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
     </button>
     <div class="col-2 text-end">
-        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteElement('${elementId}');">
+        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteMealElement('${elementId}');">
     </div>
     </div>
     `
@@ -208,7 +208,7 @@ let mealElementTemplate = (globalElementId, slug, dish) => {
 let mealOptions = (id) => {
     return `<div class="d-flex day-element day-options m-3 p-2 align-items-center"
     id="${id}-edit-options">
-    <div class="col-6">
+    <div class="col-6" onclick="deleteMealOptionElement('${id}')">
         Usuń
     </div>
     <div class="col-4">
@@ -371,33 +371,26 @@ let addDay = (id) =>{
  * @param {string} id - Element id
  * 
  * */
-let deleteElement = (id) => {
+let deleteMealElement = (id) => {
     let selectedElement = document.getElementById(id);
     selectedElement.remove();
     let selectedElementCollapse = document.getElementById("day"+ id + "-collapse");
     if (selectedElementCollapse) {
         selectedElementCollapse.remove();
     }
-
 }
 
-
-
-// Shows products fields in add recepie route
-if (document.getElementById("addProductButton")) {
-    document.getElementById("addProductButton").addEventListener("click", function (event) {
-        event.preventDefault();
-        let inputsFields = document.getElementById("addProductInputFields");
-        let saveProductBtn = document.getElementById("saveProductButtonContainer");
-        inputsFields.classList.remove("hide-element");
-        saveProductBtn.classList.remove("hide-element");
-    });
-}
-
-// Is hiding products fields in add recepie route
-let hideAddedProduct = () =>{
-        let inputsFields = document.getElementById("addProductInputFields");
-        let saveProductBtn = document.getElementById("saveProductButtonContainer");
-        inputsFields.classList.add("hide-element");
-        saveProductBtn.classList.add("hide-element");
+/**Is deleting element in user day, which was populated with dish
+ * 
+ * @param {string} id - Element id
+ * 
+ * */
+let deleteMealOptionElement = (id) => {
+    id = id.split("-").slice(0,4).join("-");
+    let selectedElement = document.getElementById(id);
+    selectedElement.remove();
+    let selectedOptionsElement = document.getElementById(id + "-edit-options");
+    selectedOptionsElement.remove();
+    let selectedOptionsElementCollapse = document.getElementById(id + "-collapse");
+    selectedOptionsElementCollapse.remove();
 }
