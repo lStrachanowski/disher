@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
-from .db import ProductOperations, DishOperations, ProductAmountOperations
+from .db import ProductOperations, DishOperations, ProductAmountOperations, DayOperations
 from django.contrib import messages
 from django.core.signing import Signer
 from django.core import signing
@@ -48,11 +48,19 @@ def dashboard(request):
 
     recepies_data = DishOperations()
     recepies_for_template = recepies_data.getAllDishes()
+    
+    # dish_to_add = recepies_data.getDishById(2)
+    # d_dish = recepies_data.createDayDish(dish_to_add, "D")
+    # day = DayOperations()
+    # day.createDay("Dzień 2", d_dish, request.user)
 
     # if request.method == "POST":
     #     selected_meal = request.POST.get('selectedMeal')
     #     print(selected_meal)
-    
+
+
+
+
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
                "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template}
     return render(request, "disher/dashboard.html", context)

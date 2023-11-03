@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 class Product(models.Model):
@@ -9,8 +10,6 @@ class Product(models.Model):
     product_protein = models.DecimalField(max_digits=5, decimal_places=2)
     product_fat = models.DecimalField(max_digits=5, decimal_places=2)
     product_carbs = models.DecimalField(max_digits=5, decimal_places=2)
-
-
 
 class Dish(models.Model):
     dish_duration = [
@@ -46,7 +45,21 @@ class Product_Amount(models.Model):
     product_amount = models.DecimalField(max_digits=5,decimal_places=2)
     dish = models.ManyToManyField(Dish)
 
+class Day_Dish(models.Model):
+    id = models.AutoField(primary_key=True)
+    meal = [
+        ("B", "Breakfast"),
+        ("B2", "Brunch"),
+        ("D", "Dinner"),
+        ("D2", "Dessert"),
+        ("S", "Supper")
+    ]
+    dish = models.ForeignKey(Dish, on_delete=models.DO_NOTHING)
+    meal_type = models.CharField(default="B", max_length=2, choices=meal)
+
 class User_Day(models.Model):
     id = models.AutoField(primary_key=True)
     user_day_name = models.CharField(max_length=50)
-    user_day_dish = models.ForeignKey(Dish, on_delete=models.DO_NOTHING)
+    user_day_dish = models.ManyToManyField(Day_Dish)
+    user_day_id = models.ForeignKey(User, on_delete=models.CASCADE)
+

@@ -1,11 +1,13 @@
 from django.contrib.auth.models import User
-from disher.models import Product, Dish, Product_Amount
+from disher.models import Product, Dish, Product_Amount, User_Day, Day_Dish
 
 class ProductAmountOperations:
     def createAmount(self, name, amount, dish_name):
         try:
             check_product = Product_Amount.objects.get(product_name=name)
             print("Already exist")
+            check_product.dish.add(dish_name)
+            check_product.save()
         except Product_Amount.DoesNotExist:
             amount = Product_Amount(product_name=name, product_amount = amount)
             amount.save()
@@ -112,6 +114,14 @@ class DishOperations:
         except Exception as e:
             print(e)
             return
+        
+    def getDishById(self, id):
+        try:
+            dish_objcet = Dish.objects.get(id=id)
+            return dish_objcet
+        except Exception as e:
+            print(e)
+            return
 
     def getDish(self, name):
         try:
@@ -148,3 +158,23 @@ class DishOperations:
         except Exception as e:
             print(e)
 
+    def createDayDish(self, dish, meal):
+        try:
+            dayDish = Day_Dish(dish = dish, meal_type = meal)
+            dayDish.save()
+            return dayDish
+        except Exception as e:
+            print(e)
+
+
+
+class DayOperations:
+    def createDay(self, user_day_name, user_day_dish , user_id ):
+        try:
+            day_object = User_Day(user_day_name = user_day_name, user_day_id = user_id)
+            day_object.save()
+            day_object.user_day_dish.add(user_day_dish)
+            day_object.save()
+            print("created")
+        except Exception as e:
+            print(e)
