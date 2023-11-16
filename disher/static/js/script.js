@@ -2,6 +2,7 @@ var dayId = "";
 var globalElementId = "";
 var globalMealName = "";
 var globalSelectedValue = "";
+var dayData = null;
 
 var translateTable = {
     "Breakfast": "Śniadanie",
@@ -20,6 +21,33 @@ xhttp.onreadystatechange = function () {
 };
 xhttp.open("GET", "/", true);
 xhttp.send();
+
+// Checking if user is in dahsboard url
+const currentUrl = window.location.pathname;
+if ( currentUrl == '/user/dashboard'){
+    fetchDataFromWeb();
+}
+
+// Fetching data about user days from server
+function fetchDataFromWeb(callback) {
+    fetch('/user/dashboard/daydata')
+        .then(response => response.json())
+        .then(data => {
+            dayChange(data);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
+
+// Rendering data about user day in dashboard
+function dayChange(newData) {
+    if (dayData !== newData) {
+        dayData = newData;
+        addDay(dayData.day_name);   
+    }
+}
+
 
 // Is showing options in user recepie element
 let optionsClick = (id) => {
@@ -130,9 +158,14 @@ let dayChecked = (name) => {
 
 let showMealModal = (id) => {
     dayId = id;
-    // Get a reference to the modal element
     const myModal = document.getElementById('staticBackdrop');
+    const oldButton = document.getElementById('dayAddButtonID');
+    oldButton.remove();
+    let newSelectedModal = document.getElementById('modalForm');
+    let newButton = modalButtonTemplate(id);
+    newSelectedModal.insertAdjacentHTML('afterend', newButton);
 
+  
     // Create a new Bootstrap Modal instance
     const modal = new bootstrap.Modal(myModal);
 
@@ -180,7 +213,7 @@ if (document.getElementById("modalFormSearch")) {
 
 // Template with meal element added to user day
 let dishElementTemplate = (elementId, mealName, selectedValue) => {
-    return `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id=${elementId}>
+    return `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id="${elementId}">
     <div class="col-6 text-start p-2 ${selectedValue}">
        ${mealName}
     </div>
@@ -252,7 +285,7 @@ let dayElementTemplate = (id, number) =>{
         <!-- Naglowek dnia -->
         <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor" id="${id}-edit">
             <div class="col-5 text-start p-3">
-                Dzień ${number}
+                ${number}
             </div>
             <div class="col-5 text-end">
                 0 kcal
@@ -288,6 +321,13 @@ let dayElementTemplate = (id, number) =>{
 </div>`
 }
 
+let modalButtonTemplate = (id) =>{
+    return `<div class="modal-footer justify-content-center" id="dayAddButtonID">
+    <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
+        onclick="addDishMeal('${id}');">Dodaj</button>
+    </div>`
+}
+
 let buttonTemplate = (id) =>{
     return `<button type="submit" class="btn btn-success" data-bs-dismiss="modal"
     onclick="addDishMeal('day-${id}-add');">Dodaj</button>`
@@ -299,7 +339,6 @@ let buttonTemplate = (id) =>{
  * 
  * */
 let addDishMeal = (id) => {
-    console.log(id);
     let selectedValue = document.getElementById("selectedMeal").value;
     let elementId = dayId + "-" + selectedValue;
     globalElementId = elementId;
@@ -320,7 +359,6 @@ let addDishMeal = (id) => {
     const htmlTemplate = dishElementTemplate(elementId, mealName, selectedValue);
     let selectedDay = document.getElementById(id);
     selectedDay.insertAdjacentHTML('beforebegin', htmlTemplate);
-    console.log(id);
     // let modalTemplate = document.getElementById('dayAddButtonID');
     // modalTemplate.insertAdjacentHTML('beforeend', buttonTemplate(id) );
 
@@ -346,6 +384,8 @@ let addMealToDay = (id, slug, dish, calories) => {
 
         let selectedParent = document.getElementById(id);
         elementId = id.split("-").slice(1,).join("-");
+        
+        console.log(id, elementId, globalElementId);
         let newSelectedDay = mealElementWithData(globalElementId, mealName, calories);
         selectedParent.insertAdjacentHTML('beforebegin', newSelectedDay);
 

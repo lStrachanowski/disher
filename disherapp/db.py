@@ -171,10 +171,48 @@ class DishOperations:
 class DayOperations:
     def createDay(self, user_day_name, user_day_dish , user_id ):
         try:
-            day_object = User_Day(user_day_name = user_day_name, user_day_id = user_id)
+            day_object = User_Day(user_day_name = user_day_name, user_id = user_id)
             day_object.save()
             day_object.user_day_dish.add(user_day_dish)
             day_object.save()
             print("created")
+        except Exception as e:
+            print(e)
+    
+    def getDay(self, id):
+        try:
+            day_object = User_Day.objects.get(user_id = id)
+            return day_object
+        except Exception as e:
+            print(e)
+
+    def addMeal(self,id, user_day_dish):
+        try:
+            day_object = User_Day.objects.get(user_id = id)
+            day_object.user_day_dish.add(user_day_dish)
+            print("dish added")
+        except Exception as e:
+            print(e)
+
+    def getDayData(self, id):
+        try:
+            data_table = []
+            day_object = User_Day.objects.get(user_id = id)
+            dish_id = [p for p in day_object.user_day_dish.all()]
+            for d in dish_id:
+                d_d = Day_Dish.objects.get(id = d.id)
+                res = DishOperations()
+                data = {'name':res.getDishById(d_d.dish.id).dish_name, 'cal':res.getDishById(d_d.dish.id).dish_calories, 'type': d_d.meal_type}
+                data_table.append(data)
+            JSON_data = {'day_name': day_object.user_day_name, 'day_items': data_table}
+            return JSON_data
+        except Exception as e:
+            print(e)
+
+    def checkUserDays(self, id):
+        try:
+            day_object = User_Day.objects.get(user_id = id)
+            if day_object:
+                return True
         except Exception as e:
             print(e)

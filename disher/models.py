@@ -61,5 +61,5 @@ class User_Day(models.Model):
     id = models.AutoField(primary_key=True)
     user_day_name = models.CharField(max_length=50)
     user_day_dish = models.ManyToManyField(Day_Dish)
-    user_day_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 

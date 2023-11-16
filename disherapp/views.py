@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -45,26 +45,33 @@ def dashboard(request):
     user_status = login_status.get_user_status(request)
     user_has_recepies = True
     user_has_diet_list = True
+    user_days = []
 
     recepies_data = DishOperations()
     recepies_for_template = recepies_data.getAllDishes()
-    
-    # dish_to_add = recepies_data.getDishById(2)
-    # d_dish = recepies_data.createDayDish(dish_to_add, "D")
-    # day = DayOperations()
-    # day.createDay("Dzień 2", d_dish, request.user)
 
+    day = DayOperations()
+    if day.checkUserDays(request.user):
+        data = day.getDayData(request.user)
+        user_days.append(data['day_name'])
+    
     # if request.method == "POST":
     #     selected_meal = request.POST.get('selectedMeal')
     #     print(selected_meal)
 
-
-
-
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
-               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template}
+               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_days":'day-' + user_days[0] + '-add'}
     return render(request, "disher/dashboard.html", context)
 
+@login_required(login_url='/login')
+def daydata(request):
+    day = DayOperations()
+    if day.checkUserDays(request.user):
+        data = day.getDayData(request.user)
+        return JsonResponse(data, safe=False)
+    else:
+        data = {'message': 'No data'}
+        return JsonResponse(data, safe=False)
 
 @login_required(login_url='/login')
 def user_profil(request):
