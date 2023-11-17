@@ -166,6 +166,15 @@ class DishOperations:
         except Exception as e:
             print(e)
 
+    def getSlug(self, name):
+        try:
+            dish_objcet = Dish.objects.get(dish_name=name)
+            return dish_objcet.slug
+        except Exception as e:
+            print(e)
+            return
+
+
 
 
 class DayOperations:
@@ -201,8 +210,9 @@ class DayOperations:
             dish_id = [p for p in day_object.user_day_dish.all()]
             for d in dish_id:
                 d_d = Day_Dish.objects.get(id = d.id)
-                res = DishOperations()
-                data = {'name':res.getDishById(d_d.dish.id).dish_name, 'cal':res.getDishById(d_d.dish.id).dish_calories, 'type': d_d.meal_type}
+                results = DishOperations().getDishById(d_d.dish.id)
+                slug = DishOperations().getSlug(results.dish_name)
+                data = {'name':results.dish_name, 'cal':results.dish_calories, 'type': d_d.meal_type, 'slug': slug}
                 data_table.append(data)
             JSON_data = {'day_name': day_object.user_day_name, 'day_items': data_table}
             return JSON_data

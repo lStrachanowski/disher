@@ -1,5 +1,5 @@
 var dayId = "";
-var globalElementId = "";
+var globalElementId = null;
 var globalMealName = "";
 var globalSelectedValue = "";
 var dayData = null;
@@ -10,6 +10,14 @@ var translateTable = {
     "Dinner": "Obiad",
     "Dessert": "Przekąska",
     "Supper": "Kolacja",
+}
+
+var symbolTable = {
+    "B": ["Śniadanie", "Breakfast"],
+    "B2": ["2 Śniadanie", "Brunch"],
+    "D": ["Obiad", "Dinner"],
+    "D2": ["Przekąska", "Dessert"],
+    "S": ["Kolacja", "Supper"],
 }
 
 var xhttp = new XMLHttpRequest();
@@ -24,7 +32,7 @@ xhttp.send();
 
 // Checking if user is in dahsboard url
 const currentUrl = window.location.pathname;
-if ( currentUrl == '/user/dashboard'){
+if (currentUrl == '/user/dashboard') {
     fetchDataFromWeb();
 }
 
@@ -44,7 +52,11 @@ function fetchDataFromWeb(callback) {
 function dayChange(newData) {
     if (dayData !== newData) {
         dayData = newData;
-        addDay(dayData.day_name);   
+        addDay(dayData.day_name);
+        for (item of dayData.day_items) {
+            addMealToDay('day' + dayData.day_name + '-add', item.slug, item.name, item.cal, item.type);
+        }
+
     }
 }
 
@@ -92,7 +104,7 @@ let mealOptionsClick = (name) => {
         collapseElement.classList.remove("hide-element");
         collapseElement.classList.remove("show");
     }
-    
+
     let recepieDiv = document.getElementById(name + '-collapse');
     recepieDiv.classList.add("hide-element");
 }
@@ -114,9 +126,9 @@ let mealEditOptionsClick = (name) => {
     let recepieDiv = document.getElementById(name + '-collapse');
 
     recepieDiv.classList.remove("hide-element");
-    if(recepieDiv.classList.contains('show') ){
+    if (recepieDiv.classList.contains('show')) {
         recepieDiv.classList.remove('show');
-     }
+    }
 }
 
 // Is showing options for day edit elements
@@ -165,7 +177,7 @@ let showMealModal = (id) => {
     let newButton = modalButtonTemplate(id);
     newSelectedModal.insertAdjacentHTML('afterend', newButton);
 
-  
+
     // Create a new Bootstrap Modal instance
     const modal = new bootstrap.Modal(myModal);
 
@@ -177,6 +189,7 @@ let showMealModal = (id) => {
 let showSearchMealModal = (id) => {
     dayId = id;
     globalElementId = id.split("-").slice(1,).join("-");
+    console.log(globalElementId);
     // Get a reference to the modal element
     const myModal = document.getElementById('staticBackdropSearch');
 
@@ -273,7 +286,7 @@ let mealElementWithData = (id, mealName, calories) => {
     </div>`
 }
 
-let dayElementTemplate = (id, number) =>{
+let dayElementTemplate = (id, number) => {
     return `<div class="col-lg-3 col-md-6" id="${id}-container">
     <div class="d-flex form-check text-start align-items-center">
         <input class="form-check-input p-2" type="checkbox" value="" id="${id}-checkbox" onclick="dayChecked('${id}-checkbox')">
@@ -321,14 +334,14 @@ let dayElementTemplate = (id, number) =>{
 </div>`
 }
 
-let modalButtonTemplate = (id) =>{
+let modalButtonTemplate = (id) => {
     return `<div class="modal-footer justify-content-center" id="dayAddButtonID">
     <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
         onclick="addDishMeal('${id}');">Dodaj</button>
     </div>`
 }
 
-let buttonTemplate = (id) =>{
+let buttonTemplate = (id) => {
     return `<button type="submit" class="btn btn-success" data-bs-dismiss="modal"
     onclick="addDishMeal('day-${id}-add');">Dodaj</button>`
 }
@@ -371,21 +384,43 @@ let addDishMeal = (id) => {
  * @param {string} id - Element id
  * 
  * */
-let addMealToDay = (id, slug, dish, calories) => {
-    let mealName = translateTable[globalElementId.split("-")[3]];
+let addMealToDay = (id, slug, dish, calories, meal_type) => {
+
+    if (meal_type) {
+        globalElementId = "day-" + id.slice(3, id.length) + "-" + symbolTable[meal_type][1];
+    }
+
+    let mealName = '';
+    let selectedParent = null;
+
+    if (meal_type) {
+        mealName = symbolTable[meal_type][0];
+    } else {
+        mealName = translateTable[globalElementId.split("-")[3]];
+    }
     let collapseMEal = document.getElementById(globalElementId + "-collapse");
     if (!collapseMEal) {
         const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
         let selectedDay = document.getElementById(globalElementId);
-        selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
-        selectedDay.remove();
-        let selectedMeal = document.getElementById(globalElementId + "-collapse");
-        selectedMeal.remove();
 
-        let selectedParent = document.getElementById(id);
+        if (selectedDay) {
+            selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
+            selectedDay.remove();
+        }
+        let selectedMeal = document.getElementById(globalElementId + "-collapse");
+
+        if (selectedMeal) {
+            selectedMeal.remove();
+        }
+
+        if (meal_type) {
+            selectedParent = document.getElementById("day-" + id.slice(3, id.length));
+        } else {
+            selectedParent = document.getElementById(id);
+        }
+
         elementId = id.split("-").slice(1,).join("-");
-        
-        console.log(id, elementId, globalElementId);
+
         let newSelectedDay = mealElementWithData(globalElementId, mealName, calories);
         selectedParent.insertAdjacentHTML('beforebegin', newSelectedDay);
 
@@ -401,9 +436,9 @@ let addMealToDay = (id, slug, dish, calories) => {
 
 }
 
-let addDay = (id) =>{
+let addDay = (id) => {
     let parent = document.getElementById("mainDashboard");
-    parent.insertAdjacentHTML('afterend', dayElementTemplate("day"+id, id));
+    parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
 }
 
 /**Is deleting element in user day
@@ -414,7 +449,7 @@ let addDay = (id) =>{
 let deleteMealElement = (id) => {
     let selectedElement = document.getElementById(id);
     selectedElement.remove();
-    let selectedElementCollapse = document.getElementById("day"+ id + "-collapse");
+    let selectedElementCollapse = document.getElementById("day" + id + "-collapse");
     if (selectedElementCollapse) {
         selectedElementCollapse.remove();
     }
@@ -426,7 +461,7 @@ let deleteMealElement = (id) => {
  * 
  * */
 let deleteMealOptionElement = (id) => {
-    id = id.split("-").slice(0,4).join("-");
+    id = id.split("-").slice(0, 4).join("-");
     let selectedElement = document.getElementById(id);
     selectedElement.remove();
     let selectedOptionsElement = document.getElementById(id + "-edit-options");
@@ -440,7 +475,7 @@ let deleteMealOptionElement = (id) => {
  * @param {string} id - Element id
  * 
  * */
-let deleteDay = (id) =>{
+let deleteDay = (id) => {
     let dayElement = document.getElementById(id + '-container');
     dayElement.remove();
 }

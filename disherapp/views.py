@@ -58,7 +58,7 @@ def dashboard(request):
     # if request.method == "POST":
     #     selected_meal = request.POST.get('selectedMeal')
     #     print(selected_meal)
-
+    
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
                "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_days":'day-' + user_days[0] + '-add'}
     return render(request, "disher/dashboard.html", context)
