@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from disher.models import Product, Dish, Product_Amount, User_Day, Day_Dish
+import json
 
 class ProductAmountOperations:
     def createAmount(self, name, amount, dish_name):
@@ -190,7 +191,7 @@ class DayOperations:
     
     def getDay(self, id):
         try:
-            day_object = User_Day.objects.get(user_id = id)
+            day_object = User_Day.objects.filter(user_id = id)
             return day_object
         except Exception as e:
             print(e)
@@ -203,25 +204,46 @@ class DayOperations:
         except Exception as e:
             print(e)
 
+    # def getDayData(self, id):
+    #     try:
+    #         data_table = []
+    #         day_object = User_Day.objects.get(user_id = id)
+    #         dish_id = [p for p in day_object.user_day_dish.all()]
+    #         for d in dish_id:
+    #             d_d = Day_Dish.objects.get(id = d.id)
+    #             results = DishOperations().getDishById(d_d.dish.id)
+    #             slug = DishOperations().getSlug(results.dish_name)
+    #             data = {'name':results.dish_name, 'cal':results.dish_calories, 'type': d_d.meal_type, 'slug': slug}
+    #             data_table.append(data)
+    #         JSON_data = {'day_name': day_object.user_day_name, 'day_items': data_table}
+    #         return JSON_data
+    #     except Exception as e:
+    #         print(e)
+
+    
     def getDayData(self, id):
         try:
-            data_table = []
-            day_object = User_Day.objects.get(user_id = id)
-            dish_id = [p for p in day_object.user_day_dish.all()]
-            for d in dish_id:
-                d_d = Day_Dish.objects.get(id = d.id)
-                results = DishOperations().getDishById(d_d.dish.id)
-                slug = DishOperations().getSlug(results.dish_name)
-                data = {'name':results.dish_name, 'cal':results.dish_calories, 'type': d_d.meal_type, 'slug': slug}
-                data_table.append(data)
-            JSON_data = {'day_name': day_object.user_day_name, 'day_items': data_table}
-            return JSON_data
+            results_table = []
+            day_object = User_Day.objects.filter(user_id = id)
+            for day in day_object:
+                data_table = []
+                dish_id = [p for p in day.user_day_dish.all()]
+                for d in dish_id:
+                    d_d = Day_Dish.objects.get(id = d.id)
+                    results = DishOperations().getDishById(d_d.dish.id)
+                    slug = DishOperations().getSlug(results.dish_name)
+                    data = {'name':results.dish_name, 'cal':results.dish_calories, 'type': d_d.meal_type, 'slug': slug}
+                    data_table.append(data)
+                data_object = {'day_name': day.user_day_name, 'day_items': data_table}
+                results_table.append(data_object)
+            return json.dumps(results_table)
         except Exception as e:
             print(e)
 
+
     def checkUserDays(self, id):
         try:
-            day_object = User_Day.objects.get(user_id = id)
+            day_object = User_Day.objects.filter(user_id = id)
             if day_object:
                 return True
         except Exception as e:

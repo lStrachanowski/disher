@@ -51,10 +51,12 @@ function fetchDataFromWeb(callback) {
 // Rendering data about user day in dashboard
 function dayChange(newData) {
     if (dayData !== newData) {
-        dayData = newData;
-        addDay(dayData.day_name);
-        for (item of dayData.day_items) {
-            addMealToDay('day' + dayData.day_name + '-add', item.slug, item.name, item.cal, item.type);
+        dayData = JSON.parse(newData);
+        for (day of dayData) {
+            addDay(day.day_name);
+            for (item of day.day_items) {
+                addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type);
+            }
         }
 
     }
