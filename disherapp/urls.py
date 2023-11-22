@@ -8,6 +8,7 @@ urlpatterns = [
     path('recepie/<slug:slug>', views.recepie, name="recepie"),
     path('user/dashboard', views.dashboard, name="dashboard"),
     path('user/dashboard/daydata', views.daydata, name="daydata"),
+    path('user/dashboard/dayelement/<str:id>', views.setDayElementId, name="setDayElementId"),
     path('user/profile', views.user_profil, name="profile"),
     path('user/shoplist', views.shoplist, name="shoplist"),
     path('user/add/recepie', views.add_recepie, name="addrecepie"),

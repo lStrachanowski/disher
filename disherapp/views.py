@@ -45,13 +45,12 @@ def dashboard(request):
     user_status = login_status.get_user_status(request)
     user_has_recepies = True
     user_has_diet_list = True
-    user_days = []
 
     recepies_data = DishOperations()
     recepies_for_template = []
-    # recepies_for_template = recepies_data.getAllDishes()
+    recepies_for_template = recepies_data.getAllDishes()
+    day = DayOperations()
 
-    # day = DayOperations()
     # if day.checkUserDays(request.user):
         # data = day.getDayData(request.user)
         # user_days.append(data['day_name'])
@@ -64,7 +63,7 @@ def dashboard(request):
     #            "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_days":'day-' + user_days[0] + '-add'}
     
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
-               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_days":'day-' + 'day1' + '-add'}
+               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value}
     return render(request, "disher/dashboard.html", context)
 
 @login_required(login_url='/login')
@@ -261,3 +260,12 @@ def reset_password_view(request, token):
                 messages.error(request, e, extra_tags="register")
                 return render(request, "disher/resetPassword.html")
     return render(request, "disher/resetPassword.html")
+
+def setDayElementId(request, id):
+    try:
+        request.global_value = id
+        data = {'message': 'OK'}
+    except Exception as e:
+        data = {'message': e}
+        print(e)
+    return JsonResponse(data, safe=False)

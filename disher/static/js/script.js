@@ -33,7 +33,7 @@ xhttp.send();
 // Checking if user is in dahsboard url
 const currentUrl = window.location.pathname;
 if (currentUrl == '/user/dashboard') {
-    fetchDataFromWeb();
+    fetchDataFromWeb(dayChange);
 }
 
 // Fetching data about user days from server
@@ -41,7 +41,7 @@ function fetchDataFromWeb(callback) {
     fetch('/user/dashboard/daydata')
         .then(response => response.json())
         .then(data => {
-            dayChange(data);
+            callback(data);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -60,6 +60,14 @@ function dayChange(newData) {
         }
 
     }
+}
+
+function setElementID(id){
+    new_id = id.split("-").slice(1).join("-");
+    var buttons = document.getElementsByClassName('addMealButtonSelector');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].setAttribute('onclick', `addMealToDay('${new_id}', 'jajecznica-z-pomidorami', 'Jajecznica z pomidorami', '344');`);
+    } 
 }
 
 
@@ -188,10 +196,11 @@ let showMealModal = (id) => {
 
 }
 
+
 let showSearchMealModal = (id) => {
+    setElementID(id);
     dayId = id;
     globalElementId = id.split("-").slice(1,).join("-");
-    console.log(globalElementId);
     // Get a reference to the modal element
     const myModal = document.getElementById('staticBackdropSearch');
 
@@ -234,7 +243,7 @@ let dishElementTemplate = (elementId, mealName, selectedValue) => {
     </div>
     <div class="col-3">
     </div>
-    <button class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}')">
+    <button class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}');">
     <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
     </button>
     <div class="col-2 text-end">
@@ -390,6 +399,9 @@ let addMealToDay = (id, slug, dish, calories, meal_type) => {
 
     if (meal_type) {
         globalElementId = "day-" + id.slice(3, id.length) + "-" + symbolTable[meal_type][1];
+
+    }else{
+        globalElementId = id;
     }
 
     let mealName = '';
@@ -400,10 +412,12 @@ let addMealToDay = (id, slug, dish, calories, meal_type) => {
     } else {
         mealName = translateTable[globalElementId.split("-")[3]];
     }
+
     let collapseMEal = document.getElementById(globalElementId + "-collapse");
     if (!collapseMEal) {
         const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
         let selectedDay = document.getElementById(globalElementId);
+
 
         if (selectedDay) {
             selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
@@ -415,10 +429,11 @@ let addMealToDay = (id, slug, dish, calories, meal_type) => {
             selectedMeal.remove();
         }
 
-        if (meal_type) {
+        if (meal_type) {  
             selectedParent = document.getElementById("day-" + id.slice(3, id.length));
         } else {
-            selectedParent = document.getElementById(id);
+            parentID = id.split("-").slice(0,3).join("-");
+            selectedParent = document.getElementById(parentID);
         }
 
         elementId = id.split("-").slice(1,).join("-");
