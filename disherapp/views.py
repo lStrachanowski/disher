@@ -269,3 +269,6 @@ def setDayElementId(request, id):
         data = {'message': e}
         print(e)
     return JsonResponse(data, safe=False)
+
+        
+    

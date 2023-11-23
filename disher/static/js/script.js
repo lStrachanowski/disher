@@ -30,23 +30,229 @@ xhttp.onreadystatechange = function () {
 xhttp.open("GET", "/", true);
 xhttp.send();
 
+
+
+let dayElementTemplate = (id, number) => {
+    return `<div class="col-lg-3 col-md-6" id="${id}-container">
+    <div class="d-flex form-check text-start align-items-center">
+        <input class="form-check-input p-2" type="checkbox" value="" id="${id}-checkbox" onclick="dayChecked('${id}-checkbox')">
+        <label class="form-check-label p-2" for="flexCheckDefault">
+            Dodaj do listy zakupów
+        </label>
+    </div>
+    <div class="recepie-container white-background" id="${id}">
+        <!-- Naglowek dnia -->
+        <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor" id="${id}-edit">
+            <div class="col-5 text-start p-3">
+                ${number}
+            </div>
+            <div class="col-5 text-end">
+                0 kcal
+            </div>
+            <div class="col-2 text-end p-2">
+                <img src="/static/img/options.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('${id}')">
+            </div>
+        </div>
+
+        <!-- Edycja naglowka dnia -->
+        <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options" id="${id}-edit-options">
+
+            <div class="col-6 p-3" onclick="deleteDay('${id}')">
+                Usuń
+            </div>
+            <div class="col-4">
+                Kopiuj
+            </div>
+            <div class="col-2 text-end p-2">
+                <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('${id}')">
+            </div>
+        </div>
+
+        <div class="col-12 empty-day-font greey-font" id="day-${number}-add">Dodaj posiłek</div>
+        <div class="col-12 d-flex justify-content-center">
+            <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" type="button" onclick="showMealModal('day-${number}-add');">
+                <div class="cross-button"></div>
+            </button>
+
+        </div>
+    </div>
+
+</div>`
+}
+
+let mealElementTemplate = (globalElementId, slug, dish) => {
+    return `<div class="collapse" id="${globalElementId}-collapse">
+    <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/'+'${slug}'">
+        ${dish}
+    </div>
+    </div>`
+}
+
+
+let mealOptions = (id) => {
+    return `<div class="d-flex day-element day-options m-3 p-2 align-items-center"
+    id="${id}-edit-options">
+    <div class="col-6" onclick="deleteMealOptionElement('${id}')">
+        Usuń
+    </div>
+    <div class="col-4">
+        Kopiuj
+    </div>
+    <div class="col-2 text-end p-2">
+        <img src="/static/img/close.svg" class="day-icons-options-size"
+            onclick="mealEditOptionsClick('${id}')" id="close-img-${id}">
+    </div>
+    </div>
+    `
+}
+
+let mealElementWithData = (id, mealName, calories) => {
+    return `
+    <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
+    data-bs-target="#${globalElementId}-collapse" aria-expanded="false" aria-controls="${globalElementId}-collapse"
+    id="${id}">
+    <div class="col-6 text-start p-2">
+        ${mealName}
+    </div>
+    <div class="col-5">
+        ${calories} kcal
+    </div>
+    <div class="col-1" onclick="mealOptionsClick('${id}')">
+        <img src="/static/img/options.svg" class="day-icons-options-size"
+             id="img-${globalElementId}">
+    </div>
+    </div>`
+}
+
+
+let modalButtonTemplate = (id) => {
+    return `<div class="modal-footer justify-content-center" id="dayAddButtonID">
+    <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
+        onclick="addDishMeal('${id}');">Dodaj</button>
+    </div>`
+}
+
+let buttonTemplate = (id) => {
+    return `<button type="submit" class="btn btn-success" data-bs-dismiss="modal"
+    onclick="addDishMeal('day-${id}-add');">Dodaj</button>`
+}
+
+let addDay = (id) => {
+    let parent = document.getElementById("mainDashboard");
+    parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
+}
+
+/**Is creating element in user selected dish
+ * 
+ * @param {string} id - Element id
+ * 
+ * */
+let addMealToDay = (id, slug, dish, calories, meal_type) => {
+
+    if (meal_type) {
+        globalElementId = "day-" + id.slice(3, id.length) + "-" + symbolTable[meal_type][1];
+
+    }else{
+        globalElementId = id;
+    }
+
+    let mealName = '';
+    let selectedParent = null;
+
+    if (meal_type) {
+        mealName = symbolTable[meal_type][0];
+    } else {
+        mealName = translateTable[globalElementId.split("-")[3]];
+    }
+
+    let collapseMEal = document.getElementById(globalElementId + "-collapse");
+    if (!collapseMEal) {
+        const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
+        let selectedDay = document.getElementById(globalElementId);
+
+
+        if (selectedDay) {
+            selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
+            selectedDay.remove();
+        }
+        let selectedMeal = document.getElementById(globalElementId + "-collapse");
+
+        if (selectedMeal) {
+            selectedMeal.remove();
+        }
+
+        if (meal_type) {  
+            selectedParent = document.getElementById("day-" + id.slice(3, id.length));
+        } else {
+            parentID = id.split("-").slice(0,3).join("-");
+            selectedParent = document.getElementById(parentID);
+        }
+
+        elementId = id.split("-").slice(1,).join("-");
+
+        let newSelectedDay = mealElementWithData(globalElementId, mealName, calories);
+        selectedParent.insertAdjacentHTML('beforebegin', newSelectedDay);
+
+        let newSelectedMeal = document.getElementById(globalElementId);
+        newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
+
+        let mealOptionsTemplate = mealOptions(globalElementId);
+        newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
+
+    } else {
+        alert("Już masz dodany posiłek ");
+    }
+
+}
+
 // Checking if user is in dahsboard url
 const currentUrl = window.location.pathname;
 if (currentUrl == '/user/dashboard') {
-    fetchDataFromWeb(dayChange);
+    if(checkForDataInCookies()){
+        console.log("cookies");
+        fetchDataFromCookies(dayChange);
+    } else {
+        console.log("web");
+        fetchDataFromWeb(dayChange);
+    }
 }
+
+function checkForDataInCookies(){
+    dayData = '';
+    let cookie = document.cookie.split(';');
+    for (value of cookie){
+        if(value.split('=')[0] === 'data'){
+            return true;
+        }
+    }
+}
+
+function fetchDataFromCookies(callback){
+    dayData = '';
+    let cookie = document.cookie.split(';');
+    for (value of cookie){
+        if(value.split('=')[0] === 'data'){
+            let data = value.split('=')[1];
+            callback(data);
+        }
+    }
+}
+
 
 // Fetching data about user days from server
 function fetchDataFromWeb(callback) {
     fetch('/user/dashboard/daydata')
         .then(response => response.json())
         .then(data => {
+            document.cookie = "data="+ data;
             callback(data);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
         });
 }
+
+
 
 // Rendering data about user day in dashboard
 function dayChange(newData) {
@@ -58,9 +264,10 @@ function dayChange(newData) {
                 addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type);
             }
         }
-
     }
 }
+
+
 
 function setElementID(id){
     new_id = id.split("-").slice(1).join("-");
@@ -235,127 +442,8 @@ if (document.getElementById("modalFormSearch")) {
 }
 
 
-// Template with meal element added to user day
-let dishElementTemplate = (elementId, mealName, selectedValue) => {
-    return `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id="${elementId}">
-    <div class="col-6 text-start p-2 ${selectedValue}">
-       ${mealName}
-    </div>
-    <div class="col-3">
-    </div>
-    <button class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}');">
-    <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
-    </button>
-    <div class="col-2 text-end">
-        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteMealElement('${elementId}');">
-    </div>
-    </div>
-    `
-}
-
-let mealElementTemplate = (globalElementId, slug, dish) => {
-    return `<div class="collapse" id="${globalElementId}-collapse">
-    <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/'+'${slug}'">
-        ${dish}
-    </div>
-    </div>`
-}
 
 
-let mealOptions = (id) => {
-    return `<div class="d-flex day-element day-options m-3 p-2 align-items-center"
-    id="${id}-edit-options">
-    <div class="col-6" onclick="deleteMealOptionElement('${id}')">
-        Usuń
-    </div>
-    <div class="col-4">
-        Kopiuj
-    </div>
-    <div class="col-2 text-end p-2">
-        <img src="/static/img/close.svg" class="day-icons-options-size"
-            onclick="mealEditOptionsClick('${id}')" id="close-img-${id}">
-    </div>
-    </div>
-    `
-}
-
-let mealElementWithData = (id, mealName, calories) => {
-    return `
-    <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
-    data-bs-target="#${globalElementId}-collapse" aria-expanded="false" aria-controls="${globalElementId}-collapse"
-    id="${id}">
-    <div class="col-6 text-start p-2">
-        ${mealName}
-    </div>
-    <div class="col-5">
-        ${calories} kcal
-    </div>
-    <div class="col-1" onclick="mealOptionsClick('${id}')">
-        <img src="/static/img/options.svg" class="day-icons-options-size"
-             id="img-${globalElementId}">
-    </div>
-    </div>`
-}
-
-let dayElementTemplate = (id, number) => {
-    return `<div class="col-lg-3 col-md-6" id="${id}-container">
-    <div class="d-flex form-check text-start align-items-center">
-        <input class="form-check-input p-2" type="checkbox" value="" id="${id}-checkbox" onclick="dayChecked('${id}-checkbox')">
-        <label class="form-check-label p-2" for="flexCheckDefault">
-            Dodaj do listy zakupów
-        </label>
-    </div>
-    <div class="recepie-container white-background" id="${id}">
-        <!-- Naglowek dnia -->
-        <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor" id="${id}-edit">
-            <div class="col-5 text-start p-3">
-                ${number}
-            </div>
-            <div class="col-5 text-end">
-                0 kcal
-            </div>
-            <div class="col-2 text-end p-2">
-                <img src="/static/img/options.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('${id}')">
-            </div>
-        </div>
-
-        <!-- Edycja naglowka dnia -->
-        <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor day-edit-options" id="${id}-edit-options">
-
-            <div class="col-6 p-3" onclick="deleteDay('${id}')">
-                Usuń
-            </div>
-            <div class="col-4">
-                Kopiuj
-            </div>
-            <div class="col-2 text-end p-2">
-                <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('${id}')">
-            </div>
-        </div>
-
-        <div class="col-12 empty-day-font greey-font" id="day-${number}-add">Dodaj posiłek</div>
-        <div class="col-12 d-flex justify-content-center">
-            <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" type="button" onclick="showMealModal('day-${number}-add');">
-                <div class="cross-button"></div>
-            </button>
-
-        </div>
-    </div>
-
-</div>`
-}
-
-let modalButtonTemplate = (id) => {
-    return `<div class="modal-footer justify-content-center" id="dayAddButtonID">
-    <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
-        onclick="addDishMeal('${id}');">Dodaj</button>
-    </div>`
-}
-
-let buttonTemplate = (id) => {
-    return `<button type="submit" class="btn btn-success" data-bs-dismiss="modal"
-    onclick="addDishMeal('day-${id}-add');">Dodaj</button>`
-}
 
 /**Is creating element in user day
  * 
@@ -390,73 +478,8 @@ let addDishMeal = (id) => {
 
 
 
-/**Is creating element in user selected dish
- * 
- * @param {string} id - Element id
- * 
- * */
-let addMealToDay = (id, slug, dish, calories, meal_type) => {
-
-    if (meal_type) {
-        globalElementId = "day-" + id.slice(3, id.length) + "-" + symbolTable[meal_type][1];
-
-    }else{
-        globalElementId = id;
-    }
-
-    let mealName = '';
-    let selectedParent = null;
-
-    if (meal_type) {
-        mealName = symbolTable[meal_type][0];
-    } else {
-        mealName = translateTable[globalElementId.split("-")[3]];
-    }
-
-    let collapseMEal = document.getElementById(globalElementId + "-collapse");
-    if (!collapseMEal) {
-        const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
-        let selectedDay = document.getElementById(globalElementId);
 
 
-        if (selectedDay) {
-            selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
-            selectedDay.remove();
-        }
-        let selectedMeal = document.getElementById(globalElementId + "-collapse");
-
-        if (selectedMeal) {
-            selectedMeal.remove();
-        }
-
-        if (meal_type) {  
-            selectedParent = document.getElementById("day-" + id.slice(3, id.length));
-        } else {
-            parentID = id.split("-").slice(0,3).join("-");
-            selectedParent = document.getElementById(parentID);
-        }
-
-        elementId = id.split("-").slice(1,).join("-");
-
-        let newSelectedDay = mealElementWithData(globalElementId, mealName, calories);
-        selectedParent.insertAdjacentHTML('beforebegin', newSelectedDay);
-
-        let newSelectedMeal = document.getElementById(globalElementId);
-        newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
-
-        let mealOptionsTemplate = mealOptions(globalElementId);
-        newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
-
-    } else {
-        alert("Już masz dodany posiłek ");
-    }
-
-}
-
-let addDay = (id) => {
-    let parent = document.getElementById("mainDashboard");
-    parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
-}
 
 /**Is deleting element in user day
  * 

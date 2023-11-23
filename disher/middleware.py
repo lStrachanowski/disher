@@ -8,7 +8,6 @@ class  GlobalValues:
         request.global_value = 'ee'
         # Pass the request to the next middleware or view
         response = self.get_response(request)
-        print(request.global_value)
         
         return response
         
