@@ -31,6 +31,67 @@ xhttp.open("GET", "/", true);
 xhttp.send();
 
 
+// Template with meal element added to user day
+let dishElementTemplate = (elementId, mealName, selectedValue) => {
+    return `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id="${elementId}">
+    <div class="col-6 text-start p-2 ${selectedValue}">
+       ${mealName}
+    </div>
+    <div class="col-3">
+    </div>
+    <button class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}');">
+    <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
+    </button>
+    <div class="col-2 text-end">
+        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteMealElement('${elementId}');">
+    </div>
+    </div>
+    `
+}
+
+let mealElementTemplate = (globalElementId, slug, dish) => {
+    return `<div class="collapse" id="${globalElementId}-collapse">
+    <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/'+'${slug}'">
+        ${dish}
+    </div>
+    </div>`
+}
+
+
+let mealOptions = (id) => {
+    return `<div class="d-flex day-element day-options m-3 p-2 align-items-center"
+    id="${id}-edit-options">
+    <div class="col-6" onclick="deleteMealOptionElement('${id}')">
+        Usuń
+    </div>
+    <div class="col-4">
+        Kopiuj
+    </div>
+    <div class="col-2 text-end p-2">
+        <img src="/static/img/close.svg" class="day-icons-options-size"
+            onclick="mealEditOptionsClick('${id}')" id="close-img-${id}">
+    </div>
+    </div>
+    `
+}
+
+let mealElementWithData = (id, mealName, calories) => {
+    return `
+    <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
+    data-bs-target="#${globalElementId}-collapse" aria-expanded="false" aria-controls="${globalElementId}-collapse"
+    id="${id}">
+    <div class="col-6 text-start p-2">
+        ${mealName}
+    </div>
+    <div class="col-5">
+        ${calories} kcal
+    </div>
+    <div class="col-1" onclick="mealOptionsClick('${id}')">
+        <img src="/static/img/options.svg" class="day-icons-options-size"
+             id="img-${globalElementId}">
+    </div>
+    </div>`
+}
 
 let dayElementTemplate = (id, number) => {
     return `<div class="col-lg-3 col-md-6" id="${id}-container">
@@ -80,67 +141,6 @@ let dayElementTemplate = (id, number) => {
 </div>`
 }
 
-let mealElementTemplate = (globalElementId, slug, dish) => {
-    return `<div class="collapse" id="${globalElementId}-collapse">
-    <div class="card card-body m-3 p-3 align-items-center day-element-card cursor" onclick="location.href='/recepie/'+'${slug}'">
-        ${dish}
-    </div>
-    </div>`
-}
-
-
-let mealOptions = (id) => {
-    return `<div class="d-flex day-element day-options m-3 p-2 align-items-center"
-    id="${id}-edit-options">
-    <div class="col-6" onclick="deleteMealOptionElement('${id}')">
-        Usuń
-    </div>
-    <div class="col-4">
-        Kopiuj
-    </div>
-    <div class="col-2 text-end p-2">
-        <img src="/static/img/close.svg" class="day-icons-options-size"
-            onclick="mealEditOptionsClick('${id}')" id="close-img-${id}">
-    </div>
-    </div>
-    `
-}
-
-let mealElementWithData = (id, mealName, calories) => {
-    return `
-    <div class="d-flex day-element m-3 p-2 align-items-center " data-bs-toggle="collapse"
-    data-bs-target="#${globalElementId}-collapse" aria-expanded="false" aria-controls="${globalElementId}-collapse"
-    id="${id}">
-    <div class="col-6 text-start p-2">
-        ${mealName}
-    </div>
-    <div class="col-5">
-        ${calories} kcal
-    </div>
-    <div class="col-1" onclick="mealOptionsClick('${id}')">
-        <img src="/static/img/options.svg" class="day-icons-options-size"
-             id="img-${globalElementId}">
-    </div>
-    </div>`
-}
-
-
-let modalButtonTemplate = (id) => {
-    return `<div class="modal-footer justify-content-center" id="dayAddButtonID">
-    <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
-        onclick="addDishMeal('${id}');">Dodaj</button>
-    </div>`
-}
-
-let buttonTemplate = (id) => {
-    return `<button type="submit" class="btn btn-success" data-bs-dismiss="modal"
-    onclick="addDishMeal('day-${id}-add');">Dodaj</button>`
-}
-
-let addDay = (id) => {
-    let parent = document.getElementById("mainDashboard");
-    parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
-}
 
 /**Is creating element in user selected dish
  * 
@@ -203,6 +203,24 @@ let addMealToDay = (id, slug, dish, calories, meal_type) => {
         alert("Już masz dodany posiłek ");
     }
 
+}
+
+
+let modalButtonTemplate = (id) => {
+    return `<div class="modal-footer justify-content-center" id="dayAddButtonID">
+    <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
+        onclick="addDishMeal('${id}');">Dodaj</button>
+    </div>`
+}
+
+let buttonTemplate = (id) => {
+    return `<button type="submit" class="btn btn-success" data-bs-dismiss="modal"
+    onclick="addDishMeal('day-${id}-add');">Dodaj</button>`
+}
+
+let addDay = (id) => {
+    let parent = document.getElementById("mainDashboard");
+    parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
 }
 
 // Checking if user is in dahsboard url
@@ -443,8 +461,6 @@ if (document.getElementById("modalFormSearch")) {
 
 
 
-
-
 /**Is creating element in user day
  * 
  * @param {string} id - Element id
@@ -475,8 +491,6 @@ let addDishMeal = (id) => {
     // modalTemplate.insertAdjacentHTML('beforeend', buttonTemplate(id) );
 
 }
-
-
 
 
 
