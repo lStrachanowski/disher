@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.core.signing import Signer
 from django.core import signing
 from django.db import models
+import json
 
 
 def index(request):
@@ -38,7 +39,6 @@ def recepie(request, slug):
     context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients}
     return render(request, "disher/recepie.html", context)
 
-
 @login_required(login_url='/login')
 def dashboard(request):
     login_status = CheckIfUserIsLogged()
@@ -50,6 +50,7 @@ def dashboard(request):
     recepies_for_template = []
     recepies_for_template = recepies_data.getAllDishes()
     day = DayOperations()
+
 
     # if day.checkUserDays(request.user):
         # data = day.getDayData(request.user)
@@ -73,8 +74,9 @@ def daydata(request):
         data = day.getDayData(request.user)
         return JsonResponse(data, safe=False)
     else:
-        data = {'message': 'No data'}
-        return JsonResponse(data, safe=False)
+        data = {}
+        data['message'] = 'No data'
+        return JsonResponse(json.dumps(data), safe=False)
 
 @login_required(login_url='/login')
 def user_profil(request):
@@ -271,4 +273,13 @@ def setDayElementId(request, id):
     return JsonResponse(data, safe=False)
 
         
-    
+def set_user_id_cookie(request):
+    user_id = request.user.id
+    response = JsonResponse({'message':'Cookie set!'})
+    response.set_cookie("user_id", user_id)
+    return response
+
+def get_user_id_cookie(request):
+    user_id = request.user.id
+    response = JsonResponse({'id': user_id})
+    return response

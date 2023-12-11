@@ -19,5 +19,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name="logout"),
     path('success/', views.success, name="success"),
     path('activate/<str:token>', views.activate, name="activate"),
-    path('activated/', views.user_activated, name="isActivated")
+    path('activated/', views.user_activated, name="isActivated"),
+    path('setidcookie/', views.set_user_id_cookie, name="setIdCookie"),
+    path('getidcookie/', views.get_user_id_cookie, name="getIdCookie")
 ]

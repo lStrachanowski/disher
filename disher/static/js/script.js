@@ -3,6 +3,7 @@ var globalElementId = null;
 var globalMealName = "";
 var globalSelectedValue = "";
 var dayData = null;
+var DATA_URL = '/user/dashboard/daydata';
 
 var translateTable = {
     "Breakfast": "Śniadanie",
@@ -223,47 +224,92 @@ let addDay = (id) => {
     parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
 }
 
+
+function readCookie(parameter){
+    let cookie = document.cookie.split(';');
+    for (value of cookie){
+        if(value.split('=')[0].trim() === parameter){
+            let data = value.split('=')[1];
+            return data;
+        }
+    }
+}
+
 // Checking if user is in dahsboard url
 const currentUrl = window.location.pathname;
+
 if (currentUrl == '/user/dashboard') {
     if(checkForDataInCookies()){
-        console.log("cookies");
-        fetchDataFromCookies(dayChange);
+        let user_id = document.getElementsByClassName("user-id-selector")[0].id;
+        let cookie_id = readCookie('user_id');
+        if (user_id === cookie_id){
+            console.log("cookies");
+            fetchDataFromCookies(dayChange);
+        }else{
+            console.log("web, differnet user");
+            fetchDataFromWeb(dayChange);
+        }
     } else {
         console.log("web");
         fetchDataFromWeb(dayChange);
+        setUserIdLCookie();
     }
 }
+
+
+window.addEventListener('popstate', function(event) {
+    console.log('Current URL:', window.location.href);
+
+    // Perform actions based on the current URL change here
+});
 
 function checkForDataInCookies(){
-    dayData = '';
-    let cookie = document.cookie.split(';');
-    for (value of cookie){
-        if(value.split('=')[0] === 'data'){
-            return true;
-        }
+    let data = readCookie('data');
+    if (data){
+        return true;
     }
 }
 
+function setUserIdLCookie(){
+    fetch('/setidcookie')
+    .then(response => response.json())
+    .then(data =>{
+        console.log(data);
+    }).catch(error => {
+        console.log('Error fetching data:', error);
+    });
+}
+
+function getUserIdCookie(){
+    fetch('/getidcookie')
+    .then(response => response.json())
+    .then(data =>{
+        return data;
+    }).catch(error => {
+        console.log('Error fetching data:', error);
+    });
+}
+
+
+
 function fetchDataFromCookies(callback){
-    dayData = '';
-    let cookie = document.cookie.split(';');
-    for (value of cookie){
-        if(value.split('=')[0] === 'data'){
-            let data = value.split('=')[1];
-            callback(data);
-        }
-    }
+    data = readCookie('data');
+    callback(data);
 }
 
 
 // Fetching data about user days from server
 function fetchDataFromWeb(callback) {
-    fetch('/user/dashboard/daydata')
+    fetch(DATA_URL)
         .then(response => response.json())
         .then(data => {
-            document.cookie = "data="+ data;
-            callback(data);
+            let valueCheck = JSON.parse(data);
+            if (valueCheck.message){
+                console.log(valueCheck.message);
+            }else{
+                document.cookie = "data="+ data;
+                callback(data);
+            }
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -274,7 +320,6 @@ function fetchDataFromWeb(callback) {
 
 // Rendering data about user day in dashboard
 function dayChange(newData) {
-    if (dayData !== newData) {
         dayData = JSON.parse(newData);
         for (day of dayData) {
             addDay(day.day_name);
@@ -282,7 +327,6 @@ function dayChange(newData) {
                 addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type);
             }
         }
-    }
 }
 
 
