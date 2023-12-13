@@ -11,6 +11,7 @@ from django.core.signing import Signer
 from django.core import signing
 from django.db import models
 import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 def index(request):
@@ -92,7 +93,7 @@ def shoplist(request):
     context = {"user_status": user_status}
     return render(request, "disher/shoplist.html", context)
 
-
+@login_required(login_url='/login')
 def add_recepie(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
@@ -283,3 +284,12 @@ def get_user_id_cookie(request):
     user_id = request.user.id
     response = JsonResponse({'id': user_id})
     return response
+
+@login_required(login_url='/login')
+def get_product_search(request, productname):
+    product = ProductOperations()
+    results = product.productsSearch(productname)
+    data = list(results.values())
+    response_data = DjangoJSONEncoder().encode(data)
+    json_response_data = {'results': response_data}
+    return JsonResponse(json_response_data, safe=False)

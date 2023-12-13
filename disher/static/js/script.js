@@ -577,3 +577,26 @@ let deleteDay = (id) => {
     let dayElement = document.getElementById(id + '-container');
     dayElement.remove();
 }
+
+function searchProduct(){
+    var inputVaue = document.getElementById("dish_product_search").value;
+    if (inputVaue.length >= 3){
+        console.log(inputVaue);
+    }
+    
+}
+
+
+const debounce = (mainFunction, delay) => {
+    let timer;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        mainFunction();
+      }, delay);
+    };
+  };
+
+
+const debouncedSearchData = debounce(searchProduct, 1000);
+  

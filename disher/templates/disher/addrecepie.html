@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="row text-center mt-3">
+            <div class="row text-center mt-3" id="productsContainer">
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <div class="col-12 d-flex align-items-center justify-content-around mb-1">
                         <div class="col-lg-2  text-center dark-font font-bold">Produkt</div>
@@ -67,6 +67,50 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row mt-3">
+                <div class="form-group col-lg-6 col-12">
+                    <label for="dish_product_search" >Wyszukaj produkt </label>
+                    <input type="text" class="form-control " id="dish_product_search" name="dish_product_search" onkeydown="debouncedSearchData();" required>
+                </div>
+                <div class="form-group col-lg-3 col-12">
+                    <label for="dish_product_amount" >Ilość</label>
+                    <input type="text" class="form-control " id="dish_product_amount" name="dish_product_amount" required>
+                </div>
+                <div class="form-group col-lg-3 col-12">
+                    <label for="product_unit">Jednostka</label>
+                    <select class="form-control" name="product_unit" id="product_unit">
+                        <option value="kg">kg</option>
+                        <option value="gr">gr</option>
+                        <option value="ml">ml</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="row text-center mt-3" id="productBox">
+                <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
+                    <div
+                        class="col-8 d-flex align-items-center justify-content-around  recepie-container  white-background cursor">
+                        <div class="col-lg-4  m-3 font-bold cursor">Kasza jaglana</div>
+                        <div class="col-lg-2  text-center"></div>
+                        <div class="col-lg-2  text-center">Wybierz</div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
+                    <div
+                        class="col-8 d-flex align-items-center justify-content-around  recepie-container  white-background cursor">
+                        <div class="col-lg-4  m-3 font-bold cursor">Kasza bulgur</div>
+                        <div class="col-lg-2  text-center"></div>
+                        <div class="col-lg-2  text-center">Wybierz</div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="row m-4 justify-content-center align-items-center ">
+                <button class="col-lg-4 col-sm-3 mt-2  btn btn-success" type="submit">Zapisz składnik</button>
+            </div>
+          
 
             <div class="row text-center mt-3">
                 <h4 class="font-bold">Dodaj składniki</h4>

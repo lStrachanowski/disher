@@ -96,6 +96,14 @@ class ProductOperations:
         except Exception as e:
             print(e)
             return
+        
+    def productsSearch(self, productname):
+        try:
+            searchResults = Product.objects.filter(product_name__icontains = productname)
+            return searchResults
+        except Exception as e:
+            print(e)
+            return
 
 
 class DishOperations:
@@ -203,23 +211,6 @@ class DayOperations:
             print("dish added")
         except Exception as e:
             print(e)
-
-    # def getDayData(self, id):
-    #     try:
-    #         data_table = []
-    #         day_object = User_Day.objects.get(user_id = id)
-    #         dish_id = [p for p in day_object.user_day_dish.all()]
-    #         for d in dish_id:
-    #             d_d = Day_Dish.objects.get(id = d.id)
-    #             results = DishOperations().getDishById(d_d.dish.id)
-    #             slug = DishOperations().getSlug(results.dish_name)
-    #             data = {'name':results.dish_name, 'cal':results.dish_calories, 'type': d_d.meal_type, 'slug': slug}
-    #             data_table.append(data)
-    #         JSON_data = {'day_name': day_object.user_day_name, 'day_items': data_table}
-    #         return JSON_data
-    #     except Exception as e:
-    #         print(e)
-
     
     def getDayData(self, id):
         try:
