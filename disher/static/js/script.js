@@ -4,6 +4,7 @@ var globalMealName = "";
 var globalSelectedValue = "";
 var dayData = null;
 var DATA_URL = '/user/dashboard/daydata';
+var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 
 var translateTable = {
     "Breakfast": "Śniadanie",
@@ -142,6 +143,16 @@ let dayElementTemplate = (id, number) => {
 </div>`
 }
 
+let searchResultTemplate = (name) => {
+    return `<div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 product-search-result">
+    <div
+        class="col-8 d-flex align-items-center justify-content-around  recepie-container  white-background cursor">
+        <div class="col-lg-4  m-3 font-bold cursor">${name}</div>
+        <div class="col-lg-2  text-center"></div>
+        <div class="col-lg-2  text-center">Wybierz</div>
+    </div>
+</div>`
+}
 
 /**Is creating element in user selected dish
  * 
@@ -153,7 +164,7 @@ let addMealToDay = (id, slug, dish, calories, meal_type) => {
     if (meal_type) {
         globalElementId = "day-" + id.slice(3, id.length) + "-" + symbolTable[meal_type][1];
 
-    }else{
+    } else {
         globalElementId = id;
     }
 
@@ -182,10 +193,10 @@ let addMealToDay = (id, slug, dish, calories, meal_type) => {
             selectedMeal.remove();
         }
 
-        if (meal_type) {  
+        if (meal_type) {
             selectedParent = document.getElementById("day-" + id.slice(3, id.length));
         } else {
-            parentID = id.split("-").slice(0,3).join("-");
+            parentID = id.split("-").slice(0, 3).join("-");
             selectedParent = document.getElementById(parentID);
         }
 
@@ -225,10 +236,10 @@ let addDay = (id) => {
 }
 
 
-function readCookie(parameter){
+function readCookie(parameter) {
     let cookie = document.cookie.split(';');
-    for (value of cookie){
-        if(value.split('=')[0].trim() === parameter){
+    for (value of cookie) {
+        if (value.split('=')[0].trim() === parameter) {
             let data = value.split('=')[1];
             return data;
         }
@@ -239,13 +250,13 @@ function readCookie(parameter){
 const currentUrl = window.location.pathname;
 
 if (currentUrl == '/user/dashboard') {
-    if(checkForDataInCookies()){
+    if (checkForDataInCookies()) {
         let user_id = document.getElementsByClassName("user-id-selector")[0].id;
         let cookie_id = readCookie('user_id');
-        if (user_id === cookie_id){
+        if (user_id === cookie_id) {
             console.log("cookies");
             fetchDataFromCookies(dayChange);
-        }else{
+        } else {
             console.log("web, differnet user");
             fetchDataFromWeb(dayChange);
         }
@@ -257,42 +268,42 @@ if (currentUrl == '/user/dashboard') {
 }
 
 
-window.addEventListener('popstate', function(event) {
+window.addEventListener('popstate', function (event) {
     console.log('Current URL:', window.location.href);
 
     // Perform actions based on the current URL change here
 });
 
-function checkForDataInCookies(){
+function checkForDataInCookies() {
     let data = readCookie('data');
-    if (data){
+    if (data) {
         return true;
     }
 }
 
-function setUserIdLCookie(){
+function setUserIdLCookie() {
     fetch('/setidcookie')
-    .then(response => response.json())
-    .then(data =>{
-        console.log(data);
-    }).catch(error => {
-        console.log('Error fetching data:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        }).catch(error => {
+            console.log('Error fetching data:', error);
+        });
 }
 
-function getUserIdCookie(){
+function getUserIdCookie() {
     fetch('/getidcookie')
-    .then(response => response.json())
-    .then(data =>{
-        return data;
-    }).catch(error => {
-        console.log('Error fetching data:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        }).catch(error => {
+            console.log('Error fetching data:', error);
+        });
 }
 
 
 
-function fetchDataFromCookies(callback){
+function fetchDataFromCookies(callback) {
     data = readCookie('data');
     callback(data);
 }
@@ -304,10 +315,10 @@ function fetchDataFromWeb(callback) {
         .then(response => response.json())
         .then(data => {
             let valueCheck = JSON.parse(data);
-            if (valueCheck.message){
+            if (valueCheck.message) {
                 console.log(valueCheck.message);
-            }else{
-                document.cookie = "data="+ data;
+            } else {
+                document.cookie = "data=" + data;
                 callback(data);
             }
         })
@@ -320,23 +331,23 @@ function fetchDataFromWeb(callback) {
 
 // Rendering data about user day in dashboard
 function dayChange(newData) {
-        dayData = JSON.parse(newData);
-        for (day of dayData) {
-            addDay(day.day_name);
-            for (item of day.day_items) {
-                addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type);
-            }
+    dayData = JSON.parse(newData);
+    for (day of dayData) {
+        addDay(day.day_name);
+        for (item of day.day_items) {
+            addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type);
         }
+    }
 }
 
 
 
-function setElementID(id){
+function setElementID(id) {
     new_id = id.split("-").slice(1).join("-");
     var buttons = document.getElementsByClassName('addMealButtonSelector');
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].setAttribute('onclick', `addMealToDay('${new_id}', 'jajecznica-z-pomidorami', 'Jajecznica z pomidorami', '344');`);
-    } 
+    }
 }
 
 
@@ -578,25 +589,50 @@ let deleteDay = (id) => {
     dayElement.remove();
 }
 
-function searchProduct(){
+function searchProduct() {
     var inputVaue = document.getElementById("dish_product_search").value;
-    if (inputVaue.length >= 3){
-        console.log(inputVaue);
+    if (inputVaue.length >= 3) {
+        fetchSearchReasultsFromWeb(inputVaue);
     }
-    
+
 }
 
 
 const debounce = (mainFunction, delay) => {
     let timer;
     return function () {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        mainFunction();
-      }, delay);
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            mainFunction();
+        }, delay);
     };
-  };
+};
 
 
 const debouncedSearchData = debounce(searchProduct, 1000);
-  
+
+
+
+function fetchSearchReasultsFromWeb(searchQuery) {
+    fetch(SEARCH_DATA_URL + searchQuery)
+        .then(response => response.json())
+        .then(data => {
+            var parsedData = JSON.parse(data.results);
+            generateSearchResults(parsedData);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
+
+let generateSearchResults = (data) =>{
+    var getParent = document.getElementById("productBox");
+    const toRemove = document.querySelectorAll(".product-search-result");
+    toRemove.forEach( element =>{
+        element.remove();
+    });
+
+    for( element of data){
+        getParent.insertAdjacentHTML('afterend',searchResultTemplate(element.product_name));
+    }
+}
