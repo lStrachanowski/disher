@@ -591,10 +591,18 @@ let deleteDay = (id) => {
 
 function searchProduct() {
     var inputVaue = document.getElementById("dish_product_search").value;
+    const toRemove = document.querySelectorAll(".product-search-result");
     if (inputVaue.length >= 3) {
         fetchSearchReasultsFromWeb(inputVaue);
+    }else{
+        if(toRemove){
+            toRemove.forEach( element =>{
+                element.remove();
+            });
+        }
     }
 
+ 
 }
 
 
@@ -612,7 +620,11 @@ const debounce = (mainFunction, delay) => {
 const debouncedSearchData = debounce(searchProduct, 1000);
 
 
-
+/**Download product data from db
+ * 
+ * @param {string}searchQuery - product name
+ * 
+ * */
 function fetchSearchReasultsFromWeb(searchQuery) {
     fetch(SEARCH_DATA_URL + searchQuery)
         .then(response => response.json())
@@ -625,13 +637,19 @@ function fetchSearchReasultsFromWeb(searchQuery) {
         });
 }
 
+
+/**Adding and removing searchr results to template
+ * 
+ * @param {string}searchQuery - product name
+ * 
+ * */
 let generateSearchResults = (data) =>{
     var getParent = document.getElementById("productBox");
     const toRemove = document.querySelectorAll(".product-search-result");
     toRemove.forEach( element =>{
         element.remove();
     });
-
+    console.log(data);
     for( element of data){
         getParent.insertAdjacentHTML('afterend',searchResultTemplate(element.product_name));
     }
