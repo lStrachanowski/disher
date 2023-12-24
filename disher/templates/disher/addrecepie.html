@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div class="row mt-3">
+            <div class="row mt-3" id="addProductContainer">
                 <div class="form-group col-lg-6 col-12">
                     <label for="dish_product_search" >Wyszukaj produkt </label>
                     <input type="text" class="form-control " id="dish_product_search" name="dish_product_search" onkeydown="debouncedSearchData();" required>
@@ -92,7 +92,7 @@
 
             
             <div class="row m-4 justify-content-center align-items-center ">
-                <button class="col-lg-4 col-sm-3 mt-2  btn btn-success" type="submit">Zapisz składnik</button>
+                <button class="col-lg-4 col-sm-3 mt-2  btn btn-success" type="submit" onclick="hideProductContainer();">Zapisz składnik</button>
             </div>
           
 
@@ -100,7 +100,7 @@
                 <h4 class="font-bold">Dodaj składniki</h4>
             </div>
                <div class="col-12 d-flex justify-content-center">
-                <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" type="button" id="addProductButton">
+                <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" type="button" id="addProductButton" onclick="showProductContainer();">
                     <div class="cross-button"></div>
                 </button>
             </div>

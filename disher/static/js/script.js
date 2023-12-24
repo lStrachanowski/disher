@@ -649,8 +649,21 @@ let generateSearchResults = (data) =>{
     toRemove.forEach( element =>{
         element.remove();
     });
-    console.log(data);
     for( element of data){
         getParent.insertAdjacentHTML('afterend',searchResultTemplate(element.product_name));
     }
+}
+
+const productContainer = document.getElementById("addProductContainer");
+if (productContainer){
+    productContainer.style.display = 'none';
+}
+
+let showProductContainer = () =>{
+    productContainer.style.display = 'flex';
+
+}
+
+let hideProductContainer = () =>{
+    productContainer.style.display = 'none';
 }
