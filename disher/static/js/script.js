@@ -589,6 +589,13 @@ let deleteDay = (id) => {
     dayElement.remove();
 }
 
+let removeSearchResults = () =>{
+    const toRemove = document.querySelectorAll(".product-search-result");
+    toRemove.forEach( element =>{
+        element.remove();
+    });
+}
+
 function searchProduct() {
     var inputVaue = document.getElementById("dish_product_search").value;
     const toRemove = document.querySelectorAll(".product-search-result");
@@ -596,9 +603,7 @@ function searchProduct() {
         fetchSearchReasultsFromWeb(inputVaue);
     }else{
         if(toRemove){
-            toRemove.forEach( element =>{
-                element.remove();
-            });
+            removeSearchResults();
         }
     }
 
@@ -626,9 +631,11 @@ const debouncedSearchData = debounce(searchProduct, 1000);
  * 
  * */
 function fetchSearchReasultsFromWeb(searchQuery) {
+    showProductSpiner();
     fetch(SEARCH_DATA_URL + searchQuery)
         .then(response => response.json())
         .then(data => {
+            hideProductSpiner();
             var parsedData = JSON.parse(data.results);
             generateSearchResults(parsedData);
         })
@@ -645,25 +652,33 @@ function fetchSearchReasultsFromWeb(searchQuery) {
  * */
 let generateSearchResults = (data) =>{
     var getParent = document.getElementById("productBox");
-    const toRemove = document.querySelectorAll(".product-search-result");
-    toRemove.forEach( element =>{
-        element.remove();
-    });
+    removeSearchResults();
     for( element of data){
         getParent.insertAdjacentHTML('afterend',searchResultTemplate(element.product_name));
     }
 }
 
-const productContainer = document.getElementById("addProductContainer");
-if (productContainer){
-    productContainer.style.display = 'none';
-}
+let productContainer = document.getElementById("addProductContainer");
+let saveButton = document.getElementById("saveProductButton");
+let productLoader = document.getElementById("productLoader");
+productLoader.style.display = 'none';
+    
 
 let showProductContainer = () =>{
     productContainer.style.display = 'flex';
+    saveButton.style.display = 'flex';
 
 }
 
 let hideProductContainer = () =>{
     productContainer.style.display = 'none';
+    saveButton.style.display = 'none';
+}
+
+let showProductSpiner = () =>{
+    productLoader.style.display = 'flex';
+}
+
+let hideProductSpiner = () =>{
+    productLoader.style.display = 'None';
 }

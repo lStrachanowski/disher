@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-
+         
             <div class="row mt-3" id="addProductContainer">
                 <div class="form-group col-lg-6 col-12">
                     <label for="dish_product_search" >Wyszukaj produkt </label>
@@ -85,14 +85,20 @@
                         <option value="ml">ml</option>
                       </select>
                 </div>
+                
             </div>
 
             <div class="row text-center mt-3" id="productBox">
             </div>
 
+            <div class="row text-center mt-3 justify-content-center align-items-center" id="productLoader">
+                <div class="loader"></div>
+            </div>
             
-            <div class="row m-4 justify-content-center align-items-center ">
-                <button class="col-lg-4 col-sm-3 mt-2  btn btn-success" type="submit" onclick="hideProductContainer();">Zapisz składnik</button>
+
+            
+            <div class="row m-4 justify-content-center align-items-center " id="saveProductButton">
+                <button class="col-lg-4 col-sm-3 mt-2  btn btn-success" type="button" onclick="hideProductContainer();">Zapisz składnik</button>
             </div>
           
 
