@@ -694,7 +694,11 @@ let saveProduct = () =>{
     const productBox = document.getElementById("productName");
     productBox.remove();
     let productsContainer = document.getElementById("addProductContainer");
-    productsContainer.insertAdjacentHTML('afterbegin', dishProductSearchContainer());
+    let productsSearchContainer = document.getElementById("dishProductSearchContainer");
+    if(!productsSearchContainer){
+        productsContainer.insertAdjacentHTML('afterbegin', dishProductSearchContainer());
+    }
+   
 }
 
 let showProductSpiner = () =>{
