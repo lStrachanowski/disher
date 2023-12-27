@@ -143,15 +143,33 @@ let dayElementTemplate = (id, number) => {
 </div>`
 }
 
-let searchResultTemplate = (name) => {
+let searchResultTemplate = (name, id) => {
     return `<div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 product-search-result">
     <div
-        class="col-8 d-flex align-items-center justify-content-around  recepie-container  white-background cursor">
+        class="col-8 d-flex align-items-center justify-content-around  recepie-container  white-background cursor" id
+        =${id}>
         <div class="col-lg-4  m-3 font-bold cursor">${name}</div>
         <div class="col-lg-2  text-center"></div>
-        <div class="col-lg-2  text-center">Wybierz</div>
+        <div class="col-lg-2  text-center" onclick="chooseProduct('${name}', '${id}');">Wybierz</div>
     </div>
 </div>`
+}
+
+
+
+
+let productResultTemplate = (name) =>{
+    return `
+    <div class="form-group col-lg-6 col-12 d-flex justify-content-center align-items-center" id="productName">
+        <div>${name}</div>
+    </div>`
+}
+
+let dishProductSearchContainer = () =>{
+    return `<div class="form-group col-lg-6 col-12" id="dishProductSearchContainer">
+    <label for="dish_product_search">Wyszukaj produkt </label>
+    <input type="text" class="form-control " id="dish_product_search" name="dish_product_search" onkeydown="debouncedSearchData();" required="">
+    </div>`;
 }
 
 /**Is creating element in user selected dish
@@ -654,7 +672,7 @@ let generateSearchResults = (data) =>{
     var getParent = document.getElementById("productBox");
     removeSearchResults();
     for( element of data){
-        getParent.insertAdjacentHTML('afterend',searchResultTemplate(element.product_name));
+        getParent.insertAdjacentHTML('afterend',searchResultTemplate(element.product_name, element.id));
     }
 }
 
@@ -670,9 +688,13 @@ let showProductContainer = () =>{
 
 }
 
-let hideProductContainer = () =>{
+let saveProduct = () =>{
     productContainer.style.display = 'none';
     saveButton.style.display = 'none';
+    const productBox = document.getElementById("productName");
+    productBox.remove();
+    let productsContainer = document.getElementById("addProductContainer");
+    productsContainer.insertAdjacentHTML('afterbegin', dishProductSearchContainer());
 }
 
 let showProductSpiner = () =>{
@@ -681,4 +703,12 @@ let showProductSpiner = () =>{
 
 let hideProductSpiner = () =>{
     productLoader.style.display = 'None';
+}
+
+let chooseProduct = (name, id) =>{
+    const searchbox = document.getElementById("dishProductSearchContainer");
+    searchbox.remove();
+    let productsContainer = document.getElementById("addProductContainer");
+    productsContainer.insertAdjacentHTML('afterbegin', productResultTemplate(name));
+    removeSearchResults();
 }
