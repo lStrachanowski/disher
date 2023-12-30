@@ -156,19 +156,19 @@ let searchResultTemplate = (name, id) => {
 }
 
 
-
-
-let productResultTemplate = (name) =>{
-    return `
-    <div class="form-group col-lg-6 col-12 d-flex justify-content-center align-items-center" id="productName">
-        <div>${name}</div>
-    </div>`
-}
-
-let dishProductSearchContainer = () =>{
+let dishProductSearchContainer = () => {
     return `<div class="form-group col-lg-6 col-12" id="dishProductSearchContainer">
     <label for="dish_product_search">Wyszukaj produkt </label>
     <input type="text" class="form-control " id="dish_product_search" name="dish_product_search" onkeydown="debouncedSearchData();" required="">
+    </div>`;
+}
+
+let productListItem = (productName, quantity, unit) => {
+    return `     <div
+    class="col-12 d-flex align-items-center justify-content-around  recepie-container  white-background cursor mt-2 m-1">
+    <div class="col-lg-2  text-center m-3 font-bold cursor">${productName}</div>
+    <div class="col-lg-7  text-start cursor">${quantity} ${unit}</div>
+    <div class="col-lg-2  text-center">usuń</div>
     </div>`;
 }
 
@@ -607,9 +607,9 @@ let deleteDay = (id) => {
     dayElement.remove();
 }
 
-let removeSearchResults = () =>{
+let removeSearchResults = () => {
     const toRemove = document.querySelectorAll(".product-search-result");
-    toRemove.forEach( element =>{
+    toRemove.forEach(element => {
         element.remove();
     });
 }
@@ -619,13 +619,13 @@ function searchProduct() {
     const toRemove = document.querySelectorAll(".product-search-result");
     if (inputVaue.length >= 3) {
         fetchSearchReasultsFromWeb(inputVaue);
-    }else{
-        if(toRemove){
+    } else {
+        if (toRemove) {
             removeSearchResults();
         }
     }
 
- 
+
 }
 
 
@@ -668,51 +668,85 @@ function fetchSearchReasultsFromWeb(searchQuery) {
  * @param {string}searchQuery - product name
  * 
  * */
-let generateSearchResults = (data) =>{
+let generateSearchResults = (data) => {
     var getParent = document.getElementById("productBox");
     removeSearchResults();
-    for( element of data){
-        getParent.insertAdjacentHTML('afterend',searchResultTemplate(element.product_name, element.id));
+    for (element of data) {
+        getParent.insertAdjacentHTML('afterend', searchResultTemplate(element.product_name, element.id));
     }
 }
 
 let productContainer = document.getElementById("addProductContainer");
-let saveButton = document.getElementById("saveProductButton");
+let saveButtonContainer = document.getElementById("productButtonsContainer");
 let productLoader = document.getElementById("productLoader");
+let saveButton = document.getElementById("saveButton");
+let cancelButton = document.getElementById("cancelButton");
+let addContainertBox = document.getElementById("addContainertBox");
+productContainer.style.display = 'none';
 productLoader.style.display = 'none';
-    
+saveButtonContainer.style.display = 'none';
+saveButton.disabled = true;
 
-let showProductContainer = () =>{
+
+let showProductContainer = () => {
     productContainer.style.display = 'flex';
-    saveButton.style.display = 'flex';
-
+    saveButtonContainer.style.display = 'flex';
+    saveButton.disabled = true;
+    addContainertBox.style.display = "none";
 }
 
-let saveProduct = () =>{
+let saveProduct = () => {
     productContainer.style.display = 'none';
-    saveButton.style.display = 'none';
-    const productBox = document.getElementById("productName");
-    productBox.remove();
+    saveButtonContainer.style.display = 'none';
+    const productListBox = document.getElementById("productsList");
+    const productName = document.getElementById("dish_product_search");
+    const productAmount = document.getElementById("dish_product_amount");
+    const productUnit = document.getElementById("product_unit");
+
     let productsContainer = document.getElementById("addProductContainer");
     let productsSearchContainer = document.getElementById("dishProductSearchContainer");
-    if(!productsSearchContainer){
+    if (!productsSearchContainer) {
         productsContainer.insertAdjacentHTML('afterbegin', dishProductSearchContainer());
     }
-   
+
+    productListBox.insertAdjacentHTML('afterend', productListItem(productName.value, productAmount.value, productUnit.value));
+    let inputAmount = document.getElementById("dish_product_amount");
+    let inputProduct = document.getElementById("dish_product_search");
+    inputAmount.value = '';
+    inputProduct.value = '';
+    addContainertBox.style.display = "block";
+
 }
 
-let showProductSpiner = () =>{
+let productCancelButton =() =>{
+    productContainer.style.display = 'none';
+    saveButtonContainer.style.display = 'none';
+    addContainertBox.style.display = "block";
+}
+
+let showProductSpiner = () => {
     productLoader.style.display = 'flex';
 }
 
-let hideProductSpiner = () =>{
+let hideProductSpiner = () => {
     productLoader.style.display = 'None';
 }
 
-let chooseProduct = (name, id) =>{
-    const searchbox = document.getElementById("dishProductSearchContainer");
-    searchbox.remove();
-    let productsContainer = document.getElementById("addProductContainer");
-    productsContainer.insertAdjacentHTML('afterbegin', productResultTemplate(name));
+let chooseProduct = (name, id) => {
+    const searchbox = document.getElementById("dish_product_search");
+    searchbox.value = name;
     removeSearchResults();
+}
+
+let checkProductFieldsValidity = () => {
+    const productName = document.getElementById("dish_product_search");
+    const productAmount = document.getElementById("dish_product_amount");
+    const productUnit = document.getElementById("product_unit");
+    console.log(productName.checkValidity(), productAmount.checkValidity(), productUnit.checkValidity());
+
+    if (productName.checkValidity() == true && productAmount.checkValidity() == true && productAmount.value > 0 && productUnit.checkValidity() == true){
+        saveButton.disabled = false;
+    } else{
+        saveButton.disabled = true;
+    }
 }
