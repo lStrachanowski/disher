@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -50,19 +50,6 @@ def dashboard(request):
     recepies_data = DishOperations()
     recepies_for_template = []
     recepies_for_template = recepies_data.getAllDishes()
-    day = DayOperations()
-
-
-    # if day.checkUserDays(request.user):
-        # data = day.getDayData(request.user)
-        # user_days.append(data['day_name'])
-    
-    # if request.method == "POST":
-    #     selected_meal = request.POST.get('selectedMeal')
-    #     print(selected_meal)
-    
-    # context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
-    #            "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_days":'day-' + user_days[0] + '-add'}
     
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
                "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value}
@@ -117,8 +104,10 @@ def add_recepie(request):
             dish_operations = DishOperations()
             dish_operations.createDish(duration,type_of_meal,recepie_title, dish_calories,dish_description, request.user.username, product_name_list)
             for product in product_data:
-                print(product['name'] , product['amount'], product['unit'], dish_operations.getDish(recepie_title))
                 amount.createAmount(product['name'] , product['amount'], product['unit'], dish_operations.getDish(recepie_title))
+            messages.success(
+                        request, 'Recepie was added to database!')
+            return HttpResponseRedirect('/success')
 
     return render(request, "disher/addrecepie.html", context)
 

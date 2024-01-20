@@ -378,15 +378,13 @@ function dayChange(newData) {
 }
 
 
-
+// Changes buttons attributes in searchdialog
 function setElementID(id) {
     new_id = id.split("-").slice(1).join("-");
     var buttons = document.getElementsByClassName('addMealButtonSelector');
     for (var i = 0; i < buttons.length; i++) {
         let attributeToChange = buttons[i].getAttribute('onclick');
         var regex = /\(([^)]+)\)/;
-
-        // Use the regular expression to extract the substring
         var matches = regex.exec(attributeToChange);
         var attibutesArray = matches[1].split(',');
         attibutesArray[0] = new_id;
@@ -838,7 +836,7 @@ let saveDishButtonClick = () => {
 }
 
 let cancelDishButtonClick = () => {
-    console.log("cancel");
+    window.location.href = '/user/dashboard';
 }
 
 
