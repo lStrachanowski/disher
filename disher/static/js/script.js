@@ -383,7 +383,20 @@ function setElementID(id) {
     new_id = id.split("-").slice(1).join("-");
     var buttons = document.getElementsByClassName('addMealButtonSelector');
     for (var i = 0; i < buttons.length; i++) {
-        buttons[i].setAttribute('onclick', `addMealToDay('${new_id}', 'jajecznica-z-pomidorami', 'Jajecznica z pomidorami', '344');`);
+        let attributeToChange = buttons[i].getAttribute('onclick');
+        var regex = /\(([^)]+)\)/;
+
+        // Use the regular expression to extract the substring
+        var matches = regex.exec(attributeToChange);
+        var attibutesArray = matches[1].split(',');
+        attibutesArray[0] = new_id;
+        for( var j = 1; j< 4; j++){
+            attibutesArray[j] = attibutesArray[j].replace(/["']/g, '')
+            if(j != 2){
+                attibutesArray[j] = attibutesArray[j].replace(/\s/g, "");
+            }  
+        }    
+        buttons[i].setAttribute('onclick', `addMealToDay('${attibutesArray[0]}', '${attibutesArray[1]}', '${attibutesArray[2]}', '${attibutesArray[3]}');`);
     }
 }
 
@@ -748,6 +761,7 @@ let saveProduct = () => {
         tempAddedProduct.unit = productUnit.value;
         productList.push(tempAddedProduct);
     }
+
 
     productListBox.insertAdjacentHTML('afterend', productListItem(productName.value, productAmount.value, productUnit.value));
     let inputAmount = document.getElementById("dish_product_amount");
