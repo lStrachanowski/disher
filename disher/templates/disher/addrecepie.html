@@ -22,51 +22,44 @@
             <div class="row">
                 <div class="form-group col-lg-12 col-12">
                     <label for="dish_title">Nazwa potrawy</label>
-                    <input type="text" class="form-control" id="dish_title" name="dish_title" required>
+                    <input type="text" class="form-control" id="dish_title" name="dish_title" oninput="checkDishFielsdValidity();" required>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="form-group col-lg-4 col-12">
                     <label for="dish_calories" >Kaloryczność </label>
-                    <input type="text" class="form-control " id="dish_calories" name="dish_calories" required>
+                    <input type="number" class="form-control " id="dish_calories" name="dish_calories" oninput="checkDishFielsdValidity();" required>
                 </div>
                 <div class="form-group col-lg-4 col-12">
                     <label for="duration" >Czas przygotwania </label>
-                    <select class="form-control" name="duration" id="duration" required>
-                        <option value="Quick" >Szybki ( < 30 min ) </option>
-                        <option value="Medium" >Średni ( 30-60 min ) </option>
-                        <option value="Long" >Długi ( > 60  min ) </option>
+                    <select class="form-control" name="duration" id="duration" onchange="checkDishFielsdValidity();" required>
+                        <option value="S" >Szybki ( < 30 min ) </option>
+                        <option value="M" >Średni ( 30-60 min ) </option>
+                        <option value="L" >Długi ( > 60  min ) </option>
                       </select>
                 </div>
                 <div class="form-group col-lg-4 col-12">
                     <label for="type_of_meal" >Typ posiłku</label>
-                    <select class="form-control" name="type_of_meal" id="type_of_meal" required>
-                        <option value="Breakfast" >Śniadanie</option>
-                        <option value="Brunch" >2 Śniadanie</option>
-                        <option value="Dinner" >Obiad</option>
-                        <option value="Dessert" >Przekąska</option>
-                        <option value="Supper" >Kolacja</option>
+                    <select class="form-control" name="type_of_meal" id="type_of_meal" onchange="checkDishFielsdValidity();" required>
+                        <option value="B" >Śniadanie</option>
+                        <option value="B2" >2 Śniadanie</option>
+                        <option value="D" >Obiad</option>
+                        <option value="D2" >Przekąska</option>
+                        <option value="S" >Kolacja</option>
                     </select>
                 </div>
             </div>
 
             <div class="row text-center mt-3" id="productsContainer">
-                <div class="col-12 d-flex align-items-center justify-content-center">
-                    <div class="col-12 d-flex align-items-center justify-content-around mb-1">
+                <div class="col-12 d-flex align-items-center justify-content-center" id="productsContainerHeader">
+                    <div class="col-12 d-flex align-items-center justify-content-around mb-1" >
                         <div class="col-lg-2  text-center dark-font font-bold">Produkt</div>
                         <div class="col-lg-7  text-start dark-font font-bold ">Ilość</div>
                         <div class="col-lg-2  text-center"></div>
                     </div>
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1" id="productsList">
-                   
                 </div>
-                <div
-                class="col-12 d-flex align-items-center justify-content-around  recepie-container  white-background cursor mt-2 m-1">
-                <div class="col-lg-2  text-center m-3 font-bold cursor">Kasza jaglana</div>
-                <div class="col-lg-7  text-start cursor">100 gr</div>
-                <div class="col-lg-2  text-center">usuń</div>
-            </div>
             </div>
             
             <div class="row mt-3" id="addProductContainer">
@@ -88,7 +81,7 @@
                 </div>
                 
             </div>
-
+            
             <div class="row text-center mt-3" id="productBox">
             </div>
 
@@ -99,10 +92,10 @@
 
             
             <div class="row m-4 justify-content-center align-items-center " id="productButtonsContainer">
-                <button class="col-lg-4 col-sm-3 mt-2 m-1  btn btn-success" type="button" onclick="saveProduct();" id="saveButton">Zapisz składnik</button>
-                <button class="col-lg-4 col-sm-3 mt-2 m-1  btn btn-danger" type="button" onclick="productCancelButton();" id="cancelButton">Anuluj</button>
+                <button class="col-lg-2 col-sm-3 mt-2 m-1  btn btn-primary " type="button" onclick="saveProduct();checkDishFielsdValidity();" id="saveButton">Zapisz składnik</button>
+                <button class="col-lg-2 col-sm-3 mt-2 m-1  btn btn-danger " type="button" onclick="productCancelButton();" id="cancelButton">Anuluj</button>
             </div>
-          
+           
             <div id="addContainertBox">
                 <div class="row text-center mt-3">
                     <h4 class="font-bold">Dodaj składniki</h4>
@@ -114,40 +107,16 @@
                 </div>
             </div>
          
-
-            <div class="row mt-1 hide-element" id="addProductInputFields">
-                <div class="form-group col-lg-6 col-12">
-                    <label for="productName" >Nazwa</label>
-                    <input type="text" class="form-control " id="productName" name="productName">
-                </div>
-                <div class="form-group col-lg-3 col-12">
-                    <label for="productQuantity">Ilość</label>
-                    <input type="number" class="form-control" id="productQuantity" name="productQuantity" >
-                </div>
-
-                <div class="form-group col-lg-3 col-12">
-                    <label for="unit">Jednostka</label>
-                    <select class="form-control" name="unit" id="unit">
-                        <option value="kg">kg</option>
-                        <option value="gr">gr</option>
-                        <option value="ml">ml</option>
-                      </select>
-                </div>
-            </div>
-            <div class="row m-4 justify-content-center align-items-center hide-element" id="saveProductButtonContainer">
-                <button class="col-lg-3 col-sm-3 m-2  btn btn-success" type="button" onclick="hideAddedProduct()"  id="saveProductButton">Zapisz</button>
-                <button class="col-lg-3 col-sm-3 m-2  btn btn-danger" type="button" onclick="hideAddedProduct()"  id="saveProductButton">Anuluj</button>
-            </div>
-
-
-
             <div class="form-group mt-2">
                 <label for="dishDescription">Opis przygotowania</label>
-                <textarea class="form-control" id="dishDescription" name="dishDescription" rows="3" required></textarea>
+                <textarea class="form-control" id="dishDescription" type="text" name="dishDescription" rows="3" oninput="checkDishFielsdValidity();" required></textarea>
             </div>
 
+            <input type="hidden" id="json_data" name="json_data" value=''>
+
             <div class="row m-4 justify-content-center align-items-center ">
-                <button class="col-lg-4 col-sm-3 mt-2  btn btn-success" type="submit">Zapisz</button>
+                <button class="col-lg-2 col-sm-3 mt-2 m-2  btn btn-primary" type="submit" onclick="saveDishButtonClick();" id="saveDishButton">Zapisz</button>
+                <button class="col-lg-2 col-sm-3 mt-2 m-2  btn btn-danger" type="button" onclick="cancelDishButtonClick();" id="cancelDishButton" >Anuluj</button>
             </div>
 
         </form>

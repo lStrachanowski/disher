@@ -3,14 +3,14 @@ from disher.models import Product, Dish, Product_Amount, User_Day, Day_Dish
 import json
 
 class ProductAmountOperations:
-    def createAmount(self, name, amount, dish_name):
+    def createAmount(self, name, amount, unit, dish_name):
         try:
             check_product = Product_Amount.objects.get(product_name=name)
             print("Already exist")
             check_product.dish.add(dish_name)
             check_product.save()
         except Product_Amount.DoesNotExist:
-            amount = Product_Amount(product_name=name, product_amount = amount)
+            amount = Product_Amount(product_name=name, product_amount = amount, unit = unit)
             amount.save()
             amount.dish.set([dish_name])
             amount.save()
@@ -31,7 +31,7 @@ class ProductAmountOperations:
     def getAllAmounts(self, dish):
         try:
             product_list = Product_Amount.objects.filter(dish = dish)
-            return [[p.product_name, int(p.product_amount)] for p in product_list]
+            return [[p.product_name, int(p.product_amount), p.unit] for p in product_list]
         except Exception as e:
             print(e)
             return
@@ -126,24 +126,24 @@ class DishOperations:
         
     def getDishById(self, id):
         try:
-            dish_objcet = Dish.objects.get(id=id)
-            return dish_objcet
+            dish_object = Dish.objects.get(id=id)
+            return dish_object
         except Exception as e:
             print(e)
             return
 
     def getDish(self, name):
         try:
-            dish_objcet = Dish.objects.get(dish_name=name)
-            return dish_objcet
+            dish_object = Dish.objects.get(dish_name=name)
+            return dish_object
         except Exception as e:
             print(e)
             return
         
     def getDishData(self, slug):
         try:
-            dish_objcet = Dish.objects.get(slug=slug)
-            return dish_objcet
+            dish_object = Dish.objects.get(slug=slug)
+            return dish_object
         except Exception as e:
             print(e)
             return

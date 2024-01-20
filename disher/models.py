@@ -44,6 +44,7 @@ class Product_Amount(models.Model):
     product_name = models.CharField(null=True, max_length=50)
     product_amount = models.DecimalField(max_digits=5,decimal_places=2)
     dish = models.ManyToManyField(Dish)
+    unit = models.CharField(null=False, max_length=5)
 
 class Day_Dish(models.Model):
     id = models.AutoField(primary_key=True)

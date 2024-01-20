@@ -5,6 +5,17 @@ var globalSelectedValue = "";
 var dayData = null;
 var DATA_URL = '/user/dashboard/daydata';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
+var tempAddedProduct = null;
+var productList = [];
+
+let productContainer = document.getElementById("addProductContainer");
+let saveButtonContainer = document.getElementById("productButtonsContainer");
+let productLoader = document.getElementById("productLoader");
+let saveButton = document.getElementById("saveButton");
+let saveDishButton = document.getElementById("saveDishButton");
+let cancelButton = document.getElementById("cancelButton");
+let addContainertBox = document.getElementById("addContainertBox");
+let productsContainerHeader = document.getElementById("productsContainerHeader");
 
 var translateTable = {
     "Breakfast": "Śniadanie",
@@ -13,6 +24,14 @@ var translateTable = {
     "Dessert": "Przekąska",
     "Supper": "Kolacja",
 }
+
+// var translateTable = {
+//     "B": "Śniadanie",
+//     "B2": "2 Śniadanie",
+//     "D": "Obiad",
+//     "D2": "Przekąska",
+//     "S": "Kolacja",
+// }
 
 var symbolTable = {
     "B": ["Śniadanie", "Breakfast"],
@@ -676,16 +695,31 @@ let generateSearchResults = (data) => {
     }
 }
 
-let productContainer = document.getElementById("addProductContainer");
-let saveButtonContainer = document.getElementById("productButtonsContainer");
-let productLoader = document.getElementById("productLoader");
-let saveButton = document.getElementById("saveButton");
-let cancelButton = document.getElementById("cancelButton");
-let addContainertBox = document.getElementById("addContainertBox");
-productContainer.style.display = 'none';
-productLoader.style.display = 'none';
-saveButtonContainer.style.display = 'none';
-saveButton.disabled = true;
+
+
+if (productLoader) {
+    productLoader.style.display = 'none';
+}
+
+if (saveButtonContainer) {
+    saveButtonContainer.style.display = 'none';
+}
+
+if (productsContainerHeader) {
+    productsContainerHeader.style.visibility = 'hidden';
+}
+
+if (saveButton) {
+    saveButton.disabled = true;
+}
+
+if (productContainer) {
+    productContainer.style.display = 'none';
+}
+
+if (saveDishButton) {
+    saveDishButton.disabled = true;
+}
 
 
 let showProductContainer = () => {
@@ -709,19 +743,35 @@ let saveProduct = () => {
         productsContainer.insertAdjacentHTML('afterbegin', dishProductSearchContainer());
     }
 
+    if (tempAddedProduct != null) {
+        tempAddedProduct.amount = productAmount.value;
+        tempAddedProduct.unit = productUnit.value;
+        productList.push(tempAddedProduct);
+    }
+
     productListBox.insertAdjacentHTML('afterend', productListItem(productName.value, productAmount.value, productUnit.value));
     let inputAmount = document.getElementById("dish_product_amount");
     let inputProduct = document.getElementById("dish_product_search");
     inputAmount.value = '';
     inputProduct.value = '';
     addContainertBox.style.display = "block";
+    productsContainerHeader.style.visibility = "visible";
 
 }
 
-let productCancelButton =() =>{
+let productCancelButton = () => {
+    let inputAmount = document.getElementById("dish_product_amount");
+    let inputProduct = document.getElementById("dish_product_search");
     productContainer.style.display = 'none';
     saveButtonContainer.style.display = 'none';
     addContainertBox.style.display = "block";
+    if (inputAmount) {
+        inputProduct.value = '';
+    }
+    if (inputProduct) {
+        inputProduct.value = '';
+    }
+    removeSearchResults();
 }
 
 let showProductSpiner = () => {
@@ -733,6 +783,7 @@ let hideProductSpiner = () => {
 }
 
 let chooseProduct = (name, id) => {
+    tempAddedProduct = { "name": name, "id": id };
     const searchbox = document.getElementById("dish_product_search");
     searchbox.value = name;
     removeSearchResults();
@@ -742,11 +793,38 @@ let checkProductFieldsValidity = () => {
     const productName = document.getElementById("dish_product_search");
     const productAmount = document.getElementById("dish_product_amount");
     const productUnit = document.getElementById("product_unit");
-    console.log(productName.checkValidity(), productAmount.checkValidity(), productUnit.checkValidity());
-
-    if (productName.checkValidity() == true && productAmount.checkValidity() == true && productAmount.value > 0 && productUnit.checkValidity() == true){
+    if (productName.checkValidity() == true && productAmount.checkValidity() == true && productAmount.value > 0 && productUnit.checkValidity() == true) {
         saveButton.disabled = false;
-    } else{
+    } else {
         saveButton.disabled = true;
     }
 }
+
+
+let checkDishFielsdValidity = () => {
+    const dishDescription = document.getElementById("dishDescription");
+    const dishTitle = document.getElementById("dish_title");
+    const dishCalories = document.getElementById("dish_calories");
+    const dishDuration = document.getElementById("duration");
+    const dishType = document.getElementById("type_of_meal");
+    if (dishTitle.checkValidity() == true && dishCalories.checkValidity() == true && dishDuration.checkValidity() == true && dishType.checkValidity() == true && dishDescription.checkValidity() == true, productList.length > 0) {
+        saveDishButton.disabled = false;
+    } else {
+        saveDishButton.disabled = true;
+    }
+}
+
+let saveDishButtonClick = () => {
+    const productName = document.getElementById("dish_product_search");
+    const productAmount = document.getElementById("dish_product_amount");
+    const productJson = document.getElementById("json_data")
+    productName.required = false;
+    productAmount.required = false;
+    productJson.value = JSON.stringify(productList);
+}
+
+let cancelDishButtonClick = () => {
+    console.log("cancel");
+}
+
+

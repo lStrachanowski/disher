@@ -32,5 +32,5 @@ class DishForm(forms.Form):
     dish_title = forms.CharField( min_length=3, max_length=100, required=True)
     dish_calories = forms.IntegerField( required=True)
     dishDescription = forms.CharField( max_length=1000, required=True)
-    duration = forms.CharField( min_length=3, max_length=100, required=True)
-    type_of_meal = forms.CharField( min_length=3, max_length=100, required=True)
+    duration = forms.CharField( min_length=1, max_length=100, required=True)
+    type_of_meal = forms.CharField( min_length=1, max_length=100, required=True)

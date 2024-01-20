@@ -101,14 +101,27 @@ def add_recepie(request):
     if request.method == "POST":
         form = DishForm(request.POST)
         if form.is_valid():
+            product_operations = ProductOperations()
+            amount = ProductAmountOperations()
+            products_list = request.POST.get('json_data')
+            product_data = json.loads(products_list)
+
+            product_name_list = [product_operations.findProduct(product['name']) for product in product_data]
+
             recepie_title = form.cleaned_data["dish_title"]
             dish_calories = form.cleaned_data["dish_calories"]
             dish_description = form.cleaned_data["dishDescription"]
             duration = form.cleaned_data["duration"]
             type_of_meal = form.cleaned_data["type_of_meal"]
-            print(recepie_title, dish_calories, dish_description, duration, type_of_meal)
+
+            dish_operations = DishOperations()
+            dish_operations.createDish(duration,type_of_meal,recepie_title, dish_calories,dish_description, request.user.username, product_name_list)
+            for product in product_data:
+                print(product['name'] , product['amount'], product['unit'], dish_operations.getDish(recepie_title))
+                amount.createAmount(product['name'] , product['amount'], product['unit'], dish_operations.getDish(recepie_title))
 
     return render(request, "disher/addrecepie.html", context)
+
 
 
 def login_view(request):
