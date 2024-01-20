@@ -5,11 +5,6 @@ import json
 class ProductAmountOperations:
     def createAmount(self, name, amount, unit, dish_name):
         try:
-            check_product = Product_Amount.objects.get(product_name=name)
-            print("Already exist")
-            check_product.dish.add(dish_name)
-            check_product.save()
-        except Product_Amount.DoesNotExist:
             amount = Product_Amount(product_name=name, product_amount = amount, unit = unit)
             amount.save()
             amount.dish.set([dish_name])
