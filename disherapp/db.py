@@ -182,12 +182,13 @@ class DishOperations:
 
 
 class DayOperations:
-    def createDay(self, user_day_name, user_day_dish , user_id ):
+    def createDay(self, user_day_name, user_id, user_day_dish=None ):
         try:
             day_object = User_Day(user_day_name = user_day_name, user_id = user_id)
             day_object.save()
-            day_object.user_day_dish.add(user_day_dish)
-            day_object.save()
+            if(user_day_dish):
+                day_object.user_day_dish.add(user_day_dish)
+                day_object.save()
             print("created")
         except Exception as e:
             print(e)
@@ -220,7 +221,7 @@ class DayOperations:
                     slug = DishOperations().getSlug(results.dish_name)
                     data = {'name':results.dish_name, 'cal':results.dish_calories, 'type': d_d.meal_type, 'slug': slug}
                     data_table.append(data)
-                data_object = {'day_name': day.user_day_name, 'day_items': data_table}
+                data_object = {'day_name': day.user_day_name, 'day_items': data_table, 'day_id':day.id}
                 results_table.append(data_object)
             return json.dumps(results_table)
         except Exception as e:

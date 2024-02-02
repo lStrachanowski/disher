@@ -4,6 +4,7 @@ var globalMealName = "";
 var globalSelectedValue = "";
 var dayData = null;
 var DATA_URL = '/user/dashboard/daydata';
+var NEW_DAY = '/user/dashboard/addnewday';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var tempAddedProduct = null;
 var productList = [];
@@ -196,10 +197,26 @@ let productListItem = (productName, quantity, unit) => {
  * @param {string} id - Element id
  * 
  * */
-let addMealToDay = (id, slug, dish, calories, meal_type) => {
+let addMealToDay = (id, slug, dish, calories, meal_type, day_id) => {
+    // fetch('/user/addmealtoday/'+ dayId)
+    // .then(response => response.json())
+    // .then(data => {
+    //     console.log(data);
+    //     return data;
+    // }).catch(error => {
+    //     console.log('Error fetching data:', error);
+    // });
 
+    // globalElementId = id;
+    // console.log(globalElementId);
+ 
     if (meal_type) {
-        globalElementId = "day-" + id.slice(3, id.length) + "-" + symbolTable[meal_type][1];
+    
+        if (id.slice(3, id.length)[0] == '-'){
+            globalElementId = "day" + id.slice(3, id.length);
+        }else{
+            globalElementId = "day-" + id.slice(3, id.length) + "-" + symbolTable[meal_type][1];
+        }
 
     } else {
         globalElementId = id;
@@ -231,10 +248,21 @@ let addMealToDay = (id, slug, dish, calories, meal_type) => {
         }
 
         if (meal_type) {
-            selectedParent = document.getElementById("day-" + id.slice(3, id.length));
+            if(day_id){
+                selectedParent = document.getElementById("day-" + day_id + "-add");
+            }else{
+                selectedParent = document.getElementById("day-" + id.split("-")[1] + "-add");
+                console.log(selectedParent);
+            }
         } else {
-            parentID = id.split("-").slice(0, 3).join("-");
-            selectedParent = document.getElementById(parentID);
+            if(day_id){
+                parentID = "day-" + day_id + "-add";
+                selectedParent = document.getElementById(parentID);
+            }else{
+                parentID = "day-" + id.split("-")[1] + "-add";
+                selectedParent = document.getElementById(parentID); 
+            }
+            
         }
 
         elementId = id.split("-").slice(1,).join("-");
@@ -364,37 +392,55 @@ function fetchDataFromWeb(callback) {
         });
 }
 
+function addNewDay(){
+    fetch(NEW_DAY)
+    .then(response => response.json())
+    .then(data => {
+        let valueCheck = JSON.parse(data);
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+}
 
 
 // Rendering data about user day in dashboard
 function dayChange(newData) {
     dayData = JSON.parse(newData);
     for (day of dayData) {
-        addDay(day.day_name);
+        addDay(day.day_id);
         for (item of day.day_items) {
-            addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type);
+            addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type, day.day_id );
         }
     }
 }
 
 
 // Changes buttons attributes in searchdialog
-function setElementID(id) {
+function setElementID(id, dbDayID) {
+    let meal_type = null;
+    for(v in symbolTable){
+        if(symbolTable[v].includes(id.split('-')[4])){
+            meal_type = v;
+        }
+    }
     new_id = id.split("-").slice(1).join("-");
     var buttons = document.getElementsByClassName('addMealButtonSelector');
     for (var i = 0; i < buttons.length; i++) {
         let attributeToChange = buttons[i].getAttribute('onclick');
         var regex = /\(([^)]+)\)/;
         var matches = regex.exec(attributeToChange);
-        var attibutesArray = matches[1].split(',');
-        attibutesArray[0] = new_id;
+        var atributesArray = matches[1].split(',');
+        atributesArray[0] = new_id;
         for( var j = 1; j< 4; j++){
-            attibutesArray[j] = attibutesArray[j].replace(/["']/g, '')
+            atributesArray[j] = atributesArray[j].replace(/["']/g, '')
             if(j != 2){
-                attibutesArray[j] = attibutesArray[j].replace(/\s/g, "");
+                atributesArray[j] = atributesArray[j].replace(/\s/g, "");
             }  
         }    
-        buttons[i].setAttribute('onclick', `addMealToDay('${attibutesArray[0]}', '${attibutesArray[1]}', '${attibutesArray[2]}', '${attibutesArray[3]}');`);
+        buttons[i].setAttribute('onclick', `addMealToDay('${atributesArray[0]}', '${atributesArray[1]}', '${atributesArray[2]}', '${atributesArray[3]}', '${meal_type}', '${dbDayID}');`);
     }
 }
 
@@ -526,7 +572,8 @@ let showMealModal = (id) => {
 
 
 let showSearchMealModal = (id) => {
-    setElementID(id);
+    dbdDayID = id.split("-")[2];
+    setElementID(id, dbdDayID);
     dayId = id;
     globalElementId = id.split("-").slice(1,).join("-");
     // Get a reference to the modal element
@@ -545,7 +592,6 @@ let hideMessage = () => {
     document.getElementById("messageBox").style.display = "none";
 }
 
-
 // Prevents select meal modal form refershing the page after submit
 if (document.getElementById("modalForm")) {
     document.getElementById("modalForm").addEventListener("submit", function (event) {
@@ -553,16 +599,12 @@ if (document.getElementById("modalForm")) {
     });
 }
 
-
-
 // Prevents select meal modal form refershing the page after submit
 if (document.getElementById("modalFormSearch")) {
     document.getElementById("modalFormSearch").addEventListener("submit", function (event) {
         event.preventDefault();
     });
 }
-
-
 
 /**Is creating element in user day
  * 
@@ -594,9 +636,6 @@ let addDishMeal = (id) => {
     // modalTemplate.insertAdjacentHTML('beforeend', buttonTemplate(id) );
 
 }
-
-
-
 
 /**Is deleting element in user day
  * 

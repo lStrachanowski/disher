@@ -188,6 +188,13 @@ def register(request):
     context = {"user_status": user_status}
     return render(request, "disher/register.html", context)
 
+@login_required(login_url='/login')
+def add_meal_to_day(request, id):
+    if request.method == "GET":
+        data = {}
+        data['day_id'] = id
+        return JsonResponse(json.dumps(data), safe=False)
+    
 
 def reset(request):
     if request.method == "POST":
@@ -295,3 +302,11 @@ def get_product_search(request, productname):
     response_data = DjangoJSONEncoder().encode(data)
     json_response_data = {'results': response_data}
     return JsonResponse(json_response_data, safe=False)
+
+@login_required(login_url='/login')
+def create_day(request):
+    day_data = DayOperations()
+    day_data.createDay("test", request.user)
+    data = daydata(request)
+    return data
+    
