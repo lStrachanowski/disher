@@ -189,8 +189,17 @@ def register(request):
     return render(request, "disher/register.html", context)
 
 @login_required(login_url='/login')
-def add_meal_to_day(request, id):
+def add_meal_to_day(request, id, slug, meal_type):
     if request.method == "GET":
+        day = DayOperations()
+        dish = DishOperations()
+        dish_to_add = dish.getDishData(slug)
+        meal_element = dish.createDayDish(dish_to_add, meal_type)
+        day_to_update = day.getDay(request.user.id)
+        for current_day in day_to_update:
+            if current_day.id == id:
+                day.addMealToExistingDay(id,meal_element )
+                print("created", dish_to_add.dish_name, meal_type)
         data = {}
         data['day_id'] = id
         return JsonResponse(json.dumps(data), safe=False)

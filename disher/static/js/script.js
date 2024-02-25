@@ -197,18 +197,17 @@ let productListItem = (productName, quantity, unit) => {
  * @param {string} id - Element id
  * 
  * */
-let addMealToDay = (id, slug, dish, calories, meal_type, day_id) => {
-    // fetch('/user/addmealtoday/'+ dayId)
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log(data);
-    //     return data;
-    // }).catch(error => {
-    //     console.log('Error fetching data:', error);
-    // });
-
-    // globalElementId = id;
-    // console.log(globalElementId);
+let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) => {
+    if(new_element == 'true'){
+        fetch('/user/addmealtoday/'+ day_id+'/'+slug+'/'+meal_type)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            return data;
+        }).catch(error => {
+            console.log('Error fetching data:', error);
+        });
+    }
  
     if (meal_type) {
     
@@ -440,7 +439,7 @@ function setElementID(id, dbDayID) {
                 atributesArray[j] = atributesArray[j].replace(/\s/g, "");
             }  
         }    
-        buttons[i].setAttribute('onclick', `addMealToDay('${atributesArray[0]}', '${atributesArray[1]}', '${atributesArray[2]}', '${atributesArray[3]}', '${meal_type}', '${dbDayID}');`);
+        buttons[i].setAttribute('onclick', `addMealToDay('${atributesArray[0]}', '${atributesArray[1]}', '${atributesArray[2]}', '${atributesArray[3]}', '${meal_type}', '${dbDayID}', 'true');`);
     }
 }
 

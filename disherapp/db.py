@@ -208,6 +208,14 @@ class DayOperations:
         except Exception as e:
             print(e)
     
+    def addMealToExistingDay(self,id, user_day_dish):
+        try:
+            day_object = User_Day.objects.get(pk = id)
+            day_object.user_day_dish.add(user_day_dish)
+            print("dish added")
+        except Exception as e:
+            print(e)
+    
     def getDayData(self, id):
         try:
             results_table = []
