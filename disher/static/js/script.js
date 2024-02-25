@@ -202,6 +202,8 @@ let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) =>
         fetch('/user/addmealtoday/'+ day_id+'/'+slug+'/'+meal_type)
         .then(response => response.json())
         .then(data => {
+            fetchDataFromWeb(updateCookies);
+            setUserIdLCookie();
             console.log(data);
             return data;
         }).catch(error => {
@@ -389,6 +391,11 @@ function fetchDataFromWeb(callback) {
         .catch(error => {
             console.error('Error fetching data:', error);
         });
+}
+
+function updateCookies(data){
+    document.cookie = "data=" + data;
+    console.log("cookie updated");
 }
 
 function addNewDay(){
