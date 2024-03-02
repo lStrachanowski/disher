@@ -318,18 +318,21 @@ const currentUrl = window.location.pathname;
 if (currentUrl == '/user/dashboard') {
     if (checkForDataInCookies()) {
         let user_id = document.getElementsByClassName("user-id-selector")[0].id;
+        console.log(user_id);
         let cookie_id = readCookie('user_id');
+        console.log(cookie_id);
         if (user_id === cookie_id) {
             console.log("cookies");
             fetchDataFromCookies(dayChange);
         } else {
             console.log("web, differnet user");
             fetchDataFromWeb(dayChange);
+            setUserIdLCookie();
         }
     } else {
         console.log("web");
         fetchDataFromWeb(dayChange);
-        setUserIdLCookie();
+        setUserIdLCookie();    
     }
 }
 
