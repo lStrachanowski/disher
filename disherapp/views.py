@@ -102,12 +102,15 @@ def add_recepie(request):
             type_of_meal = form.cleaned_data["type_of_meal"]
 
             dish_operations = DishOperations()
-            dish_operations.createDish(duration,type_of_meal,recepie_title, dish_calories,dish_description, request.user.username, product_name_list)
-            for product in product_data:
-                amount.createAmount(product['name'] , product['amount'], product['unit'], dish_operations.getDish(recepie_title))
-            messages.success(
-                        request, 'Recepie was added to database!')
-            return HttpResponseRedirect('/success')
+            try:
+                dish_operations.createDish(duration,type_of_meal,recepie_title, dish_calories,dish_description, request.user.username, product_name_list)
+                for product in product_data:
+                    amount.createAmount(product['name'] , product['amount'], product['unit'], dish_operations.getDish(recepie_title))
+                messages.success(request, 'Recepie was added to database!')
+            except Exception as e:
+                messages.error(request, "Recepie name already exist. Check current recepie or rename your recepie.")
+
+            return HttpResponseRedirect('/message')
 
     return render(request, "disher/addrecepie.html", context)
 
@@ -234,8 +237,8 @@ def logout_view(request):
     return redirect("/")
 
 
-def success(request):
-    return render(request, "disher/success.html")
+def message(request):
+    return render(request, "disher/message.html")
 
 
 def activate(request, token):

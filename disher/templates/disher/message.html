@@ -15,12 +15,20 @@
         <div class="col-lg-4 col-md-6 col-9 recepie-container white-background mt-2 m-1" >
             <div class="row d-flex m-3">
                 <div class="justify-content-center align-items-center">
-                    <img src="/static/img/ok.svg" class="img-size">
+                    
                     {% if messages %}
                         {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                            <img src="/static/img/error.svg" class="img-size">
+                                <div class="mt-3 alert alert-danger text-center" role="alert">
+                                    {{message}}
+                                </div>
+                            {% else %}
+                                <img src="/static/img/ok.svg" class="img-size">
                                 <div class="mt-3 alert alert-success text-center" role="alert">
                                     {{message}}
                                 </div>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 </div>

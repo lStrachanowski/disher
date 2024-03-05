@@ -115,9 +115,10 @@ class DishOperations:
             if products is not None:
                 dish_object.dish_products.add(*products)
             print("Dish created")
-        except Exception as e:
-            print(e)
             return
+        except Exception as e:
+            raise ValueError(e)
+            
         
     def getDishById(self, id):
         try:
