@@ -322,10 +322,6 @@ let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) =>
 
         let mealOptionsTemplate = mealOptions(globalElementId);
         newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
-
-        // const htmlTemplate = dishElementTemplate(elementId, mealName, selectedValue);
-        // let selectedDay = document.getElementById(id);
-        // selectedDay.insertAdjacentHTML('beforebegin', htmlTemplate);
         
     }
 
@@ -457,7 +453,8 @@ function addNewDay() {
             for (value of valueCheck) {
                 day_id_list.push(value.day_id);
             }
-            console.log(day_id_list[day_id_list.length -1]);
+            fetchDataFromWeb(updateCookies);
+            addDay((day_id_list[day_id_list.length -1]));
         })
         .catch(error => {
             console.error('Error fetching data:', error);
