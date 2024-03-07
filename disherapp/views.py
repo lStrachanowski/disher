@@ -108,7 +108,7 @@ def add_recepie(request):
                     amount.createAmount(product['name'] , product['amount'], product['unit'], dish_operations.getDish(recepie_title))
                 messages.success(request, 'Recepie was added to database!')
             except Exception as e:
-                messages.error(request, "Recepie name already exist. Check current recepie or rename your recepie.")
+                messages.error(request, "Recepie name already exist. Check current recepie or rename your recepie")
 
             return HttpResponseRedirect('/message')
 

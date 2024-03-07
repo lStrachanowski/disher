@@ -198,24 +198,24 @@ let productListItem = (productName, quantity, unit) => {
  * 
  * */
 let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) => {
-    if(new_element == 'true'){
-        fetch('/user/addmealtoday/'+ day_id+'/'+slug+'/'+meal_type)
-        .then(response => response.json())
-        .then(data => {
-            fetchDataFromWeb(updateCookies);
-            setUserIdLCookie();
-            console.log(data);
-            return data;
-        }).catch(error => {
-            console.log('Error fetching data:', error);
-        });
+    if (new_element == 'true') {
+        fetch('/user/addmealtoday/' + day_id + '/' + slug + '/' + meal_type)
+            .then(response => response.json())
+            .then(data => {
+                fetchDataFromWeb(updateCookies);
+                setUserIdLCookie();
+                console.log(data);
+                return data;
+            }).catch(error => {
+                console.log('Error fetching data:', error);
+            });
     }
- 
+
     if (meal_type) {
-    
-        if (id.slice(3, id.length)[0] == '-'){
+
+        if (id.slice(3, id.length)[0] == '-') {
             globalElementId = "day" + id.slice(3, id.length);
-        }else{
+        } else {
             globalElementId = "day-" + id.slice(3, id.length) + "-" + symbolTable[meal_type][1];
         }
 
@@ -249,21 +249,67 @@ let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) =>
         }
 
         if (meal_type) {
-            if(day_id){
+            if (day_id) {
                 selectedParent = document.getElementById("day-" + day_id + "-add");
-            }else{
+            } else {
                 selectedParent = document.getElementById("day-" + id.split("-")[1] + "-add");
                 console.log(selectedParent);
             }
         } else {
-            if(day_id){
+            if (day_id) {
                 parentID = "day-" + day_id + "-add";
                 selectedParent = document.getElementById(parentID);
-            }else{
+            } else {
                 parentID = "day-" + id.split("-")[1] + "-add";
-                selectedParent = document.getElementById(parentID); 
+                selectedParent = document.getElementById(parentID);
             }
-            
+
+        }
+
+        elementId = id.split("-").slice(1,).join("-");
+
+        let newSelectedDay = mealElementWithData(globalElementId, mealName, calories);
+        selectedParent.insertAdjacentHTML('beforebegin', newSelectedDay);
+
+        let newSelectedMeal = document.getElementById(globalElementId);
+        newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
+
+        let mealOptionsTemplate = mealOptions(globalElementId);
+        newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
+    } else {
+        let number = document.getElementsByClassName("collapse").length;
+        elementId = elementId + "-" + number
+        globalElementId = elementId;
+        const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
+        let selectedDay = document.getElementById(globalElementId);
+
+
+        if (selectedDay) {
+            selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
+            selectedDay.remove();
+        }
+        let selectedMeal = document.getElementById(globalElementId + "-collapse");
+
+        if (selectedMeal) {
+            selectedMeal.remove();
+        }
+
+        if (meal_type) {
+            if (day_id) {
+                selectedParent = document.getElementById("day-" + day_id + "-add");
+            } else {
+                selectedParent = document.getElementById("day-" + id.split("-")[1] + "-add");
+                console.log(selectedParent);
+            }
+        } else {
+            if (day_id) {
+                parentID = "day-" + day_id + "-add";
+                selectedParent = document.getElementById(parentID);
+            } else {
+                parentID = "day-" + id.split("-")[1] + "-add";
+                selectedParent = document.getElementById(parentID);
+            }
+
         }
 
         elementId = id.split("-").slice(1,).join("-");
@@ -277,8 +323,10 @@ let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) =>
         let mealOptionsTemplate = mealOptions(globalElementId);
         newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
 
-    } else {
-        alert("Już masz dodany posiłek ");
+        // const htmlTemplate = dishElementTemplate(elementId, mealName, selectedValue);
+        // let selectedDay = document.getElementById(id);
+        // selectedDay.insertAdjacentHTML('beforebegin', htmlTemplate);
+        
     }
 
 }
@@ -318,9 +366,7 @@ const currentUrl = window.location.pathname;
 if (currentUrl == '/user/dashboard') {
     if (checkForDataInCookies()) {
         let user_id = document.getElementsByClassName("user-id-selector")[0].id;
-        console.log(user_id);
         let cookie_id = readCookie('user_id');
-        console.log(cookie_id);
         if (user_id === cookie_id) {
             console.log("cookies");
             fetchDataFromCookies(dayChange);
@@ -332,7 +378,7 @@ if (currentUrl == '/user/dashboard') {
     } else {
         console.log("web");
         fetchDataFromWeb(dayChange);
-        setUserIdLCookie();    
+        setUserIdLCookie();
     }
 }
 
@@ -396,21 +442,26 @@ function fetchDataFromWeb(callback) {
         });
 }
 
-function updateCookies(data){
+function updateCookies(data) {
+    document.cookie = "data="+"";
     document.cookie = "data=" + data;
     console.log("cookie updated");
 }
 
-function addNewDay(){
+function addNewDay() {
     fetch(NEW_DAY)
-    .then(response => response.json())
-    .then(data => {
-        let valueCheck = JSON.parse(data);
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            let valueCheck = JSON.parse(data);
+            day_id_list = []
+            for (value of valueCheck) {
+                day_id_list.push(value.day_id);
+            }
+            console.log(day_id_list[day_id_list.length -1]);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
 
 }
 
@@ -421,7 +472,7 @@ function dayChange(newData) {
     for (day of dayData) {
         addDay(day.day_id);
         for (item of day.day_items) {
-            addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type, day.day_id );
+            addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type, day.day_id);
         }
     }
 }
@@ -430,8 +481,8 @@ function dayChange(newData) {
 // Changes buttons attributes in searchdialog
 function setElementID(id, dbDayID) {
     let meal_type = null;
-    for(v in symbolTable){
-        if(symbolTable[v].includes(id.split('-')[4])){
+    for (v in symbolTable) {
+        if (symbolTable[v].includes(id.split('-')[4])) {
             meal_type = v;
         }
     }
@@ -443,12 +494,12 @@ function setElementID(id, dbDayID) {
         var matches = regex.exec(attributeToChange);
         var atributesArray = matches[1].split(',');
         atributesArray[0] = new_id;
-        for( var j = 1; j< 4; j++){
+        for (var j = 1; j < 4; j++) {
             atributesArray[j] = atributesArray[j].replace(/["']/g, '')
-            if(j != 2){
+            if (j != 2) {
                 atributesArray[j] = atributesArray[j].replace(/\s/g, "");
-            }  
-        }    
+            }
+        }
         buttons[i].setAttribute('onclick', `addMealToDay('${atributesArray[0]}', '${atributesArray[1]}', '${atributesArray[2]}', '${atributesArray[3]}', '${meal_type}', '${dbDayID}', 'true');`);
     }
 }
