@@ -5,6 +5,7 @@ var globalSelectedValue = "";
 var dayData = null;
 var DATA_URL = '/user/dashboard/daydata';
 var NEW_DAY = '/user/dashboard/addnewday';
+var DELETE_MEAL = '/user/deletemealfromday/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var tempAddedProduct = null;
 var productList = [];
@@ -80,10 +81,10 @@ let mealElementTemplate = (globalElementId, slug, dish) => {
 }
 
 
-let mealOptions = (id) => {
+let mealOptions = (id, day_id, meal_id) => {
     return `<div class="d-flex day-element day-options m-3 p-2 align-items-center"
     id="${id}-edit-options">
-    <div class="col-6" onclick="deleteMealOptionElement('${id}')">
+    <div class="col-6" onclick="deleteMealOptionElement('${id}', '${day_id}', '${meal_id}');" >
         Usuń
     </div>
     <div class="col-4">
@@ -108,7 +109,7 @@ let mealElementWithData = (id, mealName, calories) => {
     <div class="col-5">
         ${calories} kcal
     </div>
-    <div class="col-1" onclick="mealOptionsClick('${id}')">
+    <div class="col-1" onclick="mealOptionsClick('${id}');">
         <img src="/static/img/options.svg" class="day-icons-options-size"
              id="img-${globalElementId}">
     </div>
@@ -197,14 +198,13 @@ let productListItem = (productName, quantity, unit) => {
  * @param {string} id - Element id
  * 
  * */
-let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) => {
+let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element, meal_id) => {
     if (new_element == 'true') {
         fetch('/user/addmealtoday/' + day_id + '/' + slug + '/' + meal_type)
             .then(response => response.json())
             .then(data => {
                 fetchDataFromWeb(updateCookies);
                 setUserIdLCookie();
-                console.log(data);
                 return data;
             }).catch(error => {
                 console.log('Error fetching data:', error);
@@ -274,7 +274,7 @@ let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) =>
         let newSelectedMeal = document.getElementById(globalElementId);
         newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
 
-        let mealOptionsTemplate = mealOptions(globalElementId);
+        let mealOptionsTemplate = mealOptions(globalElementId, day_id, meal_id);
         newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
     } else {
         let number = document.getElementsByClassName("collapse").length;
@@ -320,7 +320,7 @@ let addMealToDay = (id, slug, dish, calories, meal_type, day_id, new_element) =>
         let newSelectedMeal = document.getElementById(globalElementId);
         newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
 
-        let mealOptionsTemplate = mealOptions(globalElementId);
+        let mealOptionsTemplate = mealOptions(globalElementId, day_id, meal_id);
         newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
         
     }
@@ -426,6 +426,7 @@ function fetchDataFromWeb(callback) {
         .then(response => response.json())
         .then(data => {
             let valueCheck = JSON.parse(data);
+            console.log(valueCheck);
             if (valueCheck.message) {
                 console.log(valueCheck.message);
             } else {
@@ -469,7 +470,7 @@ function dayChange(newData) {
     for (day of dayData) {
         addDay(day.day_id);
         for (item of day.day_items) {
-            addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type, day.day_id);
+            addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type, day.day_id, 'false', item.dish_id);
         }
     }
 }
@@ -713,7 +714,8 @@ let deleteMealElement = (id) => {
  * @param {string} id - Element id
  * 
  * */
-let deleteMealOptionElement = (id) => {
+let deleteMealOptionElement = (id, day_id, meal_id) => {
+    deleteDayInDb(day_id, meal_id);
     id = id.split("-").slice(0, 4).join("-");
     let selectedElement = document.getElementById(id);
     selectedElement.remove();
@@ -935,4 +937,12 @@ let cancelDishButtonClick = () => {
     window.location.href = '/user/dashboard';
 }
 
-
+let deleteDayInDb = (day_id, meal_id) => {
+    fetch(DELETE_MEAL + day_id + "/"+ meal_id)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    }).catch(error => {
+        console.log('Error fetching data:', error);
+    });
+}

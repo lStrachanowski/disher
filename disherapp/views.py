@@ -190,7 +190,6 @@ def register(request):
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/register.html", context)
-
 @login_required(login_url='/login')
 def add_meal_to_day(request, id, slug, meal_type):
     if request.method == "GET":
@@ -201,13 +200,23 @@ def add_meal_to_day(request, id, slug, meal_type):
         day_to_update = day.getDay(request.user.id)
         for current_day in day_to_update:
             if current_day.id == id:
-                day.addMealToExistingDay(id,meal_element )
+                day.addMealToExistingDay(id,meal_element)
                 print("created", dish_to_add.dish_name, meal_type)
         data = {}
         data['day_id'] = id
         return JsonResponse(json.dumps(data), safe=False)
     
-
+@login_required(login_url='login')
+def delete_meal_from_day(request, day_id, meal_id):
+    if request.method == "GET":
+        day = DayOperations()
+        day.dayDishId(request.user.id, day_id)
+        data = {}
+        data['user_id'] = request.user.id
+        data['day_id'] = day_id
+        data['meal_id'] = meal_id
+        return JsonResponse(json.dumps(data), safe=False)
+    
 def reset(request):
     if request.method == "POST":
         form = ResetForm(request.POST)

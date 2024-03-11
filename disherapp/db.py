@@ -228,7 +228,7 @@ class DayOperations:
                     d_d = Day_Dish.objects.get(id = d.id)
                     results = DishOperations().getDishById(d_d.dish.id)
                     slug = DishOperations().getSlug(results.dish_name)
-                    data = {'name':results.dish_name, 'cal':results.dish_calories, 'type': d_d.meal_type, 'slug': slug}
+                    data = {'name':results.dish_name, 'cal':results.dish_calories, 'type': d_d.meal_type, 'slug': slug, 'dish_id': d.id}
                     data_table.append(data)
                 data_object = {'day_name': day.user_day_name, 'day_items': data_table, 'day_id':day.id}
                 results_table.append(data_object)
@@ -242,5 +242,16 @@ class DayOperations:
             day_object = User_Day.objects.filter(user_id = id)
             if day_object:
                 return True
+        except Exception as e:
+            print(e)
+    
+    def dayDishId(self, id, day_id):
+        try:
+            day_object = User_Day.objects.filter(user_id = id)
+            for day in day_object:
+                if day.id == int(day_id):
+                    d = day.user_day_dish.all()
+                    for i in d:
+                        print(i.id)
         except Exception as e:
             print(e)
