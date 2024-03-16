@@ -245,13 +245,16 @@ class DayOperations:
         except Exception as e:
             print(e)
     
-    def dayDishId(self, id, day_id):
+    def deleteDish(self, id, day_id, meal_id):
         try:
-            day_object = User_Day.objects.filter(user_id = id)
-            for day in day_object:
-                if day.id == int(day_id):
-                    d = day.user_day_dish.all()
-                    for i in d:
-                        print(i.id)
+            user_day = User_Day.objects.get(user_id=id, id=day_id)
+            user_day_dishes = user_day.user_day_dish.all()
+            day_dish_object = Day_Dish.objects.get(id=meal_id)
+            for dish in user_day_dishes:
+                if dish.id == meal_id:
+                    user_day.user_day_dish.remove(dish)
+                    day_dish_object.delete()
+                    print(f"Dish with id {meal_id} deleted successfully.")
+                    break  
         except Exception as e:
             print(e)

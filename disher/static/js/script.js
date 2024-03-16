@@ -942,6 +942,7 @@ let deleteDayInDb = (day_id, meal_id) => {
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        fetchDataFromWeb(updateCookies);
     }).catch(error => {
         console.log('Error fetching data:', error);
     });

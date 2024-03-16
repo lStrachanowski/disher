@@ -210,7 +210,7 @@ def add_meal_to_day(request, id, slug, meal_type):
 def delete_meal_from_day(request, day_id, meal_id):
     if request.method == "GET":
         day = DayOperations()
-        day.dayDishId(request.user.id, day_id)
+        day.deleteDish(request.user.id, day_id, meal_id)
         data = {}
         data['user_id'] = request.user.id
         data['day_id'] = day_id
