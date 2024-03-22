@@ -15,6 +15,7 @@ urlpatterns = [
     path('user/add/recepie', views.add_recepie, name="addrecepie"),
     path('user/addmealtoday/<int:id>/<str:slug>/<str:meal_type>', views.add_meal_to_day, name="addMealToDay"),
     path('user/deletemealfromday/<int:day_id>/<int:meal_id>', views.delete_meal_from_day, name= "deleteMealFromDay" ),
+    path('user/deleteday/<int:day_id>', views.delete_day, name= "deleteDay" ),
     path('login/', views.login_view, name="login"),
     path('register/', views.register, name="register"),
     path('reset/', views.reset, name="reset"),

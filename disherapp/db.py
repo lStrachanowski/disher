@@ -214,6 +214,8 @@ class DayOperations:
             day_object = User_Day.objects.get(pk = id)
             day_object.user_day_dish.add(user_day_dish)
             print("dish added")
+            return user_day_dish.id
+
         except Exception as e:
             print(e)
     
@@ -245,6 +247,22 @@ class DayOperations:
         except Exception as e:
             print(e)
     
+    def deleteDay(self,id, day_id):
+        try:
+
+            user_day = User_Day.objects.get(user_id=id, id=day_id)
+            user_day_dishes = user_day.user_day_dish.all()
+            day = DayOperations()
+            for dish in user_day_dishes:
+                if dish.id:
+                    day.deleteDish(id, day_id, dish.id)
+            user_day.delete()
+            print(f"Day with id {day_id} deleted successfully.")
+
+        except Exception as e:
+            print(e)
+
+
     def deleteDish(self, id, day_id, meal_id):
         try:
             user_day = User_Day.objects.get(user_id=id, id=day_id)
