@@ -124,7 +124,7 @@ let dayElementTemplate = (id, number) => {
             <div class="col-5 text-start p-3">
                 ${number}
             </div>
-            <div class="col-5 text-end">
+            <div class="col-5 text-end" id="${id}-counter">
                 0 kcal
             </div>
             <div class="col-2 text-end p-2">
@@ -204,11 +204,12 @@ let fetchNewElementData = async (day_id, slug, meal_type) => {
  * @param {string} id - Element id
  * 
  * */
-let addMealToDay = async(id, slug, dish, calories, meal_type, day_id, new_element, meal_id) => {
+let addMealToDay = async (id, slug, dish, calories, meal_type, day_id, new_element, meal_id) => {
     let newMealId = null;
     // Upddating data when new element is created
     if (new_element == 'true') {
-        newMealId = await fetchNewElementData(day_id, slug, meal_type );
+        newMealId = await fetchNewElementData(day_id, slug, meal_type);
+        fetchDataFromWeb(countCalories);
     }
     // Generating globalElementId
     if (meal_type) {
@@ -238,7 +239,7 @@ let addMealToDay = async(id, slug, dish, calories, meal_type, day_id, new_elemen
         // When there is no other day wit meal
         const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
         let selectedDay = document.getElementById(globalElementId);
-        
+
         if (selectedDay) {
             selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
             selectedDay.remove();
@@ -274,10 +275,10 @@ let addMealToDay = async(id, slug, dish, calories, meal_type, day_id, new_elemen
 
         let newSelectedMeal = document.getElementById(globalElementId);
         newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
-        if(newMealId){
+        if (newMealId) {
             let mealOptionsTemplate = mealOptions(globalElementId, day_id, newMealId);
             newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
-        }else{
+        } else {
             let mealOptionsTemplate = mealOptions(globalElementId, day_id, meal_id);
             newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
         }
@@ -326,14 +327,14 @@ let addMealToDay = async(id, slug, dish, calories, meal_type, day_id, new_elemen
         let newSelectedMeal = document.getElementById(globalElementId);
         newSelectedMeal.insertAdjacentHTML('afterend', htmlWithMeal);
 
-        if(newMealId){
+        if (newMealId) {
             let mealOptionsTemplate = mealOptions(globalElementId, day_id, newMealId);
             newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
-        }else{
+        } else {
             let mealOptionsTemplate = mealOptions(globalElementId, day_id, meal_id);
             newSelectedMeal.insertAdjacentHTML('afterend', mealOptionsTemplate);
         }
-        
+
     }
 
 }
@@ -452,7 +453,7 @@ function fetchDataFromWeb(callback) {
 }
 
 function updateCookies(data) {
-    document.cookie = "data="+"";
+    document.cookie = "data=" + "";
     document.cookie = "data=" + data;
     console.log("cookie updated");
 }
@@ -467,7 +468,7 @@ function addNewDay() {
                 day_id_list.push(value.day_id);
             }
             fetchDataFromWeb(updateCookies);
-            addDay((day_id_list[day_id_list.length -1]));
+            addDay((day_id_list[day_id_list.length - 1]));
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -484,7 +485,32 @@ function dayChange(newData) {
         for (item of day.day_items) {
             addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type, day.day_id, 'false', item.dish_id);
         }
+        updateCalories(dayData, day.day_id);
     }
+    
+}
+
+function updateCalories(dayData, day_id ){
+    let caloriesSum = countCaloriesSum(dayData, day_id);
+    getCounterElement(day_id, caloriesSum);
+}
+
+//Counts total day calories
+function countCaloriesSum(data, day_id) {
+    for (day of data) {
+        if (day.day_id == day_id) {
+            let caloriesSum = 0;
+            for (item of day.day_items) {
+                caloriesSum += item.cal;
+            }
+            return caloriesSum;
+        }
+
+    }
+}
+
+function getCounterElement(id, caloriesSum){
+    document.getElementById("day" + id + "-counter").innerHTML = caloriesSum + " cal" ;
 }
 
 
@@ -735,6 +761,7 @@ let deleteMealOptionElement = (id, day_id, meal_id) => {
     selectedOptionsElement.remove();
     let selectedOptionsElementCollapse = document.getElementById(id + "-collapse");
     selectedOptionsElementCollapse.remove();
+    
 }
 
 /**Is deleting day
@@ -951,28 +978,35 @@ let cancelDishButtonClick = () => {
 }
 
 let deleteMealInDb = (day_id, meal_id) => {
-    fetch(DELETE_MEAL + day_id + "/"+ meal_id)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        fetchDataFromWeb(updateCookies);
-    }).catch(error => {
-        console.log('Error fetching data:', error);
-    });
+    fetch(DELETE_MEAL + day_id + "/" + meal_id)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            fetchDataFromWeb(updateCookies);
+            fetchDataFromWeb(countCalories);
+        }).catch(error => {
+            console.log('Error fetching data:', error);
+        });
 }
 
 
 let deleteDayInDb = (day_id) => {
     let id = day_id.split("day")[1];
     fetch(DELETE_DAY + id)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        fetchDataFromWeb(updateCookies);
-    }).catch(error => {
-        console.log('Error fetching data:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            fetchDataFromWeb(updateCookies);
+        }).catch(error => {
+            console.log('Error fetching data:', error);
+        });
 }
 
 
 
+let countCalories = (newData) => {
+    dayData = JSON.parse(newData);
+    for (day of dayData) {
+        updateCalories(dayData, day.day_id);
+    }
+}
