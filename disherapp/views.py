@@ -12,6 +12,7 @@ from django.core import signing
 from django.db import models
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+from disher.models import Day_Dish
 
 
 def index(request):
@@ -226,6 +227,28 @@ def delete_day(request, day_id):
         data = {}
         data['day_id'] = day_id
         return JsonResponse(json.dumps(data), safe=False)
+    
+
+@login_required(login_url='login')
+def copy_dish(request, day_id, dish_id, element_id):
+    if request.method == "GET":
+        day = DayOperations()
+        json_data = day.getDayData(request.user)
+        dish_type = Day_Dish.objects.get(id = dish_id)
+        data = json.loads(json_data)
+        return_data = {}
+        return_data['element_id'] = element_id + '-copy'
+        for day in data:
+            if day['day_id'] == day_id:
+                for item in day['day_items']:
+                    if item["dish_id"] == dish_id:
+                        return_data['slug'] = item['slug']
+                        return_data['name'] = item['name']
+                        return_data['cal'] = item['cal']
+                        return_data['type'] = dish_type.meal_type
+                        return_data['day_id'] = day_id
+                        return_data['new_element'] = 'true'
+        return JsonResponse(json.dumps(return_data), safe=False)
 
 
 def reset(request):

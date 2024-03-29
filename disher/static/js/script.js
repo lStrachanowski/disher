@@ -6,7 +6,8 @@ var dayData = null;
 var DATA_URL = '/user/dashboard/daydata';
 var NEW_DAY = '/user/dashboard/addnewday';
 var DELETE_MEAL = '/user/deletemealfromday/';
-var DELETE_DAY = '/user/deleteday/'
+var DELETE_DAY = '/user/deleteday/';
+var COPY_DISH = '/user/copydish/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var tempAddedProduct = null;
 var productList = [];
@@ -81,7 +82,7 @@ let mealOptions = (id, day_id, meal_id) => {
     <div class="col-6" onclick="deleteMealOptionElement('${id}', '${day_id}', '${meal_id}');" >
         Usuń
     </div>
-    <div class="col-4">
+    <div class="col-4" onclick="copyMeal('${id}', '${day_id}','${meal_id}');">
         Kopiuj
     </div>
     <div class="col-2 text-end p-2">
@@ -187,7 +188,7 @@ let productListItem = (productName, quantity, unit) => {
     </div>`;
 }
 
-let fetchNewElementData = async (day_id, slug, meal_type) => {
+let addNewElementData = async (day_id, slug, meal_type) => {
     try {
         let response = await fetch('/user/addmealtoday/' + day_id + '/' + slug + '/' + meal_type);
         let data = await response.json();
@@ -208,7 +209,7 @@ let addMealToDay = async (id, slug, dish, calories, meal_type, day_id, new_eleme
     let newMealId = null;
     // Upddating data when new element is created
     if (new_element == 'true') {
-        newMealId = await fetchNewElementData(day_id, slug, meal_type);
+        newMealId = await addNewElementData(day_id, slug, meal_type);
         fetchDataFromWeb(countCalories);
     }
     // Generating globalElementId
@@ -1009,4 +1010,17 @@ let countCalories = (newData) => {
     for (day of dayData) {
         updateCalories(dayData, day.day_id);
     }
+}
+
+let copyMeal = (element_id, day_id, dish_id) =>{
+    fetch(COPY_DISH + day_id + "/" + dish_id + "/" + element_id )
+    .then(response => response.json())
+    .then(data => {
+        let elementData = JSON.parse(data);
+        addMealToDay(elementData.element_id, elementData.slug, elementData.name, elementData.cal, elementData.type, elementData.day_id, elementData.new_element)
+        console.log(elementData);
+    }).catch(error => {
+        console.log('Error fetching data:', error);
+    });
+
 }
