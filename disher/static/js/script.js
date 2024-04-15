@@ -7,6 +7,7 @@ var DATA_URL = '/user/dashboard/daydata';
 var NEW_DAY = '/user/dashboard/addnewday';
 var DELETE_MEAL = '/user/deletemealfromday/';
 var DELETE_DAY = '/user/deleteday/';
+var COPY_DAY = '/user/copyday/';
 var COPY_DISH = '/user/copydish/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var tempAddedProduct = null;
@@ -139,7 +140,7 @@ let dayElementTemplate = (id, number) => {
             <div class="col-6 p-3" onclick="deleteDay('${id}')">
                 Usuń
             </div>
-            <div class="col-4">
+            <div class="col-4" onclick="copyDay('${id}')">
                 Kopiuj
             </div>
             <div class="col-2 text-end p-2">
@@ -223,10 +224,8 @@ let addMealToDay = async (id, slug, dish, calories, meal_type, day_id, new_eleme
     } else {
         globalElementId = id;
     }
-
     let mealName = '';
     let selectedParent = null;
-
 
     if (meal_type) {
         mealName = symbolTable[meal_type][0];
@@ -240,7 +239,6 @@ let addMealToDay = async (id, slug, dish, calories, meal_type, day_id, new_eleme
         // When there is no other day wit meal
         const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
         let selectedDay = document.getElementById(globalElementId);
-
         if (selectedDay) {
             selectedDay.insertAdjacentHTML('afterend', htmlWithMeal);
             selectedDay.remove();
@@ -459,35 +457,64 @@ function updateCookies(data) {
     console.log("cookie updated");
 }
 
-function addNewDay() {
-    fetch(NEW_DAY)
-        .then(response => response.json())
-        .then(data => {
-            let valueCheck = JSON.parse(data);
-            day_id_list = []
-            for (value of valueCheck) {
-                day_id_list.push(value.day_id);
-            }
-            fetchDataFromWeb(updateCookies);
-            addDay((day_id_list[day_id_list.length - 1]));
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
+// function addNewDay(getList=false) {
+//     fetch(NEW_DAY)
+//         .then(response => response.json())
+//         .then(data => {
+//             let valueCheck = JSON.parse(data);
+//             day_id_list = []
+//             for (value of valueCheck) {
+//                 day_id_list.push(value.day_id);
+//             }
+//             fetchDataFromWeb(updateCookies);
+//             addDay((day_id_list[day_id_list.length - 1]));
+//             if(getList){
+//                 return (day_id_list[day_id_list.length - 1]);
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error fetching data:', error);
+//         });
 
+// }
+
+async function addNewDay(getList = false) {
+    try {
+        const response = await fetch(NEW_DAY);
+        const data = await response.json();
+        const valueCheck = JSON.parse(data);
+
+        const day_id_list = valueCheck.map(value => value.day_id);
+        fetchDataFromWeb(updateCookies);
+        addDay(day_id_list[day_id_list.length - 1]);
+
+        if (getList) {
+            return day_id_list[day_id_list.length - 1];
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
 
 
 // Rendering data about user day in dashboard
-function dayChange(newData) {
+function dayChange(newData, parsed) {
     dayData = JSON.parse(newData);
-    for (day of dayData) {
-        addDay(day.day_id);
-        for (item of day.day_items) {
-            addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type, day.day_id, 'false', item.dish_id);
+
+    if(parsed){
+        for (item of dayData.day_items) {
+            addMealToDay('day' + dayData.day_id + '-add', item.slug, item.name, item.cal, item.type, dayData.day_id, 'true', item.dish_id);
         }
-        updateCalories(dayData, day.day_id);
+    }else{
+        for (day of dayData) {
+            addDay(day.day_id);
+            for (item of day.day_items) {
+                addMealToDay('day' + day.day_name + '-add', item.slug, item.name, item.cal, item.type, day.day_id, 'false', item.dish_id);
+            }
+            updateCalories(dayData, day.day_id);
+        }
     }
+    
     
 }
 
@@ -1018,9 +1045,22 @@ let copyMeal = (element_id, day_id, dish_id) =>{
     .then(data => {
         let elementData = JSON.parse(data);
         addMealToDay(elementData.element_id, elementData.slug, elementData.name, elementData.cal, elementData.type, elementData.day_id, elementData.new_element)
-        console.log(elementData);
     }).catch(error => {
         console.log('Error fetching data:', error);
     });
 
+}
+
+let copyDay = async (day_id) =>{
+    try{
+        const response = await fetch(COPY_DAY+ day_id.split("day")[1]);
+        const data = await response.json();
+        let new_day_id = await addNewDay(true);
+        let temp = await JSON.parse(data);
+        temp.day_id = new_day_id;
+        let new_data = JSON.stringify(temp);
+        dayChange(new_data, true);
+    } catch (error) {
+    console.error('Error fetching data:', error);
+}
 }

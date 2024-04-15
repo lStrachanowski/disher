@@ -228,6 +228,16 @@ def delete_day(request, day_id):
         data['day_id'] = day_id
         return JsonResponse(json.dumps(data), safe=False)
     
+@login_required(login_url='login')
+def copy_day(request, day_id):
+    if request.method == "GET":
+        day = DayOperations()
+        json_data = day.getDayData(request.user)
+        data = json.loads(json_data)
+        for day in data:
+            if day['day_id'] == day_id:
+                return JsonResponse(json.dumps(day), safe=False)
+    
 
 @login_required(login_url='login')
 def copy_dish(request, day_id, dish_id, element_id):
