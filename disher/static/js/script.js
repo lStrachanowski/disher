@@ -661,15 +661,18 @@ let dayChecked = (name) => {
     container = document.getElementById(name);
     containerBody = document.getElementById(elementName[0]);
     containerHeader = document.getElementById(elementName[0] + "-edit");
+    containerHeaderOptions = document.getElementById(elementName[0] + "-edit-options");
     if (checkBox.checked) {
         containerBody.style.backgroundColor = "var(--bs-gray-200)";
         containerHeader.style.backgroundColor = "var(--bs-gray-600)";
+        containerHeaderOptions.style.backgroundColor = "var(--bs-gray-600)";
         document.getElementById("createShopList").style.display = "none";
         document.getElementById("generateShopList").classList.remove("generate-shoplist-button");
         document.getElementById("generateShopList").style.display = "block";
     } else {
         containerBody.style.backgroundColor = "var(--white)";
         containerHeader.style.backgroundColor = "var(--breakfast-color)";
+        containerHeaderOptions.style.backgroundColor = "var(--breakfast-color)";
         document.getElementById("createShopList").style.display = "block";
         document.getElementById("generateShopList").style.display = "none";
     }
