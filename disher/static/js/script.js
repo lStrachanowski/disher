@@ -441,6 +441,7 @@ function fetchDataFromWeb(callback) {
             let valueCheck = JSON.parse(data);
             if (valueCheck.message) {
                 console.log(valueCheck.message);
+                document.cookie = "data=";
             } else {
                 document.cookie = "data=" + data;
                 callback(data);
@@ -1023,6 +1024,7 @@ let deleteMealInDb = (day_id, meal_id) => {
 
 let deleteDayInDb = (day_id) => {
     let id = day_id.split("day")[1];
+    console.log(id);
     fetch(DELETE_DAY + id)
         .then(response => response.json())
         .then(data => {
