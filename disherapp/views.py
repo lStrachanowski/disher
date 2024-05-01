@@ -20,7 +20,6 @@ def index(request):
     user_status = login_status.get_user_status(request)
     recepies_data = DishOperations()
     recepies_for_template = recepies_data.getAllDishes().order_by('?')[:6]
-    print(recepies_for_template)
     context = {"user_status": user_status, "recepies":recepies_for_template}
     return render(request, "disher/index.html", context)
 
