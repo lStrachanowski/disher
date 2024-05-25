@@ -10,6 +10,7 @@ var DELETE_DAY = '/user/deleteday/';
 var COPY_DAY = '/user/copyday/';
 var COPY_DISH = '/user/copydish/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
+var SEARCH_RECEPIE_URL = window.location.protocol + "//" + window.location.host + '/getrecepiesearch/';
 var tempAddedProduct = null;
 var productList = [];
 
@@ -187,6 +188,108 @@ let productListItem = (productName, quantity, unit) => {
     <div class="col-lg-7  text-start cursor">${quantity} ${unit}</div>
     <div class="col-lg-2  text-center">usuń</div>
     </div>`;
+}
+
+
+let recepieSearchResultItem = (dishData) => {
+    console.log(globalElementId);
+    let meal_type = "";
+    let container = document.getElementById("recepieContainer");
+    let day_id = globalElementId.split("-")[1];
+    for (v in symbolTable) {
+        if (symbolTable[v].includes(globalElementId.split('-')[3])) {
+            meal_type = v;
+        }
+    }
+    container.replaceChildren();
+    if(dishData && dishData.length > 0){  
+        dishData.forEach(recepie =>{
+            const recepieDiv = document.createElement("div");
+                recepieDiv.className = "col-xl-3 col-lg-5 col-md-10 text-center recepie-container white-background m-3";
+                recepieDiv.id = recepie.id;
+                recepieDiv.innerHTML = `
+                    <div class="d-flex row align-items-center align-items-stretch">
+                        <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
+                            onclick="location.href='/recepie/${recepie.slug}'">
+                            ${recepie.name}
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center col-4 recepie-header-font ${getDishTypeClass(recepie.dish_type)} recepie-meal-border p-2">
+                            ${getDishTypeName(recepie.dish_type)}
+                        </div>
+                        <div class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
+                            <div class="col-12 min-h ">
+                                ${recepie.dish_description}
+                            </div>
+                            <div class="col-12">
+                                <a href="/recepie/${recepie.slug}" class="font-bold">więcej...</a>
+                            </div>
+                        </div>
+                        <div class="col-4 p-2">
+                            <div class="row justify-content-around">
+                                <div class="col-lg-12 p-1">
+                                    <img src="/static/img/iconfire.svg" class="icon-size-15">
+                                </div>
+                                <div class="col-lg-12 recepie-font font-bold">
+                                    ${recepie.dish_calories} kcal
+                                </div>
+                                <div class="col-lg-12 p-1">
+                                    <img src="/static/img/iconclock.svg" class="icon-size-15">
+                                </div>
+                                <div class="col-lg-12 recepie-font font-bold">
+                                    ${getPreparationTimeName(recepie.preparation_time)}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelectorContainer">
+                                <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelector"
+                                    data-bs-dismiss="modal" type="button"
+                                    onclick="addMealToDay( '${globalElementId}', '${recepie.dish_slug}', '${recepie.name}', '${recepie.dish_calories}', '${meal_type}', '${day_id}', 'true');">
+                                    <div class="cross-button"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(recepieDiv);
+        });
+    }else {
+        const recepieDiv = document.createElement("div");
+        recepieDiv.className = "col-12 text-center";
+        recepieDiv.innerHTML = 'Nothing to show';
+        container.appendChild(recepieDiv);
+    }
+}
+
+function getDishTypeClass(dishType) {
+    switch(dishType) {
+        case 'B': return 'recepie-meal-color-breakfast';
+        case 'B2': return 'recepie-meal-color-second-breakfast';
+        case 'D': return 'recepie-meal-color-dinner';
+        case 'D2': return 'recepie-meal-color-snack';
+        case 'S': return 'recepie-meal-color-supper';
+        default: return '';
+    }
+}
+
+function getDishTypeName(dishType) {
+    switch(dishType) {
+        case 'B': return 'Śniadanie';
+        case 'B2': return '2 Śniadanie';
+        case 'D': return 'Obiad';
+        case 'D2': return 'Przekąska';
+        case 'S': return 'Kolacja';
+        default: return '';
+    }
+}
+
+function getPreparationTimeName(preparationTime) {
+    switch(preparationTime) {
+        case 'S': return 'Szybkie';
+        case 'M': return 'Średni';
+        case 'L': return 'Długi';
+        default: return '';
+    }
 }
 
 let addNewElementData = async (day_id, slug, meal_type) => {
@@ -502,11 +605,11 @@ async function addNewDay(getList = false) {
 function dayChange(newData, parsed) {
     dayData = JSON.parse(newData);
 
-    if(parsed){
+    if (parsed) {
         for (item of dayData.day_items) {
             addMealToDay('day' + dayData.day_id + '-add', item.slug, item.name, item.cal, item.type, dayData.day_id, 'true', item.dish_id);
         }
-    }else{
+    } else {
         for (day of dayData) {
             addDay(day.day_id);
             for (item of day.day_items) {
@@ -515,11 +618,11 @@ function dayChange(newData, parsed) {
             updateCalories(dayData, day.day_id);
         }
     }
-    
-    
+
+
 }
 
-function updateCalories(dayData, day_id ){
+function updateCalories(dayData, day_id) {
     let caloriesSum = countCaloriesSum(dayData, day_id);
     getCounterElement(day_id, caloriesSum);
 }
@@ -538,8 +641,8 @@ function countCaloriesSum(data, day_id) {
     }
 }
 
-function getCounterElement(id, caloriesSum){
-    document.getElementById("day" + id + "-counter").innerHTML = caloriesSum + " cal" ;
+function getCounterElement(id, caloriesSum) {
+    document.getElementById("day" + id + "-counter").innerHTML = caloriesSum + " cal";
 }
 
 
@@ -786,14 +889,13 @@ let deleteMealElement = (id) => {
  * */
 let deleteMealOptionElement = (id, day_id, meal_id) => {
     deleteMealInDb(day_id, meal_id);
-    id = id.split("-").slice(0, 4).join("-");
     let selectedElement = document.getElementById(id);
     selectedElement.remove();
     let selectedOptionsElement = document.getElementById(id + "-edit-options");
     selectedOptionsElement.remove();
     let selectedOptionsElementCollapse = document.getElementById(id + "-collapse");
     selectedOptionsElementCollapse.remove();
-    
+
 }
 
 /**Is deleting day
@@ -815,10 +917,10 @@ let removeSearchResults = () => {
 }
 
 function searchProduct() {
-    var inputVaue = document.getElementById("dish_product_search").value;
+    var inputValue = document.getElementById("dish_product_search").value;
     const toRemove = document.querySelectorAll(".product-search-result");
-    if (inputVaue.length >= 3) {
-        fetchSearchReasultsFromWeb(inputVaue);
+    if (inputValue.length >= 3) {
+        fetchSearchReasultsFromWeb(inputValue);
     } else {
         if (toRemove) {
             removeSearchResults();
@@ -861,6 +963,10 @@ function fetchSearchReasultsFromWeb(searchQuery) {
             console.error('Error fetching data:', error);
         });
 }
+
+
+
+
 
 
 /**Adding and removing searchr results to template
@@ -1044,21 +1150,21 @@ let countCalories = (newData) => {
     }
 }
 
-let copyMeal = (element_id, day_id, dish_id) =>{
-    fetch(COPY_DISH + day_id + "/" + dish_id + "/" + element_id )
-    .then(response => response.json())
-    .then(data => {
-        let elementData = JSON.parse(data);
-        addMealToDay(elementData.element_id, elementData.slug, elementData.name, elementData.cal, elementData.type, elementData.day_id, elementData.new_element)
-    }).catch(error => {
-        console.log('Error fetching data:', error);
-    });
+let copyMeal = (element_id, day_id, dish_id) => {
+    fetch(COPY_DISH + day_id + "/" + dish_id + "/" + element_id)
+        .then(response => response.json())
+        .then(data => {
+            let elementData = JSON.parse(data);
+            addMealToDay(elementData.element_id, elementData.slug, elementData.name, elementData.cal, elementData.type, elementData.day_id, elementData.new_element)
+        }).catch(error => {
+            console.log('Error fetching data:', error);
+        });
 
 }
 
-let copyDay = async (day_id) =>{
-    try{
-        const response = await fetch(COPY_DAY+ day_id.split("day")[1]);
+let copyDay = async (day_id) => {
+    try {
+        const response = await fetch(COPY_DAY + day_id.split("day")[1]);
         const data = await response.json();
         let new_day_id = await addNewDay(true);
         let temp = await JSON.parse(data);
@@ -1066,6 +1172,41 @@ let copyDay = async (day_id) =>{
         let new_data = JSON.stringify(temp);
         dayChange(new_data, true);
     } catch (error) {
-    console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
+    }
 }
+
+
+/**Download product data from db
+ * 
+ * @param {string}searchQuery - recepie name
+ * 
+ * */
+
+async function fetchRecepieSearchResultsFromWeb(searchQuery) {
+    try {
+        const response = await fetch(SEARCH_RECEPIE_URL + searchQuery);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; 
+    }
+}
+
+let searchRecepie = () => {
+    let inputValue = document.getElementById("search").value;
+    if (inputValue.length >= 2) {
+        fetchRecepieSearchResultsFromWeb(inputValue).then(data =>{
+            console.log(data.dish_data);
+            recepieSearchResultItem(data.dish_data);
+        }).catch( error =>{
+            console.error('Error logging data:', error);
+        });
+    } else {
+        console.log("to short");
+    }
 }

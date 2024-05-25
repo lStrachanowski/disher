@@ -50,7 +50,7 @@ def dashboard(request):
 
     recepies_data = DishOperations()
     recepies_for_template = []
-    recepies_for_template = recepies_data.getAllDishes()
+    recepies_for_template = recepies_data.getAllDishes().order_by('?')[:6]
     
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
                "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value}
@@ -374,4 +374,18 @@ def create_day(request):
     day_data.createDay("test", request.user)
     data = daydata(request)
     return data
-    
+
+@login_required(login_url='/login')  
+def get_recepie_search(request, recepiename):
+    data = {}
+    data['dish_data'] = []
+    recepie= DishOperations()
+    recepie_data = recepie.findDish(recepiename)
+    for recepie_item in recepie_data:
+        slug = recepie_item.dish_name.replace(" ","-")
+        dish_data = recepie.getDishData(slug)
+        print(dish_data.dish_type)
+        data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":dish_data.preparation_time, 
+                                "dish_type":dish_data.dish_type, "dish_calories": dish_data.dish_calories,
+                                "dish_description":dish_data.dish_description, "dish_slug":dish_data.slug, "dish_id":dish_data.id})
+    return JsonResponse(data, safe=False)

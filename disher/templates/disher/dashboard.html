@@ -202,12 +202,12 @@
                                     <label for="search" class="search-label mt-2 mb-2">Wyszukaj przepis</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control search-input" id="search"
-                                            aria-describedby="basic-addon3" placeholder="Wpisz czego szukasz">
+                                            aria-describedby="basic-addon3" placeholder="Wpisz czego szukasz" onkeydown="searchRecepie();" >
                                     </div>
                                 </div>
                             </div>
                             <!-- kafelki przepisów -->
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-center" id="recepieContainer">
                                 {% for recepie in recepies %}
 
                                 <div class="col-xl-3 col-lg-5 col-md-10  text-center recepie-container white-background m-3"

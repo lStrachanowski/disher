@@ -28,5 +28,6 @@ urlpatterns = [
     path('activated/', views.user_activated, name="isActivated"),
     path('setidcookie/', views.set_user_id_cookie, name="setIdCookie"),
     path('getidcookie/', views.get_user_id_cookie, name="getIdCookie"),
-    path('getproductsearch/<str:productname>', views.get_product_search, name="getProductSearch")
+    path('getproductsearch/<str:productname>', views.get_product_search, name="getProductSearch"),
+    path('getrecepiesearch/<str:recepiename>', views.get_recepie_search, name="getRecepieSearch")
 ]
