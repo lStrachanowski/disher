@@ -29,5 +29,6 @@ urlpatterns = [
     path('setidcookie/', views.set_user_id_cookie, name="setIdCookie"),
     path('getidcookie/', views.get_user_id_cookie, name="getIdCookie"),
     path('getproductsearch/<str:productname>', views.get_product_search, name="getProductSearch"),
-    path('getrecepiesearch/<str:recepiename>', views.get_recepie_search, name="getRecepieSearch")
+    path('getrecepiesearch/<str:recepiename>', views.get_recepie_search, name="getRecepieSearch"),
+    path('user/productslist/<str:days>', views.get_days_product_list, name="getDaysProductList")
 ]

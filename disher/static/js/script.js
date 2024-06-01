@@ -3,12 +3,14 @@ var globalElementId = null;
 var globalMealName = "";
 var globalSelectedValue = "";
 var dayData = null;
+var shopListSelectedDays = [];
 var DATA_URL = '/user/dashboard/daydata';
 var NEW_DAY = '/user/dashboard/addnewday';
 var DELETE_MEAL = '/user/deletemealfromday/';
 var DELETE_DAY = '/user/deleteday/';
 var COPY_DAY = '/user/copyday/';
 var COPY_DISH = '/user/copydish/';
+var DAYS_PRODUCTS_LIST = '/user/productslist/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var SEARCH_RECEPIE_URL = window.location.protocol + "//" + window.location.host + '/getrecepiesearch/';
 var tempAddedProduct = null;
@@ -761,12 +763,14 @@ let dayEditOptionsClick = (name) => {
 // Is chcanging color of daycontainer and showing generate shoplist button
 let dayChecked = (name) => {
     elementName = name.split("-");
+    let dayId = elementName[0].slice(3);
     checkBox = document.getElementById(name);
     container = document.getElementById(name);
     containerBody = document.getElementById(elementName[0]);
     containerHeader = document.getElementById(elementName[0] + "-edit");
     containerHeaderOptions = document.getElementById(elementName[0] + "-edit-options");
     if (checkBox.checked) {
+        shopListSelectedDays.push(dayId);
         containerBody.style.backgroundColor = "var(--bs-gray-200)";
         containerHeader.style.backgroundColor = "var(--bs-gray-600)";
         containerHeaderOptions.style.backgroundColor = "var(--bs-gray-600)";
@@ -774,12 +778,14 @@ let dayChecked = (name) => {
         document.getElementById("generateShopList").classList.remove("generate-shoplist-button");
         document.getElementById("generateShopList").style.display = "block";
     } else {
+        shopListSelectedDays = shopListSelectedDays.filter(item => item !== dayId);
         containerBody.style.backgroundColor = "var(--white)";
         containerHeader.style.backgroundColor = "var(--breakfast-color)";
         containerHeaderOptions.style.backgroundColor = "var(--breakfast-color)";
         document.getElementById("createShopList").style.display = "block";
         document.getElementById("generateShopList").style.display = "none";
     }
+    console.log(shopListSelectedDays);
 }
 
 
@@ -1208,5 +1214,23 @@ let searchRecepie = () => {
         });
     } else {
         console.log("to short");
+    }
+}
+
+
+async function getDaysProductsList() {
+    var daysId = "";
+    var daysId = shopListSelectedDays.join(",");
+    try {
+        const response = await fetch(DAYS_PRODUCTS_LIST + daysId);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        console.log(JSON.parse(data));
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; 
     }
 }

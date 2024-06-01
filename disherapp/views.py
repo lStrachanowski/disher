@@ -13,7 +13,7 @@ from django.db import models
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from disher.models import Day_Dish
-
+from . import calculations
 
 def index(request):
     login_status = CheckIfUserIsLogged()
@@ -384,8 +384,29 @@ def get_recepie_search(request, recepiename):
     for recepie_item in recepie_data:
         slug = recepie_item.dish_name.replace(" ","-")
         dish_data = recepie.getDishData(slug)
-        print(dish_data.dish_type)
         data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":dish_data.preparation_time, 
                                 "dish_type":dish_data.dish_type, "dish_calories": dish_data.dish_calories,
                                 "dish_description":dish_data.dish_description, "dish_slug":dish_data.slug, "dish_id":dish_data.id})
     return JsonResponse(data, safe=False)
+
+@login_required(login_url='/login')
+def get_days_product_list(request, days):
+    days_id = days.split(",")
+    dayData = DayOperations()
+    json_data = dayData.getDayData(request.user)
+    data = json.loads(json_data)
+    dish_data = DishOperations()
+    amount = ProductAmountOperations()
+    product_list = []
+    for id in days_id:
+        for value in data:
+            if value["day_id"] == int(id):
+                for item in value["day_items"]:
+                    products = dish_data.getDish(dish_data.getDishData(item["slug"]).dish_name)
+                    recepie_products_amounts = amount.getAllAmounts(products)
+                    product_list.append(recepie_products_amounts)
+    calculations.calculateShopList(product_list)
+    json_response_data = {'results': product_list}
+    product_list_json = json.dumps(json_response_data)
+    return JsonResponse(product_list_json, safe=False)
+
