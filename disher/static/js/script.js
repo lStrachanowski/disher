@@ -782,10 +782,12 @@ let dayChecked = (name) => {
         containerBody.style.backgroundColor = "var(--white)";
         containerHeader.style.backgroundColor = "var(--breakfast-color)";
         containerHeaderOptions.style.backgroundColor = "var(--breakfast-color)";
-        document.getElementById("createShopList").style.display = "block";
-        document.getElementById("generateShopList").style.display = "none";
+        if(shopListSelectedDays.length < 1){
+            document.getElementById("createShopList").style.display = "block";
+            document.getElementById("generateShopList").style.display = "none";
+        }
+        
     }
-    console.log(shopListSelectedDays);
 }
 
 
