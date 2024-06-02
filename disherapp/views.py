@@ -78,7 +78,8 @@ def user_profil(request):
 def shoplist(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
-    context = {"user_status": user_status}
+    shoplist_data = request.session.get('shoplist_data', 'default value if not found')
+    context = {"user_status": user_status, "shoplist_data":shoplist_data["results"]}
     return render(request, "disher/shoplist.html", context)
 
 @login_required(login_url='/login')
@@ -405,8 +406,9 @@ def get_days_product_list(request, days):
                     products = dish_data.getDish(dish_data.getDishData(item["slug"]).dish_name)
                     recepie_products_amounts = amount.getAllAmounts(products)
                     product_list.append(recepie_products_amounts)
-    calculations.calculateShopList(product_list)
+    product_list = calculations.calculateShopList(product_list)
     json_response_data = {'results': product_list}
     product_list_json = json.dumps(json_response_data)
+    request.session['shoplist_data'] = json_response_data
     return JsonResponse(product_list_json, safe=False)
 

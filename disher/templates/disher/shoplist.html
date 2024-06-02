@@ -41,14 +41,16 @@
                 <div class="col-lg-2  text-center"></div>
             </div>
         </div>
+        {% for item in shoplist_data%}
         <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
             <div
                 class="col-lg-6 col-12 d-flex align-items-center justify-content-around  recepie-container  white-background cursor">
-                <div class="col-lg-2  text-center m-3 font-bold cursor">Kasza jaglana</div>
-                <div class="col-lg-7  text-start cursor">100 gr</div>
+                <div class="col-lg-2  text-center m-3 font-bold cursor">{{item.0}}</div>
+                <div class="col-lg-7  text-start cursor">{{item.1}} {{item.2}}</div>
                 <div class="col-lg-2  text-center">usuń</div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 
