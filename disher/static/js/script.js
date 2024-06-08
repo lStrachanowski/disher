@@ -4,6 +4,9 @@ var globalMealName = "";
 var globalSelectedValue = "";
 var dayData = null;
 var shopListSelectedDays = [];
+var persons = 1;
+var baseAmounts = [];
+var baseAmountsUnits = [];
 var DATA_URL = '/user/dashboard/daydata';
 var NEW_DAY = '/user/dashboard/addnewday';
 var DELETE_MEAL = '/user/deletemealfromday/';
@@ -204,12 +207,12 @@ let recepieSearchResultItem = (dishData) => {
         }
     }
     container.replaceChildren();
-    if(dishData && dishData.length > 0){  
-        dishData.forEach(recepie =>{
+    if (dishData && dishData.length > 0) {
+        dishData.forEach(recepie => {
             const recepieDiv = document.createElement("div");
-                recepieDiv.className = "col-xl-3 col-lg-5 col-md-10 text-center recepie-container white-background m-3";
-                recepieDiv.id = recepie.id;
-                recepieDiv.innerHTML = `
+            recepieDiv.className = "col-xl-3 col-lg-5 col-md-10 text-center recepie-container white-background m-3";
+            recepieDiv.id = recepie.id;
+            recepieDiv.innerHTML = `
                     <div class="d-flex row align-items-center align-items-stretch">
                         <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
                             onclick="location.href='/recepie/${recepie.slug}'">
@@ -253,9 +256,9 @@ let recepieSearchResultItem = (dishData) => {
                         </div>
                     </div>
                 `;
-                container.appendChild(recepieDiv);
+            container.appendChild(recepieDiv);
         });
-    }else {
+    } else {
         const recepieDiv = document.createElement("div");
         recepieDiv.className = "col-12 text-center";
         recepieDiv.innerHTML = 'Nothing to show';
@@ -264,7 +267,7 @@ let recepieSearchResultItem = (dishData) => {
 }
 
 function getDishTypeClass(dishType) {
-    switch(dishType) {
+    switch (dishType) {
         case 'B': return 'recepie-meal-color-breakfast';
         case 'B2': return 'recepie-meal-color-second-breakfast';
         case 'D': return 'recepie-meal-color-dinner';
@@ -275,7 +278,7 @@ function getDishTypeClass(dishType) {
 }
 
 function getDishTypeName(dishType) {
-    switch(dishType) {
+    switch (dishType) {
         case 'B': return 'Śniadanie';
         case 'B2': return '2 Śniadanie';
         case 'D': return 'Obiad';
@@ -286,7 +289,7 @@ function getDishTypeName(dishType) {
 }
 
 function getPreparationTimeName(preparationTime) {
-    switch(preparationTime) {
+    switch (preparationTime) {
         case 'S': return 'Szybkie';
         case 'M': return 'Średni';
         case 'L': return 'Długi';
@@ -782,11 +785,11 @@ let dayChecked = (name) => {
         containerBody.style.backgroundColor = "var(--white)";
         containerHeader.style.backgroundColor = "var(--breakfast-color)";
         containerHeaderOptions.style.backgroundColor = "var(--breakfast-color)";
-        if(shopListSelectedDays.length < 1){
+        if (shopListSelectedDays.length < 1) {
             document.getElementById("createShopList").style.display = "block";
             document.getElementById("generateShopList").style.display = "none";
         }
-        
+
     }
 }
 
@@ -1201,17 +1204,17 @@ async function fetchRecepieSearchResultsFromWeb(searchQuery) {
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
-        throw error; 
+        throw error;
     }
 }
 
 let searchRecepie = () => {
     let inputValue = document.getElementById("search").value;
     if (inputValue.length >= 2) {
-        fetchRecepieSearchResultsFromWeb(inputValue).then(data =>{
+        fetchRecepieSearchResultsFromWeb(inputValue).then(data => {
             console.log(data.dish_data);
             recepieSearchResultItem(data.dish_data);
-        }).catch( error =>{
+        }).catch(error => {
             console.error('Error logging data:', error);
         });
     } else {
@@ -1233,6 +1236,38 @@ async function getDaysProductsList() {
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
-        throw error; 
+        throw error;
     }
+}
+
+
+let valueUp = () => {
+    persons += 1;
+    document.getElementById("personsCounter").innerHTML = "Liczba osób: " + persons;
+    updateAmounts();
+};
+
+
+let valueDown = () => {
+    if (persons > 1) {
+        persons -= 1;
+        document.getElementById("personsCounter").innerHTML = "Liczba osób: " + persons;
+        updateAmounts();
+    }
+};
+
+
+// Updates values in shoplist template
+let updateAmounts = () => {
+    const values = document.getElementsByClassName("recepie-amount");
+    let v = [...values];
+    if( baseAmounts.length < 1){
+        baseAmounts = v.map(element => parseInt((element.textContent).split(" ")[0], 10));
+        baseAmountsUnits = v.map(element => element.textContent.split(" ")[1]);
+    }
+    let tempAmount = baseAmounts.map(item => item * persons);
+    v.forEach( (v,k) =>{
+        values[k].textContent = tempAmount[k] + " " + baseAmountsUnits[k];
+    });
+  
 }
