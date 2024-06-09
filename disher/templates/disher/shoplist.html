@@ -17,21 +17,24 @@
 
     <div class="container-fluid justify-content-center text-center align-items-center mt-5">
         <div class="row align-items-center justify-content-center m-1 ">
-            <button class="btn btn-primary col-lg-2 col-md-4 col-8 generate-list-button-color">Eksportuj listę</button>
+            <button class="btn btn-primary col-lg-2 col-md-4 col-8 generate-list-button-color"
+                onclick="exportFile()">Eksportuj listę</button>
         </div>
-    
-    
+
+
         <div class="row d-flex align-items-center justify-content-center mt-2 m-1">
             <div class="d-flex col-12 align-items-center justify-content-center font-bold dark-font m-5">
                 <div class="col-lg-1 col-2 d-flex justify-content-center">
-                    <div class="add-button-shoplist d-flex align-items-center justify-content-center cursor m-2" onclick="valueDown();">
-                        <div class="minus-button"  ></div>
+                    <div class="add-button-shoplist d-flex align-items-center justify-content-center cursor m-2"
+                        onclick="valueDown();">
+                        <div class="minus-button"></div>
                     </div>
                 </div>
                 <div class="person-font col-lg-2 col-6" id="personsCounter">Liczba osób: 1</div>
                 <div class="col-lg-1 col-2 d-flex justify-content-center">
-                    <div class="add-button-shoplist d-flex align-items-center justify-content-center cursor m-1" onclick="valueUp();">
-                        <div class="cross-button" ></div>
+                    <div class="add-button-shoplist d-flex align-items-center justify-content-center cursor m-1"
+                        onclick="valueUp();">
+                        <div class="cross-button"></div>
                     </div>
                 </div>
             </div>
@@ -43,7 +46,7 @@
                 </div>
             </div>
             {% for item in shoplist_data%}
-            <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1" >
+            <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
                 <div
                     class="col-lg-6 col-12 d-flex align-items-center justify-content-around  recepie-container  white-background cursor">
                     <div class="col-lg-2  text-center m-3 font-bold cursor">{{item.0}}</div>
@@ -54,11 +57,21 @@
             {% endfor %}
         </div>
     </div>
-
 </div>
 
 
-
+    <div id="exportDiv" style="display: none">
+        <table style="width: 300px;">
+            <tbody>
+                {% for item in shoplist_data%}
+                <tr>
+                    <td>{{item.0}}</td>
+                    <td class="recepie-amount-print">{{item.1}} {{item.2}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
 {% endblock %}

@@ -1244,7 +1244,8 @@ async function getDaysProductsList() {
 let valueUp = () => {
     persons += 1;
     document.getElementById("personsCounter").innerHTML = "Liczba osób: " + persons;
-    updateAmounts();
+    updateAmounts("recepie-amount");
+    updateAmounts("recepie-amount-print");
 };
 
 
@@ -1252,14 +1253,15 @@ let valueDown = () => {
     if (persons > 1) {
         persons -= 1;
         document.getElementById("personsCounter").innerHTML = "Liczba osób: " + persons;
-        updateAmounts();
+        updateAmounts("recepie-amount");
+        updateAmounts("recepie-amount-print");
     }
 };
 
 
 // Updates values in shoplist template
-let updateAmounts = () => {
-    const values = document.getElementsByClassName("recepie-amount");
+let updateAmounts = (clasname) => {
+    const values = document.getElementsByClassName(clasname);
     let v = [...values];
     if( baseAmounts.length < 1){
         baseAmounts = v.map(element => parseInt((element.textContent).split(" ")[0], 10));
@@ -1270,4 +1272,25 @@ let updateAmounts = () => {
         values[k].textContent = tempAmount[k] + " " + baseAmountsUnits[k];
     });
   
+}
+
+let exportFile = () => {
+        // Get the content from the container
+        const content = document.getElementById('exportDiv').innerHTML;
+        // Create a Blob from the content
+        const blob = new Blob([content], { type: 'text/html' });
+
+        // Create a link element
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'shoplist.html';
+
+        // Append the link to the body
+        document.body.appendChild(link);
+
+        // Programmatically click the link to trigger the download
+        link.click();
+
+        // Remove the link from the document
+        document.body.removeChild(link);
 }
