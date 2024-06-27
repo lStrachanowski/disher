@@ -45,8 +45,11 @@ def recepie(request, slug):
 def dashboard(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
-    user_has_recepies = True
-    user_has_diet_list = True
+    user_has_recepies = False
+    user_has_diet_list = False
+    day = DayOperations()
+    if day.checkIfEmpty() > 0:
+        user_has_recepies = True
 
     recepies_data = DishOperations()
     recepies_for_template = []

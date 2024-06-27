@@ -285,3 +285,12 @@ class DayOperations:
                     break  
         except Exception as e:
             print(e)
+    
+    def checkIfEmpty(self):
+        try:
+            user_day = User_Day.objects.all()
+            return user_day.count()
+        except Exception as e:
+            print(e)
+    
+        
