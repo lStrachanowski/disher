@@ -196,6 +196,17 @@ let productListItem = (productName, quantity, unit) => {
 }
 
 
+let shopListButtonTemplate= () =>{
+    return`<div class="row col-12 align-items-center justify-content-center m-3 " id="shopListContainer">
+            <button class="btn btn-primary col-lg-2 col-md-4 col-8  generate-list-button-color" id="createShopList">
+                Utwórz listę zakupów
+            </button>
+            <button class="btn btn-primary col-lg-2 col-md-4 col-8  generate-shoplist-button-color generate-shoplist-button" id="generateShopList" onclick="getDaysProductsList();">
+                Generuj listę zakupów
+            </button>
+    </div>`;
+}
+
 let recepieSearchResultItem = (dishData) => {
     console.log(globalElementId);
     let meal_type = "";
@@ -560,6 +571,22 @@ function fetchDataFromWeb(callback) {
         });
 }
 
+function checkIfShopListButtonExist(){
+    let shoplistButton = document.getElementById("createShopList");
+    let dayContainers = document.getElementsByClassName("form-check").length;
+    let partentHtml = document.getElementById("mainDashboard");
+    var buttonTempale = shopListButtonTemplate();
+    
+
+    if (shoplistButton && dayContainers < 1){
+        console.log("Ukryj button");
+        shoplistButton.style.display = 'none';
+        return
+    }
+    partentHtml.insertAdjacentHTML('beforebegin', buttonTempale);
+
+}
+
 function updateCookies(data) {
     document.cookie = "data=" + "";
     document.cookie = "data=" + data;
@@ -596,6 +623,8 @@ async function addNewDay(getList = false) {
         const day_id_list = valueCheck.map(value => value.day_id);
         fetchDataFromWeb(updateCookies);
         addDay(day_id_list[day_id_list.length - 1]);
+
+        checkIfShopListButtonExist();
 
         if (getList) {
             return day_id_list[day_id_list.length - 1];
@@ -1141,12 +1170,11 @@ let deleteMealInDb = (day_id, meal_id) => {
 
 let deleteDayInDb = (day_id) => {
     let id = day_id.split("day")[1];
-    console.log(id);
     fetch(DELETE_DAY + id)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             fetchDataFromWeb(updateCookies);
+            checkIfShopListButtonExist();
         }).catch(error => {
             console.log('Error fetching data:', error);
         });

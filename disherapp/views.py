@@ -15,6 +15,9 @@ from django.core.serializers.json import DjangoJSONEncoder
 from disher.models import Day_Dish
 from . import calculations
 
+user_has_recepies = False
+user_has_diet_list = False
+
 def index(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
@@ -45,16 +48,15 @@ def recepie(request, slug):
 def dashboard(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
-    user_has_recepies = False
-    user_has_diet_list = False
+    global user_has_recepies 
+    global user_has_diet_list 
     day = DayOperations()
     if day.checkIfEmpty() > 0:
-        user_has_recepies = True
-
+        user_has_diet_list = True
     recepies_data = DishOperations()
     recepies_for_template = []
     recepies_for_template = recepies_data.getAllDishes().order_by('?')[:6]
-    
+    print(user_has_diet_list)
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
                "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value}
     return render(request, "disher/dashboard.html", context)
@@ -230,6 +232,10 @@ def delete_day(request, day_id):
         day.deleteDay(request.user.id, day_id)
         data = {}
         data['day_id'] = day_id
+        dayCouont = day.checkIfEmpty()
+        if dayCouont < 1:
+            global user_has_diet_list 
+            user_has_diet_list = False
         return JsonResponse(json.dumps(data), safe=False)
     
 @login_required(login_url='login')
@@ -377,6 +383,8 @@ def create_day(request):
     day_data = DayOperations()
     day_data.createDay("test", request.user)
     data = daydata(request)
+    global user_has_diet_list 
+    user_has_diet_list = True
     return data
 
 @login_required(login_url='/login')  
