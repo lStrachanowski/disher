@@ -34,3 +34,14 @@ class DishForm(forms.Form):
     dishDescription = forms.CharField( max_length=1000, required=True)
     duration = forms.CharField( min_length=1, max_length=100, required=True)
     type_of_meal = forms.CharField( min_length=1, max_length=100, required=True)
+
+
+class ChangePassword(forms.Form):
+    current_password = forms.CharField(
+        min_length=6, max_length=32, widget=forms.PasswordInput, required=True)
+    new_password = forms.CharField(
+        max_length=32, widget=forms.PasswordInput, required=True)
+    new_password_confirmation = forms.CharField(
+        max_length=32, widget=forms.PasswordInput, required=True)
+
+

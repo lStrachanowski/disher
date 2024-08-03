@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm
+from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm, ChangePassword
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
 from .db import ProductOperations, DishOperations, ProductAmountOperations, DayOperations
 from django.contrib import messages
@@ -14,6 +14,7 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 from disher.models import Day_Dish
 from . import calculations
+import time
 
 user_has_recepies = False
 user_has_diet_list = False
@@ -197,6 +198,51 @@ def register(request):
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
     return render(request, "disher/register.html", context)
+
+
+@login_required(login_url='/login')
+def change_user_name(request):
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
+    context = {"user_status": user_status}
+    return render(request, "disher/changename.html", context)
+
+@login_required(login_url='/login')
+def change_user_email(request):
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
+    context = {"user_status": user_status}
+    return render(request, "disher/changeemail.html", context)
+
+@login_required(login_url='/login')
+def change_user_password(request):
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
+    context = {"user_status": user_status}
+    if request.method == "POST":
+        form = ChangePassword(request.POST)
+        if form.is_valid():
+            current_password = form.cleaned_data["current_password"]
+            new_password = form.cleaned_data["new_password"]
+            new_password_confirmation = form.cleaned_data["new_password_confirmation"]
+            username = request.user.username
+            user = User.objects.get(username=username)
+            if user.check_password(current_password):
+                if new_password == new_password_confirmation:
+                    user.set_password(new_password)
+                    user.save()
+                    print("password changed")
+                    messages.success(request, 'Password changed!', extra_tags="changepassowrd")
+                    return redirect('/message')
+                else:
+                    messages.error(request, 'Passwords don`t match.', extra_tags="changepassowrd")
+                    return redirect('/user/profile/changepassword')
+            else:
+                print("password is wrong")
+                messages.error(request, 'Wrong current password!', extra_tags="changepassowrd")
+                return redirect('/user/profile/changepassword')
+    return render(request, "disher/changepassword.html", context)
+
 
 @login_required(login_url='/login')
 def add_meal_to_day(request, id, slug, meal_type):

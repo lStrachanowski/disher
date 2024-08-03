@@ -576,8 +576,6 @@ function checkIfShopListButtonExist(){
     let dayContainers = document.getElementsByClassName("form-check").length;
     let partentHtml = document.getElementById("mainDashboard");
     var buttonTempale = shopListButtonTemplate();
-    
-
     if (shoplistButton && dayContainers < 1){
         console.log("Ukryj button");
         shoplistButton.style.display = 'none';
