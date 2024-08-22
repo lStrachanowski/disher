@@ -16,7 +16,7 @@
                 {% if messages %}
                 <div class="justify-content-center align-items-center" id="messageBox">
                     {% for message in messages %}
-                        {% if message.extra_tags == "login" %}
+                        {% if message.extra_tags == "changename" %}
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn-close text-right" aria-label="Close" onclick="hideMessage()"></button>
                         </div>
@@ -28,7 +28,7 @@
                 </div>
                 {% endif %}
 
-                <form action="" method="post" id="loginForm">
+                <form action="" method="post" id="changeNameForm">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <div class="row m-2">
@@ -38,8 +38,13 @@
                                 required>
                         </div>
                         <div class="form-group col-12 m-1">
-                            <label for="user_name">New user name</label>
-                            <input type="text" class="form-control" minlength="3" id="user_name" name="user_name"
+                            <label for="new_user_name">New user name</label>
+                            <input type="text" class="form-control" minlength="3" id="new_user_name" name="new_user_name"
+                                required>
+                        </div>
+                        <div class="form-group col-12 m-1">
+                            <label for="user_password">User password</label>
+                            <input type="password" class="form-control" minlength="3" id="user_password" name="user_password"
                                 required>
                         </div>
                     </div>

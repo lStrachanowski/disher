@@ -44,4 +44,13 @@ class ChangePassword(forms.Form):
     new_password_confirmation = forms.CharField(
         max_length=32, widget=forms.PasswordInput, required=True)
 
+class ChangeUserName(forms.Form):
+    user_name = forms.CharField(
+        min_length=3, max_length=32, widget=forms.PasswordInput, required=True)
+    new_user_name = forms.CharField(min_length=3,
+        max_length=32, widget=forms.PasswordInput, required=True)
+    user_password = forms.CharField(min_length=3,
+        max_length=32, widget=forms.PasswordInput, required=True)
+
+
 

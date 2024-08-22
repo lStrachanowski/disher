@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm, ChangePassword
+from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm, ChangePassword, ChangeUserName
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
 from .db import ProductOperations, DishOperations, ProductAmountOperations, DayOperations
 from django.contrib import messages
@@ -205,6 +205,29 @@ def change_user_name(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
+    if request.method == "POST":
+        form = ChangeUserName(request.POST)
+        if form.is_valid():
+            user_name = form.cleaned_data["user_name"]
+            new_user_name = form.cleaned_data["new_user_name"]
+            user_password = form.cleaned_data["user_password"]
+            if User.objects.filter(username=new_user_name).exists():
+                messages.error(request, 'User name is already taken! Use other user name.', extra_tags="changename")
+                return redirect('/user/profile/changename')
+            else:
+                user = authenticate(username=user_name, password=user_password)
+                if user is not None:
+                    print(new_user_name)
+                    user.username = new_user_name
+                    user.save()
+                    messages.success(request, 'User name changed!', extra_tags="changename")
+                    return redirect('/message')
+                else:
+                     messages.error(request, 'Wrong user name or password!', extra_tags="changename")
+                     return redirect('/user/profile/changename')
+
+            
+        
     return render(request, "disher/changename.html", context)
 
 @login_required(login_url='/login')
@@ -347,7 +370,10 @@ def logout_view(request):
 
 
 def message(request):
-    return render(request, "disher/message.html")
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
+    context = {"user_status": user_status}
+    return render(request, "disher/message.html", context)
 
 
 def activate(request, token):
