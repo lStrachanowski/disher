@@ -52,5 +52,9 @@ class ChangeUserName(forms.Form):
     user_password = forms.CharField(min_length=3,
         max_length=32, widget=forms.PasswordInput, required=True)
 
-
+class ChangeEmail(forms.Form):
+    user_email = forms.EmailField(required=True)
+    new_user_email = forms.EmailField(required=True)
+    user_password = forms.CharField(min_length=3,
+        max_length=32, widget=forms.PasswordInput, required=True)
 

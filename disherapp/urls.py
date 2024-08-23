@@ -28,6 +28,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name="logout"),
     path('message/', views.message, name="message"),
     path('activate/<str:token>', views.activate, name="activate"),
+    path('change/email/<str:token>', views.activate_change_email, name="changeEmail"),
     path('activated/', views.user_activated, name="isActivated"),
     path('setidcookie/', views.set_user_id_cookie, name="setIdCookie"),
     path('getidcookie/', views.get_user_id_cookie, name="getIdCookie"),

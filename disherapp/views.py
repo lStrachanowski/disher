@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm, ChangePassword, ChangeUserName
+from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm, ChangePassword, ChangeUserName, ChangeEmail
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
 from .db import ProductOperations, DishOperations, ProductAmountOperations, DayOperations
 from django.contrib import messages
@@ -211,13 +211,12 @@ def change_user_name(request):
             user_name = form.cleaned_data["user_name"]
             new_user_name = form.cleaned_data["new_user_name"]
             user_password = form.cleaned_data["user_password"]
-            if User.objects.filter(username=new_user_name).exists():
+            if check_user(new_user_name):
                 messages.error(request, 'User name is already taken! Use other user name.', extra_tags="changename")
                 return redirect('/user/profile/changename')
             else:
                 user = authenticate(username=user_name, password=user_password)
                 if user is not None:
-                    print(new_user_name)
                     user.username = new_user_name
                     user.save()
                     messages.success(request, 'User name changed!', extra_tags="changename")
@@ -235,6 +234,31 @@ def change_user_email(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     context = {"user_status": user_status}
+    if request.method == "POST":
+        form = ChangeEmail(request.POST)
+        if form.is_valid():
+            username = request.user.username
+            current_email = form.cleaned_data["user_email"]
+            new_email= form.cleaned_data["new_user_email"]
+            password = form.cleaned_data["user_password"]
+            if check_email(current_email) and check_email(new_email) != True:
+                user = User.objects.get(username=username)
+                if user.check_password(password):
+                    signer = Signer()
+                    signed_obj = signer.sign_object({"email": new_email})
+                    token = signing.dumps(signed_obj)
+                    print("http://127.0.0.1:8000/change/email/" + token)
+                    messages.success(request, 'Email changed. Please activate email. Check your email and click activate link.')
+                    return redirect('/message')
+                else:
+                    messages.error(request, 'Wrong password !', extra_tags="changeemail")
+                    return redirect('/user/profile/changeemail')
+            else:
+                messages.error(request, 'Email already exist or email is used by other person.', extra_tags="changeemail")
+                return redirect('/user/profile/changeemail')
+
+
+
     return render(request, "disher/changeemail.html", context)
 
 @login_required(login_url='/login')
@@ -254,14 +278,12 @@ def change_user_password(request):
                 if new_password == new_password_confirmation:
                     user.set_password(new_password)
                     user.save()
-                    print("password changed")
                     messages.success(request, 'Password changed!', extra_tags="changepassowrd")
                     return redirect('/message')
                 else:
                     messages.error(request, 'Passwords don`t match.', extra_tags="changepassowrd")
                     return redirect('/user/profile/changepassword')
             else:
-                print("password is wrong")
                 messages.error(request, 'Wrong current password!', extra_tags="changepassowrd")
                 return redirect('/user/profile/changepassword')
     return render(request, "disher/changepassword.html", context)
@@ -391,6 +413,21 @@ def activate(request, token):
         return redirect("/activated")
     return redirect("/")
 
+def activate_change_email(request, token):
+    signer = Signer()
+    token = signing.loads(token)
+    obj = signer.unsign_object(token)
+    try:
+        username = request.user.username
+        user = User.objects.get(username=username)
+        print(obj['email'])
+        user.email = obj['email']
+        user.save()
+        messages.success(request, 'Email changed!', extra_tags="changeemail")
+        return redirect('/message')
+    except Exception as e:
+        messages.error(request, e, extra_tags="register")
+        return redirect("/activated")
 
 def user_activated(request):
     return render(request, "disher/activated.html")
