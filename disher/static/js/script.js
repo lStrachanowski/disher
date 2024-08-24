@@ -1320,3 +1320,15 @@ let exportFile = () => {
         // Remove the link from the document
         document.body.removeChild(link);
 }
+
+// Favourite star in template toggle
+function replaceImage() {
+    const img = document.getElementById("starImage");
+    const currentSrc = img.src;
+    if(currentSrc.includes("star.svg")){
+        img.src = "/static/img/star_full.svg"; 
+    }else{
+        img.src = "/static/img/star.svg"; 
+    }
+    
+}

@@ -64,3 +64,8 @@ class User_Day(models.Model):
     user_day_dish = models.ManyToManyField(Day_Dish)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
+class User_Favourite(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    dish = models.ForeignKey(Dish, on_delete=models.DO_NOTHING)
