@@ -196,8 +196,8 @@ let productListItem = (productName, quantity, unit) => {
 }
 
 
-let shopListButtonTemplate= () =>{
-    return`<div class="row col-12 align-items-center justify-content-center m-3 " id="shopListContainer">
+let shopListButtonTemplate = () => {
+    return `<div class="row col-12 align-items-center justify-content-center m-3 " id="shopListContainer">
             <button class="btn btn-primary col-lg-2 col-md-4 col-8  generate-list-button-color" id="createShopList">
                 Utwórz listę zakupów
             </button>
@@ -571,12 +571,12 @@ function fetchDataFromWeb(callback) {
         });
 }
 
-function checkIfShopListButtonExist(){
+function checkIfShopListButtonExist() {
     let shoplistButton = document.getElementById("createShopList");
     let dayContainers = document.getElementsByClassName("form-check").length;
     let partentHtml = document.getElementById("mainDashboard");
     var buttonTempale = shopListButtonTemplate();
-    if (shoplistButton && dayContainers < 1){
+    if (shoplistButton && dayContainers < 1) {
         console.log("Ukryj button");
         shoplistButton.style.display = 'none';
         return
@@ -1289,46 +1289,87 @@ let valueDown = () => {
 let updateAmounts = (clasname) => {
     const values = document.getElementsByClassName(clasname);
     let v = [...values];
-    if( baseAmounts.length < 1){
+    if (baseAmounts.length < 1) {
         baseAmounts = v.map(element => parseInt((element.textContent).split(" ")[0], 10));
         baseAmountsUnits = v.map(element => element.textContent.split(" ")[1]);
     }
     let tempAmount = baseAmounts.map(item => item * persons);
-    v.forEach( (v,k) =>{
+    v.forEach((v, k) => {
         values[k].textContent = tempAmount[k] + " " + baseAmountsUnits[k];
     });
-  
+
 }
 
 let exportFile = () => {
-        // Get the content from the container
-        const content = document.getElementById('exportDiv').innerHTML;
-        // Create a Blob from the content
-        const blob = new Blob([content], { type: 'text/html' });
+    // Get the content from the container
+    const content = document.getElementById('exportDiv').innerHTML;
+    // Create a Blob from the content
+    const blob = new Blob([content], { type: 'text/html' });
 
-        // Create a link element
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'shoplist.html';
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'shoplist.html';
 
-        // Append the link to the body
-        document.body.appendChild(link);
+    // Append the link to the body
+    document.body.appendChild(link);
 
-        // Programmatically click the link to trigger the download
-        link.click();
+    // Programmatically click the link to trigger the download
+    link.click();
 
-        // Remove the link from the document
-        document.body.removeChild(link);
+    // Remove the link from the document
+    document.body.removeChild(link);
+}
+
+function getCSRFToken() {
+    const name = 'csrftoken';
+    const cookieValue = document.cookie.split('; ')
+        .find(row => row.startsWith(name + '='))
+        ?.split('=')[1];
+    return cookieValue;
 }
 
 // Favourite star in template toggle
-function replaceImage() {
+function replaceImage(slug) {
     const img = document.getElementById("starImage");
     const currentSrc = img.src;
-    if(currentSrc.includes("star.svg")){
-        img.src = "/static/img/star_full.svg"; 
-    }else{
-        img.src = "/static/img/star.svg"; 
+    if (currentSrc.includes("star.svg")) {
+        img.src = "/static/img/star_full.svg";
+        addToFavourite(slug);
+    } else {
+        img.src = "/static/img/star.svg";
     }
-    
+
+}
+
+
+function addToFavourite(slug) {
+    fetch('addfavourite/' + slug,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken(),  
+        },
+        body: JSON.stringify({
+            slug: slug
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            let valueCheck = JSON.parse(data);
+            console.log(valueCheck.favourite_data[0].id);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
+
+function removeFromFavourite(slug) {
+
+}
+
+
+function removeFromShoplist(id){
+    let elementToRemove = document.getElementById(id);
+    elementToRemove.remove();
 }

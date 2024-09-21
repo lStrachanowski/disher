@@ -532,3 +532,25 @@ def get_days_product_list(request, days):
     request.session['shoplist_data'] = json_response_data
     return JsonResponse(product_list_json, safe=False)
 
+
+
+
+@login_required(login_url='/login')
+def add_to_favourite(request,slug):
+    if request.method == "POST":
+        data = {}
+        data['favourite_data'] = []
+        data['favourite_data'].append({"id":request.user.id , "slug":slug})
+        product_list_json = json.dumps(data)
+        return JsonResponse(product_list_json, safe=False)
+
+
+@login_required(login_url='/login')
+def remove_from_favourite(request,slug): 
+    if request.method == "POST":
+        print("delete" + request.user.id +" "+ slug)
+        data = {}
+        data['favourite_data'] = []
+        data['favourite_data'].append({"id":request.user.id , "slug":slug})
+        return JsonResponse(data, safe=False)
+
