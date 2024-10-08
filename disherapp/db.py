@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from disher.models import Product, Dish, Product_Amount, User_Day, Day_Dish
+from disher.models import Product, Dish, Product_Amount, User_Day, Day_Dish, User_Favourite
 import json
 
 class ProductAmountOperations:
@@ -189,8 +189,6 @@ class DishOperations:
             return
 
 
-
-
 class DayOperations:
     def createDay(self, user_day_name, user_id, user_day_dish=None ):
         try:
@@ -294,3 +292,15 @@ class DayOperations:
             print(e)
     
         
+class FavouriteOperations:
+    def SaveFouvriteDish(self, user_id, slug):
+        dish = DishOperations().getDishData(slug)
+        favourite = User_Favourite(user_id = user_id, dish = dish)
+        favourite.save()
+        print("Favourite saved")
+
+    def DeleteDishFromFavourite(self, user_id, slug):
+        dish = DishOperations().getDishData(slug)
+        favourite = User_Favourite.objects.filter(user_id=1, dish = dish)
+        favourite.delete()
+        print("Favourite deleted")

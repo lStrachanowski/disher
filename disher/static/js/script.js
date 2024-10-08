@@ -1338,6 +1338,7 @@ function replaceImage(slug) {
         addToFavourite(slug);
     } else {
         img.src = "/static/img/star.svg";
+        removeFromFavourite(slug);
     }
 
 }
@@ -1365,6 +1366,25 @@ function addToFavourite(slug) {
 }
 
 function removeFromFavourite(slug) {
+    fetch('removefavourite/' + slug,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken(),  
+        },
+        body: JSON.stringify({
+            slug: slug
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            let valueCheck = JSON.parse(data);
+            console.log(valueCheck);
+            console.log(valueCheck.favourite_data[0].id);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
 
 }
 

@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, ResetForm, ResetPasswordForm, DishForm, ChangePassword, ChangeUserName, ChangeEmail
 from .methods import CheckIfUserIsLogged, Logout_user, check_user, check_email, activate_email, reset_password
-from .db import ProductOperations, DishOperations, ProductAmountOperations, DayOperations
+from .db import ProductOperations, DishOperations, ProductAmountOperations, DayOperations, FavouriteOperations
 from django.contrib import messages
 from django.core.signing import Signer
 from django.core import signing
@@ -541,6 +541,8 @@ def add_to_favourite(request,slug):
         data = {}
         data['favourite_data'] = []
         data['favourite_data'].append({"id":request.user.id , "slug":slug})
+        save_favourite = FavouriteOperations()
+        save_favourite.SaveFouvriteDish(request.user.id, slug)
         product_list_json = json.dumps(data)
         return JsonResponse(product_list_json, safe=False)
 
@@ -548,9 +550,11 @@ def add_to_favourite(request,slug):
 @login_required(login_url='/login')
 def remove_from_favourite(request,slug): 
     if request.method == "POST":
-        print("delete" + request.user.id +" "+ slug)
         data = {}
         data['favourite_data'] = []
         data['favourite_data'].append({"id":request.user.id , "slug":slug})
-        return JsonResponse(data, safe=False)
+        save_favourite = FavouriteOperations()
+        save_favourite.DeleteDishFromFavourite(request.user.id, slug)
+        product_list_json = json.dumps(data)
+        return JsonResponse(product_list_json, safe=False)
 

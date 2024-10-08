@@ -66,6 +66,5 @@ class User_Day(models.Model):
 
 
 class User_Favourite(models.Model):
-    id = models.AutoField(primary_key=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.IntegerField() 
     dish = models.ForeignKey(Dish, on_delete=models.DO_NOTHING)
