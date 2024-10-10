@@ -42,7 +42,9 @@ def recepie(request, slug):
     recepie_products_amounts = amount.getAllAmounts(products)
 
     ingridients = recepie_products_amounts
-    context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients}
+
+    favourite_status= FavouriteOperations().CheckIfFavourite(request.user.id, slug)
+    context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients, "is_favourited":favourite_status}
     return render(request, "disher/recepie.html", context)
 
 @login_required(login_url='/login')

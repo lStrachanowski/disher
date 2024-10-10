@@ -96,7 +96,12 @@
                             Dodaj do ulubionych
                         </div>
                         <div class=" col-12 d-flex align-items-center justify-content-center">
-                            <img src="/static/img/star.svg" class="icon-size-full-recpie cursor" onclick="replaceImage('{{recepie.slug}}')" id="starImage" >
+                            {% if is_favourited %}
+                                <img src="/static/img/star_full.svg" class="icon-size-full-recpie cursor" onclick="replaceImage('{{recepie.slug}}')" id="starImage" >
+                            {% else %}
+                                <img src="/static/img/star.svg" class="icon-size-full-recpie cursor" onclick="replaceImage('{{recepie.slug}}')" id="starImage" >
+                            {% endif %}
+                            
                         </div>
                         <!-- <div class="col-lg-12 recepie-font-size font-bold greey-font mt-2">
                             Dodaj do listy..

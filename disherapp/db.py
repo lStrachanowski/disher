@@ -301,6 +301,16 @@ class FavouriteOperations:
 
     def DeleteDishFromFavourite(self, user_id, slug):
         dish = DishOperations().getDishData(slug)
-        favourite = User_Favourite.objects.filter(user_id=1, dish = dish)
+        favourite = User_Favourite.objects.filter(user_id=user_id, dish = dish)
         favourite.delete()
         print("Favourite deleted")
+    
+    def CheckIfFavourite(self, user_id, slug):
+        dish = DishOperations().getDishData(slug)
+        favourite = User_Favourite.objects.filter(user_id=user_id, dish = dish).exists()
+        if favourite:
+            print("True")
+            return True
+        else:
+            print("False")
+            return False
