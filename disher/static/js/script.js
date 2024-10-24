@@ -223,10 +223,11 @@ let recepieSearchResultItem = (dishData) => {
             const recepieDiv = document.createElement("div");
             recepieDiv.className = "col-xl-3 col-lg-5 col-md-10 text-center recepie-container white-background m-3";
             recepieDiv.id = recepie.id;
+            console.log(recepie);
             recepieDiv.innerHTML = `
                     <div class="d-flex row align-items-center align-items-stretch">
                         <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
-                            onclick="location.href='/recepie/${recepie.slug}'">
+                            onclick="location.href='/recepie/${recepie.dish_slug}'">
                             ${recepie.name}
                         </div>
                         <div class="d-flex align-items-center justify-content-center col-4 recepie-header-font ${getDishTypeClass(recepie.dish_type)} recepie-meal-border p-2">
