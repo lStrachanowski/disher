@@ -284,28 +284,28 @@ class DayOperations:
         except Exception as e:
             print(e)
     
-    def checkIfEmpty(self):
+    def checkIfEmpty(self, id):
         try:
-            user_day = User_Day.objects.all()
+            user_day = User_Day.objects.filter(user_id = id)
             return user_day.count()
         except Exception as e:
             print(e)
     
         
 class FavouriteOperations:
-    def SaveFouvriteDish(self, user_id, slug):
+    def saveFouvriteDish(self, user_id, slug):
         dish = DishOperations().getDishData(slug)
         favourite = User_Favourite(user_id = user_id, dish = dish)
         favourite.save()
         print("Favourite saved")
 
-    def DeleteDishFromFavourite(self, user_id, slug):
+    def deleteDishFromFavourite(self, user_id, slug):
         dish = DishOperations().getDishData(slug)
         favourite = User_Favourite.objects.filter(user_id=user_id, dish = dish)
         favourite.delete()
         print("Favourite deleted")
     
-    def CheckIfFavourite(self, user_id, slug):
+    def checkIfFavourite(self, user_id, slug):
         dish = DishOperations().getDishData(slug)
         favourite = User_Favourite.objects.filter(user_id=user_id, dish = dish).exists()
         if favourite:
@@ -314,3 +314,7 @@ class FavouriteOperations:
         else:
             print("False")
             return False
+        
+    def returnFavourites(self, user_id):
+        dishes = User_Favourite.objects.filter(user_id=user_id)
+        return dishes

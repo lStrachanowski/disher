@@ -572,16 +572,14 @@ function fetchDataFromWeb(callback) {
 }
 
 function checkIfShopListButtonExist() {
-    let shoplistButton = document.getElementById("createShopList");
+    let shoplistButton = document.getElementById("generateShopList");
     let dayContainers = document.getElementsByClassName("form-check").length;
-    let partentHtml = document.getElementById("mainDashboard");
-    var buttonTempale = shopListButtonTemplate();
     if (shoplistButton && dayContainers < 1) {
         console.log("Ukryj button");
         shoplistButton.style.display = 'none';
+        shoplistButton.remove();
         return
     }
-    partentHtml.insertAdjacentHTML('beforebegin', buttonTempale);
 
 }
 
@@ -622,7 +620,7 @@ async function addNewDay(getList = false) {
         fetchDataFromWeb(updateCookies);
         addDay(day_id_list[day_id_list.length - 1]);
 
-        checkIfShopListButtonExist();
+        // checkIfShopListButtonExist();
 
         if (getList) {
             return day_id_list[day_id_list.length - 1];
@@ -799,12 +797,13 @@ let dayChecked = (name) => {
     containerBody = document.getElementById(elementName[0]);
     containerHeader = document.getElementById(elementName[0] + "-edit");
     containerHeaderOptions = document.getElementById(elementName[0] + "-edit-options");
+    
     if (checkBox.checked) {
         shopListSelectedDays.push(dayId);
         containerBody.style.backgroundColor = "var(--bs-gray-200)";
         containerHeader.style.backgroundColor = "var(--bs-gray-600)";
         containerHeaderOptions.style.backgroundColor = "var(--bs-gray-600)";
-        document.getElementById("createShopList").style.display = "none";
+        // document.getElementById("createShopList").style.display = "none";
         document.getElementById("generateShopList").classList.remove("generate-shoplist-button");
         document.getElementById("generateShopList").style.display = "block";
     } else {
@@ -813,7 +812,7 @@ let dayChecked = (name) => {
         containerHeader.style.backgroundColor = "var(--breakfast-color)";
         containerHeaderOptions.style.backgroundColor = "var(--breakfast-color)";
         if (shopListSelectedDays.length < 1) {
-            document.getElementById("createShopList").style.display = "block";
+            // document.getElementById("createShopList").style.display = "block";
             document.getElementById("generateShopList").style.display = "none";
         }
 

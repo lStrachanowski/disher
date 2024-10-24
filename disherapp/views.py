@@ -43,7 +43,7 @@ def recepie(request, slug):
 
     ingridients = recepie_products_amounts
 
-    favourite_status= FavouriteOperations().CheckIfFavourite(request.user.id, slug)
+    favourite_status= FavouriteOperations().checkIfFavourite(request.user.id, slug)
     context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients, "is_favourited":favourite_status}
     return render(request, "disher/recepie.html", context)
 
@@ -54,14 +54,21 @@ def dashboard(request):
     global user_has_recepies 
     global user_has_diet_list 
     day = DayOperations()
-    if day.checkIfEmpty() > 0:
+    if day.checkIfEmpty(request.user.id) > 0:
         user_has_diet_list = True
+    else:
+        user_has_diet_list = False
     recepies_data = DishOperations()
     recepies_for_template = []
     recepies_for_template = recepies_data.getAllDishes().order_by('?')[:6]
     print(user_has_diet_list)
+    favourite_for_template = []
+    favourite = FavouriteOperations().returnFavourites(request.user.id)
+    for element in favourite:
+        favourite_for_template.append(recepies_data.getDishById(element.dish_id))
+
     context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
-               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value}
+               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value, "favourite_list":favourite_for_template}
     return render(request, "disher/dashboard.html", context)
 
 @login_required(login_url='/login')
@@ -325,7 +332,7 @@ def delete_day(request, day_id):
         day.deleteDay(request.user.id, day_id)
         data = {}
         data['day_id'] = day_id
-        dayCouont = day.checkIfEmpty()
+        dayCouont = day.checkIfEmpty(request.user.id)
         if dayCouont < 1:
             global user_has_diet_list 
             user_has_diet_list = False
@@ -544,7 +551,7 @@ def add_to_favourite(request,slug):
         data['favourite_data'] = []
         data['favourite_data'].append({"id":request.user.id , "slug":slug})
         save_favourite = FavouriteOperations()
-        save_favourite.SaveFouvriteDish(request.user.id, slug)
+        save_favourite.saveFouvriteDish(request.user.id, slug)
         product_list_json = json.dumps(data)
         return JsonResponse(product_list_json, safe=False)
 
@@ -556,7 +563,7 @@ def remove_from_favourite(request,slug):
         data['favourite_data'] = []
         data['favourite_data'].append({"id":request.user.id , "slug":slug})
         save_favourite = FavouriteOperations()
-        save_favourite.DeleteDishFromFavourite(request.user.id, slug)
+        save_favourite.deleteDishFromFavourite(request.user.id, slug)
         product_list_json = json.dumps(data)
         return JsonResponse(product_list_json, safe=False)
 
