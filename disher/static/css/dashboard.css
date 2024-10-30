@@ -69,7 +69,9 @@
     font-size: 1.25rem;
 }
   
-  
+.modal-body-bottom-padding{
+    padding-bottom: 3rem !important;
+}
 
 @media (max-width: 575.98px) { 
     .user-recepie-icons-show{

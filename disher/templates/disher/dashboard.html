@@ -180,16 +180,15 @@
 
                 <form method="post" id="modalFormSearch">
                     {% csrf_token %}
-                    <div class="modal-body">
+                    <div class="modal-body modal-body-bottom-padding">
                         <div class="container mt-3">
                             <!-- kontener wyszukiwania  -->
                             <div class="row m-1">
                                 <div class="col-lg-8 col-md-10 col-sm-10 offset-lg-2 offset-md-1 offset-sm-1">
-                                    <label for="search" class="search-label mt-2 mb-2">Wyszukaj przepis</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control search-input" id="search"
-                                            aria-describedby="basic-addon3" placeholder="Wpisz czego szukasz"
-                                            onkeydown="searchRecepie();">
+                                            aria-describedby="basic-addon3" placeholder="Wyszukaj przepis"
+                                            onkeyup="searchRecepie();">
                                     </div>
                                 </div>
                             </div>

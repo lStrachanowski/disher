@@ -1236,7 +1236,7 @@ async function fetchRecepieSearchResultsFromWeb(searchQuery) {
 
 let searchRecepie = () => {
     let inputValue = document.getElementById("search").value;
-    if (inputValue.length >= 2) {
+    if (inputValue.length > 2) {
         fetchRecepieSearchResultsFromWeb(inputValue).then(data => {
             console.log(data.dish_data);
             recepieSearchResultItem(data.dish_data);
@@ -1244,6 +1244,7 @@ let searchRecepie = () => {
             console.error('Error logging data:', error);
         });
     } else {
+        recepieSearchResultItem();
         console.log("to short");
     }
 }
