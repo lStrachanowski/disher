@@ -478,6 +478,10 @@ let addDay = (id) => {
     parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
 }
 
+function clearInput(){
+    const inputElement = document.getElementById("search");
+    inputElement.value = '';
+}
 
 function readCookie(parameter) {
     let cookie = document.cookie.split(';');
@@ -1244,7 +1248,7 @@ let searchRecepie = () => {
             console.error('Error logging data:', error);
         });
     } else {
-        recepieSearchResultItem();
+        recepieSearchResultItem("");
         console.log("to short");
     }
 }
