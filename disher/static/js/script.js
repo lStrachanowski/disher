@@ -1463,6 +1463,8 @@ async function getUserRecepies() {
                 selectedParent.insertAdjacentHTML('afterend', newDishElement);
             }
         }
+        let expandImage = document.getElementById("expandImage");
+        expandImage.style.transform = "rotate(180deg)";
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
