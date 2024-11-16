@@ -16,7 +16,6 @@ from disher.models import Day_Dish
 from . import calculations
 import time
 
-user_has_recepies = False
 user_has_diet_list = False
 
 def index(request):
@@ -61,13 +60,14 @@ def dashboard(request):
     recepies_data = DishOperations()
     recepies_for_template = []
     recepies_for_template = recepies_data.getAllDishes().order_by('?')[:6]
-    print(user_has_diet_list)
     favourite_for_template = []
     favourite = FavouriteOperations().returnFavourites(request.user.id)
     for element in favourite:
         favourite_for_template.append(recepies_data.getDishById(element.dish_id))
 
-    context = {"user_status": user_status, "user_has_recepies": user_has_recepies,
+    user_dishes = recepies_data.findUserDishes(user_name = request.user.get_username())
+
+    context = {"user_status": user_status, "user_dishes":user_dishes,
                "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value, "favourite_list":favourite_for_template}
     return render(request, "disher/dashboard.html", context)
 
@@ -486,6 +486,16 @@ def get_user_id_cookie(request):
     user_id = request.user.id
     response = JsonResponse({'id': user_id})
     return response
+
+@login_required(login_url='/login')
+def get_user_recepies(request):
+    user = request.user.get_username()
+    dishes = DishOperations()
+    user_dishes = dishes.findUserDishes(user)
+    dishes_data = list(user_dishes.values())
+    data = {'user': request.user.get_username(), 'userDishes': dishes_data}
+    return JsonResponse(data, safe=False)
+
 
 @login_required(login_url='/login')
 def get_product_search(request, productname):

@@ -16,6 +16,7 @@ var COPY_DISH = '/user/copydish/';
 var DAYS_PRODUCTS_LIST = '/user/productslist/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var SEARCH_RECEPIE_URL = window.location.protocol + "//" + window.location.host + '/getrecepiesearch/';
+var SEARCH_USER_RESEPIES = window.location.protocol + "//" + window.location.host + '/recepie/getuserrecepies/';
 var tempAddedProduct = null;
 var productList = [];
 
@@ -205,6 +206,56 @@ let shopListButtonTemplate = () => {
                 Generuj listę zakupów
             </button>
     </div>`;
+}
+
+let userRecepiesTemplate = (dish, index) => {
+    let selectedMealType = '';
+    if (dish.dish_type == 'B') {
+        selectedMealType = "Śniadanie";
+    }
+    if (dish.dish_type == 'B2') {
+        selectedMealType = "2 Śniadanie";
+    }
+    if (dish.dish_type == 'D') {
+        selectedMealType = "Obiad";
+    }
+    if (dish.dish_type == 'D2') {
+        selectedMealType = "Przekąska";
+    }
+    if (dish.dish_type == 'S') {
+        selectedMealType = "Kolacja";
+    }
+
+  
+    let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
+            <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
+                id="user-recepie-${index}">
+                <div class="col-lg-2  text-center m-3 font-bold cursor"> 
+                ${selectedMealType}  
+                </div>
+                <div class="col-lg-7  text-start cursor">  ${dish.dish_name} </div>
+                <div class="col-lg-2  text-end">
+                    <img src="/static/img/share.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show">
+                    <img src="/static/img/options.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
+                        id="recepie-options-id-click" onclick=optionsClick(${index})>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
+                id="user-options-${index}">
+                <div class="col-lg-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
+                <div class="col-lg-7  text-center cursor font-bold dark-font recepie-options-delete"
+                    id="recepie-options-delete-click">Usuń</div>
+                <div class="col-lg-2  text-end">
+                    <img src="/static/img/close.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
+                        id="recepie-options-id-close-click" onclick=optionsClick(${index})>
+                </div>
+            </div>
+        </div>`
+    return template;
 }
 
 let recepieSearchResultItem = (dishData) => {
@@ -478,7 +529,7 @@ let addDay = (id) => {
     parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
 }
 
-function clearInput(){
+function clearInput() {
     const inputElement = document.getElementById("search");
     inputElement.value = '';
 }
@@ -802,7 +853,7 @@ let dayChecked = (name) => {
     containerBody = document.getElementById(elementName[0]);
     containerHeader = document.getElementById(elementName[0] + "-edit");
     containerHeaderOptions = document.getElementById(elementName[0] + "-edit-options");
-    
+
     if (checkBox.checked) {
         shopListSelectedDays.push(dayId);
         containerBody.style.backgroundColor = "var(--bs-gray-200)";
@@ -1350,11 +1401,11 @@ function replaceImage(slug) {
 
 
 function addToFavourite(slug) {
-    fetch('addfavourite/' + slug,{
+    fetch('addfavourite/' + slug, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken(),  
+            'X-CSRFToken': getCSRFToken(),
         },
         body: JSON.stringify({
             slug: slug
@@ -1371,11 +1422,11 @@ function addToFavourite(slug) {
 }
 
 function removeFromFavourite(slug) {
-    fetch('removefavourite/' + slug,{
+    fetch('removefavourite/' + slug, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken(),  
+            'X-CSRFToken': getCSRFToken(),
         },
         body: JSON.stringify({
             slug: slug
@@ -1394,7 +1445,32 @@ function removeFromFavourite(slug) {
 }
 
 
-function removeFromShoplist(id){
+async function getUserRecepies() {
+    try {
+        const response = await fetch(SEARCH_USER_RESEPIES);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        let numberOfDisplayedElements = document.getElementsByClassName("user-recepie-container").length;
+        if (data.userDishes.length > numberOfDisplayedElements) {
+            let dishList = data.userDishes.slice(numberOfDisplayedElements,);
+            let selectedParent = document.getElementById('yourDishes');
+            let counter = numberOfDisplayedElements;
+            for (element of dishList) {
+                counter += 1;
+                let newDishElement = userRecepiesTemplate(element, counter);
+                selectedParent.insertAdjacentHTML('afterend', newDishElement);
+            }
+        }
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+function removeFromShoplist(id) {
     let elementToRemove = document.getElementById(id);
     elementToRemove.remove();
 }

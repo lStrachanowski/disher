@@ -187,6 +187,16 @@ class DishOperations:
         except Exception as e:
             print(e)
             return
+        
+    def findUserDishes(self, user_name):
+        try:
+            user_recepies = Dish.objects.filter(dish_owner = user_name)
+            return user_recepies
+        except Exception as e:
+            print(e)
+            return
+        
+
 
 
 class DayOperations:
