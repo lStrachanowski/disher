@@ -19,6 +19,7 @@ var SEARCH_RECEPIE_URL = window.location.protocol + "//" + window.location.host 
 var SEARCH_USER_RESEPIES = window.location.protocol + "//" + window.location.host + '/recepie/getuserrecepies/';
 var tempAddedProduct = null;
 var productList = [];
+var expandValue = false;
 
 let productContainer = document.getElementById("addProductContainer");
 let saveButtonContainer = document.getElementById("productButtonsContainer");
@@ -226,8 +227,8 @@ let userRecepiesTemplate = (dish, index) => {
         selectedMealType = "Kolacja";
     }
 
-  
-    let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
+
+    let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="${index}">
             <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                 id="user-recepie-${index}">
                 <div class="col-lg-2  text-center m-3 font-bold cursor"> 
@@ -1446,12 +1447,14 @@ function removeFromFavourite(slug) {
 
 
 async function getUserRecepies() {
+    let expandImage = document.getElementById("expandImage");
     try {
         const response = await fetch(SEARCH_USER_RESEPIES);
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
+        if(expandValue){
         let numberOfDisplayedElements = document.getElementsByClassName("user-recepie-container").length;
         if (data.userDishes.length > numberOfDisplayedElements) {
             let dishList = data.userDishes.slice(numberOfDisplayedElements,);
@@ -1462,15 +1465,34 @@ async function getUserRecepies() {
                 let newDishElement = userRecepiesTemplate(element, counter);
                 selectedParent.insertAdjacentHTML('afterend', newDishElement);
             }
+            
+            expandImage.style.transform = "rotate(180deg)";
         }
-        let expandImage = document.getElementById("expandImage");
-        expandImage.style.transform = "rotate(180deg)";
+        }
+        if (!expandValue) {
+            let userRecepiesList = document.querySelectorAll(".user-recepie-class");
+            expandImage.style.transform = "rotate(360deg)";
+            if (userRecepiesList.length >= 2){
+                userRecepiesList.forEach((element, index) =>{
+                    if(index > 2){
+                        element.remove();
+                    }
+    
+                });
+            }
+           
+        }
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
 }
+
+document.getElementById('expandImage').addEventListener('click', ()=>{
+    expandValue = !expandValue;
+});
+
 
 function removeFromShoplist(id) {
     let elementToRemove = document.getElementById(id);

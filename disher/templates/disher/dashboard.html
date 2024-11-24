@@ -19,7 +19,7 @@
         <div class="col-12 empty-screen-font greey-font">Twoje przepisy</div>
         {% for dish in user_dishes|slice:":3"%}
           
-        <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1">
+        <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class"  id="{{forloop.counter}}">
             <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                 id="user-recepie-{{ forloop.counter }}" >
                 <div class="col-lg-2  text-center m-3 font-bold cursor"> 
@@ -35,7 +35,7 @@
                     Kolacja
                     {% endif%}
                 </div>
-                <div class="col-lg-7  text-start cursor">  {{dish.dish_name}}</div>
+                <div class="col-lg-7  text-start cursor"  onclick="location.href='/recepie/'+'{{dish.slug}}'">  {{dish.dish_name}}</div>
                 <div class="col-lg-2  text-end">
                     <img src="/static/img/share.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show">
