@@ -236,8 +236,8 @@ let userRecepiesTemplate = (dish, index) => {
                 </div>
                 <div class="col-lg-7  text-start cursor">  ${dish.dish_name} </div>
                 <div class="col-lg-2  text-end">
-                    <img src="/static/img/share.svg"
-                        class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show">
+                     <img src="/static/img/share.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
                     <img src="/static/img/options.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
                         id="recepie-options-id-click" onclick=optionsClick(${index})>
