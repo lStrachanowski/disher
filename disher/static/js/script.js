@@ -1401,6 +1401,15 @@ function replaceImage(slug) {
 }
 
 
+function copyToClipboard(url) {
+    let site = window.location.protocol + "//" + window.location.host + url;
+    navigator.clipboard.writeText(site).then(() => {
+        alert('Link copied to clipboard: ' + site); 
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+    });
+}
+
 function addToFavourite(slug) {
     fetch('addfavourite/' + slug, {
         method: 'POST',
@@ -1489,10 +1498,11 @@ async function getUserRecepies() {
     }
 }
 
-document.getElementById('expandImage').addEventListener('click', ()=>{
-    expandValue = !expandValue;
-});
-
+if(document.getElementById('expandImage')){
+    document.getElementById('expandImage').addEventListener('click', ()=>{
+        expandValue = !expandValue;
+    });
+}
 
 function removeFromShoplist(id) {
     let elementToRemove = document.getElementById(id);
