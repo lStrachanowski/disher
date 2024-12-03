@@ -234,7 +234,7 @@ let userRecepiesTemplate = (dish, index) => {
                 <div class="col-lg-2  text-center m-3 font-bold cursor"> 
                 ${selectedMealType}  
                 </div>
-                <div class="col-lg-7  text-start cursor">  ${dish.dish_name} </div>
+                <div class="col-lg-7  text-start cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
                 <div class="col-lg-2  text-end">
                      <img src="/static/img/share.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
