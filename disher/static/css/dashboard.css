@@ -42,6 +42,24 @@
     filter: invert(96%) sepia(0%) saturate(722%) hue-rotate(207deg) brightness(119%) contrast(100%);
 }
 
+
+.user-favourite-recepie-container{
+    border-radius: 15px;
+    box-shadow: 2px 4px 12px rgba(0,0,0,.08);
+    transition: all .3s cubic-bezier(0,0,.5,1);
+  }
+  
+.user-favourite-recepie-container:hover{
+    background-color: var(--user-recepie-hover-color);
+    cursor: pointer;
+    padding: 3px;
+}
+
+.user-favourite-recepie-container:hover  .user-recepie-icons-size{
+    filter: invert(96%) sepia(0%) saturate(722%) hue-rotate(207deg) brightness(119%) contrast(100%);
+}
+
+
 .generate-list-button-color{
     background-color: var(--generate-list-button-color);
     border: var(--generate-list-button-color);

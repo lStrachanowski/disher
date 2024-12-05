@@ -20,22 +20,60 @@
     <div class="row d-flex align-items-center justify-content-center mlg-5 m-1 mt-3">
         <ul class="nav nav-pills mb-3 center" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="btn btn-lg" class="nav-link active" id="pills-favourite-tab" data-bs-toggle="pill" data-bs-target="#pills-favourite"
-                type="button" role="tab" aria-controls="pills-favourite" aria-selected="false">Ulubione przepisy</button>
+                <button class="btn btn-lg" class="nav-link active" id="pills-favourite-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-favourite" type="button" role="tab" aria-controls="pills-favourite"
+                    aria-selected="false">Ulubione przepisy</button>
 
             </li>
             <li class="nav-item" role="presentation">
-                <button class="btn btn-lg" class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                type="button" role="tab" aria-controls="pills-contact" aria-selected="true">Twoje przepisy</button>
+                <button class="btn btn-lg" class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                    aria-selected="true">Twoje przepisy</button>
 
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-favourite" role="tabpanel" aria-labelledby="pills-favourite-tab"
-                tabindex="0">
+             <!-- Twoje ulubione przepisy -->
+            <div class="tab-pane fade show active" id="pills-favourite" role="tabpanel"
+                aria-labelledby="pills-favourite-tab" tabindex="0">
                 <div class="col-12 empty-screen-font greey-font">Twoje ulubione przepisy</div>
+
+                {% for favourite in favourite_list %}
+
+                <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1" id="{{forloop.counter}}">
+                    <div
+                        class="col-lg-7 col-12 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background">
+                        <div class="col-lg-2  text-center m-3 font-bold cursor">
+                            {% if favourite.dish_type == 'B' %}
+                            Śniadanie
+                            {% elif favourite.dish_type == 'B2' %}
+                            2 Śniadanie
+                            {% elif favourite.dish_type == 'D' %}
+                            Obiad
+                            {% elif favourite.dish_type == 'D2' %}
+                            Przekąska
+                            {% elif favourite.dish_type == 'S' %}
+                            Kolacja
+                            {% endif%}
+                        </div>
+                        <div class="col-lg-7  text-start cursor"
+                            onclick="location.href='/recepie/'+'{{favourite.slug}}'">
+                            {{favourite.dish_name}}</div>
+                        <div class="col-lg-2  text-end">
+                            <img src="/static/img/share.svg"
+                                class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show"
+                                onclick="copyToClipboard('/recepie/'+'{{favourite.slug}}')">
+                            <img src="/static/img/options2.svg"
+                                class="cursor user-recepie-icons-padding user-recepie-icons-size m-3">
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+
             </div>
 
+            <!-- Twoje przepisy -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                 tabindex="0">
 
@@ -44,7 +82,7 @@
 
                 <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class"
                     id="{{forloop.counter}}">
-                    <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
+                    <div class="col-lg-7 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                         id="user-recepie-{{ forloop.counter }}">
                         <div class="col-lg-2  text-center m-3 font-bold cursor">
                             {% if dish.dish_type == 'B' %}
@@ -91,7 +129,8 @@
                         id="expandImage">
                 </div>
 
-                <div class="col-12 d-flex align-items-center justify-content-center m-1 empty-screen-font greey-font">Dodaj przepis</div>
+                <div class="col-12 d-flex align-items-center justify-content-center empty-screen-font greey-font">Dodaj
+                    przepis</div>
                 <div class="col-12 d-flex justify-content-center">
                     <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3"
                         type="button" onclick="location.href='/user/add/recepie'">
@@ -102,67 +141,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="col-12 empty-screen-font greey-font">Twoje przepisy</div>
-        {% for dish in user_dishes|slice:":3"%}
-          
-        <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class"  id="{{forloop.counter}}">
-            <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
-                id="user-recepie-{{ forloop.counter }}" >
-                <div class="col-lg-2  text-center m-3 font-bold cursor"> 
-                    {% if dish.dish_type == 'B' %}
-                    Śniadanie
-                    {% elif dish.dish_type == 'B2' %}
-                    2 Śniadanie
-                    {% elif dish.dish_type == 'D' %}
-                    Obiad
-                    {% elif dish.dish_type == 'D2' %}
-                    Przekąska
-                    {% elif dish.dish_type == 'S' %}
-                    Kolacja
-                    {% endif%}
-                </div>
-                <div class="col-lg-7  text-start cursor"  onclick="location.href='/recepie/'+'{{dish.slug}}'">  {{dish.dish_name}}</div>
-                <div class="col-lg-2  text-end">
-                    <img src="/static/img/share.svg"
-                        class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/'+'{{dish.slug}}')">
-                    <img src="/static/img/options.svg"
-                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
-                        id="recepie-options-id-click" onclick=optionsClick({{forloop.counter}})>
-                </div>
-            </div>
-
-            <div class="col-lg-8 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
-                id="user-options-{{ forloop.counter }}">
-                <div class="col-lg-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
-                <div class="col-lg-7  text-center cursor font-bold dark-font recepie-options-delete"
-                    id="recepie-options-delete-click">Usuń</div>
-                <div class="col-lg-2  text-end">
-                    <img src="/static/img/close.svg"
-                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
-                        id="recepie-options-id-close-click" onclick=optionsClick({{forloop.counter}})>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-        <span class="col-12"  id="yourDishes"></span>
-
-        <div class="row col-12">
-            <img src="/static/img/expand.svg" class="user-recepie-icons-size cursor" onclick="getUserRecepies()" id="expandImage">
-        </div> -->
-
-
-
-
-        <!-- <div class="col-12 empty-screen-font greey-font">Dodaj przepis</div>
-        <div class="col-12 d-flex justify-content-center">
-            <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" type="button"
-                onclick="location.href='/user/add/recepie'">
-                <div class="cross-button"></div>
-            </button>
-            </button>
-
-        </div> -->
 
 
 
