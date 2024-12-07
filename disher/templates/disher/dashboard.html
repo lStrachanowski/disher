@@ -33,45 +33,42 @@
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
-             <!-- Twoje ulubione przepisy -->
             <div class="tab-pane fade show active" id="pills-favourite" role="tabpanel"
-                aria-labelledby="pills-favourite-tab" tabindex="0">
-                <div class="col-12 empty-screen-font greey-font">Twoje ulubione przepisy</div>
+            aria-labelledby="pills-favourite-tab" tabindex="0">
+            <div class="col-12 empty-screen-font greey-font">Twoje ulubione przepisy</div>
 
-                {% for favourite in favourite_list %}
+            {% for favourite in favourite_list %}
 
-                <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1" id="{{forloop.counter}}">
-                    <div
-                        class="col-lg-7 col-12 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background">
-                        <div class="col-lg-2  text-center m-3 font-bold cursor">
-                            {% if favourite.dish_type == 'B' %}
-                            Śniadanie
-                            {% elif favourite.dish_type == 'B2' %}
-                            2 Śniadanie
-                            {% elif favourite.dish_type == 'D' %}
-                            Obiad
-                            {% elif favourite.dish_type == 'D2' %}
-                            Przekąska
-                            {% elif favourite.dish_type == 'S' %}
-                            Kolacja
-                            {% endif%}
-                        </div>
-                        <div class="col-lg-7  text-start cursor"
-                            onclick="location.href='/recepie/'+'{{favourite.slug}}'">
-                            {{favourite.dish_name}}</div>
-                        <div class="col-lg-2  text-end">
-                            <img src="/static/img/share.svg"
-                                class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show"
-                                onclick="copyToClipboard('/recepie/'+'{{favourite.slug}}')">
-                            <img src="/static/img/options2.svg"
-                                class="cursor user-recepie-icons-padding user-recepie-icons-size m-3">
-                        </div>
+            <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1" id="{{forloop.counter}}">
+                <div
+                    class="col-lg-6 col-12 p-1 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background">
+                    <div class="col-2  text-center m-3 font-bold cursor">
+                        {% if favourite.dish_type == 'B' %}
+                        Śniadanie
+                        {% elif favourite.dish_type == 'B2' %}
+                        2 Śniadanie
+                        {% elif favourite.dish_type == 'D' %}
+                        Obiad
+                        {% elif favourite.dish_type == 'D2' %}
+                        Przekąska
+                        {% elif favourite.dish_type == 'S' %}
+                        Kolacja
+                        {% endif%}
                     </div>
-
+                    <div class="col-7  text-center cursor"
+                        onclick="location.href='/recepie/'+'{{favourite.slug}}'">
+                        {{favourite.dish_name}}</div>
+                    <div class="col-2">
+                        <img src="/static/img/share.svg"
+                            class="cursor user-recepie-icons-padding user-recepie-icons-size"
+                            onclick="copyToClipboard('/recepie/'+'{{favourite.slug}}')">
+                    </div>
                 </div>
-                {% endfor %}
 
             </div>
+            {% endfor %}
+
+        </div>
 
             <!-- Twoje przepisy -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
@@ -84,7 +81,7 @@
                     id="{{forloop.counter}}">
                     <div class="col-lg-7 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                         id="user-recepie-{{ forloop.counter }}">
-                        <div class="col-lg-2  text-center m-3 font-bold cursor">
+                        <div class="col-2  text-center m-3 font-bold cursor">
                             {% if dish.dish_type == 'B' %}
                             Śniadanie
                             {% elif dish.dish_type == 'B2' %}
@@ -97,9 +94,9 @@
                             Kolacja
                             {% endif%}
                         </div>
-                        <div class="col-lg-7  text-start cursor" onclick="location.href='/recepie/'+'{{dish.slug}}'">
+                        <div class="col-7  text-center cursor" onclick="location.href='/recepie/'+'{{dish.slug}}'">
                             {{dish.dish_name}}</div>
-                        <div class="col-lg-2  text-end">
+                        <div class="col-2  text-end">
                             <img src="/static/img/share.svg"
                                 class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show"
                                 onclick="copyToClipboard('/recepie/'+'{{dish.slug}}')">
@@ -114,7 +111,7 @@
                         <div class="col-lg-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
                         <div class="col-lg-7  text-center cursor font-bold dark-font recepie-options-delete"
                             id="recepie-options-delete-click">Usuń</div>
-                        <div class="col-lg-2  text-end">
+                        <div class="col-lg-2  text-center">
                             <img src="/static/img/close.svg"
                                 class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
                                 id="recepie-options-id-close-click" onclick=optionsClick({{forloop.counter}})>
