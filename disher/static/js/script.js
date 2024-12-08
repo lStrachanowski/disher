@@ -229,13 +229,13 @@ let userRecepiesTemplate = (dish, index) => {
 
 
     let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="${index}">
-            <div class="col-lg-7 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
+            <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                 id="user-recepie-${index}">
-                <div class="col-lg-2  text-center m-3 font-bold cursor"> 
+                <div class="col-2  text-center m-3 font-bold cursor"> 
                 ${selectedMealType}  
                 </div>
-                <div class="col-8  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
-                <div class="col-2  text-center">
+                <div class="col-6  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
+                <div class="col-2 d-flex align-items-center justify-content-center  text-center">
                      <img src="/static/img/share.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
                     <img src="/static/img/options.svg"
@@ -244,12 +244,12 @@ let userRecepiesTemplate = (dish, index) => {
                 </div>
             </div>
 
-            <div class="col-lg-7 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
+            <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
                 id="user-options-${index}">
                 <div class="col-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
-                <div class="col-8  text-center cursor font-bold dark-font recepie-options-delete"
+                <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
                     id="recepie-options-delete-click">Usuń</div>
-                <div class="col-2  text-center">
+                <div class="col-2 d-flex align-items-center justify-content-center  text-center">
                     <img src="/static/img/close.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
                         id="recepie-options-id-close-click" onclick=optionsClick(${index})>
