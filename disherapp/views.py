@@ -66,7 +66,7 @@ def dashboard(request):
         favourite_for_template.append(recepies_data.getDishById(element.dish_id))
 
     user_dishes = recepies_data.findUserDishes(user_name = request.user.get_username())
-
+  
     context = {"user_status": user_status, "user_dishes":user_dishes,
                "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value, "favourite_list":favourite_for_template}
     return render(request, "disher/dashboard.html", context)
@@ -524,9 +524,9 @@ def get_recepie_search(request, recepiename):
     for recepie_item in recepie_data:
         slug = recepie_item.dish_name.replace(" ","-")
         dish_data = recepie.getDishData(slug)
-        data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":dish_data.preparation_time, 
-                                "dish_type":dish_data.dish_type, "dish_calories": dish_data.dish_calories,
-                                "dish_description":dish_data.dish_description, "dish_slug":dish_data.slug, "dish_id":dish_data.id})
+        data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
+                                "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
+                                "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
     return JsonResponse(data, safe=False)
 
 @login_required(login_url='/login')

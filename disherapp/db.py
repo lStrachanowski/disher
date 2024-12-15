@@ -157,8 +157,9 @@ class DishOperations:
             print(e)
 
     def getAllDishes(self):
+        ADMIN_NAME = 'disher'
         try:
-            all_dishes = Dish.objects.all()
+            all_dishes = Dish.objects.all().filter(dish_owner=ADMIN_NAME)
             return all_dishes
         except Exception as e:
             print(e)
