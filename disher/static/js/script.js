@@ -132,7 +132,7 @@ let dayElementTemplate = (id, number) => {
         <!-- Naglowek dnia -->
         <div class="d-flex align-items-center justify-content-between col-12 day-header-color day-header-font day-header-border p-2 min-height cursor" id="${id}-edit">
             <div class="col-5 text-start p-3">
-                ${number}
+           
             </div>
             <div class="col-5 text-end" id="${id}-counter">
                 0 kcal
@@ -535,7 +535,7 @@ function clearInput() {
 
 function readCookie(parameter) {
     let cookie = document.cookie.split(';');
-    for (value of cookie) {
+    for (let value of cookie) {
         if (value.split('=')[0].trim() === parameter) {
             let data = value.split('=')[1];
             return data;
@@ -565,13 +565,6 @@ if (currentUrl == '/user/dashboard') {
     }
 }
 
-
-window.addEventListener('popstate', function (event) {
-    console.log('Current URL:', window.location.href);
-
-    // Perform actions based on the current URL change here
-});
-
 function checkForDataInCookies() {
     let data = readCookie('data');
     if (data) {
@@ -579,24 +572,36 @@ function checkForDataInCookies() {
     }
 }
 
-function setUserIdLCookie() {
-    fetch('/setidcookie')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        }).catch(error => {
-            console.log('Error fetching data:', error);
-        });
+
+async function setUserIdLCookie() {
+    try {
+        const response = await fetch('/setidcookie');
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.log('Error fetching data:', error);
+    }
 }
 
-function getUserIdCookie() {
-    fetch('/getidcookie')
-        .then(response => response.json())
-        .then(data => {
-            return data;
-        }).catch(error => {
-            console.log('Error fetching data:', error);
-        });
+
+async function getUserIdCookie() {
+    try {
+        const response = await fetch('/getidcookie');
+        
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
 
 
@@ -607,24 +612,31 @@ function fetchDataFromCookies(callback) {
 }
 
 
+
 // Fetching data about user days from server
-function fetchDataFromWeb(callback) {
-    fetch(DATA_URL)
-        .then(response => response.json())
-        .then(data => {
-            let valueCheck = JSON.parse(data);
-            if (valueCheck.message) {
-                console.log(valueCheck.message);
-                document.cookie = "data=";
-            } else {
-                document.cookie = "data=" + data;
-                callback(data);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
+async function fetchDataFromWeb(callback) {
+    try {
+        const response = await fetch(DATA_URL);
+
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const data = await response.json();
+        const valueCheck = JSON.parse(data);
+
+        if (valueCheck.message) {
+            document.cookie = "data=";
+        } else {
+            document.cookie = "data=" + data;
+            callback(data);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
+
 
 function checkIfShopListButtonExist() {
     let shoplistButton = document.getElementById("generateShopList");
@@ -639,31 +651,15 @@ function checkIfShopListButtonExist() {
 }
 
 function updateCookies(data) {
-    document.cookie = "data=" + "";
-    document.cookie = "data=" + data;
-    console.log("cookie updated");
+    try{
+        document.cookie = "data=" + "";
+        document.cookie = "data=" + data;
+        console.log("cookie updated");
+    }catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
 
-// function addNewDay(getList=false) {
-//     fetch(NEW_DAY)
-//         .then(response => response.json())
-//         .then(data => {
-//             let valueCheck = JSON.parse(data);
-//             day_id_list = []
-//             for (value of valueCheck) {
-//                 day_id_list.push(value.day_id);
-//             }
-//             fetchDataFromWeb(updateCookies);
-//             addDay((day_id_list[day_id_list.length - 1]));
-//             if(getList){
-//                 return (day_id_list[day_id_list.length - 1]);
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error fetching data:', error);
-//         });
-
-// }
 
 async function addNewDay(getList = false) {
     try {
@@ -703,8 +699,6 @@ function dayChange(newData, parsed) {
             updateCalories(dayData, day.day_id);
         }
     }
-
-
 }
 
 function updateCalories(dayData, day_id) {
@@ -979,27 +973,47 @@ let deleteMealElement = (id) => {
  * @param {string} id - Element id
  * 
  * */
-let deleteMealOptionElement = (id, day_id, meal_id) => {
-    deleteMealInDb(day_id, meal_id);
-    let selectedElement = document.getElementById(id);
-    selectedElement.remove();
-    let selectedOptionsElement = document.getElementById(id + "-edit-options");
-    selectedOptionsElement.remove();
-    let selectedOptionsElementCollapse = document.getElementById(id + "-collapse");
-    selectedOptionsElementCollapse.remove();
+async function deleteMealOptionElement(id, day_id, meal_id) {
+    try {
+        // Poczekaj na zakończenie asynchronicznej funkcji deleteMealInDb
+        await deleteMealInDb(day_id, meal_id);
 
+        // Usuń elementy z DOM
+        let selectedElement = document.getElementById(id);
+        if (selectedElement) selectedElement.remove();
+
+        let selectedOptionsElement = document.getElementById(id + "-edit-options");
+        if (selectedOptionsElement) selectedOptionsElement.remove();
+
+        let selectedOptionsElementCollapse = document.getElementById(id + "-collapse");
+        if (selectedOptionsElementCollapse) selectedOptionsElementCollapse.remove();
+    } catch (error) {
+        console.error('Error deleting meal option element:', error);
+    }
 }
+
 
 /**Is deleting day
  * 
  * @param {string} id - Element id
  * 
  * */
-let deleteDay = (id) => {
-    deleteDayInDb(id);
-    let dayElement = document.getElementById(id + '-container');
-    dayElement.remove();
+
+async function deleteDay(id) {
+    try {
+        // Poczekaj na zakończenie asynchronicznej funkcji deleteDayInDb
+        await deleteDayInDb(id);
+
+        // Usuń element z DOM
+        let dayElement = document.getElementById(id + '-container');
+        if (dayElement) {
+            dayElement.remove();
+        }
+    } catch (error) {
+        console.error('Error deleting day:', error);
+    }
 }
+
 
 let removeSearchResults = () => {
     const toRemove = document.querySelectorAll(".product-search-result");
@@ -1042,20 +1056,27 @@ const debouncedSearchData = debounce(searchProduct, 1000);
  * @param {string}searchQuery - product name
  * 
  * */
-function fetchSearchReasultsFromWeb(searchQuery) {
-    showProductSpiner();
-    fetch(SEARCH_DATA_URL + searchQuery)
-        .then(response => response.json())
-        .then(data => {
-            hideProductSpiner();
-            var parsedData = JSON.parse(data.results);
-            generateSearchResults(parsedData);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-}
 
+async function fetchSearchReasultsFromWeb(searchQuery) {
+    showProductSpiner();
+
+    try {
+        const response = await fetch(SEARCH_DATA_URL + searchQuery);
+        
+        // Sprawdzenie, czy zapytanie było udane
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const data = await response.json();
+        hideProductSpiner();
+        const parsedData = JSON.parse(data.results);
+        generateSearchResults(parsedData);
+    } catch (error) {
+        hideProductSpiner();
+        console.error('Error fetching data:', error);
+    }
+}
 
 
 
@@ -1207,16 +1228,27 @@ let cancelDishButtonClick = () => {
     window.location.href = '/user/dashboard';
 }
 
-let deleteMealInDb = (day_id, meal_id) => {
-    fetch(DELETE_MEAL + day_id + "/" + meal_id)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            fetchDataFromWeb(updateCookies);
-            fetchDataFromWeb(countCalories);
-        }).catch(error => {
-            console.log('Error fetching data:', error);
-        });
+async function deleteMealInDb(day_id, meal_id) {
+    try {
+        // Wykonanie zapytania do serwera
+        const response = await fetch(DELETE_MEAL + day_id + "/" + meal_id);
+        
+        // Sprawdzenie, czy zapytanie było udane
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        // Parsowanie odpowiedzi JSON
+        const data = await response.json();
+        console.log(data);
+        
+        // Wykonanie dodatkowych operacji
+        await fetchDataFromWeb(updateCookies);
+        await fetchDataFromWeb(countCalories);
+    } catch (error) {
+        // Obsługa błędów
+        console.log('Error fetching data:', error);
+    }
 }
 
 
@@ -1241,17 +1273,24 @@ let countCalories = (newData) => {
     }
 }
 
-let copyMeal = (element_id, day_id, dish_id) => {
-    fetch(COPY_DISH + day_id + "/" + dish_id + "/" + element_id)
-        .then(response => response.json())
-        .then(data => {
-            let elementData = JSON.parse(data);
-            addMealToDay(elementData.element_id, elementData.slug, elementData.name, elementData.cal, elementData.type, elementData.day_id, elementData.new_element)
-        }).catch(error => {
-            console.log('Error fetching data:', error);
-        });
 
+async function copyMeal(element_id, day_id, dish_id) {
+    try {
+        const response = await fetch(COPY_DISH + day_id + "/" + dish_id + "/" + element_id);
+        
+        // Sprawdzenie, czy zapytanie było udane
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const data = await response.json();
+        const elementData = JSON.parse(data);
+        addMealToDay(elementData.element_id, elementData.slug, elementData.name, elementData.cal, elementData.type, elementData.day_id, elementData.new_element);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
+
 
 let copyDay = async (day_id) => {
     try {
@@ -1288,19 +1327,22 @@ async function fetchRecepieSearchResultsFromWeb(searchQuery) {
     }
 }
 
-let searchRecepie = () => {
+
+async function searchRecepie() {
     let inputValue = document.getElementById("search").value;
     if (inputValue.length > 2) {
-        fetchRecepieSearchResultsFromWeb(inputValue).then(data => {
+        try {
+            const data = await fetchRecepieSearchResultsFromWeb(inputValue);
             recepieSearchResultItem(data.dish_data);
-        }).catch(error => {
-            console.error('Error logging data:', error);
-        });
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     } else {
         recepieSearchResultItem("");
-        console.log("to short");
+        console.log("too short");
     }
 }
+
 
 
 async function getDaysProductsList() {
@@ -1407,49 +1449,56 @@ function copyToClipboard(url) {
     });
 }
 
-function addToFavourite(slug) {
-    fetch('addfavourite/' + slug, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken(),
-        },
-        body: JSON.stringify({
-            slug: slug
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            let valueCheck = JSON.parse(data);
-            console.log(valueCheck.favourite_data[0].id);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-}
 
-function removeFromFavourite(slug) {
-    fetch('removefavourite/' + slug, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken(),
-        },
-        body: JSON.stringify({
-            slug: slug
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            let valueCheck = JSON.parse(data);
-            console.log(valueCheck);
-            console.log(valueCheck.favourite_data[0].id);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
+async function addToFavourite(slug) {
+    try {
+        const response = await fetch('addfavourite/' + slug, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify({ slug: slug })
         });
 
+        // Sprawdzenie, czy zapytanie było udane
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const data = await response.json();
+        const valueCheck = JSON.parse(data);
+        console.log(valueCheck.favourite_data[0].id);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
+
+async function removeFromFavourite(slug) {
+    try {
+        const response = await fetch('removefavourite/' + slug, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify({ slug: slug })
+        });
+
+        // Sprawdzenie, czy zapytanie było udane
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const data = await response.json();
+        const valueCheck = JSON.parse(data);
+        console.log(valueCheck);
+        console.log(valueCheck.favourite_data[0].id);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
 
 
 async function getUserRecepies() {
