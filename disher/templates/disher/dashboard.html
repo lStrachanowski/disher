@@ -38,8 +38,8 @@
                 aria-labelledby="pills-favourite-tab" tabindex="0">
                 <div class="col-12 empty-screen-font greey-font">Twoje ulubione przepisy</div>
 
-                {% for favourite in favourite_list %}
-                <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1" id="{{forloop.counter}}">
+                {% for favourite in favourite_list|slice:":3" %}
+                <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-favourite-recepie-class" id="f-{{forloop.counter}}">
                     <div
                         class="col-lg-6 col-12 p-1 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background">
                         <div class="col-2  text-center m-3 font-bold cursor">
@@ -65,6 +65,11 @@
                     </div>
                 </div>
                 {% endfor %}
+                <span class="col-12" id="yourFavourites"></span>
+                <div class="row col-12 d-flex align-items-center justify-content-center mt-2 m-1">
+                    <img src="/static/img/expand.svg" class="user-recepie-icons-size cursor" onclick="getUserFavouriteRecepies()"
+                        id="expandFavouriteImage">
+                </div>
             </div>
 
             <!-- Twoje przepisy -->
@@ -73,7 +78,7 @@
                 <div class="col-12 empty-screen-font greey-font">Twoje przepisy</div>
                 {% for dish in user_dishes|slice:":3"%}
                 <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class"
-                    id="{{forloop.counter}}">
+                    id="u-{{forloop.counter}}">
                     <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                         id="user-recepie-{{ forloop.counter }}">
                         <div class="col-2  text-center m-3 font-bold cursor">
@@ -105,7 +110,7 @@
                         id="user-options-{{ forloop.counter }}">
                         <div class="col-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
                         <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
-                            id="recepie-options-delete-click">Usuń</div>
+                            id="recepie-options-delete-click" onclick="deleteUserRecepie({{dish.id}})">Usuń</div>
                         <div class="col-2 d-flex align-items-center justify-content-center text-center">
                             <img src="/static/img/close.svg"
                                 class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"

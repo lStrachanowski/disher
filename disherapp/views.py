@@ -577,3 +577,33 @@ def remove_from_favourite(request,slug):
         product_list_json = json.dumps(data)
         return JsonResponse(product_list_json, safe=False)
 
+@login_required(login_url='/login')
+def delete_user_recepie(request, id):
+     print(id)
+     if request.method == "POST":
+        data = {}
+        data['favourite_data'] = []
+        data['favourite_data'].append({"id":id})
+        product_list_json = json.dumps(data)
+        print(data)
+        return JsonResponse(product_list_json, safe=False)
+
+@login_required(login_url='/login')
+def get_user_favourites(request):
+    recepies_data = DishOperations()
+    favourite_for_template = []
+    favourite = FavouriteOperations().returnFavourites(request.user.id)
+    for element in favourite:
+        dish = recepies_data.getDishById(element.dish_id)
+        favourite_for_template.append({
+            'dish_calories': dish.dish_calories,
+            'dish_description': dish.dish_description,
+            'dish_name': dish.dish_name,
+            'dish_owner': dish.dish_owner,
+            'dish_type': dish.dish_type,
+            'id': dish.id,
+            'preparation_time': dish.preparation_time,
+            'slug': dish.slug
+        })
+    data = {'user': request.user.get_username(), 'userFavouritesDishes': favourite_for_template}
+    return JsonResponse(data, safe=False)

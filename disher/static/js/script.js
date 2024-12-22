@@ -14,13 +14,15 @@ var DELETE_DAY = '/user/deleteday/';
 var COPY_DAY = '/user/copyday/';
 var COPY_DISH = '/user/copydish/';
 var DAYS_PRODUCTS_LIST = '/user/productslist/';
+var DELETE_USER_RECEPIE = '/user/deleteuserrecepie/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var SEARCH_RECEPIE_URL = window.location.protocol + "//" + window.location.host + '/getrecepiesearch/';
 var SEARCH_USER_RESEPIES = window.location.protocol + "//" + window.location.host + '/recepie/getuserrecepies/';
+var GET_USER_FAVOURITE_RESEPIES = window.location.protocol + "//" + window.location.host + '/recepie/getuserfavouriterecepies/';
 var tempAddedProduct = null;
 var productList = [];
-var expandValue = false;
-
+var expandUserRecepieValue = false;
+var expandUserFavouritesRecepieValue = false;
 let productContainer = document.getElementById("addProductContainer");
 let saveButtonContainer = document.getElementById("productButtonsContainer");
 let productLoader = document.getElementById("productLoader");
@@ -209,7 +211,58 @@ let shopListButtonTemplate = () => {
     </div>`;
 }
 
-let userRecepiesTemplate = (dish, index) => {
+// let userRecepiesTemplate = (dish, index) => {
+//     let selectedMealType = '';
+//     if (dish.dish_type == 'B') {
+//         selectedMealType = "Śniadanie";
+//     }
+//     if (dish.dish_type == 'B2') {
+//         selectedMealType = "2 Śniadanie";
+//     }
+//     if (dish.dish_type == 'D') {
+//         selectedMealType = "Obiad";
+//     }
+//     if (dish.dish_type == 'D2') {
+//         selectedMealType = "Przekąska";
+//     }
+//     if (dish.dish_type == 'S') {
+//         selectedMealType = "Kolacja";
+//     }
+
+
+//     let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="${index}">
+//             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
+//                 id="user-recepie-${index}">
+//                 <div class="col-2  text-center m-3 font-bold cursor"> 
+//                 ${selectedMealType}  
+//                 </div>
+//                 <div class="col-6  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
+//                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
+//                      <img src="/static/img/share.svg"
+//                         class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
+//                     <img src="/static/img/options.svg"
+//                         class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
+//                         id="recepie-options-id-click" onclick=optionsClick(${index})>
+//                 </div>
+//             </div>
+
+//             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
+//                 id="user-options-${index}">
+//                 <div class="col-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
+//                 <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
+//                     id="recepie-options-delete-click">Usuń</div>
+//                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
+//                     <img src="/static/img/close.svg"
+//                         class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
+//                         id="recepie-options-id-close-click" onclick=optionsClick(${index})>
+//                 </div>
+//             </div>
+//         </div>`
+//     return template;
+// }
+
+
+let userRecepiesTemplate = (dish, index, option) => {
     let selectedMealType = '';
     if (dish.dish_type == 'B') {
         selectedMealType = "Śniadanie";
@@ -227,8 +280,25 @@ let userRecepiesTemplate = (dish, index) => {
         selectedMealType = "Kolacja";
     }
 
+    if( option == 'userFavourite'){
+        let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-favourite-recepie-class" id="${index}">
+            <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background"
+                id="user-recepie-${index}">
+                <div class="col-2  text-center m-3 font-bold cursor"> 
+                ${selectedMealType}  
+                </div>
+                <div class="col-6  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
+                <div class="col-2 d-flex align-items-center justify-content-center  text-center">
+                     <img src="/static/img/share.svg"
+                        class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
+                </div>
+            </div>
+        </div>`
+        return template;
+    }
 
-    let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="${index}">
+    if( option == 'userCreated'){
+        let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="${index}">
             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                 id="user-recepie-${index}">
                 <div class="col-2  text-center m-3 font-bold cursor"> 
@@ -257,6 +327,7 @@ let userRecepiesTemplate = (dish, index) => {
             </div>
         </div>`
     return template;
+    }
 }
 
 let recepieSearchResultItem = (dishData) => {
@@ -591,7 +662,7 @@ async function setUserIdLCookie() {
 async function getUserIdCookie() {
     try {
         const response = await fetch('/getidcookie');
-        
+
         // Check if the request was successful
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
@@ -651,11 +722,11 @@ function checkIfShopListButtonExist() {
 }
 
 function updateCookies(data) {
-    try{
+    try {
         document.cookie = "data=" + "";
         document.cookie = "data=" + data;
         console.log("cookie updated");
-    }catch (error) {
+    } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
@@ -1062,7 +1133,7 @@ async function fetchSearchReasultsFromWeb(searchQuery) {
 
     try {
         const response = await fetch(SEARCH_DATA_URL + searchQuery);
-        
+
         // Sprawdzenie, czy zapytanie było udane
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
@@ -1232,7 +1303,7 @@ async function deleteMealInDb(day_id, meal_id) {
     try {
         // Wykonanie zapytania do serwera
         const response = await fetch(DELETE_MEAL + day_id + "/" + meal_id);
-        
+
         // Sprawdzenie, czy zapytanie było udane
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
@@ -1241,7 +1312,7 @@ async function deleteMealInDb(day_id, meal_id) {
         // Parsowanie odpowiedzi JSON
         const data = await response.json();
         console.log(data);
-        
+
         // Wykonanie dodatkowych operacji
         await fetchDataFromWeb(updateCookies);
         await fetchDataFromWeb(countCalories);
@@ -1277,7 +1348,7 @@ let countCalories = (newData) => {
 async function copyMeal(element_id, day_id, dish_id) {
     try {
         const response = await fetch(COPY_DISH + day_id + "/" + dish_id + "/" + element_id);
-        
+
         // Sprawdzenie, czy zapytanie było udane
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
@@ -1443,7 +1514,7 @@ function replaceImage(slug) {
 function copyToClipboard(url) {
     let site = window.location.protocol + "//" + window.location.host + url;
     navigator.clipboard.writeText(site).then(() => {
-        alert('Link copied to clipboard: ' + site); 
+        alert('Link copied to clipboard: ' + site);
     }).catch(err => {
         console.error('Could not copy text: ', err);
     });
@@ -1499,6 +1570,49 @@ async function removeFromFavourite(slug) {
     }
 }
 
+async function getUserFavouriteRecepies() {
+    let expandImage = document.getElementById("expandFavouriteImage");
+    try {
+        const response = await fetch(GET_USER_FAVOURITE_RESEPIES);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        if (expandUserFavouritesRecepieValue) {
+            let numberOfDisplayedElements = document.getElementsByClassName("user-favourite-recepie-container").length;
+            console.log(numberOfDisplayedElements);
+            if (data.userFavouritesDishes.length > numberOfDisplayedElements) {
+                let dishList = data.userFavouritesDishes.slice(numberOfDisplayedElements,);
+                let selectedParent = document.getElementById('yourFavourites');
+                let counter = numberOfDisplayedElements;
+                for (element of dishList) {
+                    counter += 1;
+                    let newDishElement = userRecepiesTemplate(element, counter, 'userFavourite');
+                    selectedParent.insertAdjacentHTML('afterend', newDishElement);
+                }
+
+                expandImage.style.transform = "rotate(180deg)";
+            }
+        }
+        if (!expandUserFavouritesRecepieValue) {
+            let userRecepiesList = document.querySelectorAll(".user-favourite-recepie-class");
+            expandImage.style.transform = "rotate(360deg)";
+            console.log(userRecepiesList);
+            if (userRecepiesList.length >= 2) {
+                userRecepiesList.forEach((element, index) => {
+                    if (index > 2) {
+                        element.remove();
+                    }
+
+                });
+            }
+        }
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
 
 
 async function getUserRecepies() {
@@ -1509,33 +1623,35 @@ async function getUserRecepies() {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
-        if(expandValue){
-        let numberOfDisplayedElements = document.getElementsByClassName("user-recepie-container").length;
-        if (data.userDishes.length > numberOfDisplayedElements) {
-            let dishList = data.userDishes.slice(numberOfDisplayedElements,);
-            let selectedParent = document.getElementById('yourDishes');
-            let counter = numberOfDisplayedElements;
-            for (element of dishList) {
-                counter += 1;
-                let newDishElement = userRecepiesTemplate(element, counter);
-                selectedParent.insertAdjacentHTML('afterend', newDishElement);
+        if (expandUserRecepieValue) {
+            let numberOfDisplayedElements = document.getElementsByClassName("user-recepie-container").length;
+            console.log(numberOfDisplayedElements);
+            if (data.userDishes.length > numberOfDisplayedElements) {
+                let dishList = data.userDishes.slice(numberOfDisplayedElements,);
+                let selectedParent = document.getElementById('yourDishes');
+                let counter = numberOfDisplayedElements;
+                for (element of dishList) {
+                    counter += 1;
+                    let newDishElement = userRecepiesTemplate(element, counter, 'userCreated');
+                    selectedParent.insertAdjacentHTML('afterend', newDishElement);
+                }
+
+                expandImage.style.transform = "rotate(180deg)";
             }
-            
-            expandImage.style.transform = "rotate(180deg)";
         }
-        }
-        if (!expandValue) {
+        if (!expandUserRecepieValue) {
             let userRecepiesList = document.querySelectorAll(".user-recepie-class");
+            console.log(userRecepiesList);
             expandImage.style.transform = "rotate(360deg)";
-            if (userRecepiesList.length >= 2){
-                userRecepiesList.forEach((element, index) =>{
-                    if(index > 2){
+            if (userRecepiesList.length >= 2) {
+                userRecepiesList.forEach((element, index) => {
+                    if (index > 2) {
                         element.remove();
                     }
-    
+
                 });
             }
-           
+
         }
         return data;
     } catch (error) {
@@ -1544,13 +1660,46 @@ async function getUserRecepies() {
     }
 }
 
-if(document.getElementById('expandImage')){
-    document.getElementById('expandImage').addEventListener('click', ()=>{
-        expandValue = !expandValue;
+if (document.getElementById('expandImage')) {
+    document.getElementById('expandImage').addEventListener('click', () => {
+        expandUserRecepieValue = !expandUserRecepieValue;
+    });
+}
+
+
+if (document.getElementById('expandFavouriteImage')) {
+    document.getElementById('expandFavouriteImage').addEventListener('click', () => {
+        expandUserFavouritesRecepieValue = !expandUserFavouritesRecepieValue;
     });
 }
 
 function removeFromShoplist(id) {
     let elementToRemove = document.getElementById(id);
-    elementToRemove.remove();
+    if (elementToRemove) {
+        elementToRemove.remove();
+    } else {
+        console.error('Element with id ' + id + ' not found.');
+    }
+}
+
+async function deleteUserRecepie(id) {
+    console.log(id);
+    try {
+        const response = await fetch(DELETE_USER_RECEPIE + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify({ id: id })
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
 }
