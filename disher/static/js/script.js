@@ -1703,3 +1703,17 @@ async function deleteUserRecepie(id) {
         throw error;
     }
 }
+
+function hideFavouriteInModal() {
+    let expandImage = document.getElementById("expandFavouriteImageinModal");
+    let favouriteElement = document.getElementById("favouriteRecepiesSpan");
+    if (favouriteElement) {
+        if (favouriteElement.style.display === 'none') {
+            favouriteElement.style.display = 'flex';
+            expandImage.style.transform = "rotate(360deg)";
+        } else {
+            favouriteElement.style.display = 'none';
+            expandImage.style.transform = "rotate(180deg)";
+        }
+    }
+}

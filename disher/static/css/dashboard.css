@@ -91,6 +91,10 @@
     padding-bottom: 3rem !important;
 }
 
+.image-rotated{
+    rotate: 180deg;
+}
+
 @media (max-width: 575.98px) { 
     .user-recepie-icons-show{
         display: none;
