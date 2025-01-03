@@ -579,13 +579,19 @@ def remove_from_favourite(request,slug):
 
 @login_required(login_url='/login')
 def delete_user_recepie(request, id):
-     print(id)
      if request.method == "POST":
         data = {}
-        data['favourite_data'] = []
-        data['favourite_data'].append({"id":id})
+        dish = DishOperations()
+        success = dish.deleteUserDish(id, request.user.get_username())
+        if success:
+            data['message'] = 'Dish deleted successfully'
+        else:
+            data['message'] = 'Failed to delete dish'
+        dishes = DishOperations()
+        user_dishes = dishes.findUserDishes(request.user.get_username())
+        dishes_data = list(user_dishes.values())
+        data = {'user': request.user.get_username(), 'userDishes': dishes_data}
         product_list_json = json.dumps(data)
-        print(data)
         return JsonResponse(product_list_json, safe=False)
 
 @login_required(login_url='/login')

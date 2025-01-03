@@ -211,57 +211,6 @@ let shopListButtonTemplate = () => {
     </div>`;
 }
 
-// let userRecepiesTemplate = (dish, index) => {
-//     let selectedMealType = '';
-//     if (dish.dish_type == 'B') {
-//         selectedMealType = "Śniadanie";
-//     }
-//     if (dish.dish_type == 'B2') {
-//         selectedMealType = "2 Śniadanie";
-//     }
-//     if (dish.dish_type == 'D') {
-//         selectedMealType = "Obiad";
-//     }
-//     if (dish.dish_type == 'D2') {
-//         selectedMealType = "Przekąska";
-//     }
-//     if (dish.dish_type == 'S') {
-//         selectedMealType = "Kolacja";
-//     }
-
-
-//     let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="${index}">
-//             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
-//                 id="user-recepie-${index}">
-//                 <div class="col-2  text-center m-3 font-bold cursor"> 
-//                 ${selectedMealType}  
-//                 </div>
-//                 <div class="col-6  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
-//                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
-//                      <img src="/static/img/share.svg"
-//                         class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
-//                     <img src="/static/img/options.svg"
-//                         class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
-//                         id="recepie-options-id-click" onclick=optionsClick(${index})>
-//                 </div>
-//             </div>
-
-//             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
-//                 id="user-options-${index}">
-//                 <div class="col-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
-//                 <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
-//                     id="recepie-options-delete-click">Usuń</div>
-//                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
-//                     <img src="/static/img/close.svg"
-//                         class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
-//                         id="recepie-options-id-close-click" onclick=optionsClick(${index})>
-//                 </div>
-//             </div>
-//         </div>`
-//     return template;
-// }
-
-
 let userRecepiesTemplate = (dish, index, option) => {
     let selectedMealType = '';
     if (dish.dish_type == 'B') {
@@ -280,7 +229,7 @@ let userRecepiesTemplate = (dish, index, option) => {
         selectedMealType = "Kolacja";
     }
 
-    if( option == 'userFavourite'){
+    if (option == 'userFavourite') {
         let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-favourite-recepie-class" id="${index}">
             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background"
                 id="user-recepie-${index}">
@@ -297,8 +246,8 @@ let userRecepiesTemplate = (dish, index, option) => {
         return template;
     }
 
-    if( option == 'userCreated'){
-        let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="${index}">
+    if (option == 'userCreated') {
+        let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="u-${index}">
             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                 id="user-recepie-${index}">
                 <div class="col-2  text-center m-3 font-bold cursor"> 
@@ -318,7 +267,7 @@ let userRecepiesTemplate = (dish, index, option) => {
                 id="user-options-${index}">
                 <div class="col-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
                 <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
-                    id="recepie-options-delete-click">Usuń</div>
+                    id="recepie-options-delete-click" onclick="deleteUserRecepie(${dish.id})">Usuń</div>
                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
                     <img src="/static/img/close.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
@@ -326,7 +275,7 @@ let userRecepiesTemplate = (dish, index, option) => {
                 </div>
             </div>
         </div>`
-    return template;
+        return template;
     }
 }
 
@@ -398,6 +347,7 @@ let recepieSearchResultItem = (dishData) => {
         container.appendChild(recepieDiv);
     }
 }
+
 
 function getDishTypeClass(dishType) {
     switch (dishType) {
@@ -1578,9 +1528,9 @@ async function getUserFavouriteRecepies() {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
+
         if (expandUserFavouritesRecepieValue) {
             let numberOfDisplayedElements = document.getElementsByClassName("user-favourite-recepie-container").length;
-            console.log(numberOfDisplayedElements);
             if (data.userFavouritesDishes.length > numberOfDisplayedElements) {
                 let dishList = data.userFavouritesDishes.slice(numberOfDisplayedElements,);
                 let selectedParent = document.getElementById('yourFavourites');
@@ -1597,7 +1547,6 @@ async function getUserFavouriteRecepies() {
         if (!expandUserFavouritesRecepieValue) {
             let userRecepiesList = document.querySelectorAll(".user-favourite-recepie-class");
             expandImage.style.transform = "rotate(360deg)";
-            console.log(userRecepiesList);
             if (userRecepiesList.length >= 2) {
                 userRecepiesList.forEach((element, index) => {
                     if (index > 2) {
@@ -1615,7 +1564,7 @@ async function getUserFavouriteRecepies() {
 }
 
 
-async function getUserRecepies() {
+async function getUserRecepies(expand) {
     let expandImage = document.getElementById("expandImage");
     try {
         const response = await fetch(SEARCH_USER_RESEPIES);
@@ -1623,9 +1572,8 @@ async function getUserRecepies() {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
-        if (expandUserRecepieValue) {
+        if (expandUserRecepieValue || expand) {
             let numberOfDisplayedElements = document.getElementsByClassName("user-recepie-container").length;
-            console.log(numberOfDisplayedElements);
             if (data.userDishes.length > numberOfDisplayedElements) {
                 let dishList = data.userDishes.slice(numberOfDisplayedElements,);
                 let selectedParent = document.getElementById('yourDishes');
@@ -1641,19 +1589,20 @@ async function getUserRecepies() {
         }
         if (!expandUserRecepieValue) {
             let userRecepiesList = document.querySelectorAll(".user-recepie-class");
-            console.log(userRecepiesList);
             expandImage.style.transform = "rotate(360deg)";
             if (userRecepiesList.length >= 2) {
                 userRecepiesList.forEach((element, index) => {
-                    if (index > 2) {
+                    let elementId = parseInt(element.id.split("-")[1], 10);
+                    if (elementId > 3) {
                         element.remove();
                     }
-
                 });
             }
-
         }
         return data;
+
+
+
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -1682,8 +1631,15 @@ function removeFromShoplist(id) {
     }
 }
 
+function deleteAllUserRecepies() {
+    const userRecepies = document.querySelectorAll('.user-recepie-class');
+    userRecepies.forEach(recepie => {
+        recepie.remove();
+    });
+}
+
+
 async function deleteUserRecepie(id) {
-    console.log(id);
     try {
         const response = await fetch(DELETE_USER_RECEPIE + id, {
             method: 'POST',
@@ -1697,12 +1653,19 @@ async function deleteUserRecepie(id) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
+        deleteAllUserRecepies();
+        setTimeout(() => {
+            expandUserRecepieValue = !expandUserRecepieValue;
+            getUserRecepies(true);
+        }, 1000);
+
         return data
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
 }
+
 
 function hideFavouriteInModal() {
     let expandImage = document.getElementById("expandFavouriteImageinModal");

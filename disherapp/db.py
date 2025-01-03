@@ -156,6 +156,16 @@ class DishOperations:
         except Exception as e:
             print(e)
 
+    def deleteUserDish(self, id, user_name):
+        try:
+            dish_object = Dish.objects.get(id=id, dish_owner=user_name)
+            dish_object.delete()
+            print("Dish deleted")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
     def getAllDishes(self):
         ADMIN_NAME = 'disher'
         try:
