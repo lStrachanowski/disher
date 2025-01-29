@@ -35,9 +35,10 @@ class ProductAmountOperations:
 class ProductOperations:
     def createProduct(self, name, calories, quantity, protein, fat, carbs):
         try:
-            check_product = Product.objects.get(product_name=name)
-            print("Already exist")
-        except Product.DoesNotExist:
+            check_product = Product.objects.filter(product_name=name).exists()
+            if check_product:
+                print("Already exist")
+                return
             product = Product(
                 product_name=name,
                 product_calories=calories,

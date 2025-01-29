@@ -12,7 +12,7 @@ from django.core import signing
 from django.db import models
 import json
 from django.core.serializers.json import DjangoJSONEncoder
-from disher.models import Day_Dish
+from disher.models import Day_Dish, User_Day
 from . import calculations
 import time
 
@@ -582,13 +582,30 @@ def delete_user_recepie(request, id):
      if request.method == "POST":
         data = {}
         dish = DishOperations()
+        day = DayOperations()
+        dish_slug = dish.getDishById(id).slug
+
+        # Removing dish from favourite
+        remove_from_favourite = FavouriteOperations()
+        remove_success = remove_from_favourite.deleteDishFromFavourite(request.user.id, dish_slug)
+        if remove_success:
+            data['message'] = 'Favourite deleted successfully'
+        else:
+            data['message'] = 'Failed to delete favourite'
+
+        # Removing dish from day
+        day_object = User_Day.objects.filter(user_id = request.user.id)
+        for d in day_object:
+            print(d)
+            day.deleteDish(request.user.id, d.id, id)
+
+
         success = dish.deleteUserDish(id, request.user.get_username())
         if success:
             data['message'] = 'Dish deleted successfully'
         else:
             data['message'] = 'Failed to delete dish'
-        dishes = DishOperations()
-        user_dishes = dishes.findUserDishes(request.user.get_username())
+        user_dishes = dish.findUserDishes(request.user.get_username())
         dishes_data = list(user_dishes.values())
         data = {'user': request.user.get_username(), 'userDishes': dishes_data}
         product_list_json = json.dumps(data)
@@ -613,3 +630,18 @@ def get_user_favourites(request):
         })
     data = {'user': request.user.get_username(), 'userFavouritesDishes': favourite_for_template}
     return JsonResponse(data, safe=False)
+
+@login_required(login_url='/login')
+def read_csv(request):
+    import csv
+    with open('kalorie.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=';')
+        next(reader)  
+        test_product = ProductOperations()
+        for row in reader:
+            # test_product.createProduct("jajko",140,100,13,10,1)
+            print(row[2].lower(),float(row[3].replace(',', '.')),  float(row[5].replace(',', '.')), float(row[6].replace(',', '.')), float(row[7].replace(',', '.')), float(row[8].replace(',', '.'))) 
+            test_product.createProduct(row[2].lower(),float(row[3].replace(',', '.')), float(row[5].replace(',', '.')), float(row[6].replace(',', '.')), float(row[7].replace(',', '.')), float(row[8].replace(',', '.')))
+            
+             
+    return HttpResponse('CSV read')

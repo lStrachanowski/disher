@@ -1654,11 +1654,8 @@ async function deleteUserRecepie(id) {
         }
         const data = await response.json();
         deleteAllUserRecepies();
-        setTimeout(() => {
-            expandUserRecepieValue = !expandUserRecepieValue;
-            getUserRecepies(true);
-        }, 1000);
-
+        expandUserRecepieValue = !expandUserRecepieValue;
+        getUserRecepies(true);
         return data
     } catch (error) {
         console.error('Error fetching data:', error);

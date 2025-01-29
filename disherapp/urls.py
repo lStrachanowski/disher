@@ -39,5 +39,6 @@ urlpatterns = [
     path('recepie/getuserfavouriterecepies/', views.get_user_favourites, name="getUserFavourites"),
     path('getproductsearch/<str:productname>', views.get_product_search, name="getProductSearch"),
     path('getrecepiesearch/<str:recepiename>', views.get_recepie_search, name="getRecepieSearch"),
-    path('user/productslist/<str:days>', views.get_days_product_list, name="getDaysProductList")
+    path('user/productslist/<str:days>', views.get_days_product_list, name="getDaysProductList"),
+    path('readcsv/', views.read_csv, name="readCSV"),
 ]
