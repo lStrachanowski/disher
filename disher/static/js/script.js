@@ -1,4 +1,5 @@
 var dayId = "";
+var userRecepieToDelete = null;
 var globalElementId = null;
 var globalMealName = "";
 var globalSelectedValue = "";
@@ -1599,6 +1600,7 @@ async function getUserRecepies(expand) {
                 });
             }
         }
+        addEventListenersToRecepies();
         return data;
 
 
@@ -1638,6 +1640,21 @@ function deleteAllUserRecepies() {
     });
 }
 
+window.addEventListener('load', () => {
+    addEventListenersToRecepies();
+});
+
+function addEventListenersToRecepies() {
+    let elementsToRemove = document.getElementsByClassName("user-recepie-container");
+    if (elementsToRemove.length > 0) {
+        for (let i = 0; i < elementsToRemove.length; i++) {
+            elementsToRemove[i].addEventListener('click', () => {
+                console.log("event listener ", elementsToRemove[i].children[1].innerText.trim());
+                userRecepieToDelete = elementsToRemove[i].children[1].innerText.trim();
+            });
+        }
+    }
+}
 
 async function deleteUserRecepie(id) {
     try {
@@ -1653,14 +1670,42 @@ async function deleteUserRecepie(id) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
+        await selectUserRecepieAndDelete();
         deleteAllUserRecepies();
         expandUserRecepieValue = !expandUserRecepieValue;
-        getUserRecepies(true);
+        await getUserRecepies(true);
+        addEventListenersToRecepies();
         return data
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
+}
+
+async function selectUserRecepieAndDelete() {
+    let selection = document.getElementsByClassName("day-element-card");
+    console.log("selection", selection);
+    for (let i = 0; i < selection.length; i++) {
+        if (selection[i].innerText.trim() === userRecepieToDelete) {
+            if(selection[i].parentElement.id.split("-").length > 1) {
+                let a = selection[i].parentElement.id.split("-");
+                a.pop();
+                removeFromShoplist(a.join("-"));
+                deleteOptionsElement(a.join("-"));
+                console.log("remove", a.join("-"));
+            }
+        }
+    }
+    await fetchDataFromWeb(updateCookies);
+    await fetchDataFromWeb(countCalories);
+}
+
+function deleteOptionsElement(id) {
+    let selectedOptionsElement = document.getElementById(id + "-edit-options");
+    if (selectedOptionsElement) selectedOptionsElement.remove();
+
+    let selectedOptionsElementCollapse = document.getElementById(id + "-collapse");
+    if (selectedOptionsElementCollapse) selectedOptionsElementCollapse.remove();
 }
 
 

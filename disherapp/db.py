@@ -194,7 +194,6 @@ class DishOperations:
     def findDish(self, name):
         try:
             recepie_object = Dish.objects.filter(dish_name__icontains = name)
-            print(recepie_object)
             return recepie_object
         except Exception as e:
             print(e)

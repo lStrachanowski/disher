@@ -520,7 +520,7 @@ def get_recepie_search(request, recepiename):
     data = {}
     data['dish_data'] = []
     recepie= DishOperations()
-    recepie_data = recepie.findDish(recepiename)
+    recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=[request.user.username, 'disher'])
     for recepie_item in recepie_data:
         slug = recepie_item.dish_name.replace(" ","-")
         dish_data = recepie.getDishData(slug)
@@ -582,7 +582,7 @@ def delete_user_recepie(request, id):
      if request.method == "POST":
         data = {}
         dish = DishOperations()
-        day = DayOperations()
+        day_operations = DayOperations()
         dish_slug = dish.getDishById(id).slug
 
         # Removing dish from favourite
@@ -595,16 +595,20 @@ def delete_user_recepie(request, id):
 
         # Removing dish from day
         day_object = User_Day.objects.filter(user_id = request.user.id)
-        for d in day_object:
-            print(d)
-            day.deleteDish(request.user.id, d.id, id)
+        for day in day_object:
+            dish_id = [p for p in day.user_day_dish.all()]
+            for d in dish_id:
+                if id == d.dish_id:
+                    print(day.id, d.id)
+                    day_operations.deleteDish(request.user.id, day.id, d.id)
 
-
+        # Removing dish from user dishes
         success = dish.deleteUserDish(id, request.user.get_username())
         if success:
             data['message'] = 'Dish deleted successfully'
         else:
             data['message'] = 'Failed to delete dish'
+
         user_dishes = dish.findUserDishes(request.user.get_username())
         dishes_data = list(user_dishes.values())
         data = {'user': request.user.get_username(), 'userDishes': dishes_data}
