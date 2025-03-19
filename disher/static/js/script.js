@@ -1682,12 +1682,32 @@ async function deleteUserRecepie(id) {
     }
 }
 
+// async function selectUserRecepieAndDelete() {
+//     let selection = document.getElementsByClassName("day-element-card");
+//     console.log("selection", selection);
+//     for (let i = 0; i < selection.length; i++) {
+//         if (selection[i].innerText.trim() === userRecepieToDelete) {
+//             if(selection[i].parentElement.id.split("-").length > 1) {
+//                 let a = selection[i].parentElement.id.split("-");
+//                 a.pop();
+//                 removeFromShoplist(a.join("-"));
+//                 deleteOptionsElement(a.join("-"));
+//                 console.log("remove", a.join("-"));
+//             }
+//         }
+//     }
+//     await fetchDataFromWeb(updateCookies);
+//     await fetchDataFromWeb(countCalories);
+// }
+
 async function selectUserRecepieAndDelete() {
     let selection = document.getElementsByClassName("day-element-card");
     console.log("selection", selection);
-    for (let i = 0; i < selection.length; i++) {
+
+    // Iterate in reverse to avoid skipping elements
+    for (let i = selection.length - 1; i >= 0; i--) {
         if (selection[i].innerText.trim() === userRecepieToDelete) {
-            if(selection[i].parentElement.id.split("-").length > 1) {
+            if (selection[i].parentElement.id.split("-").length > 1) {
                 let a = selection[i].parentElement.id.split("-");
                 a.pop();
                 removeFromShoplist(a.join("-"));
@@ -1696,6 +1716,7 @@ async function selectUserRecepieAndDelete() {
             }
         }
     }
+
     await fetchDataFromWeb(updateCookies);
     await fetchDataFromWeb(countCalories);
 }
