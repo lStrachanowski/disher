@@ -1657,6 +1657,7 @@ function addEventListenersToRecepies() {
 }
 
 async function deleteUserRecepie(id) {
+    deleteRecepieFromFavourites(userRecepieToDelete);
     try {
         const response = await fetch(DELETE_USER_RECEPIE + id, {
             method: 'POST',
@@ -1672,6 +1673,7 @@ async function deleteUserRecepie(id) {
         const data = await response.json();
         await selectUserRecepieAndDelete();
         deleteAllUserRecepies();
+        deleteRecepieFromFavourites(userRecepieToDelete);
         expandUserRecepieValue = !expandUserRecepieValue;
         await getUserRecepies(true);
         addEventListenersToRecepies();
@@ -1682,29 +1684,22 @@ async function deleteUserRecepie(id) {
     }
 }
 
-// async function selectUserRecepieAndDelete() {
-//     let selection = document.getElementsByClassName("day-element-card");
-//     console.log("selection", selection);
-//     for (let i = 0; i < selection.length; i++) {
-//         if (selection[i].innerText.trim() === userRecepieToDelete) {
-//             if(selection[i].parentElement.id.split("-").length > 1) {
-//                 let a = selection[i].parentElement.id.split("-");
-//                 a.pop();
-//                 removeFromShoplist(a.join("-"));
-//                 deleteOptionsElement(a.join("-"));
-//                 console.log("remove", a.join("-"));
-//             }
-//         }
-//     }
-//     await fetchDataFromWeb(updateCookies);
-//     await fetchDataFromWeb(countCalories);
-// }
+function deleteRecepieFromFavourites(slug) {
+    let elementToRemove = document.getElementsByClassName("user-favourite-recepie-container");
+    for (let i = elementToRemove.length - 1; i >= 0; i--) {
+        const col7Div = elementToRemove[i].querySelector('.col-7.text-center.cursor');
+        if (col7Div) {
+            if (col7Div.innerText.trim() === userRecepieToDelete) {
+                elementToRemove[i].remove();
+            }
+        } else {
+            console.error('Element with class "col-7 text-center cursor" not found.');
+        }
+    }
+}
 
 async function selectUserRecepieAndDelete() {
     let selection = document.getElementsByClassName("day-element-card");
-    console.log("selection", selection);
-
-    // Iterate in reverse to avoid skipping elements
     for (let i = selection.length - 1; i >= 0; i--) {
         if (selection[i].innerText.trim() === userRecepieToDelete) {
             if (selection[i].parentElement.id.split("-").length > 1) {
@@ -1712,7 +1707,6 @@ async function selectUserRecepieAndDelete() {
                 a.pop();
                 removeFromShoplist(a.join("-"));
                 deleteOptionsElement(a.join("-"));
-                console.log("remove", a.join("-"));
             }
         }
     }

@@ -140,10 +140,11 @@ class DishOperations:
     def getDishData(self, slug):
         try:
             dish_object = Dish.objects.get(slug=slug)
+            print(f"Dish found: {dish_object}")
             return dish_object
         except Exception as e:
-            print(e)
-            return
+            print(f"Dish not found for slug: {slug}")
+            return None
 
 
     def deleteDish(self, name):
@@ -264,6 +265,7 @@ class DayOperations:
                 results_table.append(data_object)
             return json.dumps(results_table)
         except Exception as e:
+            print("fefef")
             print(e)
 
 
