@@ -27,22 +27,45 @@
                 <form action="" method="post" id="subscribeForm">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <div class="row">
-                        <div class="search-label col-lg-8 col-md-10 col-10 mt-3 mb-3">
-                            Zapisz się do newslettera
-                        </div>
-                    </div>
-                    <div class="row newsletter">
-                        <div class="row col-lg-8 col-md-8 col-10 mt-2 mb-2">
-                            <div class="form-group col-12">
-                                <input type="email" class="form-control"  id="user_email"
-                                    name="user_email" placeholder="Wpisz email" required>
+                    
+               
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="search-label col-lg-12 mt-3 mb-3">
+                                            Zapisz się do newslettera
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12  mt-2 mb-2">
+                                        <div class="form-group col-12">
+                                            <input type="email" class="form-control"  id="user_email"
+                                                name="user_email" placeholder="Podaj email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-2 mb-2 d-flex justify-content-center align-items-center">
+                                        <button type="submit" class="btn btn-success ">Zapisz</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                    
+                          
+                            <div class="col-lg-8 col-md-12">
+                                <div class="row">
+                                    <div class="search-label col-lg-12 mt-3 mb-3">
+                                        Otrzymuj najnowsze przepisy
+                                    </div>
+                                </div>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies nulla convallis semper facilisis. Mauris tincidunt magna massa, et bibendum sapien pretium vitae. Phasellus a malesuada tellus. Morbi ornare, mi ac venenatis viverra, lacus tellus finibus quam, nec aliquam arcu dolor sed enim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce consequat lectus et dui hendrerit, nec venenatis tellus gravida. Etiam imperdiet mi eget sapien cursus cursus. Nam purus urna, sollicitudin ac pellentesque id, lobortis eu ipsum. Mauris eget condimentum nulla. Nulla nisi turpis, dapibus id arcu venenatis, iaculis hendrerit sapien. Phasellus sem odio, molestie ut mollis malesuada, consequat et libero. Nulla sollicitudin nunc non dolor porttitor consequat. Cras arcu ante, ultricies eu bibendum sit amet, ullamcorper ut dui. In ac libero convallis, placerat augue vitae, posuere justo.
                             </div>
                         </div>
-                        <div class="row col-lg-2 col-md-2 col-4 mt-2 mb-2">
-                            <button type="submit" class="btn btn-success ">Zapisz</button>
-                        </div>
                     </div>
+                    
+                    
+                
                 </form>
             </div>
         </div>
