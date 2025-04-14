@@ -55,7 +55,7 @@ class ProductOperations:
     def findProduct(self, name):
         try:
             product = Product.objects.get(product_name=name)
-            return product.id
+            return product
         except Exception as e:
             print(e)
             return

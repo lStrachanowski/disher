@@ -1227,15 +1227,16 @@ let checkProductFieldsValidity = () => {
 let checkDishFielsdValidity = () => {
     const dishDescription = document.getElementById("dishDescription");
     const dishTitle = document.getElementById("dish_title");
-    const dishCalories = document.getElementById("dish_calories");
+    // const dishCalories = document.getElementById("dish_calories");
     const dishDuration = document.getElementById("duration");
     const dishType = document.getElementById("type_of_meal");
-    if (dishTitle.checkValidity() == true && dishCalories.checkValidity() == true && dishDuration.checkValidity() == true && dishType.checkValidity() == true && dishDescription.checkValidity() == true, productList.length > 0) {
+    if (dishTitle.checkValidity() == true && dishDuration.checkValidity() == true && dishType.checkValidity() == true && dishDescription.checkValidity() == true, productList.length > 0) {
         saveDishButton.disabled = false;
     } else {
         saveDishButton.disabled = true;
     }
 }
+
 
 let saveDishButtonClick = () => {
     const productName = document.getElementById("dish_product_search");

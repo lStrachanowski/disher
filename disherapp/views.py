@@ -109,11 +109,13 @@ def add_recepie(request):
             amount = ProductAmountOperations()
             products_list = request.POST.get('json_data')
             product_data = json.loads(products_list)
+            print(product_data)
+            product_name_list = [product_operations.findProduct(product['name']).id for product in product_data]
 
-            product_name_list = [product_operations.findProduct(product['name']) for product in product_data]
-
+            products_calories = [product_operations.findProduct(product['name']).product_calories for product in product_data]
+        
             recepie_title = form.cleaned_data["dish_title"]
-            dish_calories = form.cleaned_data["dish_calories"]
+            dish_calories = count_calories(products_list, products_calories)
             dish_description = form.cleaned_data["dishDescription"]
             duration = form.cleaned_data["duration"]
             type_of_meal = form.cleaned_data["type_of_meal"]
@@ -131,7 +133,20 @@ def add_recepie(request):
 
     return render(request, "disher/addrecepie.html", context)
 
-
+def count_calories(products, product_calories):
+    unit_matrice = {'kg': 1000, 'gr': 1, 'ml': 1}
+    product_list = json.loads(products)
+    calories_sum = 0
+    for product, calories in zip(product_list, product_calories):
+        product_amount = float(product['amount'])  # Ensure numeric type
+        product_unit = product['unit']  
+        if product_unit in unit_matrice:
+            product_amount_converted = product_amount * (unit_matrice[product_unit] / 100)    
+            calories_sum += product_amount_converted * calories     
+        product_number_of_calories = calories
+        print(product_amount, product_number_of_calories)
+    print("calories_sum", calories_sum)
+    return calories_sum
 
 def login_view(request):
     if request.method == "POST":
