@@ -617,12 +617,20 @@ def delete_user_recepie(request, id):
                     print(day.id, d.id)
                     day_operations.deleteDish(request.user.id, day.id, d.id)
 
+        # Removing dish from product amount
+        dish_referene= dish.getDishById(id)
+        amount = ProductAmountOperations()
+        amount.deleteAllAmounts(dish_referene)
+
         # Removing dish from user dishes
         success = dish.deleteUserDish(id, request.user.get_username())
         if success:
             data['message'] = 'Dish deleted successfully'
         else:
             data['message'] = 'Failed to delete dish'
+
+        
+
 
         user_dishes = dish.findUserDishes(request.user.get_username())
         dishes_data = list(user_dishes.values())

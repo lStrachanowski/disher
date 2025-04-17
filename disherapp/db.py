@@ -30,6 +30,16 @@ class ProductAmountOperations:
         except Exception as e:
             print(e)
             return
+    
+    def deleteAllAmounts(self, dish):
+        try:
+            product_list = Product_Amount.objects.filter(dish = dish)
+            for p in product_list:
+                p.delete()
+            print("All amounts deleted")
+        except Exception as e:
+            print(e)
+            return
 
 
 class ProductOperations:
