@@ -22,6 +22,7 @@ urlpatterns = [
     path('user/deleteday/<int:day_id>', views.delete_day, name= "deleteDay" ),
     path('user/copyday/<int:day_id>', views.copy_day, name= "copyDay" ),
     path('user/copydish/<int:day_id>/<int:dish_id>/<str:element_id>', views.copy_dish, name= "copyDish" ),
+    path('user/checkdishname/<str:dish_name>', views.check_dish_name, name="checkDishName"),
     path('login/', views.login_view, name="login"),
     path('register/', views.register, name="register"),
     path('reset/', views.reset, name="reset"),
@@ -41,4 +42,5 @@ urlpatterns = [
     path('getrecepiesearch/<str:recepiename>', views.get_recepie_search, name="getRecepieSearch"),
     path('user/productslist/<str:days>', views.get_days_product_list, name="getDaysProductList"),
     path('readcsv/', views.read_csv, name="readCSV"),
+
 ]

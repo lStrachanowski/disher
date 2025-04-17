@@ -109,7 +109,6 @@ def add_recepie(request):
             amount = ProductAmountOperations()
             products_list = request.POST.get('json_data')
             product_data = json.loads(products_list)
-            print(product_data)
             product_name_list = [product_operations.findProduct(product['name']).id for product in product_data]
 
             products_calories = [product_operations.findProduct(product['name']).product_calories for product in product_data]
@@ -127,8 +126,10 @@ def add_recepie(request):
                     amount.createAmount(product['name'] , product['amount'], product['unit'], dish_operations.getDish(recepie_title))
                 messages.success(request, 'Recepie was added to database!')
             except Exception as e:
-                messages.error(request, "Recepie name already exist. Check current recepie or rename your recepie")
-
+                if '1062' in str(e):
+                    messages.error(request, "Recepie name already exist. Check current recepie or rename your recepie")
+                else:
+                    messages.error(request, e)
             return HttpResponseRedirect('/message')
 
     return render(request, "disher/addrecepie.html", context)
@@ -666,9 +667,22 @@ def read_csv(request):
         next(reader)  
         test_product = ProductOperations()
         for row in reader:
-            # test_product.createProduct("jajko",140,100,13,10,1)
             print(row[2].lower(),float(row[3].replace(',', '.')),  float(row[5].replace(',', '.')), float(row[6].replace(',', '.')), float(row[7].replace(',', '.')), float(row[8].replace(',', '.'))) 
             test_product.createProduct(row[2].lower(),float(row[3].replace(',', '.')), float(row[5].replace(',', '.')), float(row[6].replace(',', '.')), float(row[7].replace(',', '.')), float(row[8].replace(',', '.')))
-            
              
     return HttpResponse('CSV read')
+
+
+@login_required(login_url='/login')
+def check_dish_name(request, dish_name):
+    data = {}
+    data['dish_name'] = dish_name
+    dish = DishOperations()
+    dish_data = dish.getDish(dish_name)
+    if dish_data:
+        data['status'] = False
+        return JsonResponse(data, safe=False)
+    else:
+        data['status'] = True
+        return JsonResponse(data, safe=False)
+    

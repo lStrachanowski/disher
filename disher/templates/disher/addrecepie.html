@@ -19,18 +19,17 @@
         <form action="" method="post" id="recepie_add">
             {% csrf_token %}
             {{ form.as_p }}
-            <div class="row">
-                <div class="form-group col-lg-12 col-12">
-                    <label for="dish_title">Nazwa potrawy</label>
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group col-lg-10 col-md-12">
+                    <label for="dish_title" id="dish_label">Nazwa potrawy</label>
                     <input type="text" class="form-control" id="dish_title" name="dish_title" oninput="checkDishFielsdValidity();" required>
                 </div>
+                <div class="form-group d-flex col-lg-1 col-md-2 justify-content-center align-items-center">
+                    <div onclick="checkDishName();"><b>Sprawdź</b></div>
+                </div>
             </div>
+
             <div class="row mt-3 justify-content-center">
-<!-- 
-                <div class="form-group col-lg-4 col-12">
-                    <label for="dish_calories" >Kaloryczność </label>
-                    <input type="number" class="form-control " id="dish_calories" name="dish_calories" oninput="checkDishFielsdValidity();" required>
-                </div> -->
                 
                 <div class="form-group col-lg-4 col-12">
                     <label for="duration" >Czas przygotwania </label>

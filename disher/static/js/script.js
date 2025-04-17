@@ -16,6 +16,7 @@ var COPY_DAY = '/user/copyday/';
 var COPY_DISH = '/user/copydish/';
 var DAYS_PRODUCTS_LIST = '/user/productslist/';
 var DELETE_USER_RECEPIE = '/user/deleteuserrecepie/';
+var CHECK_DISH_NAME = '/user/checkdishname/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var SEARCH_RECEPIE_URL = window.location.protocol + "//" + window.location.host + '/getrecepiesearch/';
 var SEARCH_USER_RESEPIES = window.location.protocol + "//" + window.location.host + '/recepie/getuserrecepies/';
@@ -1227,7 +1228,6 @@ let checkProductFieldsValidity = () => {
 let checkDishFielsdValidity = () => {
     const dishDescription = document.getElementById("dishDescription");
     const dishTitle = document.getElementById("dish_title");
-    // const dishCalories = document.getElementById("dish_calories");
     const dishDuration = document.getElementById("duration");
     const dishType = document.getElementById("type_of_meal");
     if (dishTitle.checkValidity() == true && dishDuration.checkValidity() == true && dishType.checkValidity() == true && dishDescription.checkValidity() == true, productList.length > 0) {
@@ -1737,4 +1737,36 @@ function hideFavouriteInModal() {
             expandImage.style.transform = "rotate(180deg)";
         }
     }
+}
+
+
+async function checkDishName() {
+    let dishName = document.getElementById("dish_title").value;
+    if (dishName.length > 2){
+        try {
+            const response = await fetch(CHECK_DISH_NAME + dishName);
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            const data = await response.json();
+            if (!data.status) {
+                document.getElementById("dish_label").innerHTML = "Nazwa dania: już istnieje!";
+                document.getElementById("dish_label").style.color = "red";
+            } else {
+                document.getElementById("dish_label").innerHTML = "Nazwa dania: jest wolna";
+                document.getElementById("dish_label").style.color = "green";
+            }
+            return data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    } else{
+        document.getElementById("dish_label").innerHTML = "Nazwa dania: minimym 3 litery!";
+        document.getElementById("dish_label").style.color = "red";
+        setTimeout(() => {
+            document.getElementById("dish_label").innerHTML = "Nazwa dania: ";
+            document.getElementById("dish_label").style.color = "black";
+        }, 2000);
+    }
+  
 }
