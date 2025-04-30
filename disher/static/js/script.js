@@ -351,6 +351,75 @@ let recepieSearchResultItem = (dishData) => {
 }
 
 
+
+let indexRecepieSearchResultItem = (dishData) => {
+    let container = document.getElementById("recepieContainer");
+    container.replaceChildren();
+    if (dishData && dishData.length > 0) {
+        dishData.forEach(recepie => {
+            const recepieDiv = document.createElement("div");
+            recepieDiv.className = "col-xl-3 col-lg-5 col-md-10 text-center recepie-container white-background m-3";
+            recepieDiv.id = recepie.id;
+            recepieDiv.innerHTML = `
+                    <div class="d-flex row align-items-center align-items-stretch">
+                        <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
+                            onclick="location.href='/recepie/${recepie.dish_slug}'">
+                            ${recepie.name}
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center col-4 recepie-header-font ${getDishTypeClass(recepie.dish_type)} recepie-meal-border p-2">
+                            ${getDishTypeName(recepie.dish_type)}
+                        </div>
+                        <div class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
+                            <div class="col-12 min-h ">
+                                ${recepie.dish_description}
+                            </div>
+                            <div class="col-12">
+                                <a href="/recepie/${recepie.slug}" class="font-bold">więcej...</a>
+                            </div>
+                        </div>
+                        <div class="col-4 p-2">
+                            <div class="row justify-content-around">
+                                <div class="col-lg-12 p-1">
+                                    <img src="/static/img/iconfire.svg" class="icon-size-15">
+                                </div>
+                                <div class="col-lg-12 recepie-font font-bold">
+                                    ${recepie.dish_calories} kcal
+                                </div>
+                                <div class="col-lg-12 p-1">
+                                    <img src="/static/img/iconclock.svg" class="icon-size-15">
+                                </div>
+                                <div class="col-lg-12 recepie-font font-bold">
+                                    ${getPreparationTimeName(recepie.preparation_time)}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelectorContainer">
+                              <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" data-bs-dismiss="modal" type="button" onclick="location.href='/user/dashboard'">
+                                    <div class="cross-button"></div>
+                                </button>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            container.appendChild(recepieDiv);
+        });
+    } else {
+        const recepieDiv = document.createElement("div");
+        recepieDiv.className = "col-12 text-center";
+        recepieDiv.id = "noResultsMessage";
+        recepieDiv.innerHTML = 'Nothing to show';
+        container.appendChild(recepieDiv);
+        setTimeout(() => {
+            const noResultsMessage = document.getElementById("noResultsMessage");
+            if (noResultsMessage) {
+                noResultsMessage.remove();
+            }
+        }, 2000);
+    }
+}
+
 function getDishTypeClass(dishType) {
     switch (dishType) {
         case 'B': return 'recepie-meal-color-breakfast';
@@ -1351,18 +1420,34 @@ async function fetchRecepieSearchResultsFromWeb(searchQuery) {
 }
 
 
-async function searchRecepie() {
+async function searchRecepie(index) {
     let inputValue = document.getElementById("search").value;
     if (inputValue.length > 2) {
         try {
-            const data = await fetchRecepieSearchResultsFromWeb(inputValue);
-            recepieSearchResultItem(data.dish_data);
+            
+            if (!index) {
+                const data = await fetchRecepieSearchResultsFromWeb(inputValue);
+                recepieSearchResultItem(data.dish_data);
+                console.log(data.dish_data)
+            }
+            if (index) {
+                const data = await fetchRecepieSearchResultsFromWeb(inputValue);
+                console.log(data.dish_data);
+                indexRecepieSearchResultItem(data.dish_data);
+            }
+
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     } else {
-        recepieSearchResultItem("");
-        console.log("too short");
+        if (!index) {
+            recepieSearchResultItem("");
+            console.log("too short");
+        } else {
+            console.log("too short!");
+            indexRecepieSearchResultItem("");
+        }
+
     }
 }
 
@@ -1742,7 +1827,7 @@ function hideFavouriteInModal() {
 
 async function checkDishName() {
     let dishName = document.getElementById("dish_title").value;
-    if (dishName.length > 2){
+    if (dishName.length > 2) {
         try {
             const response = await fetch(CHECK_DISH_NAME + dishName);
             if (!response.ok) {
@@ -1760,7 +1845,7 @@ async function checkDishName() {
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-    } else{
+    } else {
         document.getElementById("dish_label").innerHTML = "Nazwa dania: minimym 3 litery!";
         document.getElementById("dish_label").style.color = "red";
         setTimeout(() => {
@@ -1768,5 +1853,5 @@ async function checkDishName() {
             document.getElementById("dish_label").style.color = "black";
         }, 2000);
     }
-  
+
 }

@@ -94,6 +94,9 @@
 .image-rotated{
     rotate: 180deg;
 }
+.check:hover{
+    cursor: pointer;
+}
 
 @media (max-width: 575.98px) { 
     .user-recepie-icons-show{

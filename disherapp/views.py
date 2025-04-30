@@ -22,7 +22,7 @@ def index(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
     recepies_data = DishOperations()
-    recepies_for_template = recepies_data.getAllDishes().order_by('?')[:6]
+    recepies_for_template = recepies_data.getAllDishes(number=6)
     context = {"user_status": user_status, "recepies":recepies_for_template}
     return render(request, "disher/index.html", context)
 
@@ -59,7 +59,7 @@ def dashboard(request):
         user_has_diet_list = False
     recepies_data = DishOperations()
     recepies_for_template = []
-    recepies_for_template = recepies_data.getAllDishes().order_by('?')[:6]
+    recepies_for_template = recepies_data.getAllDishes(number=6)
     favourite_for_template = []
     favourite = FavouriteOperations().returnFavourites(request.user.id)
     for element in favourite:

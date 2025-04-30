@@ -178,10 +178,10 @@ class DishOperations:
             print(e)
             return False
 
-    def getAllDishes(self):
+    def getAllDishes(self, number):
         ADMIN_NAME = 'disher'
         try:
-            all_dishes = Dish.objects.all().filter(dish_owner=ADMIN_NAME)
+            all_dishes = Dish.objects.all().filter(dish_owner=ADMIN_NAME).order_by('?')[:number]
             return all_dishes
         except Exception as e:
             print(e)

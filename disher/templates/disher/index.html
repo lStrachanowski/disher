@@ -14,8 +14,10 @@
                 <div class="image-top-text">Jedz zdrowo</div>
                 <div class="image-top-text-lower mt-1">Oszczędzaj czas i pieniądze</div>
                 <div class="index-center-buttons">
-                    <button class="btn btn-danger red-button index-button d-none d-sm-none d-md-block mt-4">Zaczynamy</button>
-                    <button class="btn btn-danger red-button btn-sm index-button d-md-none d-lg-none d-block mt-2">Zaczynamy</button>
+                    <button
+                        class="btn btn-danger red-button index-button d-none d-sm-none d-md-block mt-4">Zaczynamy</button>
+                    <button
+                        class="btn btn-danger red-button btn-sm index-button d-md-none d-lg-none d-block mt-2">Zaczynamy</button>
                 </div>
             </div>
         </div>
@@ -27,8 +29,8 @@
                 <form action="" method="post" id="subscribeForm">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    
-               
+
+
 
                     <div class="container">
                         <div class="row">
@@ -41,31 +43,41 @@
                                     </div>
                                     <div class="col-lg-12  mt-2 mb-2">
                                         <div class="form-group col-12">
-                                            <input type="email" class="form-control"  id="user_email"
-                                                name="user_email" placeholder="Podaj email" required>
+                                            <input type="email" class="form-control" id="user_email" name="user_email"
+                                                placeholder="Podaj email" required>
                                         </div>
                                     </div>
                                     <div class="col-12 mt-2 mb-2 d-flex justify-content-center align-items-center">
                                         <button type="submit" class="btn btn-success ">Zapisz</button>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                    
-                          
+
+
                             <div class="col-lg-8 col-md-12">
                                 <div class="row">
                                     <div class="search-label col-lg-12 mt-3 mb-3">
                                         Otrzymuj najnowsze przepisy
                                     </div>
                                 </div>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies nulla convallis semper facilisis. Mauris tincidunt magna massa, et bibendum sapien pretium vitae. Phasellus a malesuada tellus. Morbi ornare, mi ac venenatis viverra, lacus tellus finibus quam, nec aliquam arcu dolor sed enim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce consequat lectus et dui hendrerit, nec venenatis tellus gravida. Etiam imperdiet mi eget sapien cursus cursus. Nam purus urna, sollicitudin ac pellentesque id, lobortis eu ipsum. Mauris eget condimentum nulla. Nulla nisi turpis, dapibus id arcu venenatis, iaculis hendrerit sapien. Phasellus sem odio, molestie ut mollis malesuada, consequat et libero. Nulla sollicitudin nunc non dolor porttitor consequat. Cras arcu ante, ultricies eu bibendum sit amet, ullamcorper ut dui. In ac libero convallis, placerat augue vitae, posuere justo.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies nulla
+                                convallis semper facilisis. Mauris tincidunt magna massa, et bibendum sapien pretium
+                                vitae. Phasellus a malesuada tellus. Morbi ornare, mi ac venenatis viverra, lacus tellus
+                                finibus quam, nec aliquam arcu dolor sed enim. Orci varius natoque penatibus et magnis
+                                dis parturient montes, nascetur ridiculus mus. Fusce consequat lectus et dui hendrerit,
+                                nec venenatis tellus gravida. Etiam imperdiet mi eget sapien cursus cursus. Nam purus
+                                urna, sollicitudin ac pellentesque id, lobortis eu ipsum. Mauris eget condimentum nulla.
+                                Nulla nisi turpis, dapibus id arcu venenatis, iaculis hendrerit sapien. Phasellus sem
+                                odio, molestie ut mollis malesuada, consequat et libero. Nulla sollicitudin nunc non
+                                dolor porttitor consequat. Cras arcu ante, ultricies eu bibendum sit amet, ullamcorper
+                                ut dui. In ac libero convallis, placerat augue vitae, posuere justo.
                             </div>
                         </div>
                     </div>
-                    
-                    
-                
+
+
+
                 </form>
             </div>
         </div>
@@ -77,8 +89,12 @@
                 <label for="search" class="search-label mt-2 mb-2">Wyszukaj przepis</label>
                 <div class="input-group">
                     <input type="text" class="form-control search-input" id="search" aria-describedby="basic-addon3"
-                        placeholder="Wpisz czego szukasz">
+                        placeholder="Wpisz czego szukasz" onkeyup="searchRecepie(true);">
                 </div>
+            </div>
+        </div>
+        <div class="container justify-content-center">
+            <div class="row justify-content-center" id="recepieContainer">
             </div>
         </div>
         <div class="container mt-3">
@@ -221,5 +237,6 @@
                 {% endfor %}
             </div>
         </div>
+    
     </div>
     {% endblock %}
