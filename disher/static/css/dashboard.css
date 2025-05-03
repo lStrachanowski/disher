@@ -1,0 +1,105 @@
+
+.user-recepie-icons-padding{
+    padding: 5px 10px;
+}
+
+.user-recepie-icons-size{
+    height: 40px;
+    transition: 0.3s;
+}
+
+.user-recepie-icons-size:hover{
+    filter: invert(57%) sepia(76%) saturate(294%) hue-rotate(67deg) brightness(90%) contrast(93%);
+}
+
+.user-recepie-icons-show{
+    display: inline-block;
+}
+
+.recepie-options-delete:hover{
+    color: var(--red);
+    font-weight: 600;
+}
+
+.user-recepie-options-id{
+    display: none !important;
+}
+
+
+.user-recepie-container{
+    border-radius: 15px;
+    box-shadow: 2px 4px 12px rgba(0,0,0,.08);
+    transition: all .3s cubic-bezier(0,0,.5,1);
+  }
+  
+.user-recepie-container:hover{
+    background-color: var(--user-recepie-hover-color);
+    cursor: pointer;
+    padding: 3px;
+}
+
+.user-recepie-container:hover  .user-recepie-icons-size{
+    filter: invert(96%) sepia(0%) saturate(722%) hue-rotate(207deg) brightness(119%) contrast(100%);
+}
+
+
+.user-favourite-recepie-container{
+    border-radius: 15px;
+    box-shadow: 2px 4px 12px rgba(0,0,0,.08);
+    transition: all .3s cubic-bezier(0,0,.5,1);
+  }
+  
+.user-favourite-recepie-container:hover{
+    background-color: var(--user-recepie-hover-color);
+    cursor: pointer;
+    padding: 3px;
+}
+
+.user-favourite-recepie-container:hover  .user-recepie-icons-size{
+    filter: invert(96%) sepia(0%) saturate(722%) hue-rotate(207deg) brightness(119%) contrast(100%);
+}
+
+
+.generate-list-button-color{
+    background-color: var(--generate-list-button-color);
+    border: var(--generate-list-button-color);
+}
+
+.generate-shoplist-button-color{
+    background-color: var(--menu-color);
+    border-color: var(--menu-color) !important;
+}
+.generate-shoplist-button{
+    display: none !important;
+}
+
+.dashboard-font{
+    font-size: 2.0rem;
+}
+
+.empty-day-font{
+    padding: 3%;
+    font-size: 1.25rem;
+}
+
+.empty-screen-font{
+    padding: 1.5% 0% 0.75% 0%;
+    font-size: 1.25rem;
+}
+  
+.modal-body-bottom-padding{
+    padding-bottom: 3rem !important;
+}
+
+.image-rotated{
+    rotate: 180deg;
+}
+.check:hover{
+    cursor: pointer;
+}
+
+@media (max-width: 575.98px) { 
+    .user-recepie-icons-show{
+        display: none;
+    }
+  } 

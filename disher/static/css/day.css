@@ -1,0 +1,103 @@
+.day-header-border {
+    border-radius: 15px 15px 0px 0px;
+}
+
+.day-header-color {
+    background-color: var(--breakfast-color);
+}
+
+.day-header-font {
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.day-options-icon-color {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(3678%) hue-rotate(133deg) brightness(126%) contrast(107%);
+}
+
+.day-options-icon-color:hover {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(3%) saturate(7462%) hue-rotate(293deg) brightness(89%) contrast(101%);
+}
+
+
+
+
+.day-icons-options-size {
+    height: 25px;
+}
+
+.day-element{
+    background: #F3F3F3;
+    border: 1px solid #DBDBDB;
+    box-shadow: 2px 4px 12px rgba(0,0,0,.08);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .3s cubic-bezier(0,0,.5,1);
+    z-index: 1;
+}
+
+.day-element:hover{
+    background-color: var(--day-item-hover);
+    font-weight: 600;
+}
+
+.day-element:hover  .day-icons-options-size{
+    filter: brightness(0) saturate(100%) invert(0%) sepia(3%) saturate(7462%) hue-rotate(293deg) brightness(89%) contrast(101%);
+}
+
+.day-element-card{
+    border-radius: 8px;
+    margin-top: -0.65rem !important;
+    z-index: 0;
+    font-weight: 600;
+}
+
+.day-options{
+    display: none !important;
+}
+
+.day-edit-options{
+    display: none !important;
+}
+
+.hide-element{
+    display: none !important;
+}
+
+.show-element{
+    display:flex !important;
+}
+
+.day-options:hover{
+    background: #F3F3F3;
+}
+
+
+.day-options-delete:hover{
+    color: var(--red);
+}
+
+.modal-footer{
+    border-top: none !important;
+}
+
+.modal-header {
+    padding: 0.75rem 0.75rem !important;
+}
+
+.add-button-day{
+    height: 22px !important;
+    width: 22px !important;
+}
+
+.cross-button-day{
+    height: 1.75px !important;
+    width: 10px !important;
+  }
+  
+  .cross-button-day:after{
+    height: 1.75px !important; 
+    width: 10px !important;
+  }
+  
