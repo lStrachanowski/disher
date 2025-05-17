@@ -15,6 +15,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from disher.models import Day_Dish, User_Day
 from . import calculations
 import time
+from django.core.mail import send_mail
 
 user_has_diet_list = False
 
@@ -208,10 +209,19 @@ def register(request):
                     signer = Signer()
                     signed_obj = signer.sign_object({"email": user_email})
                     token = signing.dumps(signed_obj)
-                    print("http://127.0.0.1:8000/activate/" + token)
+                    host = request.get_host()
+                    verification_link =  host + "/activate/" + token
+                    html_message = f"Hello {user_name},\nWelcome to disherapp! To activate your account, please visit: {verification_link}\n\nBest regards,\nThe Disher Team"
+                    send_mail(
+                    subject='Welcome to Our App',
+                    message = html_message, 
+                    from_email='disherwelcomapp@gmail.com',
+                    recipient_list=[user_email],
+                    fail_silently=False,)
+
                     messages.success(
                         request, 'Account created. Please activate account. ')
-                    return redirect('/success')
+                    return redirect('/message')
                 else:
                     messages.error(
                         request, 'Passwords don`t match.', extra_tags="register")
@@ -272,7 +282,8 @@ def change_user_email(request):
                     signer = Signer()
                     signed_obj = signer.sign_object({"email": new_email})
                     token = signing.dumps(signed_obj)
-                    print("http://127.0.0.1:8000/change/email/" + token)
+                    host = request.get_host()
+                    print(host + "/change/email/" + token)
                     messages.success(request, 'Email changed. Please activate email. Check your email and click activate link.')
                     return redirect('/message')
                 else:
@@ -396,7 +407,8 @@ def reset(request):
                 signer = Signer()
                 signed_obj = signer.sign_object({"email": user_email})
                 token = signing.dumps(signed_obj)
-                print("http://127.0.0.1:8000/reset/" + token)
+                host = request.get_host()
+                print(host + "/reset/" + token)
                 messages.success(request, 'On your email was sent reset link.')
                 return redirect('/success')
             except Exception as e:
@@ -531,19 +543,28 @@ def create_day(request):
     user_has_diet_list = True
     return data
 
-@login_required(login_url='/login')  
 def get_recepie_search(request, recepiename):
     data = {}
     data['dish_data'] = []
     recepie= DishOperations()
-    recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=[request.user.username, 'disher'])
-    for recepie_item in recepie_data:
-        slug = recepie_item.dish_name.replace(" ","-")
-        dish_data = recepie.getDishData(slug)
-        data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
-                                "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
-                                "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
-    return JsonResponse(data, safe=False)
+    if not request.user.is_authenticated:
+        recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=['disher'])
+        for recepie_item in recepie_data:
+            data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
+                                    "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
+                                    "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
+        return JsonResponse(data, safe=False)
+    
+    else:
+        print("logged")
+        recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=[request.user.username, 'disher'])
+        for recepie_item in recepie_data:
+            # slug = recepie_item.dish_name.replace(" ","-")
+            # dish_data = recepie.getDishData(slug)
+            data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
+                                    "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
+                                    "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
+        return JsonResponse(data, safe=False)
 
 @login_required(login_url='/login')
 def get_days_product_list(request, days):

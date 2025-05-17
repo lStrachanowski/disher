@@ -1424,18 +1424,14 @@ async function searchRecepie(index) {
     let inputValue = document.getElementById("search").value;
     if (inputValue.length > 2) {
         try {
-            
+            const data = await fetchRecepieSearchResultsFromWeb(inputValue);
             if (!index) {
-                const data = await fetchRecepieSearchResultsFromWeb(inputValue);
                 recepieSearchResultItem(data.dish_data);
-                console.log(data.dish_data)
-            }
-            if (index) {
-                const data = await fetchRecepieSearchResultsFromWeb(inputValue);
+                console.log(data.dish_data);
+            } else {
                 console.log(data.dish_data);
                 indexRecepieSearchResultItem(data.dish_data);
             }
-
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -1447,7 +1443,6 @@ async function searchRecepie(index) {
             console.log("too short!");
             indexRecepieSearchResultItem("");
         }
-
     }
 }
 
