@@ -51,11 +51,16 @@ var symbolTable = {
     "S": ["Kolacja", "Supper"],
 }
 
+
+
+
+
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("loader_container").style.display = "none";
         document.getElementById("content-container").style.display = "block";
+        document.getElementById("spinner_container").style.display = "none";
     }
 };
 xhttp.open("GET", "/", true);
@@ -643,15 +648,12 @@ if (currentUrl == '/user/dashboard') {
         let user_id = document.getElementsByClassName("user-id-selector")[0].id;
         let cookie_id = readCookie('user_id');
         if (user_id === cookie_id) {
-            console.log("cookies");
             fetchDataFromCookies(dayChange);
         } else {
-            console.log("web, differnet user");
             fetchDataFromWeb(dayChange);
             setUserIdLCookie();
         }
     } else {
-        console.log("web");
         fetchDataFromWeb(dayChange);
         setUserIdLCookie();
     }
@@ -1424,25 +1426,25 @@ async function searchRecepie(index) {
     let inputValue = document.getElementById("search").value;
     if (inputValue.length > 2) {
         try {
+            document.getElementById("spinner_container").style.display = "block";
             const data = await fetchRecepieSearchResultsFromWeb(inputValue);
             if (!index) {
                 recepieSearchResultItem(data.dish_data);
-                console.log(data.dish_data);
             } else {
-                console.log(data.dish_data);
                 indexRecepieSearchResultItem(data.dish_data);
             }
         } catch (error) {
             console.error('Error fetching data:', error);
+        } finally {
+            document.getElementById("spinner_container").style.display = "none";
         }
     } else {
         if (!index) {
             recepieSearchResultItem("");
-            console.log("too short");
         } else {
-            console.log("too short!");
             indexRecepieSearchResultItem("");
         }
+        document.getElementById("spinner_container").style.display = "none";
     }
 }
 

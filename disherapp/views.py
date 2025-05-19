@@ -556,11 +556,8 @@ def get_recepie_search(request, recepiename):
         return JsonResponse(data, safe=False)
     
     else:
-        print("logged")
         recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=[request.user.username, 'disher'])
         for recepie_item in recepie_data:
-            # slug = recepie_item.dish_name.replace(" ","-")
-            # dish_data = recepie.getDishData(slug)
             data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
                                     "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
                                     "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
