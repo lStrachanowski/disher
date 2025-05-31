@@ -410,7 +410,7 @@ def reset(request):
                 host = request.get_host()
                 print(host + "/reset/" + token)
                 messages.success(request, 'On your email was sent reset link.')
-                return redirect('/success')
+                return redirect('/message')
             except Exception as e:
                 messages.error(request, e, extra_tags="register")
                 return render(request, "disher/reset.html", context)
@@ -485,7 +485,7 @@ def reset_password_view(request, token):
                         reset_password(obj['email'], user_password)
                         messages.success(
                             request, 'Yout password was changed. Please log in with new password.')
-                        return redirect('/success')
+                        return redirect('/message')
                 else:
                     messages.error(
                         request, 'Passwords don`t match. PLease check passwords', extra_tags="register")

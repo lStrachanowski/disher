@@ -60,7 +60,10 @@ xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("loader_container").style.display = "none";
         document.getElementById("content-container").style.display = "block";
-        document.getElementById("spinner_container").style.display = "none";
+        let search_spinner = document.getElementById("spinner_container");
+        if (search_spinner) {
+            search_spinner.style.display = "none";
+        };
     }
 };
 xhttp.open("GET", "/", true);
@@ -1852,3 +1855,35 @@ async function checkDishName() {
     }
 
 }
+
+let yourTab = document.getElementById("pills-favourite-tab");
+if (yourTab) {
+    toggleDishesTab('pills-favourite-tab');
+}
+
+function toggleDishesTab(tab) {
+    let yourTab = document.getElementById("pills-contact-tab");
+    let favTab = document.getElementById("pills-favourite-tab");
+    if (yourTab && favTab) {
+        if (tab === 'pills-contact-tab') {
+            yourTab.style.fontWeight = "bold";
+            yourTab.style.color = "#5fad56";
+            favTab.style.fontWeight = "normal";
+            favTab.style.color = "";
+        } else {
+            favTab.style.fontWeight = "bold";
+            favTab.style.color = "#5fad56";
+            yourTab.style.fontWeight = "normal";
+            yourTab.style.color = "";
+        }
+    }
+}
+
+// Remove focus from all buttons after click
+document.addEventListener('click', function (e) {
+    if (e.target.tagName === 'BUTTON') {
+        e.target.blur();
+    }
+});
+
+

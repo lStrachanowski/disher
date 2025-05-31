@@ -23,20 +23,20 @@
             <li class="nav-item" role="presentation">
                 <button class="btn btn-lg" class="nav-link active" id="pills-favourite-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-favourite" type="button" role="tab" aria-controls="pills-favourite"
-                    aria-selected="false">Ulubione przepisy</button>
+                    aria-selected="false" onclick="toggleDishesTab('pills-favourite-tab')">Ulubione przepisy</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="btn btn-lg" class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                    aria-selected="true">Twoje przepisy</button>
+                    aria-selected="true" onclick="toggleDishesTab('pills-contact-tab')">Twoje przepisy</button>
             </li>
         </ul>
         <!-- Zakłada przepisów użytkonwnika -->
         <div class="tab-content" id="pills-tabContent">
             <!-- Ulubione przepisy -->
             <div class="tab-pane fade show active" id="pills-favourite" role="tabpanel"
-                aria-labelledby="pills-favourite-tab" tabindex="0">
-                <div class="col-12 empty-screen-font greey-font">Twoje ulubione przepisy</div>
+                aria-labelledby="pills-favourite-tab" tabindex="0" >
+                <div class="col-12 empty-screen-font greey-font"></div>
 
                 {% for favourite in favourite_list|slice:":3" %}
                 <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-favourite-recepie-class"
@@ -76,7 +76,7 @@
             <!-- Twoje przepisy -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                 tabindex="0">
-                <div class="col-12 empty-screen-font greey-font">Twoje przepisy</div>
+                <div class="col-12 empty-screen-font greey-font"></div>
                 {% for dish in user_dishes|slice:":3"%}
                 <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class"
                     id="u-{{forloop.counter}}">
