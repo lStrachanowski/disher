@@ -30,21 +30,21 @@
                 zaloguj
             </div>
             {% else %}
-            <div class="col-lg-7 col-md-7 col-sm-6 col-6">
+            <div class="col-lg-8 col-md-6 col-sm-6 col-6">
                 <h1 class="logo cursor" onclick="location.href='/'">Disher</h1>
             </div>
 
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left menu-color recepie-font cursor"  onclick="location.href='/user/dashboard'" >
+            <div class="col-lg-1 col-md-2 col-sm-2 col-2 text-left menu-color recepie-font cursor"  onclick="location.href='/user/dashboard'" >
 
-                <div class="row align-items-center justify-content-center d-none d-sm-flex">
-                    <div class="col-3">
+                <div class="row align-items-center justify-content-center d-none d-md-flex">
+                    <div class="col-3 p-1">
                         <img src="/static/img/fork.svg" class="icon-size-30">
                     </div>
-                    <div class="col-lg-7 col-9 p-3 font-bold">Moje posiłki</div>
+                    <div class="col-lg-7 col-9 p-3 font-bold">Posiłki</div>
                 </div>
 
-                <div class="row align-items-center justify-content-center d-sm-none">
-                    <div class="col-3">
+                <div class="row align-items-center justify-content-center d-md-none">
+                    <div class="col-3 p-1">
                         <img src="/static/img/fork.svg" class="icon-size-30">
                     </div>
                 </div>
@@ -53,8 +53,8 @@
 
 
             <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left menu-color recepie-font cursor" onclick="location.href='/user/profile'">
-                <div class="row align-items-center justify-content-center d-none d-sm-flex">
-                    <div class="col-3">
+                <div class="row align-items-center justify-content-center d-none d-md-flex">
+                    <div class="col-3 p-1">
                         <img src="/static/img/user.svg" class="icon-size-30">
                     </div>
                     {% if user.is_authenticated %}
@@ -64,7 +64,7 @@
                     {% endif %}
                 </div>
 
-                <div class="row align-items-center justify-content-center d-sm-none">
+                <div class="row align-items-center justify-content-center d-md-none">
                     <div class="col-8">
                         <img src="/static/img/user.svg" class="icon-size-30">
                     </div>

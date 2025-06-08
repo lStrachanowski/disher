@@ -14,10 +14,18 @@
             <div class="d-flex row align-items-stretch justify-content-center pb-2">
                 <div
                     class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height">
-                    <div class="col-2">
-                        <img src="/static/img/iconleft.svg" class="icon-size-full-recpie cursor"
-                            onclick="location.href='/user/dashboard'">
-                    </div>
+
+                    {% if user.is_authenticated %}
+                        <div class="col-2">
+                            <img src="/static/img/iconleft.svg" class="icon-size-full-recpie cursor"
+                                onclick="location.href='/user/dashboard'">
+                        </div>
+                    {% else %}
+                        <div class="col-2">
+                            <img src="/static/img/iconleft.svg" class="icon-size-full-recpie cursor"
+                                onclick="location.href='/'">
+                        </div>
+                    {% endif %}
                     <div class="col-10">
                         {{recepie.dish_name}}
                     </div>
@@ -29,11 +37,11 @@
                 {% elif recepie.dish_type == 'B2' %}
                 <div
                 class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-second-breakfast recepie-meal-border p-2">
-           
+
                 {% elif recepie.dish_type == 'D' %}
                 <div
                 class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-dinner recepie-meal-border p-2">
-     
+
                 {% elif recepie.dish_type == 'D2' %}
                 <div
                 class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-snack recepie-meal-border p-2">
@@ -41,9 +49,9 @@
                 {% elif recepie.dish_type == 'S' %}
                 <div
                 class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-supper recepie-meal-border p-2">
-  
+
                 {% endif%}
-                
+
                     {% if recepie.dish_type == 'B' %}
                     Śniadanie
                     {% elif recepie.dish_type == 'B2' %}
@@ -72,7 +80,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 p-3">
+                <div class="col-lg-4 col-md-4 col-sm-12 p-3 justify-content-center align-items-center">
                     <div class="row justify-content-around">
                         <div class="col-lg-12 p-1">
                             <img src="/static/img/iconfire.svg" class="icon-size-full-recpie">
@@ -92,17 +100,19 @@
                             Długi
                             {% endif%}
                         </div>
-                        <div class="col-lg-12 recepie-font-size font-bold greey-font m-2">
-                            Dodaj do ulubionych
-                        </div>
-                        <div class=" col-12 d-flex align-items-center justify-content-center">
-                            {% if is_favourited %}
-                                <img src="/static/img/star_full.svg" class="icon-size-full-recpie cursor" onclick="replaceImage('{{recepie.slug}}')" id="starImage" >
-                            {% else %}
-                                <img src="/static/img/star.svg" class="icon-size-full-recpie cursor" onclick="replaceImage('{{recepie.slug}}')" id="starImage" >
-                            {% endif %}
-                            
-                        </div>
+                         {% if user.is_authenticated %}
+                            <div class="col-lg-12 recepie-font-size font-bold greey-font mt-2">
+                                Ulubione
+                            </div>
+                            <div class=" col-12 d-flex align-items-center justify-content-center">
+                                {% if is_favourited %}
+                                    <img src="/static/img/star_full.svg" class="icon-size-full-recpie cursor" onclick="replaceImage('{{recepie.slug}}')" id="starImage" >
+                                {% else %}
+                                    <img src="/static/img/star.svg" class="icon-size-full-recpie cursor" onclick="replaceImage('{{recepie.slug}}')" id="starImage" >
+                                {% endif %}
+
+                            </div>
+                        {%endif %}
                         <!-- <div class="col-lg-12 recepie-font-size font-bold greey-font mt-2">
                             Dodaj do listy..
                         </div>
