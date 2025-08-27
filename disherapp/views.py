@@ -135,6 +135,72 @@ def add_recepie(request):
 
     return render(request, "disher/addrecepie.html", context)
 
+
+
+@login_required(login_url='/login')
+def edit_recepie(request, slug):
+    amount_operations = ProductAmountOperations()
+    product_operations = ProductOperations()
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
+    dish_operations = DishOperations()
+    dish_data = dish_operations.getDishData(slug)
+    dish_name = dish_data.dish_name
+    dish_preparation_time = dish_data.preparation_time
+    dish_type = dish_data.dish_type
+    dish_description = dish_data.dish_description
+    dish_products = dish_data.dish_products.all()
+    product_list = []       
+    db_product_list = []                                                   
+
+    products = dish_operations.getDish(dish_name)
+    recepie_ingridients = amount_operations.getAllAmounts(products)
+    recepie_ingridients_with_id = []
+
+    for product in dish_products:
+        for element in recepie_ingridients:
+            if element[0] == product.product_name:
+                product_list.append( {"id": product.id, "name": product.product_name, "calories": product.product_calories, "amount": element[1], "unit": element[2]})
+                recepie_ingridients_with_id.append((product.id, element))
+    if request.method == "POST":
+        form = DishForm(request.POST)
+        if form.is_valid():
+            json_products_list = request.POST.get('json_data')
+            product_data = json.loads(json_products_list)
+            print("product_data_from_json", product_data)
+            product_list = [] 
+            for product in product_data:
+                product_obj = product_operations.findProduct(product['name'])
+                db_product_list = [product_operations.findProduct(product['name']).id for product in product_data]                                                  
+                product_list.append({
+                    "id": product_obj.id,
+                    "name": product['name'],
+                    "calories": product_obj.product_calories,
+                    "amount": product['amount'],
+                    "unit": product['unit']
+            })
+            print("db_product_list", db_product_list)
+            dish_data.dish_products.clear()
+            dish_data.dish_name = request.POST.get('dish_title')
+            dish_data.preparation_time = request.POST.get('duration')
+            dish_data.dish_type = request.POST.get('type_of_meal')
+            dish_data.dish_description = request.POST.get('dishDescription')
+            dish_data.dish_products.add(*db_product_list)
+            dish_data.save()
+            print("product_list", dish_data.dish_products.all())
+            
+            amount_operations.deleteAllAmounts(dish_data)
+            for product in product_list:
+                amount_operations.createAmount(product['name'] , product['amount'], product['unit'], dish_operations.getDish(request.POST.get('dish_title')))
+
+            return redirect('/recepie/'+ slug)
+
+
+    context = {"user_status": user_status, "dish_name": dish_name,
+               "dish_preparation_time": dish_preparation_time, "dish_type": dish_type, "dish_description":dish_description, "recepie_ingridients":recepie_ingridients_with_id, "slug": slug, "json_data":json.dumps(product_list) }
+    return render(request, "disher/editDish.html", context)
+
+
 def count_calories(products, product_calories):
     unit_matrice = {'kg': 1000, 'gr': 1, 'ml': 1}
     product_list = json.loads(products)

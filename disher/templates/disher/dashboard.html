@@ -109,7 +109,7 @@
 
                     <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
                         id="user-options-{{ forloop.counter }}">
-                        <div class="col-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
+                        <div class="col-2  text-center m-3 font-bold cursor dark-font" onclick="location.href='/recepie/edit/'+'{{dish.slug}}'">Edytuj</div>
                         <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
                             id="recepie-options-delete-click" onclick="deleteUserRecepie({{dish.id}})">Usuń</div>
                         <div class="col-2 d-flex align-items-center justify-content-center text-center">

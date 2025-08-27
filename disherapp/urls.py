@@ -6,6 +6,7 @@ urlpatterns = [
  path('admin/', admin.site.urls),
     path('', views.index , name="index"),
     path('recepie/<slug:slug>', views.recepie, name="recepie"),
+    path('recepie/edit/<slug:slug>', views.edit_recepie, name="editRecepie"),
     path('user/dashboard', views.dashboard, name="dashboard"),
     path('user/dashboard/daydata', views.daydata, name="daydata"),
     path('user/dashboard/addnewday', views.create_day, name="createDAy"),
