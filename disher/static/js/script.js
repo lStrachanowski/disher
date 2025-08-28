@@ -288,7 +288,7 @@ let userRecepiesTemplate = (dish, index, option) => {
 
             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
                 id="user-options-${index}">
-                <div class="col-2  text-center m-3 font-bold cursor dark-font">Edytuj</div>
+                <div class="col-2  text-center m-3 font-bold cursor dark-font" onclick="location.href='/recepie/edit/${dish.slug}'">Edytuj</div>
                 <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
                     id="recepie-options-delete-click" onclick="deleteUserRecepie(${dish.id})">Usuń</div>
                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
@@ -1132,40 +1132,85 @@ let removeSearchResults = () => {
     });
 }
 
+// function searchProduct() {
+//     const productJson = document.getElementById("json_data");
+//     const producJsonParsed = JSON.parse(productJson.value);
+//     var inputValue = document.getElementById("dish_product_search").value;
+//     const toRemove = document.querySelectorAll(".product-search-result");
+
+//     if (inputValue.length >= 3) {
+//         if (productList.length > 0) {
+//             let productListCheck = productList.some(value => value.name == inputValue);
+//             if (productListCheck) {
+//                 var getParent = document.getElementById("productBox");
+//                 removeSearchResults();
+//                 getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
+//             } else {
+//                 fetchSearchReasultsFromWeb(inputValue);
+//             }
+//         }
+
+//         if (producJsonParsed.length > 0) {
+//             let productJsonCheck = producJsonParsed.some(value => value.name == inputValue);
+//             if (productJsonCheck) {
+//                 var getParent = document.getElementById("productBox");
+//                 removeSearchResults();
+//                 getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
+//             } else {
+//                 fetchSearchReasultsFromWeb(inputValue);
+//             }
+//         }
+//     } 
+//     else {
+//         if (toRemove) {
+//             removeSearchResults();
+//         }
+//     }
+// }
+
+
 function searchProduct() {
-    const productJson = document.getElementById("json_data");
-    const producJsonParsed = JSON.parse(productJson.value);
-    var inputValue = document.getElementById("dish_product_search").value;
-    const toRemove = document.querySelectorAll(".product-search-result");
-
-    if (inputValue.length >= 3) {
-        if (productList.length > 0) {
-            let productListCheck = productList.some(value => value.name == inputValue);
-            if (productListCheck) {
-                var getParent = document.getElementById("productBox");
-                removeSearchResults();
-                getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
-            } else {
-                fetchSearchReasultsFromWeb(inputValue);
-            }
-        }
-
-        if (producJsonParsed.length > 0) {
-            let productJsonCheck = producJsonParsed.some(value => value.name == inputValue);
-            if (productJsonCheck) {
-                var getParent = document.getElementById("productBox");
-                removeSearchResults();
-                getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
-            } else {
-                fetchSearchReasultsFromWeb(inputValue);
-            }
-        }
-    } 
-    else {
-        if (toRemove) {
-            removeSearchResults();
-        }
+  const productJson = document.getElementById("json_data");
+  let producJsonParsed = []; // Initialize to an empty array
+  
+  // Safely parse the JSON data using a try-catch block
+  try {
+    if (productJson && productJson.value.trim() !== '') {
+      producJsonParsed = JSON.parse(productJson.value);
     }
+  } catch (e) {
+    // If parsing fails (e.g., due to empty string), the variable remains an empty array.
+    console.error("Could not parse JSON data. Assuming data is empty.", e);
+  }
+
+  const inputValue = document.getElementById("dish_product_search").value;
+  const toRemove = document.querySelectorAll(".product-search-result");
+  const getParent = document.getElementById("productBox");
+
+  // Check if the input is long enough
+  if (inputValue.length < 3) {
+    // If not, clear any previous search results and stop
+    if (toRemove && toRemove.length > 0) {
+      removeSearchResults();
+    }
+    return;
+  }
+
+  // Combine both lists into a single list for checking
+  // If productList is empty, the spread syntax handles it gracefully
+  const allProducts = [...productList, ...producJsonParsed];
+
+  // Check if the product exists in the combined list
+  const isProductAlreadyAdded = allProducts.some(value => value.name === inputValue);
+
+  // If the product is already on either list, display a message
+  if (isProductAlreadyAdded) {
+    removeSearchResults();
+    getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
+  } else {
+    // Otherwise, and only once, search the web
+    fetchSearchReasultsFromWeb(inputValue);
+  }
 }
 
 const debounce = (mainFunction, delay) => {
@@ -1285,7 +1330,7 @@ let deleteProductFromProductList = (id) => {
     elementToRemove.remove();
     productJson.value = JSON.stringify(productList);
     productList = [];
-    checkDishFielsdValidity();
+    checkDishFielsdValidityEdit();
 }
 
 
