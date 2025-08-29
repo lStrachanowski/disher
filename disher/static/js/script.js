@@ -821,6 +821,7 @@ function countCaloriesSum(data, day_id) {
     for (day of data) {
         if (day.day_id == day_id) {
             let caloriesSum = 0;
+            console.log(caloriesSum);
             for (item of day.day_items) {
                 caloriesSum += item.cal;
             }

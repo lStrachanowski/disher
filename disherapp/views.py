@@ -150,7 +150,8 @@ def edit_recepie(request, slug):
     dish_type = dish_data.dish_type
     dish_description = dish_data.dish_description
     dish_products = dish_data.dish_products.all()
-    product_list = []       
+    product_list = []      
+    products_calories = [] 
     db_product_list = []                                                   
 
     products = dish_operations.getDish(dish_name)
@@ -179,15 +180,16 @@ def edit_recepie(request, slug):
                     "amount": product['amount'],
                     "unit": product['unit']
             })
-            print("db_product_list", db_product_list)
+                products_calories.append(product_obj.product_calories)
+    
             dish_data.dish_products.clear()
             dish_data.dish_name = request.POST.get('dish_title')
             dish_data.preparation_time = request.POST.get('duration')
             dish_data.dish_type = request.POST.get('type_of_meal')
             dish_data.dish_description = request.POST.get('dishDescription')
+            dish_data.dish_calories = count_calories(json_products_list, products_calories)
             dish_data.dish_products.add(*db_product_list)
             dish_data.save()
-            print("product_list", dish_data.dish_products.all())
             
             amount_operations.deleteAllAmounts(dish_data)
             for product in product_list:
