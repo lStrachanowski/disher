@@ -660,7 +660,11 @@ function readCookie(parameter) {
 const currentUrl = window.location.pathname;
 
 if (currentUrl == '/user/dashboard') {
-    if (checkForDataInCookies()) {
+    createDataView();
+}
+
+async function createDataView(){
+        if (checkForDataInCookies()) {
         let user_id = document.getElementsByClassName("user-id-selector")[0].id;
         let cookie_id = readCookie('user_id');
         if (user_id === cookie_id) {
@@ -674,6 +678,8 @@ if (currentUrl == '/user/dashboard') {
         setUserIdLCookie();
     }
 }
+
+
 
 function checkForDataInCookies() {
     let data = readCookie('data');
@@ -821,7 +827,6 @@ function countCaloriesSum(data, day_id) {
     for (day of data) {
         if (day.day_id == day_id) {
             let caloriesSum = 0;
-            console.log(caloriesSum);
             for (item of day.day_items) {
                 caloriesSum += item.cal;
             }
@@ -1334,8 +1339,13 @@ let deleteProductFromProductList = (id) => {
     checkDishFielsdValidityEdit();
 }
 
+function deleteUserIdCookie() {
+    // Set expiration to past date to delete the cookie
+    document.cookie = "user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
 
-let saveDishButtonClick = () => {
+async function saveDishButtonClick() {
+
     const productName = document.getElementById("dish_product_search");
     const productAmount = document.getElementById("dish_product_amount");
     const productJson = document.getElementById("json_data")
@@ -1351,8 +1361,9 @@ let saveDishButtonClick = () => {
         productList.push(product)
     });
     productJson.value = JSON.stringify(productList);
-
+    deleteUserIdCookie();
 }
+
 
 let saveProduct = () => {
     productContainer.style.display = 'none';
@@ -1481,7 +1492,7 @@ async function deleteMealInDb(day_id, meal_id) {
 }
 
 
-let deleteDayInDb = (day_id) => {
+async function deleteDayInDb (day_id) {
     let id = day_id.split("day")[1];
     fetch(DELETE_DAY + id)
         .then(response => response.json())
@@ -1775,6 +1786,7 @@ async function getUserFavouriteRecepies() {
                 });
             }
         }
+        await fetchDataFromWeb(updateCookies);
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
