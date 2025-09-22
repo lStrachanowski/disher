@@ -43,7 +43,7 @@
                     id="f-{{forloop.counter}}">
                     <div
                         class="col-lg-6 col-12 p-1 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background">
-                        <div class="col-2  text-center m-3 font-bold cursor">
+                        <div class="col-2 d-none d-sm-block  text-center m-3 font-bold cursor">
                             {% if favourite.dish_type == 'B' %}
                             Śniadanie
                             {% elif favourite.dish_type == 'B2' %}
@@ -56,7 +56,7 @@
                             Kolacja
                             {% endif%}
                         </div>
-                        <div class="col-7  text-center cursor" onclick="location.href='/recepie/'+'{{favourite.slug}}'">
+                        <div class="col-7 m-3  text-center cursor" onclick="location.href='/recepie/'+'{{favourite.slug}}'">
                             {{favourite.dish_name}}</div>
                         <div class="col-2">
                             <img src="/static/img/share.svg"
@@ -82,7 +82,7 @@
                     id="u-{{forloop.counter}}">
                     <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                         id="user-recepie-{{ forloop.counter }}">
-                        <div class="col-2  text-center m-3 font-bold cursor">
+                        <div class="col-2 d-none d-sm-block text-center m-3 font-bold cursor">
                             {% if dish.dish_type == 'B' %}
                             Śniadanie
                             {% elif dish.dish_type == 'B2' %}
@@ -103,19 +103,19 @@
                                 onclick="copyToClipboard('/recepie/'+'{{dish.slug}}')">
                             <img src="/static/img/options.svg"
                                 class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
-                                id="recepie-options-id-click" onclick=optionsClick({{forloop.counter}})>
+                                id="recepie-options-id-click" onclick="optionsClick({{forloop.counter}})">
                         </div>
                     </div>
 
                     <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
                         id="user-options-{{ forloop.counter }}">
-                        <div class="col-2  text-center m-3 font-bold cursor dark-font" onclick="location.href='/recepie/edit/'+'{{dish.slug}}'">Edytuj</div>
-                        <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
+                        <div class="col-4  text-center m-3 font-bold cursor dark-font" onclick="location.href='/recepie/edit/'+'{{dish.slug}}'">Edytuj</div>
+                        <div class="col-5  text-center cursor font-bold dark-font recepie-options-delete"
                             id="recepie-options-delete-click" onclick="deleteUserRecepie({{dish.id}})">Usuń</div>
                         <div class="col-2 d-flex align-items-center justify-content-center text-center">
                             <img src="/static/img/close.svg"
                                 class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
-                                id="recepie-options-id-close-click" onclick=optionsClick({{forloop.counter}})>
+                                id="recepie-options-id-close-click" onclick="optionsClick({{forloop.counter}})">
                         </div>
                     </div>
                 </div>

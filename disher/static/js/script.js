@@ -254,15 +254,14 @@ let userRecepiesTemplate = (dish, index, option) => {
 
     if (option == 'userFavourite') {
         let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-favourite-recepie-class" id="${index}">
-            <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background"
+            <div class="col-lg-6 col-12 p-1 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background"
                 id="user-recepie-${index}">
-                <div class="col-2  text-center m-3 font-bold cursor"> 
+                <div class="col-2 d-none d-sm-block  text-center m-3 font-bold cursor"> 
                 ${selectedMealType}  
                 </div>
-                <div class="col-6  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
-                <div class="col-2 d-flex align-items-center justify-content-center  text-center">
-                     <img src="/static/img/share.svg"
-                        class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
+                <div class="col-7 m-3  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
+                <div class="col-2">
+                     <img src="/static/img/share.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-share-size" onclick="copyToClipboard('/recepie/${dish.slug}')">
                 </div>
             </div>
         </div>`
@@ -273,28 +272,25 @@ let userRecepiesTemplate = (dish, index, option) => {
         let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="u-${index}">
             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                 id="user-recepie-${index}">
-                <div class="col-2  text-center m-3 font-bold cursor"> 
+                <div class="col-2 d-none d-sm-block  text-center m-3 font-bold cursor"> 
                 ${selectedMealType}  
                 </div>
-                <div class="col-6  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
+                <div class="col-7 m-3  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
-                     <img src="/static/img/share.svg"
-                        class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
-                    <img src="/static/img/options.svg"
-                        class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
-                        id="recepie-options-id-click" onclick=optionsClick(${index})>
+                    <img src="/static/img/share.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
+                    <img src="/static/img/options.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size m-3" id="recepie-options-id-click" onclick="optionsClick(${index})">
                 </div>
             </div>
 
             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
                 id="user-options-${index}">
-                <div class="col-2  text-center m-3 font-bold cursor dark-font" onclick="location.href='/recepie/edit/${dish.slug}'">Edytuj</div>
-                <div class="col-6  text-center cursor font-bold dark-font recepie-options-delete"
+                <div class="col-4  text-center m-3 font-bold cursor dark-font" onclick="location.href='/recepie/edit/${dish.slug}'">Edytuj</div>
+                <div class="col-5  text-center cursor font-bold dark-font recepie-options-delete"
                     id="recepie-options-delete-click" onclick="deleteUserRecepie(${dish.id})">Usuń</div>
                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
                     <img src="/static/img/close.svg"
                         class="cursor user-recepie-icons-padding user-recepie-icons-size m-3"
-                        id="recepie-options-id-close-click" onclick=optionsClick(${index})>
+                        id="recepie-options-id-close-click" onclick="optionsClick(${index})">
                 </div>
             </div>
         </div>`
@@ -663,8 +659,8 @@ if (currentUrl == '/user/dashboard') {
     createDataView();
 }
 
-async function createDataView(){
-        if (checkForDataInCookies()) {
+async function createDataView() {
+    if (checkForDataInCookies()) {
         let user_id = document.getElementsByClassName("user-id-selector")[0].id;
         let cookie_id = readCookie('user_id');
         if (user_id === cookie_id) {
@@ -1176,47 +1172,47 @@ let removeSearchResults = () => {
 
 
 function searchProduct() {
-  const productJson = document.getElementById("json_data");
-  let producJsonParsed = []; // Initialize to an empty array
-  
-  // Safely parse the JSON data using a try-catch block
-  try {
-    if (productJson && productJson.value.trim() !== '') {
-      producJsonParsed = JSON.parse(productJson.value);
+    const productJson = document.getElementById("json_data");
+    let producJsonParsed = []; // Initialize to an empty array
+
+    // Safely parse the JSON data using a try-catch block
+    try {
+        if (productJson && productJson.value.trim() !== '') {
+            producJsonParsed = JSON.parse(productJson.value);
+        }
+    } catch (e) {
+        // If parsing fails (e.g., due to empty string), the variable remains an empty array.
+        console.error("Could not parse JSON data. Assuming data is empty.", e);
     }
-  } catch (e) {
-    // If parsing fails (e.g., due to empty string), the variable remains an empty array.
-    console.error("Could not parse JSON data. Assuming data is empty.", e);
-  }
 
-  const inputValue = document.getElementById("dish_product_search").value;
-  const toRemove = document.querySelectorAll(".product-search-result");
-  const getParent = document.getElementById("productBox");
+    const inputValue = document.getElementById("dish_product_search").value;
+    const toRemove = document.querySelectorAll(".product-search-result");
+    const getParent = document.getElementById("productBox");
 
-  // Check if the input is long enough
-  if (inputValue.length < 3) {
-    // If not, clear any previous search results and stop
-    if (toRemove && toRemove.length > 0) {
-      removeSearchResults();
+    // Check if the input is long enough
+    if (inputValue.length < 3) {
+        // If not, clear any previous search results and stop
+        if (toRemove && toRemove.length > 0) {
+            removeSearchResults();
+        }
+        return;
     }
-    return;
-  }
 
-  // Combine both lists into a single list for checking
-  // If productList is empty, the spread syntax handles it gracefully
-  const allProducts = [...productList, ...producJsonParsed];
+    // Combine both lists into a single list for checking
+    // If productList is empty, the spread syntax handles it gracefully
+    const allProducts = [...productList, ...producJsonParsed];
 
-  // Check if the product exists in the combined list
-  const isProductAlreadyAdded = allProducts.some(value => value.name === inputValue);
+    // Check if the product exists in the combined list
+    const isProductAlreadyAdded = allProducts.some(value => value.name === inputValue);
 
-  // If the product is already on either list, display a message
-  if (isProductAlreadyAdded) {
-    removeSearchResults();
-    getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
-  } else {
-    // Otherwise, and only once, search the web
-    fetchSearchReasultsFromWeb(inputValue);
-  }
+    // If the product is already on either list, display a message
+    if (isProductAlreadyAdded) {
+        removeSearchResults();
+        getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
+    } else {
+        // Otherwise, and only once, search the web
+        fetchSearchReasultsFromWeb(inputValue);
+    }
 }
 
 const debounce = (mainFunction, delay) => {
@@ -1492,7 +1488,7 @@ async function deleteMealInDb(day_id, meal_id) {
 }
 
 
-async function deleteDayInDb (day_id) {
+async function deleteDayInDb(day_id) {
     let id = day_id.split("day")[1];
     fetch(DELETE_DAY + id)
         .then(response => response.json())
