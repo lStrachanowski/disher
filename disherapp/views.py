@@ -466,6 +466,7 @@ def copy_dish(request, day_id, dish_id, element_id):
         return JsonResponse(json.dumps(return_data), safe=False)
 
 
+
 def reset(request):
     if request.method == "POST":
         form = ResetForm(request.POST)
@@ -476,7 +477,15 @@ def reset(request):
                 signed_obj = signer.sign_object({"email": user_email})
                 token = signing.dumps(signed_obj)
                 host = request.get_host()
-                print(host + "/reset/" + token)
+                verification_link =  host + "/reset/" + token
+                html_message = f"Hello,\n We are sending reset link to change your password in Disherapp ! To change password , please visit: {verification_link}\n\nBest regards,\nThe Disher Team"
+                send_mail(
+                    subject='Reset password',
+                    message = html_message,
+                    from_email='disherwelcomapp@gmail.com',
+                    recipient_list=[user_email],
+                    fail_silently=False,)
+
                 messages.success(request, 'On your email was sent reset link.')
                 return redirect('/message')
             except Exception as e:
