@@ -332,7 +332,7 @@ def change_user_name(request):
         
     return render(request, "disher/changename.html", context)
 
-@login_required(login_url='/login')
+login_required(login_url='/login')
 def change_user_email(request):
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
@@ -348,11 +348,18 @@ def change_user_email(request):
                 user = User.objects.get(username=username)
                 if user.check_password(password):
                     signer = Signer()
-                    signed_obj = signer.sign_object({"email": new_email})
+                    signed_obj = signer.sign_object({"email": new_email, "username": username})
                     token = signing.dumps(signed_obj)
                     host = request.get_host()
-                    print(host + "/change/email/" + token)
                     messages.success(request, 'Email changed. Please activate email. Check your email and click activate link.')
+                    verification_link =  host + "/change/email/" + token
+                    html_message = f"Hello,\n We are sending link to change your email in Disherapp ! To change eamil , please visit: {verification_link}\n\nBest regards,\nThe Disher Team"
+                    send_mail(
+                        subject='Change email',
+                        message = html_message,
+                        from_email='disherwelcomapp@gmail.com',
+                        recipient_list=[new_email],
+                        fail_silently=False,)
                     return redirect('/message')
                 else:
                     messages.error(request, 'Wrong password !', extra_tags="changeemail")
@@ -532,16 +539,15 @@ def activate_change_email(request, token):
     token = signing.loads(token)
     obj = signer.unsign_object(token)
     try:
-        username = request.user.username
+        username = obj['username']
         user = User.objects.get(username=username)
-        print(obj['email'])
         user.email = obj['email']
         user.save()
         messages.success(request, 'Email changed!', extra_tags="changeemail")
         return redirect('/message')
     except Exception as e:
         messages.error(request, e, extra_tags="register")
-        return redirect("/activated")
+        return redirect("/message")
 
 def user_activated(request):
     return render(request, "disher/activated.html")
