@@ -461,6 +461,25 @@ class DishOperations:
             print(e)
             return
         
+    def changeDishOwner(self, old_owner, new_owner):
+        """
+        Changes the owner of all dishes from old_owner to new_owner.
+
+        Args:
+            old_owner (str): Current owner's username.
+            new_owner (str): New owner's username.
+        """
+
+        try:
+            dishes = Dish.objects.filter(dish_owner = old_owner)
+            for dish in dishes:
+                dish.dish_owner = new_owner
+                dish.save()
+            print("Owner changed")
+        except Exception as e:
+            print(e)
+            
+        
 
 class DayOperations:
     def createDay(self, user_day_name, user_id, user_day_dish=None ):

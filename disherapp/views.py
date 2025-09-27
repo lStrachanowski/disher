@@ -322,6 +322,8 @@ def change_user_name(request):
                 if user is not None:
                     user.username = new_user_name
                     user.save()
+                    recepies_data = DishOperations()
+                    recepies_data.changeDishOwner(user_name, new_user_name)
                     messages.success(request, 'User name changed!', extra_tags="changename")
                     return redirect('/message')
                 else:
