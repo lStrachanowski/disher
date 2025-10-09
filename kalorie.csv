@@ -1,0 +1,1324 @@
+Grupa ¿ywnoœci;Engelse naam/Food name;Nazwa angielska/Nazwa ¿ywnoœci;Iloœæ;jednostka;kalorycznoœæ (kcal);bia³ko (g);t³uszcz (g);wêglowodany (g)
+Ziemniaki i bulwy;Potatoes raw;Ziemniaki surowe;100;g;88;2;0;19
+Ziemniaki i bulwy;Potatoes new raw;Ziemniaki œwie¿e surowe;100;g;88;2;0;19
+Ziemniaki i bulwy;Potatoes old raw;Ziemniaki stare surowe;100;g;88;2;0;19
+Zbo¿a i produkty zbo¿owe;Pasta white raw;Makaron bia³y surowy;100;g;356;12,3;1,5;72
+Zbo¿a i produkty zbo¿owe;Rice white raw;Ry¿ bia³y surowy;100;g;352;7;1;78
+Warzywa;Endive raw;Endywia surowa;100;g;16;1,5;0,3;1
+Warzywa;Endive boiled;Endywia gotowana;100;g;22;1,4;0,5;2,3
+Warzywa;Asparagus white raw;Szparagi bia³e surowe;100;g;22;1;0,3;3
+Warzywa;Aubergine/eggplant raw;Bak³a¿an surowy;100;g;20;1;0;3
+Warzywa;Aubergine/eggplant boiled;Bak³a¿an gotowany;100;g;21;1;0;3
+Warzywa;Beetroot raw;Surowe buraki;100;g;38;1,7;0,1;6
+Warzywa;Celery boiled;Seler gotowany;100;g;14;1;0;2
+Warzywa;Cauliflower raw;Surowy kalafior;100;g;25;1,9;0,2;3
+Warzywa;Cauliflower boiled;Kalafior gotowany;100;g;22;1,8;0,4;1,8
+Warzywa;Kale curly boiled;Jarmu¿ kêdzierzawy gotowany;100;g;33;2,7;1,3;1
+Warzywa;Mushrooms chanterelle raw;Pieczarki kurki surowe;100;g;16;1,8;0;1
+Warzywa;Mushrooms chanterelle boiled;Grzyby kurki gotowane;100;g;20;1,8;0;2
+Warzywa;Mushroom raw;Grzyb surowy;100;g;18;2,3;0,5;0,4
+Warzywa;Mushroom boiled;Grzyby gotowane;100;g;21;3,8;0,3;0,4
+Warzywa;Cabbage Chinese raw;Kapusta chiñska surowa;100;g;17;1;0;2
+Warzywa;Cabbage Chinese boiled;Kapusta po chiñsku gotowana;100;g;17;1;0;2
+Warzywa;Peas raw;Groszek surowy;100;g;65;4;0;10
+Warzywa;Cabbage green raw;Kapusta zielona surowa;100;g;36;2,4;0,2;4,1
+Warzywa;Cabbage green boiled;Kapusta zielona gotowana;100;g;21;1,5;0,2;2,3
+Warzywa;Celeriac boiled;Seler gotowany;100;g;38;2;0;5
+Warzywa;Cucumber wo skin raw;Ogórek bez skórki surowy;100;g;15;0,6;0,2;2,5
+Warzywa;Cucumber boiled;Ogórek gotowany;100;g;17;1;0;3
+Warzywa;Swede boiled;Brukiew;100;g;33;0,7;0,1;5,8
+Warzywa;Kohlrabi boiled;Kalarepa gotowana;100;g;31;2;0,3;4
+Warzywa;Sweet pepper green raw;Papryka s³odka zielona surowa;100;g;19;0,8;0,1;2,5
+Warzywa;Sweet pepper green boiled;Papryka s³odka zielona gotowana;100;g;17;0,6;0,2;2,3
+Owoce;Raisins dried;Rodzynki suszone;100;g;325;3,1;0,5;71,7
+Warzywa;Mange-tout raw;Surowy groszek cukrowy;100;g;33;2;0;5
+Warzywa;Purslane boiled;Portulaka gotowana;100;g;13;1;0;1
+Warzywa;Leek boiled;Por gotowany;100;g;22;1,1;0,5;2,1
+Warzywa;Turnip tops raw;Surowe liœcie rzepy;100;g;17;2;0;1
+Warzywa;Turnip tops boiled;Gotowane liœcie rzepy;100;g;17;2;0;1
+Warzywa;Rhubarb raw;Rabarbar surowy;100;g;23;1;0;2
+Warzywa;Cabbage red raw;Kapusta czerwona surowa;100;g;27;2;0;3
+Warzywa;Cabbage red boiled;Kapusta czerwona gotowana;100;g;23;1,3;0;3
+Warzywa;Salsify raw;Surowy kozibród;100;g;76;1;1;15
+Warzywa;Lettuce butterhead raw;Sa³ata mas³owa surowa;100;g;13;1,4;0,4;0,3
+Warzywa;Lettuce butterhead boiled;Sa³ata mas³owa gotowana;100;g;22;2;0,4;2
+Warzywa;Swiss chard leaf boiled;Liœcie boæwiny gotowane;100;g;29;3;0;3
+Warzywa;Beans runner raw;Fasola szparagowa surowa;100;g;22;1,9;0,1;2
+Warzywa;Beans French raw;Fasola francuska surowa;100;g;25;2,3;0,2;1,8
+Warzywa;Spinach raw;Szpinak surowy;100;g;26;3,2;0,6;0,9
+Warzywa;Spinach boiled;Szpinak gotowany;100;g;25;2,9;0,9;0,7
+Warzywa;Cabbage oxheart raw;Kapusta serce wo³owe surowe;100;g;42;3;1;4
+Warzywa;Cabbage oxheart boiled;Serce wo³owe z kapusty gotowane;100;g;21;1,1;0,6;1,6
+Warzywa;Brussel sprouts boiled;Brukselka gotowana;100;g;47;2,3;0,7;5,6
+Warzywa;Sweetcorn boiled;Kukurydza gotowana;100;g;74;2,5;1,4;11,6
+Warzywa;Bean sprouts raw;Kie³ki fasoli surowe;100;g;25;2,2;0,1;3,2
+Warzywa;Bean sprouts boiled;Kie³ki fasoli gotowane;100;g;17;1,8;0,1;1,7
+Warzywa;Tomatoes classic round raw;Pomidory klasyczne okr¹g³e surowe;100;g;20;0,7;0,4;2,9
+Warzywa;Tomatoes classic round boiled;Pomidory klasyczne okr¹g³e gotowane;100;g;23;0,7;0,7;2,9
+Warzywa;Beans broad raw;Fasola szeroka surowa;100;g;51;5;0;4
+Warzywa;Onions raw;Cebula surowa;100;g;37;1,3;0,2;6,3
+Warzywa;Onions boiled;Cebula gotowana;100;g;35;1;0,2;6,3
+Warzywa;Lettuce lambs raw;Sa³ata jagniêca surowa;100;g;18;2,6;0,2;0,5
+Warzywa;Chicory raw;Cykoria surowa;100;g;19;1,3;0,2;2,4
+Warzywa;Chicory boiled;Cykoria gotowana;100;g;16;1,2;0,2;2
+Warzywa;Cabbage white raw;Kapusta bia³a surowa;100;g;30;2;0;4
+Warzywa;Cabbage white cooked;Kapusta bia³a gotowana;100;g;16;0,9;0;1,8
+Warzywa;Carrot raw av;Marchewka surowa av;100;g;32;0,8;0,3;5,3
+Warzywa;Carrot boiled av;Marchewka gotowana av;100;g;32;0,7;0,3;5,2
+Warzywa;Cabbage sauerkraut raw;Kapusta kiszona surowa;100;g;13;1,1;0;0,6
+Warzywa;Cabbage sauerkraut cooked;Kapusta kiszona gotowana;100;g;14;0,9;0;1
+Warzywa;Vegetable mix for soup raw;Mieszanka warzywna na zupê surow¹;100;g;32;1,5;0,2;4,6
+Zbo¿a i produkty zbo¿owe;Semolina;Grysik;100;g;337;11;1;70
+Zbo¿a i produkty zbo¿owe;Flour rice;M¹ka ry¿owa;100;g;352;7;1;78
+Zbo¿a i produkty zbo¿owe;Vermicelli raw;Makaron surowy;100;g;354;12;2;71
+Jajka;Egg whole chicken av raw;Jajko ca³e z kurczaka asurowe;100;g;132;12,3;9,1;0,2
+Jajka;Egg whole chicken av boiled;Jajko ca³e z kurczaka gotowane;100;g;128;12,3;8,8;0
+Jajka;Egg yolk chicken raw;¯ó³tko surowego kurczaka;100;g;361;16,7;32,6;0,2
+Jajka;Egg yolk chicken boiled;¯ó³tko kurczaka gotowane;100;g;361;16;33;0
+Miêso i drób;Horse meat raw;Miêso koñskie surowe;100;g;99;22,4;1;0
+Miêso i drób;Mutton >10g fat raw av;Baranina >10g t³uszczu surowego;100;g;293;17;25;0
+Miêso i drób;Brains calf's raw;Mózg cielêcy surowy;100;g;108;9;8;0
+Miêso i drób;Duck w skin raw;Kaczka ze skór¹ surowa;100;g;388;13,1;37,3;0
+Miêso i drób;Hare whole raw;Zaj¹c ca³y surowy;100;g;115;22;3;0
+Miêso i drób;Chicken w skin raw;Kurczak ze skór¹ surowy;100;g;218;18,3;16;0
+Miêso i drób;Rabbit domesticated raw;Królik udomowiony na surowo;100;g;174;21;10;0
+Miêso i drób;Rabbit wild raw;Królik dziki surowy;100;g;125;20;5;0
+Ryby, skorupiaki i miêczaki;Mussels boiled;Ma³¿e gotowane;100;g;125;17,2;3,1;7,2
+Ryby, skorupiaki i miêczaki;Eel raw;Surowy wêgorz;100;g;372;14;35,1;0
+Ryby, skorupiaki i miêczaki;Herring raw;ŒledŸ surowy;100;g;199;16;15;0
+Roœliny str¹czkowe;Beans white/ brown dried;Fasola bia³a/br¹zowa suszona;100;g;314;20,1;2,4;44,2
+Roœliny str¹czkowe;Peas green dried;Groszek zielony suszony;100;g;315;21;2;43
+Roœliny str¹czkowe;Peas marrowfat dried;Groch szpikowy suszony;100;g;305;20;1,5;43
+Roœliny str¹czkowe;Lentils green and brown dried;Soczewica zielona i br¹zowa suszona;100;g;306;21;1,5;43
+Ziemniaki i bulwy;Potatoes mashed fresh prep w semi-skimmed milk and margarin;Ziemniaki puree œwie¿o przygotowane z pó³t³ustym mlekiem i margaryn¹;100;g;83;2,2;1,8;13,9
+Warzywa;Radish raw;Rzodkiewka surowa;100;g;22;1;0;4
+Warzywa;Radish black raw;Rzodkiewka czarna surowa;100;g;30;2;0;5
+Warzywa;Cress garden raw;Rze¿ucha ogrodowa surowa;100;g;15;2;0;0
+Warzywa;Vegetables mixture raw av;Mieszanka warzywna surowa av;100;g;20;0,9;0,4;2,5
+Zio³a i przyprawy;Parsley fresh;Pietruszka œwie¿a;100;g;37;4;0,8;1
+Warzywa;Asparagus white tinned;Szparagi bia³e konserwowe;100;g;17;1,4;0,3;1,9
+Warzywa;Gherkins sour pickled;Ogórki kiszone kwaœne;100;g;10;1;0;1
+Warzywa;Gherkins sweet pickled;Ogórki konserwowe s³odkie;100;g;27;0,8;0;5,3
+Warzywa;Mushroom tinned;Grzyby konserwowe;100;g;19;2,2;0,4;0,5
+Warzywa;Peas medium fine tinned;Groszek œrednio drobny konserwowy;100;g;94;5;1;14
+Warzywa;Peas super fine tinned;Groszek bardzo drobny konserwowy;100;g;78;5,6;0,8;9,9
+Warzywa;Peas and carrots tinned;Groszek i marchewka konserwowa;100;g;56;3,4;0,5;7
+Owoce;Olives green in brine tinned/glass;Oliwki zielone w solance w puszce/szklance;100;g;113;0,9;11;0,5
+Warzywa;Beans runner tinned;Fasola szparagowa w puszce;100;g;20;1,1;0,3;2,3
+Warzywa;Beans French tinned;Fasola francuska w puszce;100;g;26;1,6;0,3;2,9
+Warzywa;Spinach tinned;Szpinak w puszce;100;g;31;3,2;0,9;1,3
+Warzywa;Tomato puree concentrated tinned;Koncentrat przecieru pomidorowego w puszce;100;g;87;4,5;0;15,5
+Warzywa;Beans broad tinned;Fasola szeroka konserwowa;100;g;73;5,8;0,6;8,5
+Warzywa;Carrot tinned;Marchewka konserwowa;100;g;29;0,7;0,2;5,3
+Warzywa;Silver-skin onion sweet pickled glass;Cebula ze srebrn¹ skórk¹, s³odka, marynowana w szkle;100;g;34;0,6;0,1;6,9
+Warzywa;Cabbage red glass;Szk³o kapustne czerwone;100;g;40;0,8;0,2;7,9
+Warzywa;Spinach frozen boiled;Szpinak mro¿ony gotowany;100;g;24;2,3;0,4;1,7
+Owoce;Apple wo skin av;Jab³ko ;100;g;55;0,2;0,1;12
+Owoce;Strawberries;Truskawki;100;g;29;0,7;0;5,1
+Owoce;Apricots w skin;Morele ze skórk¹;100;g;44;0,9;0,1;8
+Owoce;Pineapple;Ananas;100;g;54;0,5;0,1;12
+Owoce;Banana;Banan;100;g;92;1,1;0,3;20
+Owoce;Blueberries;Borówki;100;g;52;0,7;0;11
+Owoce;Redcurrants;Porzeczka czerwona;100;g;36;1,1;0;4,4
+Owoce;Blackcurrants;Porzeczka czarna;100;g;53;0,9;0;8
+Owoce;Bilberries;Borówki;100;g;30;0,6;0;6
+Owoce;Cowberries;Borówki brusznice;100;g;57;0,8;1,2;8,8
+Owoce;Blackberries;Je¿yny;100;g;37;0,9;0,2;5,1
+Owoce;Lemon;Cytryna;100;g;36;0,8;0,3;3
+Owoce;Cranberries fresh;¯urawina œwie¿a;100;g;24;0,4;0,1;3,4
+Owoce;Grapes w skin av;Winogrona ze skórk¹;100;g;78;0,6;0,2;16,8
+Owoce;Raspberries;Maliny;100;g;37;1,4;0,3;4,5
+Owoce;Grapefruit;Grejpfrut;100;g;37;0,9;0;6,6
+Owoce;Cherries sweet;Wiœnie s³odkie;100;g;57;0,9;0,4;11,5
+Owoce;Gooseberries;Agrest;100;g;49;0,9;0;9
+Owoce;Manderins;Mandarynki;100;g;46;0,7;0,1;9,9
+Owoce;Melon netted;Siatka na melona;100;g;27;0,5;0;6
+Owoce;Cherries sour;Wiœnie kwaœne;100;g;52;1;0;11
+Owoce;Pear wo skin;Gruszka bez skórki;100;g;53;0,3;0,2;11,7
+Owoce;Peach wo skin;Brzoskwinia bez skórki;100;g;41;1;0;7,9
+Owoce;Plums w skin;Œliwki ze skórk¹;100;g;40;0,8;0;7,3
+Owoce;Orange;Pomarañczowy;100;g;48;0,8;1;7,9
+Owoce;Fruit fresh citrus av;Owoce œwie¿e cytrusy av;100;g;48;0,8;0,5;8,9
+Owoce;Fruit fresh av excl citrus;Owoce œwie¿e, bez cytrusów;100;g;63;0,7;0,2;13,5
+Owoce;Strawberries in syrup tinned;Truskawki w syropie w puszce;100;g;71;0,5;0;16,9
+Owoce;Apricots dried;Morele suszone;100;g;285;5;0;59
+Owoce;Apricots in syrup tinned;Morele w syropie w puszce;100;g;69;0,4;0,1;16,1
+Owoce;Pineapple in syrup tinned;Ananas w syropie w puszce;100;g;69;0,3;0,1;16,1
+Owoce;Apples dried;Suszone jab³ka;100;g;292;2;0,5;65
+Owoce;Apple sauce tinned;Mus jab³kowy w puszce;100;g;76;0,2;0,1;17,6
+Owoce;Bilberries in syrup tinned;Borówki w syropie w puszce;100;g;66;0,3;0,3;15,1
+Owoce;Dates dried;Daktyle suszone;100;g;305;2;0;70,5
+Owoce;Raspberries in syrup tinned;Maliny w syropie w puszce;100;g;71;0,5;0,3;15,7
+Owoce;Fruit cocktail in syrup tinned;Koktajl owocowy w syropie w puszce;100;g;75;0,4;0;17,3
+Owoce;Cherries in syrup tinned;Wiœnie w syropie w puszce;100;g;63;0,6;0,3;14,2
+Owoce;Currants dried;Porzeczki suszone;100;g;326;2;0;75
+Owoce;Tangerines in syrup tinned;Mandarynki w syropie w puszce;100;g;59;0,5;0;14
+Owoce;Pear dried;Gruszka suszona;100;g;287;2;0;65
+Owoce;Pears in syrup tinned;Gruszki w syropie w puszce;100;g;64;0,3;0;14,7
+Owoce;Peaches in syrup tinned;Brzoskwinie w syropie w puszce;100;g;62;0,4;0;14,6
+Owoce;Prunes;Œliwki;100;g;199;1,6;0,4;47,9
+Owoce;Plums in syrup tinned;Œliwki w syropie w puszce;100;g;65;0,3;0;15,5
+Owoce;Fruit mixed dried;Mieszane suszone owoce;100;g;256;2,7;0,3;56,1
+Owoce;Figs dried;Suszone figi;100;g;259;3,3;0,9;54,1
+Owoce;Fruit in syrup tinned;Owoce w syropie w puszkach;100;g;65;0,3;0,1;15
+Owoce;Infant food fruit 8 months;¯ywnoœæ dla niemowl¹t owoce 8 miesiêcy;100;g;74;0,6;0,1;17,1
+Roœliny str¹czkowe;Beans white baked in tomato sauce canned;Fasola bia³a pieczona w sosie pomidorowym w puszce;100;g;101;5,7;0,6;15,2
+Orzechy i nasiona;Almonds blanched unsalted;Migda³y blanszowane niesolone;100;g;631;21,7;55,8;7,1
+Orzechy i nasiona;Cashew nuts unsalted;Orzechy nerkowca niesolone;100;g;615;21,2;48,9;20,8
+Orzechy i nasiona;Hazelnuts unsalted;Orzechy laskowe niesolone;100;g;670;16,4;63;4,8
+Orzechy i nasiona;Chestnuts raw;Kasztany surowe;100;g;189;4;2,7;35
+Owoce;Coconut meat;Mi¹¿sz kokosa;100;g;406;4;40;3
+Orzechy i nasiona;Brazil nuts unsalted;Orzechy brazylijskie niesolone;100;g;687;14,3;67,1;2,6
+Orzechy i nasiona;Peanuts unsalted;Orzeszki ziemne niesolone;100;g;627;25,2;51,7;11,8
+Orzechy i nasiona;Mixed nuts and raisins;Mieszane orzechy i rodzynki;100;g;496;11;32,1;38
+Orzechy i nasiona;Walnuts unsalted;Orzechy w³oskie niesolone;100;g;706;15,9;68,1;5,1
+Orzechy i nasiona;Nuts mixed unsalted;Orzechy mieszane niesolone;100;g;658;18,1;59,6;8,9
+Zbo¿a i produkty zbo¿owe;Flour buckwheat;M¹ka gryczana;100;g;353;9;2;72
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Cornflakes Kellogg's;P³atki œniadaniowe P³atki kukurydziane Kellogg's;100;g;378;7;0,9;84
+Zbo¿a i produkty zbo¿owe;Custard powder;Proszek budyniowy;100;g;350;0,3;0,1;87
+Zbo¿a i produkty zbo¿owe;Barley malt;S³ód jêczmienny;100;g;332;10;2;65
+Zbo¿a i produkty zbo¿owe;Barley pearl raw;Surowa per³a jêczmienna;100;g;339;9;2;67
+Zbo¿a i produkty zbo¿owe;Oatmeal;Owsianka;100;g;373;12,8;7,3;60,7
+Zbo¿a i produkty zbo¿owe;Popcorn kernels;Ziarna popcornu;100;g;374;11;4;71
+Zbo¿a i produkty zbo¿owe;Cornstarch;Skrobia kukurydziana;100;g;353;0;0,1;88
+Zbo¿a i produkty zbo¿owe;Flour rye 60% extraction;M¹ka ¿ytnia 60% ekstrakcji;100;g;343;8;1;73
+Zbo¿a i produkty zbo¿owe;Flour rye;M¹ka ¿ytnia;100;g;328;10;2;60,2
+Zbo¿a i produkty zbo¿owe;Tapioca;Tapioka;100;g;322;0;0;80
+Zbo¿a i produkty zbo¿owe;Flour wheat white;M¹ka pszenna bia³a;100;g;335;10,4;1,2;69
+Zbo¿a i produkty zbo¿owe;Flour wheat wholemeal;M¹ka pszenna pe³noziarnista;100;g;330;14,4;2;58,4
+Zbo¿a i produkty zbo¿owe;Binding agents av;Œrodki wi¹¿¹ce av;100;g;335;10;1,2;69,5
+Zbo¿a i produkty zbo¿owe;Breakfast cereal porridge Olvarit fijne granen 6+ months;P³atki œniadaniowe Owsianka Olvarit fijne granen 6+ miesiêcy;100;g;367;12,4;2,1;69,6
+Zbo¿a i produkty zbo¿owe;Breakfast cereal porridge Brinta;P³atki œniadaniowe owsianka Brinta;100;g;344;11;2,1;65
+Zbo¿a i produkty zbo¿owe;Starch, potato;Skrobia ziemniaczana;100;g;320;0;0;80
+Chleb;Crispbakes Dutch white;Crispbakes holenderskie bia³e;100;g;408;14,1;4,7;76,1
+Chleb;Crackers cream;Krem krakersowy;100;g;448;9,1;14,5;68,8
+Chleb;Crispbread av;Chrupkie pieczywo av;100;g;376;11,6;5,6;63,6
+Chleb;Wheat bread roll white soft;Bu³ka pszenna bia³a miêkka;100;g;262;9,7;3,6;45,9
+Zbo¿a i produkty zbo¿owe;Wheat germ;Zarodek pszenicy;100;g;393;31;9,9;37
+Chleb;Wheat currant bread white;Chleb pszenny z porzeczkami bia³y;100;g;273;7,8;2,4;53,3
+Chleb;Wheat bread brown;Chleb pszenny br¹zowy;100;g;236;9,8;1,7;42,9
+Chleb;Wheat bread white milk based;Chleb pszenny na bazie bia³ego mleka;100;g;257;9,6;2,4;47,9
+Chleb;Rye bread wholemeal;Chleb ¿ytni pe³noziarnisty;100;g;193;5,6;1,3;35,6
+Chleb;Rye wheat bread brown;Chleb ¿ytni pszenny br¹zowy;100;g;233;8,2;1,5;42,8
+Chleb;Wheat raisin bread white;Chleb pszenny z rodzynkami bia³y;100;g;272;7,7;2,7;52,2
+Chleb;Wheat bread wholemeal av fine and coarse;Chleb pszenny pe³noziarnisty av drobny i gruby;100;g;234;11,1;2,3;39
+Chleb;Wheat bread white water based;Chleb pszenny bia³y na bazie wody;100;g;247;9;1,6;47,8
+Chleb;Wheat malt bread brown;Chleb pszenno-s³odowy br¹zowy;100;g;249;9,4;1,9;46,6
+Zbo¿a i produkty zbo¿owe;Puff pastry wo butter baked;Ciasto francuskie pieczone w maœle;100;g;614;7;47;40
+Mleko i produkty mleczne;Milk raw;Mleko surowe;100;g;71;3,4;4,4;4,4
+Mleko i produkty mleczne;Yoghurt full fat;Jogurt pe³not³usty;100;g;56;3,8;2,7;3,4
+Mleko i produkty mleczne;Milk whole;Mleko pe³ne;100;g;61;3,3;3,4;4,5
+Mleko i produkty mleczne;Coffee creamer full fat;Œmietanka do kawy pe³not³usta;100;g;145;7,5;7,7;11,4
+Mleko i produkty mleczne;Custard vanilla full fat;Budyñ waniliowy pe³not³usty;100;g;86;2,3;2,8;12,8
+Mleko i produkty mleczne;Coffee creamer half fat;Œmietanka do kawy pó³t³usta;100;g;110;7;4,1;11,2
+Mleko i produkty mleczne;Milk semi-skimmed;Mleko pó³t³uste;100;g;45;3,4;1,4;4,7
+Mleko i produkty mleczne;Buttermilk;Maœlanka;100;g;30;3;0,2;3,6
+Zbo¿a i produkty zbo¿owe;Topping dessert powder w sugar Klop-Klop;Posypka deserowa w proszku cukrem Klop-Klop;100;g;535;4,4;29,3;63,4
+Mleko i produkty mleczne;Coffee creamer;Œmietanka do kawy;100;g;210;3,3;20,2;3,8
+Mleko i produkty mleczne;Milk skimmed;Mleko odt³uszczone;100;g;35;3,7;0,1;4,9
+Mleko i produkty mleczne;Milk skimmed dried;Mleko odt³uszczone suszone;100;g;349;35,4;0,6;50,5
+Mleko i produkty mleczne;Milk whole dried;Mleko ca³e w proszku;100;g;478;23,9;26;37
+Mleko i produkty mleczne;Porridge rice;Owsianka ry¿owa;100;g;86;3,1;2,9;12
+Mleko i produkty mleczne;Yoghurt low fat;Jogurt o niskiej zawartoœci t³uszczu;100;g;37;4,1;0,2;4
+Ser;Cheese Swiss dried;Ser szwajcarski suszony;100;g;228;55;0,7;0
+Mleko i produkty mleczne;Quark low fat;Twaróg o niskiej zawartoœci t³uszczu;100;g;51;8,4;0;3,8
+Mleko i produkty mleczne;Quark half fat;Twaróg pó³t³usty;100;g;77;7,5;3,2;4
+Mleko i produkty mleczne;Quark full fat;Twaróg pe³not³usty;100;g;118;7,5;8;3,6
+T³uszcze i oleje;Oil peanut;Olej arachidowy;100;g;900;0;100;0
+T³uszcze i oleje;Butter unsalted;Mas³o niesolone;100;g;737;0,7;81,2;1,1
+T³uszcze i oleje;Oil soya;Olej sojowy;100;g;894;0,3;99,2;0
+T³uszcze i oleje;Lard;Smalec;100;g;900;0;100;0
+T³uszcze i oleje;Beef fat;T³uszcz wo³owy;100;g;891;0;99;0
+T³uszcze i oleje;Oil sunflower seed;Olej s³onecznikowy;100;g;897;0,3;99,5;0
+Wêdliny;Corned beef;Konserwa z wo³owiny;100;g;208;24,3;11,9;0,9
+Miêso i drób;Pheasant whole raw;Ba¿ant ca³y surowy;100;g;223;31;11;0
+Miêso i drób;Sausage smoked cooked av;Kie³basa wêdzona gotowana;100;g;304;14,1;26,3;2,6
+Wêdliny;Ham smoked raw;Szynka wêdzona na surowo;100;g;188;24,6;9,5;1,2
+Miêso i drób;Turkey raw;Surowy indyk;100;g;141;21,8;6;0
+Wêdliny;Liver ox boiled (processed meat product);W¹troba wo³owa gotowana (produkt miêsny przetworzony);100;g;133;20;5;2
+Wêdliny;Liver pork boiled (processed meat product);W¹tróbka wieprzowa gotowana (produkt miêsny przetworzony);100;g;132;19,8;4,1;3,9
+Wêdliny;Liver pate;Pasztet z w¹tróbki;100;g;318;14,2;28,3;1,7
+Wêdliny;Luncheon meat tinned;Konserwa miêsna na lunch;100;g;279;12,9;23,8;3,3
+Miêso i drób;Partridge raw;Surowa kuropatwa;100;g;248;35;12;0
+Wêdliny;Beef salted cooked;Wo³owina solona gotowana;100;g;184;17,3;12,7;0,1
+Miêso i drób;Venison raw;Surowe miêso jelenia;100;g;122;22,4;3,6;0
+Wêdliny;Beef smoke-dried;Wo³owina wêdzona;100;g;108;22;2;0,5
+Miêso i drób;Bacon fat smoked raw;T³uszcz z boczku wêdzony na surowo;100;g;678;5;73,2;0
+Wêdliny;Processed meat products av;Przetwory miêsne av;100;g;239;16,6;17,9;2,7
+Ryby, skorupiaki i miêczaki;Kipper smoked;Kipper wêdzony;100;g;242;20,8;17,5;0,3
+Ryby, skorupiaki i miêczaki;Herring fillet in tomato sauce tinned;Filet œledziowy w sosie pomidorowym w puszce;100;g;201;12;14,6;5,4
+Ryby, skorupiaki i miêczaki;Herring salted;ŒledŸ solony;100;g;172;17,6;10,1;2,8
+Ryby, skorupiaki i miêczaki;Crab in water tinned;Krab w puszce z wod¹;100;g;85;18,1;1,4;0
+Ryby, skorupiaki i miêczaki;Lobster boiled;Homar gotowany;100;g;86;19,7;0,8;0
+Ryby, skorupiaki i miêczaki;Mackerel raw;Makrela surowa;100;g;233;18;17,9;0
+Ryby, skorupiaki i miêczaki;Oysters;Ostrygi;100;g;57;6;1,9;4
+Ryby, skorupiaki i miêczaki;Sardines/pilchards in oil tinned;Sardynki w puszce z olejem;100;g;231;21,7;16;0
+Ryby, skorupiaki i miêczaki;Liver haddock tinned;Dorsz w¹trobowy w puszce;100;g;409;7;42,3;0
+Jajka;Egg white chicken raw;Bia³ko jaja surowe z kurczaka;100;g;44;10,5;0;0,4
+Cukier, s³odycze i s³odkie sosy;Sugar granulated;Cukier granulowany;100;g;400;0;0;100
+Cukier, s³odycze i s³odkie sosy;Syrup sugar;Cukier syropowy;100;g;300;0;0;75
+Napoje alkoholowe;Advocaat liqueur;Likier adwokatowy;100;g;236;4,3;3,2;23,6
+Napoje bezalkoholowe;Juice apple;Sok jab³kowy;100;g;46;0,1;0;11,2
+Napoje bezalkoholowe;Fruit juice drink redcurrent;Napój owocowy z porzeczki czerwonej;100;g;57;0;0;14
+Napoje alkoholowe;Gin Dutch red currant flavoured;Gin holenderski o smaku czerwonej porzeczki;100;g;184;0;0;18
+Napoje bezalkoholowe;Fruit juice drink blackcurrant;Napój owocowy z czarnej porzeczki;100;g;61;0;0;15
+Napoje bezalkoholowe;Juice redcurrant;Sok z porzeczki czerwonej;100;g;42;0,2;0;10
+Napoje alkoholowe;Beer old brown;Piwo stare br¹zowe;100;g;38;0,5;0;5,5
+Napoje alkoholowe;Beer pilsner;Piwo Pilsner;100;g;44;0,4;0;3
+Napoje alkoholowe;Brandy;Brandy;100;g;231;0;0;0
+Napoje alkoholowe;Campari;Kampari;100;g;180;0;0;10
+Napoje alkoholowe;Gin Dutch lemon flavoured;Gin holenderski o smaku cytrynowym;100;g;180;0;0;3
+Napoje alkoholowe;Cognac;Koniak;100;g;224;0;0;0
+Napoje bezalkoholowe;Soft drink w sugar w caffeine;Napój gazowany z cukrem i kofein¹;100;g;41;0;0;10,4
+Napoje bezalkoholowe;Juice grape;Sok winogronowy;100;g;65;0,2;0;15,9
+Napoje bezalkoholowe;Fruit juice drink raspberry;Napój owocowy malinowy;100;g;57;0;0;14
+Napoje bezalkoholowe;Soft drink m sugar wo caffeine;Napój bezalkoholowy z cukrem bez kofeiny;100;g;37;0;0;9,2
+Napoje alkoholowe;Gin young Dutch;Gin m³ody holenderski;100;g;196;0;0;0
+Napoje alkoholowe;Gin old Dutch;Gin stary holenderski;100;g;200;0;0;1
+Napoje alkoholowe;Liqueur 15-25 vol% alcohol;Likier 15-25% obj. alkoholu;100;g;242;0;0;29
+Napoje alkoholowe;Muscatel;Muszkatel;100;g;162;0;0;13,7
+Napoje alkoholowe;Port wine;Wino porto;100;g;156;0;0;13
+Napoje alkoholowe;Rum;Rum;100;g;234;0;0;0
+Napoje alkoholowe;Sherry;Sherry;100;g;111;0;0;3,2
+Napoje bezalkoholowe;Juice orange pasteurized;Sok pomarañczowy pasteryzowany;100;g;45;0,6;0,1;9,5
+Napoje bezalkoholowe;Tomato juice;Sok pomidorowy;100;g;16;0,7;0;3,2
+Napoje alkoholowe;Vermouth;Wermut;100;g;150;0;0;16,5
+Napoje alkoholowe;Brandy Dutch vieux;Brandy holenderska stara;100;g;200;0;0;1
+Napoje bezalkoholowe;Juice drink w sugar;Napój sokowy z cukrem;100;g;41;0;0;10,3
+Napoje alkoholowe;Whisky;Whisky;100;g;245;0;0;0
+Napoje alkoholowe;Wine red;Wino czerwone;100;g;82;0;0;3
+Napoje alkoholowe;Wine white dry;Wino bia³e wytrawne;100;g;67;0,1;0;0,6
+Napoje bezalkoholowe;Softdrink w milk serum and sweetener Rivella;Napój bezalkoholowy z mlecznym serum i s³odzikiem Rivella;100;g;4;0;0;1
+Cukier, s³odycze i s³odkie sosy;Syrup apple;Syrop jab³kowy;100;g;280;1,8;0;65,9
+Sosy pikantne;Sauce barbecue;Sos barbecue;100;g;95;0,9;0,1;22,2
+Zio³a i przyprawy;Stock cube;Kostka roso³owa;100;g;273;8,1;17,2;21,2
+Ró¿ne potrawy;Cocoa powder;Kakao w proszku;100;g;379;18,5;21,7;10,5
+Cukier, s³odycze i s³odkie sosy;Chocolate milk;Mleko czekoladowe;100;g;548;7;34,1;52
+Cukier, s³odycze i s³odkie sosy;Chocolate dark;Czekolada gorzka;100;g;531;6,5;33,7;46,7
+Cukier, s³odycze i s³odkie sosy;Chocolate flakes milk;P³atki czekoladowe mleczne;100;g;454;5,8;15;72
+Cukier, s³odycze i s³odkie sosy;Chocolate butter;Mas³o czekoladowe;100;g;515;1,6;32,2;53,6
+Cukier, s³odycze i s³odkie sosy;Chocolate flakes dark;P³atki czekoladowe ciemne;100;g;444;5,2;15,5;67
+Cukier, s³odycze i s³odkie sosy;Spread chocolate hazelnut;krem czekoladowy z orzechami laskowymi;100;g;562;5,7;35,3;53,9
+Zbo¿a i produkty zbo¿owe;Gelatin;¯elatyna;100;g;352;88;0;0
+Ró¿ne potrawy;Yeast extract Marmite;Ekstrakt dro¿d¿owy;100;g;238;38,4;0,1;19,2
+Cukier, s³odycze i s³odkie sosy;Honey;Miód;100;g;321;0,3;0;80
+Cukier, s³odycze i s³odkie sosy;Spread chocolate dark;krem czekoladowy z ciemn¹ czekolad¹;100;g;575;3;38,6;51,4
+Cukier, s³odycze i s³odkie sosy;Jam;D¿em;100;g;248;0,3;0,1;60,8
+Cukier, s³odycze i s³odkie sosy;Chewing gum;Guma do ¿ucia;100;g;280;0;0;70
+Cukier, s³odycze i s³odkie sosy;Chewing gum wo sugar;Guma do ¿ucia bez cukru;100;g;171;0,1;0,6;66,4
+Cukier, s³odycze i s³odkie sosy;Coconut bread sweetened sliced;Chleb kokosowy s³odzony krojony;100;g;426;3,2;18,6;58,7
+Sosy pikantne;Mayonnaise;Majonez;100;g;664;1,1;71,6;3,6
+Cukier, s³odycze i s³odkie sosy;Peppermint;Miêtówki;100;g;395;0,6;0;98,2
+Wytrawne pasty chlebowe;Peanut butter;Mas³o orzechowe;100;g;654;22,5;56,4;10
+Cukier, s³odycze i s³odkie sosy;Jam rose hip w vit C;D¿em z dzikiej ró¿y z wit. C;100;g;260;1,8;0,3;62
+Sosy pikantne;Salad cream 25% oil;Krem sa³atkowy 25% oleju;100;g;278;0,4;26,7;8,9
+Cukier, s³odycze i s³odkie sosy;Toffees;Toffi;100;g;401;0,6;6,2;85,6
+Sosy pikantne;Ketchup tomato;Ketchup pomidorowy;100;g;77;1;0;17,7
+Zbo¿a i produkty zbo¿owe;Pancake homemade prepared w margarin;Naleœniki domowe przygotowane z margaryn¹;100;g;203;8,3;5,8;29,2
+Miêso i drób;Liver chicken raw;Surowa w¹tróbka z kurczaka;100;g;128;19,1;5,4;1
+Cukier, s³odycze i s³odkie sosy;Sweets marshmallow type Spekkie;S³odycze piankowe;100;g;334;4,1;0,4;78,3
+Cukier, s³odycze i s³odkie sosy;Candybar Mars;Mars batonik;100;g;449;4,1;16,6;70,2
+Zbo¿a i produkty zbo¿owe;Blancmange powder chocolate instant;Proszek budyniowy czekoladowy instant;100;g;370;1;1;89
+Ser;Cheese Edam 40+;Ser Edamski 40+;100;g;324;25,5;24,3;0
+Ser;Cheese Gouda 48+ av;Ser Gouda 48+ av;100;g;370;22,9;30,6;0
+Ser;Cheese 20+ Leidse w cumin/Fries clove;Ser 20+ Leidse z kminkiem/Frytki goŸdzikowe;100;g;240;33,1;11,9;0
+Ser;Cheese spread 40+;Serek topiony 40+;100;g;227;16;17;2
+Ser;Cheese spread 20+;Serek topiony 20+;100;g;137;17,2;6,8;1,7
+Cukier, s³odycze i s³odkie sosy;Liquorice Dutch type salted;Lukrecja typu holenderskiego solona;100;g;330;12,2;0,2;68,1
+Cukier, s³odycze i s³odkie sosy;Liquorice Dutch type double salted;Lukrecja typu holenderskiego podwójnie solona;100;g;330;12,2;0,2;68,1
+Cukier, s³odycze i s³odkie sosy;Liquorice Dutch type sweet;Lukrecja, typ holenderski, s³odka;100;g;333;7,3;0,4;74,6
+Cukier, s³odycze i s³odkie sosy;M&M's chocolate;Czekolada M&M's;100;g;487;4,6;20,7;68,6
+Cukier, s³odycze i s³odkie sosy;Candybar Milky Way;Batonik Milky Way;100;g;448;4;15,9;71,9
+Cukier, s³odycze i s³odkie sosy;Candybar Bounty;Batonik Bounty;100;g;486;3,7;26,1;58,3
+Cukier, s³odycze i s³odkie sosy;Candybar Snickers;Batoniki Snickers;100;g;484;8,7;22,9;60,2
+Ró¿ne potrawy;Cocoa powder sweetened;Kakao w proszku s³odzone;100;g;376;4,5;2,6;80,6
+Warzywa;Rhubarb puree w sugar;Puree z rabarbaru z cukrem;100;g;82;0,5;0;19
+Cukier, s³odycze i s³odkie sosy;Sauce fruit for pudding;Sos owocowy do budyniu;100;g;189;0,3;0,1;46,3
+Cukier, s³odycze i s³odkie sosy;Sauce chocolate for pudding;Sos czekoladowy do budyniu;100;g;269;2,1;1,9;60,8
+Wytrawne pasty chlebowe;Peanut butter w peanut pieces;Mas³o orzechowe z kawa³kami orzechów;100;g;651;20;55;15
+Orzechy i nasiona;Peanuts coated;Orzeszki ziemne w panierce;100;g;532;13,2;32,7;43,7
+Ser;Cheese Camembert 45+;Ser Camembert 45+;100;g;306;25;22,8;0
+Warzywa;Celery raw;Seler surowy;100;g;14;1;0;2
+Warzywa;Celeriac raw;Surowy seler;100;g;38;2;0;5
+Warzywa;Swede raw;Surowa brukiew;100;g;30;0,7;0,1;5
+Warzywa;Kohlrabi raw;Kalarepa surowa;100;g;31;0,9;0,3;4,7
+Warzywa;Purslane raw;Portulaka surowa;100;g;13;1;0;1
+Warzywa;Leek raw;Por surowy;100;g;28;1,5;0,2;3,5
+Warzywa;Swiss chard leaf raw;Surowe liœcie boæwiny;100;g;29;3;0;3
+Warzywa;Brussel sprouts raw;Surowa brukselka;100;g;46;2,3;0,7;5,6
+Miêso i drób;Sausage frankfurter tinned;Kie³basa frankfurterka konserwowa;100;g;201;12;15,4;3,8
+Wêdliny;Sausage luncheon meat;Kie³basa mielona;100;g;306;11,6;26,9;3,5
+Miêso i drób;Black pudding;Kaszanka;100;g;386;12,4;32,6;9,5
+Cukier, s³odycze i s³odkie sosy;Candybar Nuts;Orzechy Candybar;100;g;497;4,6;24,8;62,3
+Sosy pikantne;Ketchup hot chilli;Ketchup z ostrym chilli;100;g;101;1,2;0,1;23,3
+Sosy pikantne;Ketchup curry;Curry z ketchupem;100;g;129;0,8;0,3;29,9
+Zbo¿a i produkty zbo¿owe;Wheat bran;Otrêby pszenne;100;g;286;17,4;5,1;20
+Ser;Cheese Brie 50+;Ser Brie 50+;100;g;318;23;25,1;0
+Chleb;Crispbread gold-brown;Chrupkie pieczywo z³ocisto-br¹zowe;100;g;410;12,3;6,6;72,3
+Napoje bezalkoholowe;Water 0-50 mg calcium p litre;Woda 0-50 mg wapnia p litr;100;g;0;0;0;0
+Napoje bezalkoholowe;Water 50-100 mg calcium p litre;Woda 50-100 mg wapnia p litr;100;g;0;0;0;0
+Napoje bezalkoholowe;Water >100 mg calcium p litre;Woda >100 mg wapnia na litr;100;g;0;0;0;0
+T³uszcze i oleje;Oil olive;Oliwa z oliwek;100;g;900;0;100;0
+Ryby, skorupiaki i miêczaki;Salmon tinned;£osoœ w puszce;100;g;146;20,4;7,2;0
+Ryby, skorupiaki i miêczaki;Eel smoked;Wêgorz wêdzony;100;g;351;19,1;30,5;0
+Ryby, skorupiaki i miêczaki;Mackerel steamed;Makrela gotowana na parze;100;g;315;19,5;26,1;0,5
+T³uszcze i oleje;Oil safflower;Olej krokoszowy;100;g;900;0;100;0
+Sosy pikantne;Peanut sauce ready to eat;Sos orzechowy gotowy do spo¿ycia;100;g;247;7,5;13,2;23,5
+Cukier, s³odycze i s³odkie sosy;M&M's chocolate w peanuts;Czekoladki M&M's z orzeszkami ziemnymi;100;g;511;9,8;25,3;59,1
+Wêdliny;Salami sausage saveloy;Kie³basa salami saveloy;100;g;375;17,8;33;1,3
+Wêdliny;Bacon rasher streaky;Plasterki boczku w plastrach;100;g;312;15,7;27,5;0,5
+Wêdliny;Liver sausage;Kie³basa w¹trobowa;100;g;294;14,5;25,3;1,8
+Wêdliny;Bacon;Boczek;100;g;188;18,5;12,4;0,5
+Wêdliny;Pate;£eb;100;g;360;9,6;33;5,7
+Wêdliny;Pork side cured and smoked;Boczek wieprzowy wêdzony i peklowany;100;g;130;18,3;5,1;2,8
+Napoje bezalkoholowe;Coffee prepared;Kawa przygotowana;100;g;1;0,2;0;0,1
+Napoje bezalkoholowe;Tea prepared;Przygotowana herbata;100;g;0;0;0;0
+Warzywa;Cabbage red w apple pieces frozen boiled;Kapusta czerwona z kawa³kami jab³ka mro¿ona gotowana;100;g;57;1,1;1;9,9
+Warzywa;Spinach creamed frozen boiled;Szpinak w sosie œmietanowym mro¿ony gotowany;100;g;44;2,9;3;0,8
+Zbo¿a i produkty zbo¿owe;Rice white boiled;Ry¿ bia³y gotowany;100;g;146;3,2;0,3;32,2
+Zbo¿a i produkty zbo¿owe;Pasta white av boiled;Makaron bia³y av gotowany;100;g;142;5,1;0,9;27,7
+Roœliny str¹czkowe;Beans brown canned;Fasola br¹zowa konserwowa;100;g;120;6,5;0,7;18
+Napoje bezalkoholowe;Juice grapefruit;Sok grejpfrutowy;100;g;34;0,5;0;7,3
+Owoce;Plantain ripe raw;Banan dojrza³y surowy;100;g;138;1,3;0;32
+Ziemniaki i bulwy;Cassava raw;Surowy maniok;100;g;142;0,6;0,2;33,5
+Ziemniaki i bulwy;Taro raw;Surowy taro;100;g;119;1,4;0,2;26,2
+Ziemniaki i bulwy;Yam raw;Surowy batat;100;g;124;1,5;0,3;28,2
+Ziemniaki i bulwy;Tannia raw;Tannia surowa;100;g;136;2;0;31
+Ziemniaki i bulwy;Potato sweet raw;Ziemniak s³odki surowy;100;g;91;1,2;0,3;19,7
+Warzywa;Black nightshade raw;Czarna psianka surowa;100;g;60;5;1;7
+Warzywa;Mustard leaves raw;Surowe liœcie gorczycy;100;g;32;2,5;0,3;3,2
+Warzywa;Antroewa raw;Antroewa surowa;100;g;30;1;0;6
+Warzywa;Dagoe leaf raw;Surowe liœcie Dagoe;100;g;34;3;0;5
+Warzywa;Kaisoi raw;Kaisoi surowy;100;g;32;3;0;5
+Warzywa;Amaranth leaves raw;Surowe liœcie amarantusa;100;g;56;4;1;7
+Warzywa;Beans long yard Kousenband raw;Fasola d³uga jardowa Kousenband surowa;100;g;43;3;0;7
+Warzywa;Okra raw;Okra surowa;100;g;23;1,9;0,2;1,8
+Warzywa;Bottlegourd poeng;Poeng z tykwy butelkowej;100;g;31;1;0;6
+Warzywa;Pumpkin raw;Dynia surowa;100;g;14;0,7;0,2;2
+Warzywa;Bitter gourd pods raw;Surowe str¹ki gorzkiej tykwy;100;g;15;1;0,2;0,9
+Warzywa;Tannia leaves raw;Surowe liœcie Tannii;100;g;19;2;0;2
+Roœliny str¹czkowe;Beans black eyed dried;Fasola czarnooka suszona;100;g;367;23;2;62
+Roœliny str¹czkowe;Peas split yellow/green dried;Groch ³uskany ¿ó³ty/zielony suszony;100;g;359;22;2;61
+Owoce;Avocado;Awokado;100;g;186;2;18,4;1,8
+Owoce;Guava (pink fleshed);Guawa (o ró¿owym mi¹¿szu);100;g;75;2,6;1;10,9
+Owoce;Lime;Wapno;100;g;41;0,7;0,2;7,7
+Owoce;Mango;Mango;100;g;66;0,6;0,2;14,3
+Owoce;Papaya;Papaja;100;g;39;0,5;0,3;7,8
+Zio³a i przyprawy;Tamarind;Tamaryndowiec;100;g;301;3;0;72
+Zbo¿a i produkty zbo¿owe;Flour cassava;M¹ka z manioku;100;g;336;2;0;81
+Zbo¿a i produkty zbo¿owe;Cornmeal;m¹ka kukurydziana;100;g;361;6,8;2,8;75,5
+Ryby, skorupiaki i miêczaki;Shrimps salted dried;Krewetki solone suszone;100;g;274;63;2;1
+Ryby, skorupiaki i miêczaki;Cod dried salted;Dorsz suszony solony;100;g;355;82;3;0
+Zio³a i przyprawy;Shrimp paste trassie;Pasta krewetkowa trassie;100;g;208;37;5;2,5
+Zbo¿a i produkty zbo¿owe;Rice brown raw;Ry¿ br¹zowy surowy;100;g;357;8,3;2,6;73,5
+Ser;Cheese Roquefort;Ser Roquefort;100;g;357;19;31;0
+Ser;Cheese Saint Paulin/Port Salut;Ser Saint Paulin/Port Salut;100;g;341;21,5;28,2;0
+Cukier, s³odycze i s³odkie sosy;Chocolate milk w hazelnuts;Mleko czekoladowe z orzechami laskowymi;100;g;562;7,7;35,9;50,2
+Ser;Cheese Parmesan;Ser Parmezan;100;g;404;40;27;0
+Ser;Cheese cream soft Mon Chou;Ser kremowy miêkki Mon Chou;100;g;316;6,8;31;2,4
+Ser;Cheese Limburger;Limburger z serem;100;g;283;21;21;2
+Ser;Cheese Gruyere;Ser Gruyere;100;g;433;29;34,5;1,4
+Ser;Cheese Emmenthaler;Ser Emmentaler;100;g;387;29;30;0
+Ser;Cheese Cheddar;Ser Cheddar;100;g;415;25,5;34,4;0,1
+Ser;Cheese Bluefort;Ser Bluefort;100;g;405;17,9;37;0
+Cukier, s³odycze i s³odkie sosy;Chocolate w liqueur;Czekolada z likierem;100;g;383;3,3;16,6;49,2
+Ser;Cheese cream soft Boursin;Ser œmietankowy miêkki Boursin;100;g;411;7,5;41;3
+Sosy pikantne;Mayonnaise low fat 40% oil;Majonez o obni¿onej zawartoœci t³uszczu 40% oleju;100;g;400;1;40;9
+Ziemniaki i bulwy;Potatoes mashed instant prepared average;Ziemniaki puree instant przygotowane œrednio;100;g;83;2,9;1,5;14,1
+Napoje bezalkoholowe;Mineral water sparkling and not sparkling av;Woda mineralna gazowana i niegazowana av;100;g;0;0;0;0
+Cukier, s³odycze i s³odkie sosy;Marshmallows;Pianki;100;g;329;4,6;0,1;77,3
+Cukier, s³odycze i s³odkie sosy;Liquorice allsorts;Lukrecja w ró¿nych odmianach;100;g;394;3,7;5,2;82
+Cukier, s³odycze i s³odkie sosy;Wine gum/ fruit gum;Guma do ¿ucia o smaku wina/owocowa;100;g;319;5;0,2;74,2
+Wêdliny;Sausage spiced and smoked;Kie³basa przyprawiona i wêdzona;100;g;329;12;31;0,5
+Wêdliny;Ham lean boiled;Szynka chuda gotowana;100;g;134;18;5,7;2,5
+Wêdliny;Ham shoulder medium fat boiled;Szynka pó³t³usta gotowana;100;g;133;16,4;6,2;2,4
+Ser;Cheese sheep fresh;Ser owczy œwie¿y;100;g;238;17;18,8;0
+Napoje alkoholowe;Jagermeister herb liquor;Nalewka zio³owa Jagermeister;100;g;294;0;0;14
+Cukier, s³odycze i s³odkie sosy;Fruit spread w sweetener;Pasta owocowa ze s³odzikiem;100;g;156;0,4;0,2;59,2
+Wêdliny;Beef steak tartare spiced filet americain;Tatar wo³owy z przyprawami polêdwicowymi po amerykañsku;100;g;240;14,2;18,8;3
+Zbo¿a i produkty zbo¿owe;Pasta wholemeal raw;Makaron pe³noziarnisty surowy;100;g;348;13;2;66
+Mleko i produkty mleczne;Cream sour;Œmietana kwaœna;100;g;134;3;12;3,4
+Ryby, skorupiaki i miêczaki;Plaice raw;Surowy fl¹der;100;g;76;16,4;1,2;0
+Ryby, skorupiaki i miêczaki;Fish fingers fried in sunflower oil;Paluszki rybne sma¿one w oleju s³onecznikowym;100;g;239;16,4;13;13,9
+Ryby, skorupiaki i miêczaki;Fish fingers unprepared;Paluszki rybne nieprzygotowane;100;g;194;13;8;17
+Ryby, skorupiaki i miêczaki;Plaice fried;Sma¿ona fl¹dra;100;g;194;22;10,9;2
+Ryby, skorupiaki i miêczaki;Cod boiled;Dorsz gotowany;100;g;105;23;1;1
+Ryby, skorupiaki i miêczaki;Cod raw;Dorsz surowy;100;g;75;17,5;0,6;0
+Zio³a i przyprawy;Pepper black/white;Pieprz czarny/bia³y;100;g;332;11;3;52
+Zio³a i przyprawy;Mustard;Musztarda;100;g;129;6,7;7,8;6,6
+Zio³a i przyprawy;Nutmeg powder;Proszek ga³ki muszkato³owej;100;g;536;6;36;45
+Zio³a i przyprawy;Cinnamon powder;Proszek cynamonowy;100;g;316;4;3;56
+Zio³a i przyprawy;Cumin seed dried;Suszone nasiona kminku;100;g;427;18;22;34
+Zio³a i przyprawy;Cloves;GoŸdziki;100;g;431;6;20;52
+Zio³a i przyprawy;Chives fresh;Szczypiorek œwie¿y;100;g;62;4;1;8
+Warzywa;Garlic raw;Czosnek surowy;100;g;158;6,4;0,5;31
+Zio³a i przyprawy;Chervil fresh;Œwie¿a trybula;100;g;44;4;1;3,6
+Zio³a i przyprawy;Ginger root;Korzeñ imbiru;100;g;81;1,8;0,8;15,7
+Orzechy i nasiona;Sesame seeds;Nasiona sezamu;100;g;632;22,7;57,4;1,8
+Roœliny str¹czkowe;Beans soya dried;Fasola sojowa suszona;100;g;418;35,9;18,6;15,8
+Ró¿ne potrawy;Salt fortified w iodine;Sól wzbogacona jodem;100;g;0;0;0;0
+Zio³a i przyprawy;Stock powder;Proszek magazynowy;100;g;197;20,2;5,1;17,8
+Sosy pikantne;Salad dressing natural wo oil;Sos sa³atkowy naturalny bez oleju;100;g;32;0;0;7,9
+Cukier, s³odycze i s³odkie sosy;Candybar Twix;Cukierkowy Twix;100;g;495;4,5;23,9;64,6
+Zbo¿a i produkty zbo¿owe;Millet raw;Proso surowe;100;g;370;11;4;71
+Owoce;Grapefruit in syrup canned;Grejpfrut w syropie w puszce;100;g;66;0,5;0;15,5
+Warzywa;Fennel raw;Surowy koper w³oski;100;g;17;1;0;2
+Warzywa;Vegetables mixed pickled Atjar tjampoer glass;Mieszane warzywa marynowane Atjar tjampoer szk³o;100;g;42;1;0,2;7,6
+Warzywa;Sweet pepper pickled glass;Papryka s³odka marynowana w szkle;100;g;16;0,9;0,1;2
+Ziemniaki i bulwy;Rosti unprepared;Rosti nieprzygotowany;100;g;123;2,5;2,5;21,5
+Napoje alkoholowe;Madeira;Madera;100;g;166;0;0;10
+Zio³a i przyprawy;Gravy instant powder;Sos instant w proszku;100;g;342;10,8;8,2;55,2
+Zio³a i przyprawy;Seasoning flavoured liquid;Przyprawa o smaku p³ynnym;100;g;70;10,6;0,1;6,4
+Zio³a i przyprawy;Seasoning flavoured powder;Przyprawa w proszku o smaku;100;g;176;9,9;3,9;25
+Napoje bezalkoholowe;Juice beetroot;Sok z buraków;100;g;34;0,9;0;7,7
+Orzechy i nasiona;Linseeds;Siemiê lniane;100;g;477;19;31;13
+Zbo¿a i produkty zbo¿owe;Flour soya defatted;M¹ka sojowa odt³uszczona;100;g;372;50;2,5;30
+Zbo¿a i produkty zbo¿owe;Flour soya full fat;M¹ka sojowa pe³not³usta;100;g;478;38;23;24
+Zio³a i przyprawy;Miso soya paste;Pasta sojowa miso;100;g;130;11,7;5;6,2
+Orzechy i nasiona;Sunflower seeds;Nasiona s³onecznika;100;g;647;18;56,5;13
+Owoce;Apple w skin av;Jab³ko ze skórk¹ av;100;g;56;0,3;0,2;12
+Orzechy i nasiona;Peanuts salted;Orzeszki ziemne solone;100;g;620;24,8;50,5;13,2
+Chleb;Croissants canned baked;Croissanty konserwowe pieczone;100;g;420;7;22,6;46
+T³uszcze i oleje;Butter salted;Mas³o solone;100;g;737;0,7;81,2;1,1
+Ser;Cheese Kernhem 60+;Ser Kernhem 60+;100;g;443;18,6;40,6;0
+Ser;Cheese Old Amsterdam 48+;Ser Stary Amsterdam 48+;100;g;404;26;33;0
+Warzywa;Sweet pepper red raw;Papryka s³odka czerwona surowa;100;g;25;0,8;0,1;4,3
+Warzywa;Sweet pepper red boiled;Papryka s³odka czerwona gotowana;100;g;28;0,9;0,1;5,1
+Zbo¿a i produkty zbo¿owe;Vol -au-vent shell made w butter;Skorupka Vol-au-vent zrobiona z mas³a;100;g;570;8,9;39,6;43,4
+Zbo¿a i produkty zbo¿owe;Vol -au-vent shell wo butter;Skorupka Vol-au-vent bez mas³a;100;g;566;8,4;39,1;43,9
+Ryby, skorupiaki i miêczaki;Pollock (Atlantic) boiled;Mintaj (atlantycki) gotowany;100;g;114;25;1,5;0
+Warzywa;Broccoli boiled;Broku³y gotowane;100;g;27;3,9;0,3;0,8
+Warzywa;Broccoli raw;Broku³y surowe;100;g;27;2,9;0,7;0,7
+Warzywa;Courgettes raw;Cukinia surowa;100;g;18;1,3;0,2;2,3
+Napoje bezalkoholowe;Juice pear;Sok gruszkowy;100;g;39;0,1;0;9,5
+Ser;Cheese 20+ low sodium;Ser 20+ o niskiej zawartoœci sodu;100;g;264;36,7;13;0
+Ser;Cheese 40+ low sodium;Ser 40+ o niskiej zawartoœci sodu;100;g;339;29,4;24,6;0
+Cukier, s³odycze i s³odkie sosy;Chocolate milk sugar-free;Mleko czekoladowe bez cukru;100;g;485;7,1;34,7;47,8
+Napoje alkoholowe;Wine medicinal pleegzusterbloedwijn;Wino lecznicze pleegzusterbloedwijn;100;g;154;0;0;14
+Ziemniaki i bulwy;Rosti prepared wo fat;Rosti przygotowane na t³uszczu;100;g;149;1,9;5,1;22,8
+Ró¿ne potrawy;Yeast fresh;Dro¿d¿e œwie¿e;100;g;66;11,4;0,4;1
+Warzywa;Beans French boiled;Fasola po francusku gotowana;100;g;25;1,8;0,4;2,2
+Warzywa;Kale curly frozen boiled;Jarmu¿ kêdzierzawy mro¿ony gotowany;100;g;37;2;1,6;2,5
+Warzywa;Peas frozen boiled;Groszek mro¿ony gotowany;100;g;92;6;0;14,8
+Warzywa;Beans French frozen boiled;Fasola francuska mro¿ona gotowana;100;g;34;1,8;0,1;5,4
+Zbo¿a i produkty zbo¿owe;Rice white parboiled boiled;Ry¿ bia³y parboiled gotowany;100;g;140;3;0,3;31
+Warzywa;Asparagus white boiled;Szparagi bia³e gotowane;100;g;21;1;0,3;3
+Warzywa;Beetroot boiled;Buraki gotowane;100;g;30;1,2;0,1;4,6
+Warzywa;Kale curly raw;Jarmu¿ krêcony surowy;100;g;33;3;0,6;1,6
+Warzywa;Salsify boiled;Skorzonera gotowana;100;g;84;1;1;17
+Warzywa;Beans runner boiled;Fasola szparagowa gotowana;100;g;23;1,8;0;1,9
+Warzywa;Beans broad boiled;Fasola szeroko gotowana;100;g;45;5;0;4
+Warzywa;Peas fresh boiled;Groszek œwie¿y gotowany;100;g;69;4;0;11
+Warzywa;Mange-tout boiled;Groszek cukrowy gotowany;100;g;33;2;0;5
+Warzywa;Courgettes boiled;Cukinia gotowana;100;g;19;1,5;0,1;2,3
+Warzywa;Fennel boiled;Koper w³oski gotowany;100;g;17;1;0;2
+Roœliny str¹czkowe;Peas marrowfat boiled;Groch gotowany na szpiku;100;g;127;9,5;0,9;15,7
+Roœliny str¹czkowe;Lentils green and brown boiled;Soczewica zielona i br¹zowa gotowana;100;g;99;8,8;0,7;11,6
+Roœliny str¹czkowe;Beans soya boiled;Fasola sojowa gotowana;100;g;123;10,6;5,5;4,6
+Roœliny str¹czkowe;Peas green boiled;Groszek zielony gotowany;100;g;126;8,4;0,8;17,2
+Chleb;Crispbread sesame;Chrupkie pieczywo sezamowe;100;g;421;12,8;9,8;67,8
+Chleb;Crispbread lightweight;Chrupkie pieczywo lekkie;100;g;334;10;1,5;59
+Ziemniaki i bulwy;Potatoes wo skin boiled av;Ziemniaki bez skórki gotowane;100;g;83;1,9;0,3;17,4
+Owoce;Pomegranate;Granat;100;g;91;1;1;17
+Owoce;Figs fresh;Figi œwie¿e;100;g;84;1;0;19
+Chleb;Rye bread wholemeal low sodium;Chleb ¿ytni pe³noziarnisty o niskiej zawartoœci sodu;100;g;201;5,6;1,3;37,6
+Zbo¿a i produkty zbo¿owe;Bread crumbs;Okruchy chleba;100;g;378;13;3,5;71,3
+Zbo¿a i produkty zbo¿owe;Rice brown boiled;Ry¿ br¹zowy gotowany;100;g;131;3,1;1;26,4
+Zbo¿a i produkty zbo¿owe;Bulgur wheat raw;Surowa pszenica bulgur;100;g;340;12,3;1,3;63,4
+Chleb;Wheat rye bread wholemeal;Chleb pszenny ¿ytni pe³noziarnisty;100;g;234;9,7;1,9;40,9
+Zbo¿a i produkty zbo¿owe;Rye flakes rolled;P³atki ¿ytnie zwijane;100;g;352;12;2;69
+Zbo¿a i produkty zbo¿owe;Buckwheat groats;Kasza gryczana;100;g;357;8;2;74
+Zbo¿a i produkty zbo¿owe;Flour wheat self-raising;M¹ka pszenna samorosn¹ca;100;g;339;10,3;1,1;71
+Warzywa;Artichoke raw;Karczoch surowy;100;g;49;2;0;9,5
+Zbo¿a i produkty zbo¿owe;Flour rice Olvarit;M¹ka ry¿owa Olvarit;100;g;385;7,8;1,2;85,6
+Zbo¿a i produkty zbo¿owe;Barley easy cook raw;Jêczmieñ ³atwy do ugotowania na surowo;100;g;355;8;1;77
+Ró¿ne potrawy;Yeast dried;Dro¿d¿e suszone;100;g;390;48;6;36
+Owoce;Kiwi fruit green;Kiwi zielone;100;g;62;0,9;0,8;10,8
+Owoce;Kaki / Sharon fruit;Owoce Kaki/Sharon;100;g;77;0,5;0;18,6
+Owoce;Passion fruit;Marakuja;100;g;52;2,6;0,4;5,7
+Mleko i produkty mleczne;Kefir;Kefir;100;g;40;3,5;1,5;3,1
+Warzywa;Dandelion leaves raw;Surowe liœcie mniszka lekarskiego;100;g;55;3;1;8
+Owoce;Lychees;Liczi;100;g;72;0,9;0,1;16,1
+Roœliny str¹czkowe;Peas chick boiled;Groch gotowany z kurczakiem;100;g;138;7,6;3;15,9
+Ryby, skorupiaki i miêczaki;Salmon smoked;£osoœ wêdzony;100;g;188;21,8;10,8;0,8
+Ryby, skorupiaki i miêczaki;Caviar;Kawior;100;g;281;24;20,5;0
+Ryby, skorupiaki i miêczaki;Squid raw;Surowe kalmary;100;g;73;16;1;0
+Owoce;Kumquat;Kumkwat;100;g;52;0,9;0,5;9,1
+Ryby, skorupiaki i miêczaki;Herring pickled (sweet)sour;ŒledŸ marynowany na s³odko-kwaœno;100;g;208;16;16;0
+Ryby, skorupiaki i miêczaki;Snails;Œlimaki;100;g;85;16;1,4;2
+Ser;Cheese smoked 45+;Ser wêdzony 45+;100;g;331;21,2;26,2;1,8
+Owoce;Melon water;Woda melonowa;100;g;36;0,5;0;8
+Owoce;Melon honeydew;Melon miodowy;100;g;30;0,9;0;6,3
+Ser;Cheese Rambol;Ser Rambol;100;g;291;13,6;25;2,3
+Ser;Cheese Stilton;Ser Stilton;100;g;388;21,3;33,4;0,1
+Ser;Cheese Camembert 30+;Ser Camembert 30+;100;g;223;24;14;0
+Ser;Cheese 48+ low sodium;Ser 48+ o niskiej zawartoœci sodu;100;g;381;26,1;30,7;0
+Owoce;Melon in syrup canned;Melon w syropie w puszce;100;g;80;0,5;0;19
+Owoce;Strawberry puree tinned;Przecier truskawkowy w puszce;100;g;84;0,5;0;20
+Warzywa;Peas extra fine low sodium tinned;Groszek bardzo drobny konserwowy o niskiej zawartoœci sodu;100;g;51;4;0;6,5
+Napoje bezalkoholowe;Juice lemon fresh;Sok z cytryny œwie¿y;100;g;47;0,4;0;8
+Napoje bezalkoholowe;Juice tomato/vegetable;Sok pomidorowy/warzywny;100;g;21;1;0;4
+Warzywa;Mushroom low sodium tinned;Pieczarki w puszce o niskiej zawartoœci sodu;100;g;18;2,1;0,4;0,2
+Napoje alkoholowe;Berenburg herb liquor;Nalewka zio³owa Berenburg;100;g;189;0;0;0
+Warzywa;Endive frozen unprepared;Endywia mro¿ona nieprzygotowana;100;g;9;1;0;0,3
+Warzywa;Peas and carrots frozen unprepared;Groszek i marchewka mro¿one, nieprzygotowane;100;g;58;3,8;0,4;7,1
+Warzywa;Vegetable mix for pea soup frozen unprep;Mieszanka warzywna na zupê grochow¹ mro¿ona nie przygotowana;100;g;17;2;0;1
+Warzywa;Vegetable mixed Mexico frozen unprepared;Mieszanka warzyw Meksyk mro¿ona nieprzygotowana;100;g;85;4,5;0,9;12
+Warzywa;Beans runner frozen unprepared;Fasola szparagowa mro¿ona nieprzygotowana;100;g;28;1,9;0,1;3,6
+Warzywa;Vegetables mixture for soup frozen unprepared;Mieszanka warzywna na zupê mro¿ona nieprzygotowana;100;g;25;2;0;3
+Warzywa;Spinach cut frozen unprepared;Szpinak krojony mro¿ony nieprzygotowany;100;g;20;2,3;0,3;1,1
+Warzywa;Brussel sprouts frozen boiled;Kapusta brukselska mro¿ona gotowana;100;g;47;2,3;0,7;5,6
+Warzywa;Beans broad frozen unprepared;Fasola szparagowa mro¿ona nieprzygotowana;100;g;87;7,5;0,6;9,3
+Ziemniaki i bulwy;Potatoes slices/parts frozen unprepared;Ziemniaki w plastrach/czêœciach zamro¿one nieprzygotowane;100;g;134;2,5;3,8;21,2
+Wêdliny;Salami;Salami;100;g;392;18,7;34,8;0,9
+Wêdliny;Meatloaf (processed meat product);Miêsny pasztet (przetworzony produkt miêsny);100;g;304;12,8;25,6;5,6
+Napoje bezalkoholowe;Juice tomato/vegetable low sodium;Sok pomidorowy/warzywny o niskiej zawartoœci sodu;100;g;21;1;0;4
+Warzywa;Gherkins sweet pickled low sodium;Ogórki konserwowe s³odkie o niskiej zawartoœci sodu;100;g;17;1,1;0;2,8
+Warzywa;Onion silver-skin sweet pickled low sodium glass;Cebula srebrzysta s³odka marynowana w szkle o niskiej zawartoœci sodu;100;g;21;1;0;3
+Warzywa;Onion silverskin sweet pickled wo sugar glass;Cebula srebrzysta s³odka marynowana bez cukru szklanka;100;g;21;1;0;3
+Warzywa;Gherkins pickled wo sugar;Ogórki kiszone w cukrze;100;g;14;1,2;0,3;1,1
+Warzywa;Cucumber sliced pickled glass;Ogórek pokrojony w plastry, kiszony, szk³o;100;g;9;0,7;0;1
+Wêdliny;Sausage cooked;Kie³basa gotowana;100;g;357;11,3;33;3,7
+Wêdliny;Processed meat products 20-30 g fat av;Produkty miêsne przetworzone 20-30 g t³uszczu;100;g;310;13,7;26,9;2,9
+Wêdliny;Processed meat products 10-20 g fat av;Produkty miêsne przetworzone 10-20 g t³uszczu œrednio;100;g;213;14,9;15,5;3,2
+Owoce;Apple sauce wo sugar tinned;Mus jab³kowy bez cukru w puszce;100;g;48;0,2;0;10,7
+Warzywa;Bamboo shoots tinned;Pêdy bambusa konserwowane;100;g;33;2;0;6
+Wêdliny;Processed meat products <10 g fat av;Produkty miêsne przetworzone <10 g t³uszczu;100;g;144;18,4;6,5;2,5
+Ró¿ne potrawy;Salt low sodium LoSalt;Sól o niskiej zawartoœci sodu ;100;g;0;0;0;0
+Sosy pikantne;Soy sauce salt ketjap;Sos sojowy z sol¹ i ketjapem;100;g;211;2,8;0;50
+Sosy pikantne;Soy sauce sweet low sodium ketjap;Sos sojowy s³odki o niskiej zawartoœci sodu ketjap;100;g;238;4,5;0;55
+Sosy pikantne;Soy sauce sweet ketjap;Sos sojowy s³odki ketjap;100;g;234;3,5;0;55
+Zio³a i przyprawy;Monosodium glutamate Ve-tsin;Glutaminian sodu Ve-tsin;100;g;0;0;0;0
+Zio³a i przyprawy;Basil dried;Bazylia suszona;100;g;244;23;4,1;10,1
+Zio³a i przyprawy;Chilli powder;Proszek chili;100;g;373;12;17;32
+Zio³a i przyprawy;Curry powder djawa;Proszek curry djawa;100;g;370;12;14;36,5
+Zio³a i przyprawy;Chervil dried;Szczawik suszony;100;g;303;23;4;38
+Zio³a i przyprawy;Pepper red cayenne;Pieprz czerwony cayenne;100;g;379;12;17;32
+Zio³a i przyprawy;Marjoram dried;Majeranek suszony;100;g;319;13;7;42
+Zio³a i przyprawy;Mustard low sodium;Musztarda o niskiej zawartoœci sodu;100;g;126;6,5;9,5;3,1
+Zio³a i przyprawy;Oregano dried;Oregano suszone;100;g;360;11;10;49
+Zio³a i przyprawy;Paprika powder;Papryka w proszku;100;g;359;15;13;35
+Zio³a i przyprawy;Parsley dried;Pietruszka suszona;100;g;309;22;4;41
+Zio³a i przyprawy;Rosemary dried;Rozmaryn suszony;100;g;374;5;15;46
+Zio³a i przyprawy;Pepper red hot paste;Pasta z czerwonej papryki;100;g;36;1,6;0,7;4,9
+Zio³a i przyprawy;Pepper red hot paste low sodium;Paprykowa czerwona ostra pasta o niskiej zawartoœci sodu;100;g;50;3;2;4
+Zio³a i przyprawy;Pepper red hot fried paste;Papryka czerwona ostra sma¿ona pasta;100;g;250;4,4;18,5;15,5
+Zio³a i przyprawy;Celery leaves fresh;Œwie¿e liœcie selera;100;g;16;1;0;2
+Zio³a i przyprawy;Lemon grass powder;Proszek z trawy cytrynowej;100;g;216;5;3;30
+Chleb;Crispbread high fibre;Pieczywo chrupkie o wysokiej zawartoœci b³onnika;100;g;350;13;6,5;48
+Ryby, skorupiaki i miêczaki;Mackerel in water tinned;Makrela w puszce wodnej;100;g;257;18,6;20,3;0
+Cukier, s³odycze i s³odkie sosy;Marzipan;Marcypan;100;g;420;5,3;15,3;64,2
+Warzywa;Infant food vegetables 4 months;Pokarm dla niemowl¹t warzywa 4 miesi¹ce;100;g;50;1,3;0,2;9,7
+Miêso i drób;Bacon fat smoked prepared;T³uszcz z boczku wêdzony przygotowany;100;g;505;25;45;0
+Ser;Cheese cream soft Paturain;Ser œmietankowy miêkki Paturain;100;g;354;7;35,3;2,3
+Miêso i drób;Chicken wo skin raw;Kurczak bez skóry surowy;100;g;139;20,5;6,3;0
+Miêso i drób;Chicken for soup w skin raw;Kurczak na zupê ze skór¹ surowy;100;g;247;19;19;0
+Ryby, skorupiaki i miêczaki;Plaice fillet fried/simmered;Filet z fl¹dry sma¿ony/gotowany na wolnym ogniu;100;g;112;18,9;3,8;0,5
+Cukier, s³odycze i s³odkie sosy;Chocolate sprinkles av;Posypki czekoladowe av;100;g;449;5,7;15,3;69,3
+Jajka;Egg whole chicken fried in margarine;Ca³e jajko z kurczaka sma¿one w margarynie;100;g;220;14,4;17,6;0,9
+Ryby, skorupiaki i miêczaki;Cod fillet fried/simmered;Filet z dorsza sma¿ony/gotowany;100;g;118;21,5;3,3;0,6
+Miêso i drób;Chicken wo skin grilled;Kurczak bez skóry grillowany;100;g;188;28,5;7,9;0,6
+Miêso i drób;Minced beef/pork shallow fried;Miêso mielone wo³owe/wieprzowe sma¿one na ma³ym ogniu;100;g;317;30,1;21,6;0,4
+Chleb;Wheat bread white Turkish;Chleb pszenny bia³y turecki;100;g;250;8,5;1,5;49,3
+Wêdliny;Sausage dry sucuk Turkish;Kie³basa sucha sucuk turecka;100;g;446;20,4;37,5;6,7
+Wêdliny;Sausage dry salam Turkish;Kie³basa sucha salam turecka;100;g;271;14,8;20,6;6,5
+Warzywa;Grape leaves glass;Szk³o z liœci winogronowych;100;g;33;3,3;0;1,8
+Warzywa;Vegetables pickled Turkish Tursu;Kiszone warzywa Tursu tureckie;100;g;24;0,6;0;3,9
+Ser;Cheese 30+ av;Ser 30+ av;100;g;280;30,1;17,7;0
+Cukier, s³odycze i s³odkie sosy;Liquorice Dutch type av;Lukrecja typ holenderski av;100;g;333;8,4;0,4;73,2
+Miêso i drób;Bacon lean prepared;Boczek chudy przygotowany;100;g;424;25,7;35,5;0,3
+Miêso i drób;Chicken fillet prepared;Filet z kurczaka przygotowany;100;g;158;30,9;3,8;0
+Warzywa;Onions fried in vegetable oil;Cebula sma¿ona na oleju roœlinnym;100;g;58;1,3;3;5,4
+Warzywa;Mushroom fried in vegetable oil w salt;Pieczarki sma¿one w oleju roœlinnym z sol¹;100;g;54;2,6;4,1;0,5
+Chleb;Rye bread wholemeal/rye wheat bread brown av;Chleb ¿ytni pe³noziarnisty/chleb pszenny ¿ytni br¹zowy av;100;g;196;5,8;1,3;36,1
+Warzywa;Tomatoes stewed w vegetable oil;Pomidory duszone w oleju roœlinnym;100;g;59;0,9;5,1;1,9
+Warzywa;Kale curly glass;Jarmu¿ krêcony szklany;100;g;25;2,4;0,6;0,9
+Warzywa;Lettuce iceberg raw;Sa³ata lodowa surowa;100;g;14;1;0,2;1,4
+Miêso i drób;Beef rump steak raw;Surowy stek z polêdwicy wo³owej;100;g;108;22,9;1,8;0
+Miêso i drób;Beef tenderloin steak raw;Surowy stek z polêdwicy wo³owej;100;g;116;23,7;2,3;0
+Miêso i drób;Beef prime rib raw;Surowa antrykotowa wo³owina;100;g;165;23;8,1;0
+Miêso i drób;Minced beef raw;Miêso mielone wo³owe surowe;100;g;225;18,9;16,5;0,2
+Miêso i drób;Beef rib raw;Surowe ¿eberka wo³owe;100;g;137;19,8;6,4;0
+Miêso i drób;Liver ox raw;Surowa w¹troba wo³owa;100;g;129;21;4,2;1,9
+Miêso i drób;Beef roast raw;Surowa pieczeñ wo³owa;100;g;122;22,9;3,4;0
+Miêso i drób;Beef shank raw;Surowa golonka wo³owa;100;g;117;22,6;3;0
+Miêso i drób;Beef rib steak raw;Surowy stek z antrykotu wo³owego;100;g;166;20,1;9,5;0
+Miêso i drób;Beef stewing steak raw;Surowy stek do duszenia wo³owiny;100;g;135;21,3;5,5;0
+Miêso i drób;Beef steak tartare raw;Surowy tatar wo³owy;100;g;137;21,1;5,7;0,3
+Miêso i drób;Beef tongue raw;Jêzyk wo³owy surowy;100;g;188;17,3;13,2;0
+Miêso i drób;Sausage pork Braadworst raw;Kie³basa wieprzowa surowa;100;g;226;16,8;17,2;0,6
+Miêso i drób;Pork fillet raw;Polêdwica wieprzowa surowa;100;g;128;23,3;3,9;0
+Miêso i drób;Pork chop raw;Kotlet wieprzowy surowy;100;g;114;22,2;2,8;0
+Miêso i drób;Minced pork raw;Miêso mielone wieprzowe surowe;100;g;177;20,1;10,7;0,3
+Miêso i drób;Pork tenderloin raw;Polêdwica wieprzowa surowa;100;g;105;22,4;1,7;0
+Miêso i drób;Pork gammon steak raw;Surowy stek z szynki wieprzowej;100;g;191;19,8;12,4;0
+Miêso i drób;Pork loin chop raw;Surowy kotlet z polêdwicy wieprzowej;100;g;156;23,2;7;0
+Miêso i drób;Pork shoulder chop raw;Kotlet z ³opatki wieprzowej surowy;100;g;186;19,1;12,2;0
+Miêso i drób;Liver pork raw;W¹tróbka wieprzowa surowa;100;g;129;21,3;4,8;0,2
+Miêso i drób;Pork spare rib raw;Surowe ¿eberka wieprzowe;100;g;250;18,3;19,6;0
+Miêso i drób;Pork tenderloin medaillon raw;Polêdwica wieprzowa w medalionie surowym;100;g;115;23,5;2,4;0
+Miêso i drób;Pork shoulder raw;£opatka wieprzowa surowa;100;g;133;20,7;5,5;0
+Miêso i drób;Bacon rasher raw;Plasterki boczku surowe;100;g;320;16,5;28,2;0
+Miêso i drób;Minced beef/pork raw;Miêso mielone wo³owe/wieprzowe surowe;100;g;233;19,2;17,2;0,3
+Miêso i drób;Hamburger raw;Surowy hamburger;100;g;239;16,8;18;2,2
+Miêso i drób;Veal prime rib raw;Surowa antrykotowa cielêcina;100;g;150;21,4;7,2;0
+Miêso i drób;Veal olive raw;Surowa cielêcina z oliwek;100;g;159;20,7;8,5;0
+Miêso i drób;Veal fricandeau raw;Surowa cielêcina fricandeau;100;g;111;22;2,6;0
+Miêso i drób;Liver calf's raw;W¹tróbka cielêca surowa;100;g;108;17,7;3,3;2
+Miêso i drób;Veal shank raw;Surowa golonka cielêca;100;g;112;21,3;2,9;0
+Miêso i drób;Tongue calf's raw;Jêzyk cielêcy surowy;100;g;168;17,6;10,9;0
+Miêso i drób;Lamb leg raw;Noga jagniêca surowa;100;g;174;19,2;10,8;0
+Miêso i drób;Minced lamb raw;Miêso jagniêce mielone surowe;100;g;218;19,3;15,7;0
+Miêso i drób;Lamb chop raw;Surowy kotlet jagniêcy;100;g;223;19,2;16,3;0
+Miêso i drób;Lamb saddle raw;Surowe comber jagniêcy;100;g;256;18,6;20,2;0
+Miêso i drób;Lamb shoulder raw;Surowa ³opatka jagniêca;100;g;187;20;11,9;0
+Cukier, s³odycze i s³odkie sosy;Chocolate dark sugar-free;Czekolada gorzka bez cukru;100;g;454;5,3;33;42,1
+Cukier, s³odycze i s³odkie sosy;Chocolate milk w hazelnuts wo sugar;Mleko czekoladowe z orzechami laskowymi i cukrem;100;g;498;8,9;35,4;46,5
+Warzywa;Beetroot pickled glass;Marynowane buraki;100;g;37;0,5;0,1;7,6
+Ziemniaki i bulwy;Potato puree powder av;Puree ziemniaczane w proszku av;100;g;368;8,6;4,6;70,2
+Ziemniaki i bulwy;Chips pre-fried frozen unprepared;Chipsy wstêpnie sma¿one mro¿one nieprzygotowane;100;g;146;2,3;3,8;24,4
+Ziemniaki i bulwy;Potatoes fried;Ziemniaki sma¿one;100;g;119;1,8;4,8;16,5
+Napoje bezalkoholowe;Juice pineapple;Sok ananasowy;100;g;47;0,5;0;11,2
+Napoje alkoholowe;Liqueur <15 vol% alcohol;Likier <15% obj. alkoholu;100;g;200;0;0;29
+Napoje alkoholowe;Liqueur >25 vol% alcohol;Likier >25% obj. alkoholu;100;g;291;0;0;29
+Napoje alkoholowe;Beer >7 vol% alcohol;Piwo >7% obj. alkoholu;100;g;64;0,5;0;4,3
+Mleko i produkty mleczne;Cream custard;Krem œmietankowy;100;g;142;3,6;4;22,8
+T³uszcze i oleje;Butter cream;Krem maœlany;100;g;567;0,6;44,8;40,4
+Chleb;Rice cakes puffed natural w (sea)salt;Wafle ry¿owe ekspandowane naturalne z sol¹ (morsk¹);100;g;392;7,8;3,2;81,3
+Ser;Cheese Brie 60+;Ser Brie 60+;100;g;369;17;33;1
+Wytrawne pasty chlebowe;Salad egg;Jajko sa³atkowe;100;g;255;7,3;22,3;5,6
+Zio³a i przyprawy;Herb and dried vegetable mix unprepared;Mieszanka zió³ i suszonych warzyw, nieprzygotowana;100;g;311;9,5;3,8;57
+Mleko i produkty mleczne;Yoghurt half fat;Jogurt pó³t³usty;100;g;50;4,2;1,5;4,3
+Cukier, s³odycze i s³odkie sosy;Chocolates filled/Belgium chocolate;Czekoladki nadziewane/czekolada belgijska;100;g;512;5,5;30,7;51,8
+Napoje bezalkoholowe;Beer alcohol free <0,1 vol%;Piwo bezalkoholowe <0,1% obj.;100;g;26;0,3;0;6,1
+Napoje alkoholowe;Beer low alcohol 0,1-1,2 vol%;Piwo o niskiej zawartoœci alkoholu 0,1-1,2% obj.;100;g;22;0,3;0;4,5
+Napoje bezalkoholowe;Juice drink light;Napój sokowy light;100;g;3;0;0;0,7
+Napoje bezalkoholowe;Soft drink light wo caffeine;Napój bezalkoholowy light bez kofeiny;100;g;0;0;0;0
+Napoje bezalkoholowe;Cola light soft drink w caffeine;Napój gazowany Cola Light z kofein¹;100;g;0;0;0;0
+T³uszcze i oleje;Butter product half fat;Produkt maœlany pó³t³usty;100;g;337;0,3;37;0,7
+Ryby, skorupiaki i miêczaki;Mussels fried in vegetable oil;Ma³¿e sma¿one w oleju roœlinnym;100;g;268;17,2;19;7,2
+Ryby, skorupiaki i miêczaki;Halibut smoked;Halibut wêdzony;100;g;211;19,4;14,8;0
+Ryby, skorupiaki i miêczaki;Mackerel fillet smoked;Filet z makreli wêdzony;100;g;301;21,1;24,1;0
+Ryby, skorupiaki i miêczaki;Salmon farmed raw;£osoœ hodowany na surowo;100;g;179;20;11;0
+Ryby, skorupiaki i miêczaki;Anchovy in oil canned;Anchois w puszce z olejem;100;g;208;25;11,9;0,1
+Ryby, skorupiaki i miêczaki;Tuna in oil tinned;Tuñczyk w puszce w oleju;100;g;206;27;10,8;0,1
+Ryby, skorupiaki i miêczaki;Tuna in water tinned;Tuñczyk w puszce z wod¹;100;g;109;24,9;1;0
+Ryby, skorupiaki i miêczaki;Kippers steamed;Solone œledzie gotowane na parze;100;g;231;20,8;16,2;0,5
+Ryby, skorupiaki i miêczaki;Sprat fillet smoked;Filet ze szprota wêdzony;100;g;212;19,9;14,8;0
+Ryby, skorupiaki i miêczaki;Mackerel in oil tinned;Makrela w oleju w puszce;100;g;267;20;20,7;0,1
+Ryby, skorupiaki i miêczaki;Soft/hard roe fried;Miêkka/twarda ikra sma¿ona;100;g;262;13,9;21,2;3,9
+Ryby, skorupiaki i miêczaki;Soft/hard roe from fat bloater;Miêkka/twarda ikra z t³ustego wzdêcia;100;g;155;24,5;6,3;0
+Ryby, skorupiaki i miêczaki;Spawn/hard roe coloured glass;Szk³o w kolorze ikry/ikry twardej;100;g;126;19;5,5;0
+Ryby, skorupiaki i miêczaki;Mussels pickled glass;Ma³¿e marynowane w szkle;100;g;106;17,2;3,1;2,2
+Ryby, skorupiaki i miêczaki;Shrimps in water tinned;Krewetki w puszce z wod¹;100;g;115;24,3;1,9;0,1
+Ryby, skorupiaki i miêczaki;Squid prepared in microwave oven no ingredients added;Kalmary przygotowane w kuchence mikrofalowej bez dodanych sk³adników;100;g;146;25,8;4,7;0
+Ser;Cheese goat fresh;Ser kozi œwie¿y;100;g;207;13,4;16,6;1
+Napoje bezalkoholowe;Fruit juice concentrated;Sok owocowy zagêszczony;100;g;280;0,2;0;69,5
+Napoje bezalkoholowe;Juice carrot;Sok z marchwi;100;g;29;0,4;0,2;6,4
+Napoje bezalkoholowe;Juice sauerkraut;Sok z kiszonej kapusty;100;g;7;0,7;0;1,1
+Miêso i drób;Beef <5% fat raw av;Wo³owina <5% t³uszczu surowa av;100;g;108;22,6;2;0
+Miêso i drób;Beef >5% fat raw av;Wo³owina >5% t³uszczu surowego;100;g;218;18,5;15,3;1,5
+Miêso i drób;Beef <10% fat prepared av;Wo³owina <10% t³uszczu przygotowana œr.;100;g;163;30,2;4,7;0
+Miêso i drób;Beef >10% fat prepared av;Wo³owina >10% t³uszczu przygotowana œr.;100;g;290;26,9;19,7;1,2
+Miêso i drób;Pork <5% fat raw av;Wieprzowina <5% t³uszczu surowa av;100;g;126;21,8;3;2,8
+Miêso i drób;Pork 5-14% fat raw av;Wieprzowina 5-14% t³uszczu surowa;100;g;165;20;9,1;0,5
+Miêso i drób;Pork >15% fat raw av;Wieprzowina >15% t³uszczu surowa av;100;g;283;16,1;24;0,5
+Miêso i drób;Pork <10% fat prepared av;Wieprzowina <10% t³uszczu przygotowana œr.;100;g;158;28,8;4,7;0
+Miêso i drób;Pork 10-19% fat prepared av;Wieprzowina 10-19% t³uszczu przygotowana œr.;100;g;260;28,4;16,1;0,3
+Miêso i drób;Pork >19% fat prepared av;Wieprzowina >19% t³uszczu przygotowana œr.;100;g;365;21,2;30,5;1,1
+Miêso i drób;Veal <5% fat raw av;Cielêcina <5% t³uszczu surowa;100;g;105;22;1,8;0
+Miêso i drób;Veal >5% fat raw av;Cielêcina >5% t³uszczu surowa av;100;g;159;20,4;8,6;0
+Miêso i drób;Lamb >10 g fat raw av;Jagniêcina >10 g t³uszczu surowego;100;g;221;19,3;16;0
+Miêso i drób;Meat av raw <5% fat excl liver;Miêso surowe <5% t³uszczu bez w¹troby;100;g;113;22,8;2,1;0,7
+Miêso i drób;Meat av raw >5% fat excl liver;Miêso surowe >5% t³uszczu bez w¹troby;100;g;211;18,6;14,7;1,1
+Ziemniaki i bulwy;Potatoes sliced frozen deep-fried in vegetable oil;Ziemniaki pokrojone w plastry, mro¿one, sma¿one na g³êbokim t³uszczu w oleju roœlinnym;100;g;229;3,1;10,9;28
+Ziemniaki i bulwy;Chips oven frozen prepared in oven;Chipsy mro¿one w piekarniku przygotowane w piekarniku;100;g;291;5,8;8,8;46
+Ziemniaki i bulwy;Potato croquettes frozen prepared;Krokiety ziemniaczane mro¿one przygotowane;100;g;238;3,4;12;28,2
+Mleko i produkty mleczne;Milk semi-skimmed fortified w calcium;Mleko pó³t³uste wzbogacone wapniem;100;g;46;3,4;1,5;4,9
+Mleko i produkty mleczne;Custard several flavours full fat;Budyñ o ró¿nych smakach pe³not³usty;100;g;87;2,1;2,6;13,6
+Mleko i produkty mleczne;Yoghurt vanilla half fat;Jogurt waniliowy pó³t³usty;100;g;72;2,9;1,3;11,4
+Mleko i produkty mleczne;Porridge semolina;Kasza manna;100;g;93;3;2,9;14
+Ser;Cheese 20+;Ser 20+;100;g;246;34,5;12;0
+Ser;Cheese 50+;Ser 50+;100;g;380;22,9;32,1;0
+Ser;Cheese Dutch in Swiss-style 45+;Ser holenderski w stylu szwajcarskim 45+;100;g;370;27,6;28,5;0
+Ser;Cheese 40+ Leiden w cumin/Fries clove;Ser 40+ Leiden z kuminem/frytkami i goŸdzikami;100;g;341;27,3;25,7;0
+Wêdliny;Liver pate/Berliner liver sausage;Pasztet z w¹tróbki/Kie³basa w¹trobowa berliñska;100;g;319;12,3;27,6;4,5
+Wêdliny;Pork fricandeau fried (processed meat product);Sma¿one miêso wieprzowe (produkt miêsny przetworzony);100;g;117;21,6;2,8;1,3
+Wêdliny;Brawn, pork pickled in vinegar;Salceson, wieprzowina marynowana w occie;100;g;264;12,5;23;1,7
+Wêdliny;Bacon rasher streaky grilled;Plasterki boczku wêdzonego i grillowanego;100;g;261;15,2;22,1;0,5
+Wêdliny;Ham lean grilled;Szynka chuda grillowana;100;g;119;18,9;3,9;1,8
+Wêdliny;Gammon boiled deboned;Szynka gotowana bez koœci;100;g;127;18,3;5;2,2
+Chleb;Crispbread wholemeal;Pieczywo chrupkie pe³noziarniste;100;g;363;10,9;4;64
+Miêso i drób;Pork rib chop raw;Surowy kotlet z ¿eberek wieprzowych;100;g;150;22,6;6,6;0
+Miêso i drób;Pork schnitzel not breaded raw;Kotlet schabowy nie panierowany na surowo;100;g;109;22,6;2;0
+Mleko i produkty mleczne;Cream whipped w sugar canned;Œmietana ubita z cukrem w puszce;100;g;305;2,3;28;11
+Chleb;Crispbread Sandwich Wasa;Kanapka z chrupkiego pieczywa Wasa;100;g;476;10,7;25;46,8
+Mleko i produkty mleczne;Creme fraiche;Œmietana;100;g;293;2,6;30;2,8
+Ser;Cheese 45+;Ser 45+;100;g;357;25,4;27,3;0
+Owoce;Nectarine;Nektarynka;100;g;36;1;0,1;6,5
+Wytrawne pasty chlebowe;Salad cucumber;Ogórek sa³atkowy;100;g;238;0,8;23;6,5
+Zio³a i przyprawy;Seasoning flavoured powder low sodium;Przyprawa w proszku o niskiej zawartoœci sodu;100;g;235;22,1;3,6;27,9
+Zio³a i przyprawy;Stock powder low sodium;Proszek zapasowy o niskiej zawartoœci sodu;100;g;348;5,3;6,3;67,4
+Napoje bezalkoholowe;Water av;Woda œr;100;g;0;0;0;0
+Owoce;Dates fresh;Œwie¿e daktyle;100;g;139;1,5;0,1;31,3
+Owoce;Carambola;Karambola;100;g;37;0,5;0,3;7,2
+Zbo¿a i produkty zbo¿owe;Couscous unprepared;Kuskus nieprzygotowany;100;g;363;12;2,1;72,1
+Zbo¿a i produkty zbo¿owe;Barley whole grain raw;Jêczmieñ pe³noziarnisty surowy;100;g;330;10,6;2,1;59,7
+Zio³a i przyprawy;Horse-radish raw;Chrzan surowy;100;g;80;4,5;0,3;11
+Warzywa;Cabbage pak-choi raw;Kapusta pak-choi surowa;100;g;14;1;0,2;1,4
+Ser;Cheese Bel Paese;Ser Bel Paese;100;g;374;25,4;30,2;0,1
+Roœliny str¹czkowe;Beans kidney red dried;Fasola czerwona nerkowata suszona;100;g;295;22,1;1,4;36,9
+Orzechy i nasiona;Pecan nuts unroasted unsalted;Orzechy pekan niepra¿one i niesolone;100;g;721;9,2;72;4,4
+Orzechy i nasiona;Pistachio nuts salted;Orzechy pistacjowe solone;100;g;592;23,8;48,3;10,8
+Warzywa;Seaweed kelp raw;Surowe wodorosty morskie;100;g;47;1,7;0,6;8,3
+Warzywa;Seaweed agar agar dried;Agar z agarem z wodorostów suszony;100;g;336;6,2;0,3;73,2
+Miêso i drób;Goat meat raw av;Miêso kozie surowe;100;g;103;20,6;2,3;0
+Miêso i drób;Kidney pork raw;Nerka wieprzowa surowa;100;g;86;15,5;2,7;0
+Miêso i drób;Kidney ox raw;Nerka wo³owa surowa;100;g;88;17,2;2,1;0
+Miêso i drób;Kidney lamb raw;Nerka jagniêca surowa;100;g;91;17;2,6;0
+Warzywa;Vegetables av boiled;Warzywa gotowane;100;g;30;1,7;0,4;3,6
+Warzywa;Vegetables av raw;Warzywa na surowo;100;g;20;1;0,4;2,6
+Wêdliny;Processed meat prod 20-30 g fat excl liver av;Miêso przetworzone 20-30 g t³uszczu bez w¹troby œr.;100;g;311;13,8;26,9;3,2
+Wêdliny;Processed meat prod >30 g fat excl liver av;Przetworzone miêso >30 g t³uszczu bez w¹troby;100;g;395;17,6;35,1;2
+Sosy pikantne;Sauce Chinese soursweet home-made;Sos chiñski s³odko-kwaœny domowej roboty;100;g;32;0,4;0,3;6,9
+Sosy pikantne;Peanut sauce homemade w water w fat;Sos orzechowy domowej roboty z wod¹ i t³uszczem;100;g;295;8,7;23,3;11
+Zbo¿a i produkty zbo¿owe;Dough for pizza and savoury pie unprepared;Ciasto na pizzê i wytrawne ciasto niepoddane obróbce termicznej;100;g;226;5,7;5,9;36,5
+Napoje bezalkoholowe;Juice orange w pulp;Sok pomarañczowy z mi¹¿szem;100;g;42;0,7;0;8,7
+Orzechy i nasiona;Nuts mixed salted;Orzechy mieszane solone;100;g;656;18,3;58,3;11
+Miêso i drób;Turkey fillet raw;Surowy filet z indyka;100;g;110;24,8;1,2;0
+Sosy pikantne;Peanut sauce packet prepared;Przygotowana paczka sosu orzechowego;100;g;148;4,2;5,6;19,8
+Ser;Cheese Gorgonzola;Ser Gorgonzola;100;g;359;19,4;31,2;0,1
+Ser;Cheese Mozzarella made from cow's milk;Ser Mozzarella z mleka krowiego;100;g;253;18,7;19,5;0,7
+Cukier, s³odycze i s³odkie sosy;Chocolate sprinkles milk;Czekoladowe posypki mleczne;100;g;455;6,3;15,6;70,3
+Cukier, s³odycze i s³odkie sosy;Chocolate sprinkles dark;Posypka czekoladowa ciemna;100;g;446;5,8;15,3;67,4
+Cukier, s³odycze i s³odkie sosy;Spread chocolate milk;Mas³o czekoladowe mleczne;100;g;570;2,4;35;61
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Frosties Kellogg's;P³atki œniadaniowe Frosties Kellogg's;100;g;375;4,5;0,6;87
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Coco pops Kellogg's;P³atki œniadaniowe Coco Pops Kellogg's;100;g;387;5;2,5;85
+Zbo¿a i produkty zbo¿owe;Breakfast cereal All-Bran Fruit n Fibre Kellogg's;P³atki œniadaniowe All-Bran Fruit n Fibre Kellogg's;100;g;380;8;6;69
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Special K Original Kellogg's;P³atki œniadaniowe Special K Original Kellogg's;100;g;375;9;1,5;79
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Smacks Kellogg's;P³atki œniadaniowe przypominaj¹ Kellogg's;100;g;382;6;1,5;84
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Honey pops Loops Kellogg's;P³atki œniadaniowe Honey pops Loops Kellogg's;100;g;378;9;3,5;74
+Orzechy i nasiona;Peanuts dry roasted;Orzeszki ziemne pra¿one na sucho;100;g;577;24;47;11
+Zbo¿a i produkty zbo¿owe;Rice multi-grain raw;Ry¿ wieloziarnisty surowy;100;g;351;9;1,5;74
+Miêso i drób;Lamb <10 g fat raw av;Jagniêcina <10 g t³uszczu surowa av;100;g;158;20,7;8,3;0
+Miêso i drób;Mutton <10g fat raw av;Baranina <10g t³uszczu surowa av;100;g;160;20,5;8,7;0
+T³uszcze i oleje;Low fat margarine 40% fat <17 g sat fa salted;Margaryna o niskiej zawartoœci t³uszczu 40% t³uszczu <17 g nasycona, solona;100;g;356;0,1;39,2;0,5
+T³uszcze i oleje;Low fat margarine prod 35% fat <10 g sat fa unsalted;Margaryna o niskiej zawartoœci t³uszczu 35% t³uszczu <10 g t³uszczu nasyconego niesolona;100;g;320;0;35;1,2
+T³uszcze i oleje;Margarine 80% fat >24 g sat fa salted;Margaryna 80% t³uszczu >24 g nasycona solona;100;g;719;0,1;79,7;0,3
+T³uszcze i oleje;Frying fat liquid;T³uszcz do sma¿enia w p³ynie;100;g;900;0;100;0
+T³uszcze i oleje;Frying fat solid;T³uszcz do sma¿enia sta³y;100;g;900;0;100;0
+T³uszcze i oleje;Margarine product 60% fat <17 g sat fa unsalted;Produkt margarynowy 60% t³uszczu <17 g t³uszczu nasyconego niesolonego;100;g;541;0,1;60;0,1
+T³uszcze i oleje;Margarine liq 80% fat <17 g sat fa salted;Margaryna p³ynna 80% t³uszczu <17 g nasycona solona;100;g;735;0;81,6;0
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Cornflakes;P³atki œniadaniowe P³atki kukurydziane;100;g;378;7;0,9;84
+Sosy pikantne;Mayonnaise product w olive oil;Produkt majonezowy z oliw¹ z oliwek;100;g;642;1,1;70;1,9
+Napoje bezalkoholowe;Ice tea w sugar 5-<7 g CHO;Herbata mro¿ona z cukrem 5-<7 g CHO;100;g;25;0;0;6,2
+Napoje bezalkoholowe;Ice tea light;Herbata z mro¿ona light;100;g;2;0,1;0,1;0,2
+Miêso i drób;Ostrich, raw;Struœ surowy;100;g;121;22,9;3,1;0,4
+Miêso i drób;Chicken drumstick w skin raw;Udko z kurczaka ze skór¹ surowe;100;g;147;19,1;7,9;0
+Ziemniaki i bulwy;Chips fried in solid frying fat;Chipsy sma¿one na sta³ym t³uszczu;100;g;256;3,1;13,9;28
+Ziemniaki i bulwy;Chips fried in liquid frying fat;Chipsy sma¿one w p³ynnym t³uszczu;100;g;264;3,1;14,8;28
+Ziemniaki i bulwy;Chips prepared av;Chipsy przygotowane av;100;g;263;3,1;14,7;28
+Ziemniaki i bulwy;Cassava boiled;Maniok gotowany;100;g;128;0,5;0,2;30,4
+Ziemniaki i bulwy;Taro boiled;Taro gotowane;100;g;102;1,2;0,2;22,4
+Ziemniaki i bulwy;Yam boiled;Gotowany batat;100;g;144;1,7;0,3;33
+Ziemniaki i bulwy;Potato sweet boiled;Ziemniaki s³odkie gotowane;100;g;63;1,7;0,2;12,3
+Warzywa;Pumpkin boiled;Dynia gotowana;100;g;14;0,6;0,3;1,8
+Napoje alkoholowe;Wine white sweet;Wino bia³e s³odkie;100;g;96;0,2;0;5,9
+Napoje bezalkoholowe;Juice apple fortified w vitamin C;Sok jab³kowy wzbogacony witamin¹ C;100;g;45;0,2;0;11,1
+Zbo¿a i produkty zbo¿owe;Pasta wholemeal boiled;Makaron pe³noziarnisty gotowany;100;g;134;5,6;0,9;23,7
+Zbo¿a i produkty zbo¿owe;Couscous boiled;Kuskus gotowany;100;g;121;4;0,7;24
+Zbo¿a i produkty zbo¿owe;Millet boiled;Proso gotowane;100;g;123;3,7;1,3;23,7
+Orzechy i nasiona;Pine nuts;Orzeszki piniowe;100;g;675;16,5;61,9;9,8
+Zio³a i przyprawy;Basil fresh;Bazylia œwie¿a;100;g;48;3,1;0,8;5,1
+Sosy pikantne;Pesto green;Pesto zielone;100;g;444;9;42,8;4,4
+Chleb;Cracker VitaLU;Cracker VitaLU;100;g;445;12,3;12,3;67
+Chleb;Rice cakes puffed w chocolate;Wafle ry¿owe nadziewane czekolad¹;100;g;502;6,8;24,9;60,3
+Ser;Cheese 10+;Ser 10+;100;g;187;32,2;6,4;0,2
+Cukier, s³odycze i s³odkie sosy;Chocolate white;Czekolada bia³a;100;g;552;6,4;32,6;58,1
+Mleko i produkty mleczne;Cream cooking;Œmietana do gotwania;100;g;212;2,4;20,2;5
+Mleko i produkty mleczne;Cream cooking light;Œmietana do gotowania light;100;g;101;3,2;7,2;5,8
+Napoje bezalkoholowe;Fruit juice conc fortified w vit C;Sok owocowy wzbogacony wit. C;100;g;180;0,2;0,1;44,6
+Cukier, s³odycze i s³odkie sosy;Candy sugar-free;Cukierki bez cukru;100;g;240;1,1;2,1;89,3
+Warzywa;Tomatoes tinned;Pomidory w puszce;100;g;24;1,1;0,4;3,7
+Ryby, skorupiaki i miêczaki;Tuna raw;Tuñczyk surowy;100;g;101;23,7;0,7;0
+Ryby, skorupiaki i miêczaki;Sole raw;Sola surowa;100;g;76;14,7;1,9;0
+Ryby, skorupiaki i miêczaki;Tilapia raw;Tilapia surowa;100;g;86;17,9;1,6;0
+Miêso i drób;Sausage smoked lean cooked;Kie³basa wêdzona chuda gotowana;100;g;254;14;20,5;3,3
+Miêso i drób;Sausage smoked beef cooked;Kie³basa wêdzona wo³owa gotowana;100;g;240;13;20;2
+Miêso i drób;Sausage frankfurter lean tinned;Kie³basa frankfurterka chuda puszka;100;g;136;12;7;6
+Wêdliny;Sausage cooked lean;Kie³basa gotowana chuda;100;g;221;14;17;3
+Wêdliny;Salami sausage saveloy lean;Kie³basa salami saveloy chuda;100;g;241;23;16,5;0,1
+Wêdliny;Sausage luncheon meat lean;Kie³basa mielona chuda;100;g;163;11,6;10,1;6,4
+Napoje alkoholowe;Breezer;Breezer;100;g;74;0;0;9,9
+Miêso i drób;Beef salted cooked Surinam;Wo³owina solona gotowana Surinam;100;g;271;27,4;17,9;0
+Roœliny str¹czkowe;Peas split yellow boiled;Groszek ³uskany ¿ó³ty gotowany;100;g;126;8,4;0,6;18,6
+Ziemniaki i bulwy;Tannia prepared wo fat;Tannia przygotowa³a bez t³uszczu;100;g;99;3,4;0,3;17,2
+Warzywa;Tannia leaves prepared wo fat;Liœcie Tannii przygotowane bez t³uszczu;100;g;38;4,6;1,1;0,9
+Ziemniaki i bulwy;Potatoes mashed instant prep w s-sk milk;Ziemniaki puree instant przygotowane z mlekiem s-sk;100;g;96;4,1;1,3;16,5
+Ziemniaki i bulwy;Potatoes mashed instant prepared w water;Ziemniaki puree instant przygotowane z wod¹;100;g;71;1,7;1,6;11,8
+Ziemniaki i bulwy;Potatoes boiled w skin av;Ziemniaki gotowane ze skórk¹;100;g;74;1,4;0,3;15,4
+Ziemniaki i bulwy;Potato croquettes frozen unprepared;Krokiety ziemniaczane mro¿one, nieprzygotowane;100;g;169;2,7;6;24,8
+Warzywa;Bami vegetables boiled;Warzywa Bami gotowane;100;g;19;1,2;0,2;2
+Miêso i drób;Minced meat raw av;Miêso mielone surowe;100;g;222;19,3;15,9;0,2
+Miêso i drób;Beef av raw;Wo³owina na surowo;100;g;201;19,1;13,2;1,3
+Mleko i produkty mleczne;Jelly;Galareta;100;g;59;1,8;0;13
+Orzechy i nasiona;Peanuts sugar coated;Orzeszki ziemne w cukrze;100;g;536;15,1;31;47,1
+Warzywa;Lettuce av raw;Sa³ata na surowo;100;g;16;1,6;0,3;1
+Zbo¿a i produkty zbo¿owe;Tortellini boiled;Tortellini gotowane;100;g;155;7,7;3,1;23,3
+Chleb;Wheat bread wholemeal av fine and coarse w pumpkin seeds;Chleb pszenny pe³noziarnisty av drobny i gruby z pestkami dyni;100;g;275;13,4;7,6;34,7
+Chleb;Multigrain bread av white and brown w seeds w extra linseed;Chleb wieloziarnisty bia³y i br¹zowy z ziarnami i dodatkowym siemieniem lnianym;100;g;286;13,1;7,9;35,9
+Chleb;Multigrain bread av white and brown w seeds;Chleb wieloziarnisty bia³y i br¹zowy z ziarnami;100;g;261;12,3;4,8;39
+Chleb;Wheat bread white av milk/water based;Chleb pszenny bia³y na bazie mleka/wody;100;g;249;9,1;1,8;47,8
+Chleb;Wheat currant bread white w almond paste;Chleb pszenny z porzeczkami i bia³¹ past¹ migda³ow¹;100;g;303;8,2;6,1;51,7
+Chleb;Wheat muesli bread brown/wholemeal;Chleb pszenny musli br¹zowy/pe³noziarnisty;100;g;295;10,6;7,6;42,5
+Chleb;Wheat nut bread wholemeal ; Chleb pszenno-orzechowy pe³noziarnisty;100;g;298;12,2;10,9;34,5
+Chleb;Wheat sugar bread white;Chleb pszenno-cukrowy bia³y;100;g;305;8;2,9;60,4
+Chleb;Wheat baguette white w cheese and onion;Bagietka pszenna z serem i cebul¹;100;g;242;10,1;6;35,8
+Chleb;Wheat bread wholemeal av fine and coarse w sunflower seeds;Chleb pszenny pe³noziarnisty av drobny i gruby z ziarnami s³onecznika;100;g;283;11,9;8,7;35,9
+Chleb;Wheat bread white av milk/water based w sunflower seeds;Chleb pszenny bia³y na bazie mleka/wody z ziarnami s³onecznika;100;g;296;10,2;8,3;43,7
+Zbo¿a i produkty zbo¿owe;Wrap/tortilla white;Wrap/tortilla bia³a;100;g;316;9,5;6,9;52,5
+Zbo¿a i produkty zbo¿owe;Muesli crunchy plain/w fruit;Chrupi¹ce musli z owocami;100;g;438;8,3;14,8;64,6
+Wytrawne pasty chlebowe;Peanut butter light;Mas³o orzechowe light;100;g;535;18;39,6;13,7
+Chleb;Breadsticks;Paluszki chlebowe;100;g;401;12,5;6,6;71,3
+Cukier, s³odycze i s³odkie sosy;Raisins coated w milkchocolate;Rodzynki w mlecznej czekoladzie;100;g;429;5;17,3;61,8
+Cukier, s³odycze i s³odkie sosy;After eight chocolate mints;Po oœmiu czekoladowych miêtówkach;100;g;419;2,1;12,2;74,6
+Cukier, s³odycze i s³odkie sosy;Chocolate dark w hazelnuts;Czekolada gorzka z orzechami laskowymi;100;g;565;9;41;36,2
+Cukier, s³odycze i s³odkie sosy;Chocolate milk w puffed rice;Mleko czekoladowe z ry¿em dmuchanym;100;g;531;7,1;30,7;55,2
+Warzywa;Tomatoes dried in oil tin/glass, drained;Pomidory suszone w oleju w puszce/szklance, ods¹czone;100;g;197;4,4;14;9,4
+Warzywa;Tomato sun-dried;Pomidor suszony na s³oñcu;100;g;331;14,1;3;55,8
+Cukier, s³odycze i s³odkie sosy;Toffee w chocolate;Toffi z czekolad¹;100;g;427;1,8;11,7;77,8
+Wêdliny;Pate spreadable lean;Pasztet smarowalny chudy;100;g;187;9,7;12;10
+Chleb;Wheat bread brown w sunflower seeds;Chleb pszenny br¹zowy z ziarnami s³onecznika;100;g;285;10,8;8,2;39,4
+Cukier, s³odycze i s³odkie sosy;Nougat w chocolate;Nugat z czekolad¹;100;g;489;7,2;21,8;64,2
+Cukier, s³odycze i s³odkie sosy;Nougat;Nugat;100;g;469;6,5;16,7;72,1
+Chleb;Croissant chocolate-;Croissant czekoladowy-;100;g;434;8,9;23,9;44,4
+Warzywa;Capers;Kapary;100;g;43;2,4;0,9;4,9
+Mleko i produkty mleczne;Ice cream dairy stracciatella;Lody mleczne stracciatella;100;g;248;3,3;13,9;26,8
+Cukier, s³odycze i s³odkie sosy;Chocolate sprinkles white;Posypka czekoladowa bia³a;100;g;455;5,5;13,2;78,4
+Napoje bezalkoholowe;Soft drink w sugar and sweetener 2-<5 g CHO wo caffeine;Napój gazowany z cukrem i s³odzikiem 2-<5 g wêglowodanów bez kofeiny;100;g;12;0;0;2,9
+Napoje bezalkoholowe;Juice drink w sugar and sweetener 4-6 g CHO;Napój sokowy z cukrem i s³odzikiem 4-6 g CHO;100;g;18;0;0;4,6
+Napoje bezalkoholowe;Juice drink Capri-Sun Multivitamin;Napój sokowy Capri-Sun Multiwitamina;100;g;20;0;0;4,9
+Sosy pikantne;Sauce butter-;Sos mas³owy-;100;g;180;0,6;18,3;3
+Sosy pikantne;Salad dressing vinaigrette;Sos sa³atkowy winegret;100;g;593;0,6;64,8;0,4
+T³uszcze i oleje;Oil wok;Wok olejowy;100;g;900;0;100;0
+Napoje bezalkoholowe;Coffee cappuccino freshly made;Œwie¿o parzona kawa cappuccino;100;g;31;1,8;1,7;2,3
+Napoje bezalkoholowe;Coffee cappuccino instant prepared;Kawa cappuccino instant przygotowana;100;g;37;1,2;1,3;4,7
+Napoje bezalkoholowe;Coffee cappuccino instant powder;Kawa cappuccino instant w proszku;100;g;407;13,9;14,9;52,4
+Ziemniaki i bulwy;Potato puree powder wo milkpowder wo fat;Puree ziemniaczane w proszku bez mleka w proszku bez t³uszczu;100;g;364;7,9;0,5;78,4
+Warzywa;Tomato sieved pack;Opakowanie przecieru pomidorowego;100;g;39;1,8;0,3;6,3
+Ziemniaki i bulwy;Potato puree powder w milkpowder w fat;Puree ziemniaczane w proszku z mlekiem w proszku i t³uszczem;100;g;373;9,2;8,6;62
+Mleko i produkty mleczne;Yoghurt Greek full fat;Jogurt grecki pe³not³usty;100;g;122;3,8;10;3,8
+Napoje alkoholowe;Fruit dried in brandy;Owoce suszone w brandy;100;g;201;0,6;0,1;27,2
+Napoje bezalkoholowe;Juice multifruit;Sok wieloowocowy;100;g;47;0,4;0,1;10,7
+Napoje alkoholowe;Cider;Cydr;100;g;55;0,1;0;6,4
+Ser;Cheese spread 15+ Balans ERU;Ser do smarowania 15+ Balans ERU;100;g;132;17,3;5,5;3,3
+Ser;Cheese spread Kids ERU;Ser do smarowania dla dzieci ERU;100;g;169;15;11,1;2,3
+Ser;Cheese goat hard;Ser kozi twardy;100;g;396;22,4;32,5;0,1
+Mleko i produkty mleczne;Custard half fat all flavours;Budyñ pó³t³usty wszystkie smaki;100;g;85;2,3;1,7;15,1
+Mleko i produkty mleczne;Custard 2 flavours w syrup vlaflip Campina;Budyñ 2 smaki z syropem vlaflip Campina;100;g;96;2,9;2,6;15
+Warzywa;Chili pepper raw;Papryczka chili surowa;100;g;30;1,8;0,3;4,2
+Chleb;Croutons;Grzanki;100;g;491;11,8;22,3;58,6
+Cukier, s³odycze i s³odkie sosy;Chocolate flakes av;P³atki czekoladowe;100;g;452;5,5;14,9;71,6
+Mleko i produkty mleczne;Blancmange home-made w semi-sk milk;Budyñ domowy z mlekiem pó³t³ustym;100;g;91;2,9;1,2;17
+T³uszcze i oleje;Margarine 80% fat >24 g sat fa unsalted;Margaryna 80% t³uszczu >24 g t³uszczu nasyconego niesolona;100;g;724;0,2;80,2;0,3
+T³uszcze i oleje;Margarine liq 80% fat <17g sat fa unsalted;Margaryna p³ynna 80% t³uszczu <17g nasyconego t³uszczu niesolona;100;g;738;0;82;0,1
+T³uszcze i oleje;Low fat margarine prod Bewust light 30% fat <10g sat fa unsalted;Margaryna o niskiej zawartoœci t³uszczu Bewust light 30% t³uszczu <10g nasyconego t³uszczu niesolona;100;g;275;0,1;30;1,1
+T³uszcze i oleje;Cooking fat liq 97% fat <17g sat fa unsalted;T³uszcz do gotowania 97% t³uszczu <17g t³uszczu nasyconego niesolonego;100;g;883;0,4;97,7;0,5
+T³uszcze i oleje;Cooking fat sol 97% fat >17g sat fa unsalted;T³uszcz do gotowania sol 97% t³uszczu >17g nasyconego t³uszczu niesolony;100;g;880;0,4;97,3;0,7
+T³uszcze i oleje;Margarine 80% fat <24 g sat fa unsalted;Margaryna 80% t³uszczu <24 g t³uszczu nasyconego niesolona;100;g;720;0;80;0
+T³uszcze i oleje;Low fat marg 40% fat <17 g sat fa unsalted;Margaryna o niskiej zawartoœci t³uszczu 40% t³uszczu <17 g t³uszczu nasyconego, niesolona;100;g;360;0;40;0
+T³uszcze i oleje;Low fat margarine prod AH chol reducing;Margaryna o niskiej zawartoœci t³uszczu AH redukuj¹ca cholesterol;100;g;317;0;35;0,2
+Ziemniaki i bulwy;Potatoes mashed fresh prep w whole milk and margarin;Ziemniaki puree œwie¿o przygotowane z mlekiem pe³nym i margaryn¹;100;g;87;2,2;2,3;13,9
+Cukier, s³odycze i s³odkie sosy;Candybar KitKat;Baton KitKat;100;g;520;7,1;27,7;59
+Sosy pikantne;Salad dressing olive oil-vinegar;Sos sa³atkowy oliwa z oliwek i ocet;100;g;607;0,4;66,4;0,5
+Zio³a i przyprawy;Mix for marinade powder unprepared;Mieszanka do marynaty w proszku nie przygotowana;100;g;285;8,4;4,3;50,5
+Napoje alkoholowe;Wine rose;Wino ró¿owe;100;g;71;0,1;0;2,5
+Zio³a i przyprawy;Mix seasoning Mexican unprepared;Mieszanka przypraw meksykañskich nieprzygotowanych;100;g;318;12;5,7;48,8
+Ró¿ne potrawy;Vinegar;Ocet;100;g;22;0,4;0;0,6
+Napoje bezalkoholowe;Coffee instant powder;Kawa rozpuszczalna w proszku;100;g;114;7,8;0,2;3,1
+Wêdliny;Chicken (processed meat product);Kurczak (przetworzony produkt miêsny);100;g;125;17,5;4,4;3,4
+Mleko i produkty mleczne;Yoghurt 0% fat w fruit Activia;Jogurt 0% t³uszczu z owocami Activia;100;g;53;4,6;0,1;7,5
+Cukier, s³odycze i s³odkie sosy;Chocolate sprinkles mix white and dark;Posypki czekoladowe w po³¹czeniu bia³ej i ciemnej czekolady;100;g;449;3,2;14,7;73,9
+Cukier, s³odycze i s³odkie sosy;Sweets jelly/gums/foam;S³odycze galaretki/gumy/pianki;100;g;336;4,9;0,2;78,5
+Zio³a i przyprawy;Mix spice and herbs rice/Chinese noodles unprepared;Wymieszaj ry¿/makaron chiñski z przyprawami i zio³ami, nieprzygotowany;100;g;300;11;5,8;45,8
+Napoje bezalkoholowe;Energy drink Red Bull;Napój energetyczny Red Bull;100;g;44;0;0;11
+Napoje bezalkoholowe;Energy drink Red Bull sugarfree;Napój energetyczny Red Bull bez cukru;100;g;0;0;0;0
+Zbo¿a i produkty zbo¿owe;Muesli crunchy w nuts;Chrupi¹ce musli z orzechami;100;g;479;8,5;21;61
+Zbo¿a i produkty zbo¿owe;Muesli crunchy w chocolate;Chrupi¹ce musli z czekolad¹;100;g;458;8,5;17,1;64
+Zbo¿a i produkty zbo¿owe;Muesli crunchy w nuts and chocolate;Chrupi¹ce musli z orzechami i czekolad¹;100;g;469;8,8;18,6;63,5
+Zio³a i przyprawy;Mixed spices Wereldgerechten unprep;Mieszane przyprawy Wereldgerechten nieprzygotowane;100;g;312;11,8;5,1;50,4
+Zbo¿a i produkty zbo¿owe;Rice multi-grain boiled;Ry¿ wieloziarnisty gotowany;100;g;140;3,6;0,6;29,6
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Coco pops Chocos Kellogg's;P³atki œniadaniowe Coco Pops Chocos Kellogg's;100;g;381;9;2,5;78
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Spec K choc Kellogg's;P³atki œniadaniowe Spec K choc Kellogg's;100;g;400;8,1;6,2;76
+Owoce;Abricots dried and soaked;Suszone i namoczone morele;100;g;159;2,8;0;33
+Owoce;Apple sauce wo sugar w sweetener tinned;Mus jab³kowy bez cukru ze s³odzikiem w puszce;100;g;48;0,2;0;11
+Cukier, s³odycze i s³odkie sosy;Sugar light;Cukier light;100;g;395;0;0;98,9
+Chleb;Wheat bread wholemeal av fine and coarse w seeds;Chleb pszenny pe³noziarnisty av drobny i gruby z ziarnami;100;g;274;12,5;7,4;35,5
+Chleb;Wheat bread brown w seeds;Chleb pszenny br¹zowy z ziarnami;100;g;276;11,3;6,9;38,9
+Zbo¿a i produkty zbo¿owe;Breakfast cereal All-Bran flakes Kellogg's;P³atki œniadaniowe All-Bran Flakes Kellogg's;100;g;356;11;2;66
+Chleb;Wheat corn bread white w sunflower seeds;Chleb pszenny kukurydziany bia³y z ziarnami s³onecznika;100;g;307;11,8;9,8;40,5
+Warzywa;Lettuce red raw;Sa³ata czerwona surowa;100;g;18;1,3;0,2;2,3
+Warzywa;Cabbage red w apple pieces glass;Kapusta czerwona z kawa³kami jab³ka szk³o;100;g;58;0,8;0,3;11,9
+Cukier, s³odycze i s³odkie sosy;Meringue;Beza;100;g;382;0,5;0;95
+Warzywa;Carrot bunched raw;Marchewka surowa w pêczku;100;g;31;0,9;0,3;5
+Warzywa;Carrot bunched boiled;Marchewka gotowana w pêczku;100;g;30;0,8;0,2;4,8
+Warzywa;Carrot winter raw;Marchewka zimowa surowa;100;g;34;0,6;0,3;5,7
+Warzywa;Carrot winter boiled;Marchewka zimowa gotowana;100;g;34;0,6;0,3;5,6
+Warzywa;Tomato vine raw;Surowe pêdy pomidora;100;g;22;0,7;0,5;3
+Warzywa;Tomato cherry raw;Pomidor wiœniowy surowy;100;g;30;0,9;0,8;3,9
+Warzywa;Tomato beef raw;Surowe pomidory wo³owe;100;g;19;0,6;0,5;2,3
+Warzywa;Tomato beef boiled;Pomidory gotowane wo³owe;100;g;22;0,7;0,5;2,9
+Warzywa;Tomato av raw;Pomidor na surowo;100;g;25;0,8;0,6;3,4
+Warzywa;Tomato av boiled;Pomidory gotowane;100;g;23;0,7;0,7;2,9
+Warzywa;Rocket raw;Surowa rakieta;100;g;22;3,6;0,4;0
+Warzywa;Onion Welsh raw;Cebula walijska surowa;100;g;31;1,5;0,4;4,2
+Warzywa;Onion Welsh boiled;Cebula walijska gotowana;100;g;26;1,2;0,3;3,5
+Warzywa;Cucumber w skin raw;Ogórek ze skórk¹ surowy;100;g;13;0,7;0,4;1,3
+Warzywa;Sweet pepper yellow raw;Papryka s³odka ¿ó³ta surowa;100;g;25;0,7;0,2;3,9
+Warzywa;Sweet pepper yellow boiled;Papryka s³odka ¿ó³ta gotowana;100;g;27;0,8;0,1;4,6
+Warzywa;Sweet pepper av raw;Papryka s³odka surowa;100;g;25;0,8;0,1;4,2
+Warzywa;Sweet pepper av boiled;Papryka s³odka gotowana;100;g;27;0,9;0,1;4,8
+Ziemniaki i bulwy;Potatoes floury av wo skin boiled;Ziemniaki m¹czyste gotowane w skórce;100;g;81;2;0,2;17
+Owoce;Pear w skin;Gruszka ze skórk¹;100;g;55;0,2;0,3;11,7
+Owoce;Grapes black w skin;Winogrona czarne ze skórk¹;100;g;75;0,6;0,1;16,8
+Owoce;Grapes white w skin;Winogrona bia³e ze skórk¹;100;g;76;0,5;0,4;16,9
+Owoce;Apple Elstar w skin;Jab³ko Elstar ze skórk¹;100;g;55;0,3;0,2;12
+Owoce;Apple Elstar wo skin;Jab³ko Elstar bez skórki;100;g;55;0,2;0,2;12,4
+Owoce;Apple Jonagold w skin;Jab³ko Jonagold ze skórk¹;100;g;55;0,2;0,2;12,1
+Owoce;Apple Jonagold wo skin;Jab³ko Jonagold bez skórki;100;g;52;0,2;0,1;11,6
+Napoje bezalkoholowe;Juice orange freshly squeezed;Sok pomarañczowy œwie¿o wyciskany;100;g;44;0,6;0,1;9,1
+Ser;Cheese Gouda 48+ age 4-8 weeks;Ser Gouda 48+ wiek 4-8 tygodni;100;g;364;22,8;29,6;0
+Ser;Cheese Gouda 48+ age 8 wk-4 mths;Ser Gouda 48+ wiek 8 tyg.-4 m-ce;100;g;370;22,7;29,9;0
+Ser;Cheese Gouda 48+ age 4-7 mths;Ser Gouda 48+ wiek 4-7 m-cy;100;g;377;22,5;30,8;0
+Ser;Cheese Gouda 48+ age 10-12 mths;Ser Gouda 48+ wiek 10-12 m-cy;100;g;414;24,6;33,7;0,1
+Mleko i produkty mleczne;Hot chocolate from vending machine;Gor¹ca czekolada z automatu;100;g;66;3;1;10,8
+Ryby, skorupiaki i miêczaki;Pangasius bereid in magnetron z toev;Panga bereida w magnetronie z toev;100;g;89;18,6;1,6;0
+Wêdliny;Sausage raw beef;Kie³basa surowa wo³owa;100;g;166;18,6;9,4;1,1
+Jajka;Egg whole chicken free-range raw;Jajko ca³e z kurczaka z wolnego wybiegu surowe;100;g;132;12,3;9,1;0,2
+Jajka;Egg whole chicken free-range boiled;Jajko ca³e z kurczaka z wolnego wybiegu gotowane;100;g;125;12,2;8,5;0
+Jajka;Egg whole chicken organic raw;Jajko ca³e z kurczaka ekologiczne surowe;100;g;135;12,3;9,5;0,2
+Jajka;Egg whole chicken organic boiled;Jajko ca³e z kurczaka gotowane ekologiczne;100;g;136;12,7;9,5;0
+Zbo¿a i produkty zbo¿owe;Pasta white wo egg boiled;Makaron bia³y z jajkiem gotowany;100;g;146;5,2;0,8;28,7
+Zbo¿a i produkty zbo¿owe;Pasta white w egg boiled;Makaron bia³y z jajkiem gotowanym;100;g;124;4,7;0,8;23,4
+Zbo¿a i produkty zbo¿owe;Pasta white fresh boiled;Makaron bia³y œwie¿o gotowany;100;g;129;4,9;1,3;23,9
+Chleb;Wheat bread wholemeal coarse;Chleb pszenny pe³noziarnisty gruby;100;g;235;11,3;2,5;38,6
+Chleb;Multigrain bread white w seeds;Chleb wieloziarnisty bia³y z ziarnami;100;g;267;12,5;5;40,4
+Chleb;Multigrain bread brown w seeds;Chleb wieloziarnisty br¹zowy z ziarnami;100;g;254;12,2;4,6;37,5
+Chleb;Wheat corn bread white;Chleb pszenny kukurydziany bia³y;100;g;262;10,9;3,5;44,2
+Chleb;Wheat bread av brown and wholemeal w pumpkin seeds;Chleb pszenny br¹zowy i pe³noziarnisty z pestkami dyni;100;g;254;13,9;5,5;33,3
+Chleb;Wheat bread av brown and wholemeal w sunflower seeds;Chleb pszenny br¹zowy i pe³noziarnisty z ziarnami s³onecznika;100;g;272;12,5;6,7;36
+Chleb;Wheat sourdough bread wholemeal;Chleb pszenny na zakwasie pe³noziarnisty;100;g;235;9,3;2,6;40,5
+Chleb;Wheat ciabatta white no filling;Ciabatta pszenna bia³a bez nadzienia;100;g;255;9,1;1,8;48,9
+Chleb;Wheat bread white pita;Chleb pszenny bia³y pita;100;g;245;8,6;0,7;50,1
+Chleb;Stollen w almond/imitat paste wo nuts;Stollen z past¹ migda³ow¹/imitatow¹ i orzechami;100;g;276;7,7;2,4;53,8
+Chleb;Stollen w almond/imitat paste w nuts;Stollen z past¹ migda³ow¹/imitat z orzechami;100;g;288;7,8;4,3;51,9
+Chleb;Wheat baguette white;Bagietka pszenna bia³a;100;g;269;9,8;1,2;53,4
+Chleb;Wheat baguette brown;Bagietka pszenna br¹zowa;100;g;258;9,8;1,4;49,8
+Chleb;Wheat bread roll white hard;Bu³ka pszenna bia³a twarda;100;g;277;10;1,5;54,4
+Chleb;Wheat bread roll brown hard;Bu³ka pszenna br¹zowa twarda;100;g;278;11;1,5;52,8
+Chleb;Wheat bread roll brown soft;Bu³ka pszenna br¹zowa miêkka;100;g;258;11;3,9;41,9
+Chleb;Wheat bread roll wholemeal soft;Bu³ka pszenna pe³noziarnista miêkka;100;g;247;11,3;3,3;39,4
+Chleb;Multigrain roll brown hard;Bu³ka wieloziarnista br¹zowa twarda;100;g;294;12,9;5,9;43,8
+Chleb;Multigrain roll brown soft;Bu³ka wieloziarnista br¹zowa miêkka;100;g;283;13,4;6,8;38,7
+Chleb;Wheat currant bun white;Bu³ka pszenna z porzeczkami bia³a;100;g;268;8,4;2,5;50,9
+Chleb;Wheat muesli bun brown/wholemeal;Bu³ka pszenna musli br¹zowa/pe³noziarnista;100;g;290;10,7;6,6;43,9
+Orzechy i nasiona;Poppy seeds;Nasiona maku;100;g;455;19,2;35,6;2,4
+Orzechy i nasiona;Pumpkin seeds;Nasiona dyni;100;g;574;30,3;47,2;2,7
+Zbo¿a i produkty zbo¿owe;Muesli w fruit;Muesli z owocami;100;g;357;9,7;4,8;64,5
+Chleb;Wheat bread wholemeal fine;Chleb pszenny razowy drobny;100;g;233;10,9;2,1;39,3
+Ró¿ne potrawy;Salt not fortified w iodine;Sól nie wzbogacona jodem;100;g;0;0;0;0
+Chleb;Wheat bread brown w pumpkin seeds;Chleb pszenny br¹zowy z pestkami dyni;100;g;277;12,3;7,1;38,2
+Napoje alkoholowe;Liqueur w cream 15-25 vol% alcohol;Likier ze œmietank¹ 15-25% obj. alkoholu;100;g;294;2,7;11,8;22,7
+Cukier, s³odycze i s³odkie sosy;Chocolate bar filled Kinder;Czekoladowy batonik Kinder;100;g;567;8,9;35,7;52,1
+Ziemniaki i bulwy;Potato waffles/balls frozen unprepared;Gofry/kulki ziemniaczane mro¿one, nieprzygotowane;100;g;175;2,6;6,9;24,3
+Napoje bezalkoholowe;Coffee iced;Kawa mro¿ona;100;g;72;2,7;2,3;10,2
+Napoje alkoholowe;Beer w fruit flavour;Piwo o smaku owocowym;100;g;52;0,3;0;6
+Warzywa;Cabbage red w apple pieces home-made;Kapusta czerwona z kawa³kami jab³ka, domowa;100;g;52;0,9;1,1;8,3
+Owoce;Pineapple in own juice tinned;Ananas w soku w³asnym w puszce;100;g;59;0,4;0,1;13,9
+Orzechy i nasiona;Nuts macadamia unsalted;Orzechy makadamia niesolone;100;g;753;7,8;76,1;5,4
+Napoje bezalkoholowe;Juice multifruit mild w vit C;Sok wieloowocowy ³agodny z wit. C;100;g;49;0,4;0,1;11,7
+Cukier, s³odycze i s³odkie sosy;Candybar Lion;Batonik czekoladowy Lion;100;g;493;5,5;22,9;65,5
+Chleb;Brioche;Brioszka;100;g;338;8,5;11;50
+Wêdliny;Beef smoke-dried lightly salted;Wo³owina wêdzona, lekko solona;100;g;116;22,8;2,5;0,7
+Cukier, s³odycze i s³odkie sosy;Cane sugar;Cukier trzcinowy;100;g;400;0,5;0;99,5
+Owoce;Cranberry compote sweetened;Kompot ¿urawinowy s³odzony;100;g;172;0,4;0,1;41,9
+Orzechy i nasiona;Cashew nuts salted;Orzechy nerkowca solone;100;g;615;21,2;48,9;20,8
+Orzechy i nasiona;Almonds blanched salted;Migda³y blanszowane solone;100;g;631;21,7;55,8;7,1
+Owoce;Cranberries dried sweetened;¯urawina suszona s³odzona;100;g;335;0,5;1,4;77,6
+Wêdliny;Horse meat smoked;Miêso koñskie wêdzone;100;g;103;21,7;1,4;0,9
+Warzywa;Sweetcorn tinned;Kukurydza cukrowa w puszce;100;g;91;2,9;1,5;14,8
+Ziemniaki i bulwy;Potatoes waxy av wo skin boiled;Ziemniaki woskowe bez skórki gotowane;100;g;86;1,8;0,5;17,9
+Ser;Mascarpone cheese;Ser mascarpone;100;g;455;7,6;47;0,3
+Cukier, s³odycze i s³odkie sosy;Chocolate spread white;Mas³o czekoladowe z bia³ej czekolady;100;g;592;4,6;40;53
+Mleko i produkty mleczne;Yoghurt full fat plain Activia;Jogurt pe³not³usty zwyk³y Activia;100;g;68;3,9;3,5;4,7
+Mleko i produkty mleczne;Yoghurt drink Activia;Napój jogurtowy Activia;100;g;64;3;0,9;10,8
+Ryby, skorupiaki i miêczaki;Herring pickled w gherkin;ŒledŸ marynowany w ogórku kiszonym;100;g;182;16;12,8;0,5
+Ró¿ne potrawy;Salt sea;Sól morska;100;g;0;0;0;0
+Ser;Cheese spread 45+;Serek topiony 45+;100;g;231;14,3;18,9;1
+Wêdliny;Sausage Chorizo;Kie³basa Chorizo;100;g;358;20,7;29,1;3,4
+Wêdliny;Sausage grill;Grill do kie³basek;100;g;310;13,2;27,2;3,1
+Wêdliny;Turkey (processed meat product);Indyk (przetworzony produkt miêsny);100;g;113;19,8;2,4;3,2
+Chleb;Wheat bread brown carbohydrate reduced;Chleb pszenny br¹zowy wêglowodany zredukowane;100;g;241;17,2;8,9;21
+Napoje alkoholowe;Shandy;Shandy;100;g;42;0;0;9,7
+Miêso i drób;Minced veal raw;Miêso mielone cielêce surowe;100;g;214;19;15,1;0,3
+Miêso i drób;Veal tenderloin medaillon raw;Polêdwica cielêca w medalionie surowym;100;g;108;22,9;1,9;0
+Miêso i drób;Veal frying steak raw;Sma¿enie steka cielêcego na surowo;100;g;104;21,8;1,9;0
+Miêso i drób;Veal rib steak raw;Surowy stek z ¿eberek cielêcych;100;g;167;20,6;9,4;0
+Miêso i drób;Sausage veal Braadworst raw;Kie³basa cielêca Braadworst surowa;100;g;217;17,2;16,1;0,5
+Miêso i drób;Veal stewing steak raw;Surowy stek cielêcy do duszenia;100;g;117;17,7;5,1;0
+Miêso i drób;Veal stewing meat raw;Miêso cielêce do duszenia na surowo;100;g;98;22;1,1;0
+Miêso i drób;Pork stewing meat raw;Miêso wieprzowe do duszenia na surowo;100;g;123;21,5;4,1;0
+Miêso i drób;Bacon lean smoked raw;Boczek chudy wêdzony na surowo;100;g;325;15,3;29,4;0
+Miêso i drób;Bacon rasher prepared in own fat;Plasterki boczku przyrz¹dzone we w³asnym t³uszczu;100;g;435;29,1;35,4;0
+Miêso i drób;Pork shoarma seasoning raw;Przyprawa do shoarma wieprzowego na surowo;100;g;146;19,9;7;0,6
+Miêso i drób;Beef breast boneless raw;Pierœ wo³owa bez koœci surowa;100;g;152;22,3;7;0
+Miêso i drób;Minced veal shallow fried;Miêso mielone cielêce sma¿one na ma³ym ogniu;100;g;286;27,1;19,6;0,2
+Miêso i drób;Sausage beef Braadworst raw;Kie³basa wo³owa Braadworst surowa;100;g;207;18,1;14,6;1
+Miêso i drób;Pork sparerib raw;Surowe ¿eberka wieprzowe;100;g;200;20,4;13;0,1
+Miêso i drób;Beef ribeye steak raw;Surowy stek z antrykotu wo³owego;100;g;170;21,2;9,4;0
+Miêso i drób;Beef T-bone steak raw;Surowy stek wo³owy T-bone;100;g;189;22;11,2;0
+Miêso i drób;Minced beef lean raw;Miêso mielone wo³owe chude surowe;100;g;182;20;11,1;0,3
+Miêso i drób;Minced beef lean shallow fried;Miêso mielone wo³owe chude sma¿one na ma³ym ogniu;100;g;293;29,6;19,1;0,4
+Miêso i drób;Veal schnitzel not breaded prepared;Kotlet cielêcy nie panierowany przygotowany;100;g;144;29,4;2,9;0
+Mleko i produkty mleczne;Yoghurt Turkish 4% fat;Jogurt turecki 4% t³uszczu;100;g;69;3,9;4,2;3,3
+Ser;Cheese Turkish 60+ cow's milk canned;Ser turecki 60+ z mleka krowiego w puszce;100;g;287;12,7;26;0,4
+Ser;Cheese sheep/goat Turkish 50+ canned;Ser owczy/kozi turecki 50+ w puszce;100;g;297;15,5;26,1;0,1
+Chleb;Wheat bread brown Turkish;Chleb pszenny br¹zowy turecki;100;g;248;10,6;1,7;44,2
+Mleko i produkty mleczne;Yoghurt Turkish 10% fat;Jogurt turecki 10% t³uszczu;100;g;119;3,5;10,1;3,1
+Warzywa;Sweet pepper orange raw;Papryka s³odka pomarañczowa surowa;100;g;28;0,8;0,3;4,7
+Roœliny str¹czkowe;Beans white canned;Fasola bia³a konserwowa;100;g;105;6,9;0,8;14
+Mleko i produkty mleczne;Porridge oatmeal prepared w semi-skimmed milk unsweetened;Owsianka przygotowana z pó³t³ustego mleka nies³odzonego;100;g;80;4,4;2,1;10,7
+T³uszcze i oleje;Oil linseed;Olej lniany;100;g;900;0;100;0
+Chleb;Wheat bread brown low sodium;Chleb pszenny br¹zowy o niskiej zawartoœci sodu;100;g;236;9,8;1,7;42,9
+Zbo¿a i produkty zbo¿owe;Oat bran;Otrêby owsiane;100;g;367;17,3;7;50,8
+Cukier, s³odycze i s³odkie sosy;Syrup maple;Syrop klonowy;100;g;269;0;0,1;67,2
+Cukier, s³odycze i s³odkie sosy;Syrup apple fortified w iron;Syrop jab³kowy wzbogacony ¿elazem;100;g;287;1,6;0;67,6
+Warzywa;Vegetables for soup cooked;Warzywa do zupy gotowane;100;g;31;1,1;0,3;4,6
+Ryby, skorupiaki i miêczaki;Tuna prepared wo fat;Tuñczyk przygotowany bez t³uszczu;100;g;122;29,2;0,6;0
+Roœliny str¹czkowe;Beans mung boiled;Fasola mung gotowana;100;g;102;7,6;0,4;13,3
+Mleko i produkty mleczne;Yoghurt full fat w fruit/vanilla Activia;Jogurt pe³not³usty z owocami/wanili¹ Activia;100;g;94;3,8;3;12,2
+Zbo¿a i produkty zbo¿owe;Puff pastry w butter baked;Ciasto francuskie pieczone w maœle;100;g;614;7;47;40
+Warzywa;Mustard leaves boiled;Liœcie gorczycy gotowane;100;g;21;2;0,2;1,8
+Warzywa;Cabbage pak-choi cooked;Kapusta pak-choi gotowana;100;g;17;1,6;0,2;1,7
+Warzywa;Parsnip raw;Surowy pasternak;100;g;71;1,8;1,1;11
+Warzywa;Parsnip boiled;Pasternak gotowany;100;g;68;1,6;1,2;11,4
+Warzywa;Bitter gourd pods boiled;Str¹ki gorzkiej tykwy gotowane;100;g;18;0,8;0,2;2,3
+Warzywa;Okra boiled;Okra gotowana;100;g;22;1,9;0,2;2
+Ryby, skorupiaki i miêczaki;Cod dried, salted, soaked, boiled;Dorsz suszony, solony, moczony, gotowany;100;g;138;32,5;0,9;0
+Miêso i drób;Mince chicken raw;Miêso z kurczaka mielone na surowo;100;g;147;21,5;6,8;0
+Zbo¿a i produkty zbo¿owe;Quinoa raw;Surowa quinoa;100;g;354;14,1;6,1;57,2
+Zbo¿a i produkty zbo¿owe;Quinoa cooked;Quinoa gotowana;100;g;114;4,4;1,9;18,5
+Ser;Cheese 30+ age 4-8 weeks;Ser 30+ wiek 4-8 tygodni;100;g;280;30,1;17,7;0
+Ser;Cheese 30+ age 8 wk-4 mths;Ser 30+ wiek 8 tyg.-4 m-ce;100;g;278;29,3;17,9;0
+Ser;Cheese 30+ age 4-7 mths;Ser 30+ wiek 4-7 miesiêcy;100;g;306;31,9;19,8;0
+Ser;Cheese 30+ age 10-12 mths;Ser 30+ wiek 10-12 miesiêcy;100;g;307;31,7;20;0
+Ser;Cheeseproduct w veg fat Kees jong belegen;Produkt serowy z t³uszczem roœlinnym Kees jong belegen;100;g;387;29;30,1;0
+Ser;Cheeseprod w veg fat Kees oud;Cheeseprod z t³uszczem roœlinnym Kees oud;100;g;403;31;31;0
+Wytrawne pasty chlebowe;Salad coleslaw;Sa³atka coleslaw;100;g;191;1,4;16,9;7,1
+Roœliny str¹czkowe;Beans kidney red canned;Fasola czerwona nerkowata konserwowa;100;g;116;8,2;0,7;15,1
+Roœliny str¹czkowe;Peas chick canned;Groszek konserwowy z kurczaka;100;g;140;7,9;2,5;17,9
+Zbo¿a i produkty zbo¿owe;Pasta w fibre Honig raw;Makaron z b³onnikiem Miêso surowe;100;g;336;11;1,5;64
+Owoce;Medlar;Niesplik;100;g;50;0,5;0,2;10,6
+Ryby, skorupiaki i miêczaki;Anchovy raw;Surowe sardele;100;g;125;20,4;4,8;0
+Zbo¿a i produkty zbo¿owe;Bulgur wheat cooked;Kasza bulgur gotowana;100;g;80;3,1;0,2;14,1
+Zbo¿a i produkty zbo¿owe;Noodles boiled;Makaron gotowany;100;g;103;1,8;0,2;23
+Wytrawne pasty chlebowe;Hummus natural;Hummus naturalny;100;g;320;7,7;25,8;11,3
+Warzywa;Glasswort raw;Surowy szkliwik;100;g;14;0,7;0,2;1,1
+Chleb;Wheat bread wholemeal fine w seeds;Chleb pszenny pe³noziarnisty drobny z ziarnami;100;g;273;12,3;7,3;35,8
+Chleb;Wheat bread wholemeal fine w sunflower seeds;Chleb pszenny pe³noziarnisty drobny z ziarnami s³onecznika;100;g;282;11,7;8,6;36,2
+Chleb;Wheat bread wholemeal coarse w seeds;Chleb pszenny pe³noziarnisty gruby z ziarnami;100;g;275;12,6;7,5;35,1
+Chleb;Wheat bread wholemeal coarse w sunflower seeds;Chleb pszenny pe³noziarnisty gruby z ziarnami s³onecznika;100;g;284;12,1;8,9;35,6
+Chleb;Wheat bread wholemeal coarse w pumpkin seeds;Chleb pszenny pe³noziarnisty gruby z pestkami dyni;100;g;276;13,6;7,8;34,4
+Napoje alkoholowe;Beer white;Piwo bia³e;100;g;47;0,5;0;3,7
+Napoje alkoholowe;Vodka;Wódka;100;g;234;0;0;0
+Roœliny str¹czkowe;Peas split green boiled;Groszek zielony ³uskany gotowany;100;g;122;7,9;1,2;16,6
+Napoje bezalkoholowe;Fruit juice drink apple nectar;Napój owocowy nektar jab³kowy;100;g;37;0;0;9,1
+Owoce;Kiwi fruit yellow;Kiwi ¿ó³te;100;g;66;1;0,3;12,4
+Warzywa;Asparagus green raw;Szparagi zielone surowe;100;g;28;3;0,1;2,8
+Owoce;Olives ripe in brine tinned/glass;Oliwki dojrza³e w solance w puszce/szklance;100;g;162;0,9;14;1,7
+Sosy pikantne;Pesto red;Pesto czerwone;100;g;368;5;35;7
+Warzywa;Vegetables for stir-frying oriental cooked;Warzywa do sma¿enia orientalne gotowane;100;g;22;1;0,2;2,8
+Warzywa;Seaweed nori dried;Suszone wodorosty nori;100;g;254;31,5;1,5;10,5
+Zbo¿a i produkty zbo¿owe;Noodles instant prepared;Makaron instant przygotowany;100;g;227;3,4;11,1;27,8
+Wytrawne pasty chlebowe;Salad salmon;£osoœ sa³atkowy;100;g;338;9,3;31;5,2
+Wytrawne pasty chlebowe;Salad tuna;Tuñczyk sa³atkowy;100;g;288;11,4;24,1;6,2
+Wytrawne pasty chlebowe;Salad crab;Krab sa³atkowy;100;g;282;5,2;24;11,5
+Wytrawne pasty chlebowe;Salad shrimp;Krewetki sa³atkowe;100;g;299;6,7;27,6;5,9
+Mleko i produkty mleczne;Milk semi-skimmed lactose free;Mleko pó³t³uste bez laktozy;100;g;44;3,4;1,5;4,4
+T³uszcze i oleje;Oil coconut;Olej kokosowy;100;g;892;0;99,1;0
+Cukier, s³odycze i s³odkie sosy;Fudge/caramel soft;Karmel;100;g;435;1,9;16;70,8
+Cukier, s³odycze i s³odkie sosy;Mentos cheewy dragee;dra¿e Mentos;100;g;387;0;1,9;92,5
+Zbo¿a i produkty zbo¿owe;Pasta gluten free cooked Schar;Makaron bezglutenowy gotowany Schar;100;g;143;3,6;1;29,5
+Zbo¿a i produkty zbo¿owe;Pasta w fibre Honig cooked;Makaron z b³onnikiem Miêso gotowane;100;g;134;4,4;0,6;25,6
+Ryby, skorupiaki i miêczaki;Surimi;Surimi;100;g;122;6,8;3,6;15,5
+Ryby, skorupiaki i miêczaki;Sardines grilled;Sardynki grillowane;100;g;171;25,3;7,8;0
+Zbo¿a i produkty zbo¿owe;Filo pastry unprepared;Ciasto filo nieprzygotowane;100;g;286;8;1,9;57,9
+Napoje alkoholowe;Beer w fruitjuice Radler;Piwo z sokiem owocowym Radler;100;g;39;0,4;0;6,5
+Napoje alkoholowe;Beer bock;KoŸlak piwny;100;g;61;0,6;0;5,2
+Mleko i produkty mleczne;Yoghurt semi-skimmed lactose free;Jogurt pó³t³usty bez laktozy;100;g;42;4,5;1,5;2
+Mleko i produkty mleczne;Yoghurt drink Actimel fruit;Napój jogurtowy Actimel owocowy;100;g;72;2,7;1,5;11,7
+Ryby, skorupiaki i miêczaki;Pollock (Alaska) raw;Pollock (Alaska) surowy;100;g;72;16,4;0,7;0
+Ryby, skorupiaki i miêczaki;Pollock (Alaska) steamed;Pollock (Alaska) gotowany na parze;100;g;120;27,4;1,2;0
+Ryby, skorupiaki i miêczaki;Prawns cooked;Krewetki gotowane;100;g;70;15,4;0,9;0
+Ryby, skorupiaki i miêczaki;Lemon sole raw;Sola cytrynowa surowa;100;g;73;16,7;0,7;0
+Ryby, skorupiaki i miêczaki;Pangasius raw;Panga surowa;100;g;74;14,9;1,6;0
+Wêdliny;Processed meat products low sodium;Przetworzone produkty miêsne o niskiej zawartoœci sodu;100;g;179;16,1;11,1;3,5
+Chleb;Wheat bread wholemeal fine w pumpkin seeds;Chleb pszenny pe³noziarnisty drobny z pestkami dyni;100;g;274;13,2;7,5;35
+Chleb;Wheat bread av brown and wholemeal ; Chleb pszenny av br¹zowy i pe³noziarnisty;100;g;235;10,5;2;41
+Chleb;Wheat bread av brown and wholemeal w seeds;Chleb pszenny br¹zowy i pe³noziarnisty z ziarnami;100;g;275;11,9;7,1;37,2
+Warzywa;Artichoke hearts canned;Serca karczochów w puszce;100;g;27;2,1;0,4;1,5
+Warzywa;Lettuce romaine raw;Sa³ata rzymska surowa;100;g;17;1,2;0,3;1,2
+T³uszcze i oleje;Frying oil;Olej do sma¿enia;100;g;900;0;100;0
+Owoce;Olives av in brine tinned/glass;Oliwki w solance w puszce/szklance;100;g;122;0,9;11,6;0,8
+T³uszcze i oleje;Low fat margarine 40% fat <17g sat fa fortified w vit E salted;Margaryna o niskiej zawartoœci t³uszczu 40% t³uszczu <17g nasycona, wzbogacona wit. E, solona;100;g;360;0;40;0
+Owoce;Melon cantaloupe;Melon kantalupa;100;g;38;0,8;0,2;7,9
+Sosy pikantne;Sauce chilli;Sos chili;100;g;149;0,3;0,3;35,8
+Sosy pikantne;Sauce garlic 30-<40% oil;Sos czosnkowy 30-<40% oleju;100;g;378;1;36,2;12
+Wêdliny;Roastbeef;Pieczeñ wo³owa;100;g;156;27,2;5,1;0,2
+Cukier, s³odycze i s³odkie sosy;Chocolate sprinkles extra dark;Posypka czekoladowa ekstra ciemna;100;g;424;7,8;18,3;53,7
+Cukier, s³odycze i s³odkie sosy;Marmalade;Marmolada;100;g;260;0,3;0,2;63,9
+Zio³a i przyprawy;Soup instant powder;Zupa w proszku instant;100;g;372;9,6;12,1;54,2
+Cukier, s³odycze i s³odkie sosy;Chocolate flakes white;P³atki czekoladowe bia³e;100;g;458;5,9;14;77
+Cukier, s³odycze i s³odkie sosy;Syrup ginger;Syrop imbirowy;100;g;215;0;0,4;52,2
+Napoje bezalkoholowe;Coconut water plain;Woda kokosowa zwyk³a;100;g;18;0;0;4,5
+Cukier, s³odycze i s³odkie sosy;Syrup apple-pear;Syrop jab³kowo-gruszkowy;100;g;253;1,1;0;60,3
+Ser;Cheese Feta;Ser Feta;100;g;274;16,6;22,8;0,6
+Mleko i produkty mleczne;Yoghurt drink fortified w calcium;Napój jogurtowy wzbogacony wapniem;100;g;55;1,8;0;11,7
+Cukier, s³odycze i s³odkie sosy;Sorbet;Sorbet;100;g;126;0,2;0,1;30,8
+Ser;Cheese white 45+ feta-like from cow's milk;Ser bia³y 45+ typu feta z mleka krowiego;100;g;247;17,1;19,6;0,6
+T³uszcze i oleje;Oil sesame;Olej sezamowy;100;g;898;0,2;99,7;0
+Ser;Cheese Ricotta;Ser Ricotta;100;g;141;8;10,3;3,9
+Orzechy i nasiona;Peanuts milkchocolate coated;Orzeszki ziemne w mlecznej czekoladzie;100;g;568;16,1;39,1;35,5
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Tresor Kellogg's;P³atki œniadaniowe Tresor Kellogg's;100;g;448;7,4;15,7;67,3
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Honey pops Kellogg's;P³atki œniadaniowe Honey Pops Kellogg's;100;g;389;5;1;88
+Owoce;Goji berries dried;Suszone jagody goji;100;g;343;14,3;0,4;64,1
+Orzechy i nasiona;Hemp seed;Nasiona konopi;100;g;592;31,6;48,8;4,7
+Orzechy i nasiona;Chia seeds dried;Nasiona chia suszone;100;g;443;16,5;30,7;7,7
+Owoce;Mulberries raw;Morwy surowe;100;g;45;1,4;0,4;8,1
+T³uszcze i oleje;Oil rapeseed;Olej rzepakowy;100;g;899;0;99,9;0
+Zio³a i przyprawy;Mint fresh;Miêta œwie¿a;100;g;49;3,8;0,7;5,1
+T³uszcze i oleje;Oil vegetable av;Olej roœlinny av;100;g;898;0,1;99,7;0
+Chleb;Wheat corn bread white w seeds;Chleb pszenny kukurydziany bia³y z nasionami;100;g;298;12,3;8,5;40,1
+Chleb;Wheat bread white av milk/water based w seeds;Chleb pszenny bia³y na bazie mleka/wody z nasionami;100;g;287;10,7;6,9;43,2
+Orzechy i nasiona;Almonds w skin unsalted;Migda³y ze skórk¹ niesolone;100;g;622;25,4;53,4;5
+Orzechy i nasiona;Brazil nuts salted;Orzechy brazylijskie solone;100;g;687;14,3;67,1;2,6
+Zbo¿a i produkty zbo¿owe;Rice white raw w candied fruit, nuts and seeds;Ry¿ bia³y surowy z kandyzowanymi owocami, orzechami i nasionami;100;g;385;7,9;15,1;51,7
+Wytrawne pasty chlebowe;Salad cheese;Ser sa³atkowy;100;g;422;9;39,4;6,8
+Owoce;Peach w skin;Brzoskwinia ze skórk¹;100;g;40;1;0,1;7,2
+Cukier, s³odycze i s³odkie sosy;Sugar powdered;Cukier puder;100;g;396;0;0;99
+Wêdliny;Pork rolled (processed meat product);Roladki wieprzowe (produkt miêsny przetworzony);100;g;129;19,7;5,1;1,1
+Chleb;Cracker mini unflavoured;Mini krakersy bezsmakowe;100;g;442;10,9;12,9;69,3
+Chleb;Cracker mini flavoured;Mini krakersy smakowe;100;g;435;10,4;12,6;68,3
+Sosy pikantne;Tapenade tomato;Pomidor tapenada;100;g;291;3,1;24,7;12,2
+Sosy pikantne;Aioli;Aioli;100;g;726;1,5;78,6;2,9
+Orzechy i nasiona;Walnuts salted;Orzechy w³oskie solone;100;g;706;15,9;68,1;5,1
+Orzechy i nasiona;Nuts macadamia salted;Orzechy makadamia solone;100;g;753;7,8;76,1;5,4
+Orzechy i nasiona;Pistachio nuts unsalted;Orzechy pistacjowe niesolone;100;g;592;23,8;48,3;10,8
+Orzechy i nasiona;Almonds w skin salted;Migda³y w skórce solone;100;g;622;25,4;53,4;5
+Owoce;Kiwi fruit av;Owoce kiwi;100;g;64;1;0,6;11,4
+Sosy pikantne;Guacamole;Guacamole;100;g;153;1,7;14,5;2,5
+Cukier, s³odycze i s³odkie sosy;Icing (sugar);Lukier (cukier);100;g;354;0;0;88,4
+Zbo¿a i produkty zbo¿owe;Breakfast cereal cornflakes Plus/1 de Beste;P³atki œniadaniowe kukurydziane Plus/1 de Beste;100;g;381;8;1,1;83,1
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Choco moons Crownfield;P³atki œniadaniowe Choco Moons Crownfield;100;g;382;11,7;3,3;71,9
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Honey hoops Crownfield;P³atki œniadaniowe Honey hoops Crownfield;100;g;379;6,3;2,2;80,1
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Chocoschelpjes G'woon;P³atki œniadaniowe Chocoscheljes G'woon;100;g;402;9,5;4,8;77
+Zbo¿a i produkty zbo¿owe;Breakfast cereal Choco chocos Plus;P³atki œniadaniowe Choco chocos Plus;100;g;392;8,3;3,1;80,9
+Sosy pikantne;Tzatziki;Tzatziki;100;g;156;4;13,4;4,1
+Cukier, s³odycze i s³odkie sosy;Chocolate extra dark;Czekolada ekstra ciemna;100;g;578;9,2;45,4;27,2
+Zio³a i przyprawy;Sauce oyster;Sos ostrygowy;100;g;105;1,5;0,2;24,3
+Zio³a i przyprawy;Anise seed;Nasiona any¿u;100;g;384;17,6;15,9;35,4
+Orzechy i nasiona;Pecannuts oil roasted salted;Olej z orzechów pekan pra¿ony solony;100;g;750;9,2;75,2;4,3
+Wêdliny;Sausage dried metworst;Kie³basa suszona metworst;100;g;484;22,3;42,5;2,7
+Roœliny str¹czkowe;Beans black eyed canned;Fasola czarnooka w puszce;100;g;126;7,8;0,9;18,9
+Roœliny str¹czkowe;Beans brown boiled;Fasola br¹zowa gotowana;100;g;108;6,1;0,7;15,2
+Roœliny str¹czkowe;Lentils brown canned;Soczewica br¹zowa konserwowa;100;g;112;7,6;0,8;15,6
+Roœliny str¹czkowe;Beans cannellini canned;Fasola cannellini w puszce;100;g;113;7,1;1,1;15
+Roœliny str¹czkowe;Beans chilli canned;Fasola chili konserwowa;100;g;106;6,3;0,8;15,8
+Roœliny str¹czkowe;Peas marrowfat young canned;Groszek szpikowy m³ody konserwowy;100;g;93;5,7;0,7;13,2
+Roœliny str¹czkowe;Beans kidney red boiled;Fasola czerwona nerkowata gotowana;100;g;115;8,3;0,7;13,9
+Roœliny str¹czkowe;Lentils red boiled;Soczewica czerwona gotowana;100;g;110;7,7;0,6;16,1
+Roœliny str¹czkowe;Beans white boiled;Fasola bia³a gotowana;100;g;113;7,8;1;13,4
+Roœliny str¹czkowe;Beans black canned;Fasola czarna konserwowa;100;g;113;7,9;1;14,1
+Ser;Cheese Danish Blue;Ser duñski pleœniowy;100;g;350;20,5;29,5;0
+Mleko i produkty mleczne;Milk semi-skimmed fortified w calcium and vit D;Mleko pó³t³uste wzbogacone wapniem i witamin¹ D;100;g;47;3,5;1,6;4,7
+Zbo¿a i produkty zbo¿owe;Puff pastry av baked;Ciasto francuskie pieczone;100;g;614;7;47;40
+Napoje alkoholowe;Irish coffee;Kawa irlandzka;100;g;166;0,7;8,7;6,7
+Mleko i produkty mleczne;Milk chocolate-flavoured semi-skimmed w sweetner;Czekolada mleczna pó³t³usta z dodatkiem s³odzika;100;g;48;3,3;1,7;4,5
+Napoje bezalkoholowe;Wine alcohol free;Wino bezalkoholowe;100;g;23;0,1;0,1;5,3
+Ró¿ne potrawy;Vinegar Balsamic;Ocet balsamiczny;100;g;123;0,7;0;25,3
+Zbo¿a i produkty zbo¿owe;Bread crumbs w herbs;Bu³ka tarta z zio³ami;100;g;378;13;3,5;71,3
+Zbo¿a i produkty zbo¿owe;Bakery mix for cake plain;Mieszanka do wypieku ciasta zwyk³ego;100;g;367;5,1;0,6;84,6
+Warzywa;Bami vegetables raw;Warzywa Bami surowe;100;g;27;1,8;0,1;3,5
+Chleb;Crispbread light plain;Chrupkie pieczywo jasne zwyk³e;100;g;380;13;3,5;72
+Ryby, skorupiaki i miêczaki;Tuna w vegetables and tomato sauce canned;Tuñczyk z warzywami i sosem pomidorowym w puszce;100;g;98;11,7;3,5;4,8
+Ryby, skorupiaki i miêczaki;Seafood cooked;Owoce morza gotowane;100;g;112;16,9;2,9;4,6
+Warzywa;Vegetables for stir-frying Dutch raw;Warzywa do sma¿enia na patelni holenderskie surowe;100;g;27;1,5;0,3;3,5
+Warzywa;Vegetables for stir-frying Italian raw;Warzywa do sma¿enia na patelni, w³oskie, surowe;100;g;28;1,2;0,2;4,2
+Warzywa;Vegetables for stir-frying Oriental raw;Warzywa do sma¿enia Orientalne surowe;100;g;29;1,7;0,2;3,9
+Mleko i produkty mleczne;Yogurt Greek skimmed;Jogurt grecki odt³uszczony;100;g;56;8,2;0,1;5
+Wytrawne pasty chlebowe;Peanut butter 100% peanuts wo salt;Mas³o orzechowe 100% orzechów arachidowych bez soli;100;g;611;26,5;49,1;11,6
+Miêso i drób;Veal av raw;Cielêcina na surowo;100;g;127;21,3;4,7;0
+Ró¿ne potrawy;Salt bakers w added iodin;Sól piekarska z dodatkiem jodu;100;g;0;0;0;0
+Ró¿ne potrawy;Cocoa powder low fat;Kakao w proszku o niskiej zawartoœci t³uszczu;100;g;332;23,4;11;12,4
+Wytrawne pasty chlebowe;Nut paste mixed nuts unsalted;Pasta orzechowa mieszana orzechy niesolone;100;g;639;19,8;55,9;10,9
+Mleko i produkty mleczne;Skyr skimmed plain;Skyr odt³uszczony;100;g;60;10,6;0;3,7
+Zbo¿a i produkty zbo¿owe;Bakery mix for chocolate cake;Mieszanka piekarnicza do ciasta czekoladowego;100;g;377;6,4;3,6;77,8
+Zbo¿a i produkty zbo¿owe;Bakery mix for apple pie;Mieszanka do wypieku szarlotki;100;g;341;9,4;1,1;72
+Mleko i produkty mleczne;Milk whole lactose free;Mleko pe³ne bez laktozy;100;g;64;3,4;3,6;4,6
+Ryby, skorupiaki i miêczaki;Mussels raw;Ma³¿e surowe;100;g;67;11,1;1,7;1,9
+Mleko i produkty mleczne;Yoghurt goatmilk full fat;Jogurt z mleka koziego pe³not³usty;100;g;74;3,7;4,7;3,6
+Mleko i produkty mleczne;Ice cream chocolate;Lody czekoladowe;100;g;226;3,5;10,4;28,6
+Mleko i produkty mleczne;Ice cream dairy vanilla flavoured;Lody mleczne o smaku waniliowym;100;g;220;3;12;24,9
+Mleko i produkty mleczne;Ice cream dairy w vegetal fat vanilla flavoured;Lody mleczne z t³uszczem roœlinnym o smaku waniliowym;100;g;212;2,9;10,7;25,8
+Mleko i produkty mleczne;Ice cream dairy w fruit;Lody mleczne z owocami;100;g;194;2,7;8,1;27,1
+Zbo¿a i produkty zbo¿owe;Bakery mix for pancakes wholemeal;Mieszanka piekarnicza do naleœników pe³noziarnista;100;g;352;13;5,1;59,4
+Ziemniaki i bulwy;Jerusalem artichoke raw;Surowy topinambur;100;g;75;2;0,5;13,4
+Owoce;Melon av;Melon;100;g;31;0,5;0;6,9
+Cukier, s³odycze i s³odkie sosy;Chocolate filled w peanuts;Czekolada z nadzieniem orzechowym;100;g;582;15,8;42,6;31
+Chleb;Gluten free bread dark;Chleb bezglutenowy ciemny;100;g;205;4,1;3,6;35
+Chleb;Gluten free bread light;Chleb bezglutenowy light;100;g;212;4,1;3,1;38,9
+Chleb;Gluten free bread multiseeds;Chleb bezglutenowy wieloziarnisty;100;g;236;5;7;33,5
+Chleb;Gluten free bread sourdough;Chleb bezglutenowy na zakwasie;100;g;266;4,3;4,2;49
+Zio³a i przyprawy;Herbs green fresh av;Zio³a zielone œwie¿e av;100;g;43;3,3;0,7;4,1
+Ziemniaki i bulwy;Gnocchi cooked;Gnocchi gotowane;100;g;155;3,5;0,2;34
+Ziemniaki i bulwy;Gnocchi unprepared;Gnocchi nieprzygotowane;100;g;174;3,9;0,3;37,9
+Roœliny str¹czkowe;Beans brown canned/glass no salt added;Fasola br¹zowa w puszce/szklance bez dodatku soli;100;g;118;8;0,9;15,9
+Roœliny str¹czkowe;Lentils canned/glass no salt added;Soczewica w puszce/szklance bez dodatku soli;100;g;93;7,7;0,5;12,5
+Roœliny str¹czkowe;Peas chick canned/glass no salt added;Groszek z kurczaka w puszce/szklance bez dodatku soli;100;g;117;6,8;2,5;13,5
+Roœliny str¹czkowe;Beans kidney red canned/glass no salt added;Fasola czerwona nerkowata w puszce/szklance bez dodatku soli;100;g;102;7,7;0,7;13
+Roœliny str¹czkowe;Pulses average boiled;Str¹czki œrednio gotowane;100;g;117;8,2;1,3;14,4
+Warzywa;Vegetables mixed carrot-onion raw;Warzywa mieszane marchewka-cebula surowe;100;g;35;0,9;0,2;5,9
+Warzywa;Vegetables mixed carrot-onion boiled;Warzywa mieszane marchewka-cebula gotowane;100;g;34;0,8;0,2;5,9
+Warzywa;Vegetables for stir-frying Mexican raw;Warzywa do sma¿enia na patelni w stylu meksykañskim;100;g;51;2,7;0,5;7,1
+Warzywa;Vegetables for stir-frying Mexican boiled;Warzywa do sma¿enia po meksykañsku gotowane;100;g;48;2,4;0,5;6,7
+Warzywa;Onion red raw;Cebula czerwona surowa;100;g;37;1,3;0,4;5,6
+Warzywa;Onion red boiled;Cebula czerwona gotowana;100;g;43;1,7;0,2;7,6
+Chleb;Corn cakes puffed plain w salt;Placki kukurydziane, nadziewane, z sol¹;100;g;385;7,4;1,1;85
+Wytrawne pasty chlebowe;Hummus w vegetables;Hummus z warzywami;100;g;251;5,3;19,1;11
+Chleb;Breadsticks wholemeal;Paluszki chlebowe pe³noziarniste;100;g;385;14,1;6,5;61,9
+Sosy pikantne;Soy sauce;Sos sojowy;100;g;40;5,5;0;4,4
+Sosy pikantne;Wok sauce teriyaki;Sos wok teriyaki;100;g;164;1,9;0,3;38,2
+Zbo¿a i produkty zbo¿owe;Wrap/tortilla wholemeal;Wrap/tortilla pe³noziarnista;100;g;288;9,3;5;47,7
+Zbo¿a i produkty zbo¿owe;Muesli crunchy w fruit fortified w fibre;Chrupi¹ce musli z owocami wzbogacone b³onnikiem;100;g;430;8,2;15,1;59,2
+Warzywa;Asparagus green boiled;Szparagi zielone gotowane;100;g;27;2,7;0,3;1,7
+Orzechy i nasiona;Nuts mixed w cranberry unsalted;Orzechy mieszane z ¿urawin¹ niesolone;100;g;555;15;40,4;29,5
+Zbo¿a i produkty zbo¿owe;Muesli crunchy w nuts fortified w fibre;Chrupi¹ce musli z orzechami wzbogacone b³onnikiem;100;g;456;9,8;19,8;53,6
+Zbo¿a i produkty zbo¿owe;Muesli crunchy w chocolate fortified w fibre;Chrupi¹ce musli z czekolad¹ wzbogacone b³onnikiem;100;g;448;9,4;18,1;55,8
+Owoce;Coconut grated, dried;Wiórki kokosowe starte, suszone;100;g;674;7,1;64,8;8,6
+Roœliny str¹czkowe;Pulses average dried;Str¹czki œrednio suszone;100;g;335;23,1;3,9;43,6
+Sosy pikantne;Wok sauce sweet and sour;Sos wok s³odko-kwaœny;100;g;169;1,1;1,2;38
+Ser;Cheese w cumin 48+ average;Ser z kminkiem 48+ œrednio;100;g;370;22,9;30,5;0,4
+Zbo¿a i produkty zbo¿owe;Locust bean gum;Guma z nasion chleba œwiêtojañskiego;100;g;187;3,2;1,3;3,3
+Zbo¿a i produkty zbo¿owe;Couscous wholemael unprepared;Kuskus w ca³oœci nieprzygotowany;100;g;342;12,1;1,9;65
+Warzywa;Turnip raw;Rzepa surowa;100;g;31;0,9;0,3;4,8
+Warzywa;Turnip boiled;Rzepa gotowana;100;g;17;0,6;0,2;2
+Miêso i drób;Pork av raw;Wieprzowina na surowo;100;g;201;19;13,3;1,2
+Sosy pikantne;Sauce bolognese homemade;Sos boloñski domowy;100;g;126;7,4;8,6;4,1
+Warzywa;Peppers pickled canned/glass;Papryka konserwowa/szklana;100;g;14;0,8;0,1;1,9
+Mleko i produkty mleczne;Quark low fat lactose-free;Twaróg o obni¿onej zawartoœci t³uszczu i bez laktozy;100;g;57;9,8;0,2;3,8
+Zbo¿a i produkty zbo¿owe;Couscous wholemeal boiled;Kuskus pe³noziarnisty gotowany;100;g;114;4;0,6;21,7
+Chleb;Crispbread light wholemeal;Chrupkie pieczywo pe³noziarniste light;100;g;355;10;3,6;64,3
+Zbo¿a i produkty zbo¿owe;Bakery mix for doughnuts Dutch style;Mieszanka piekarnicza na p¹czki w stylu holenderskim;100;g;367;11;1;77
+Ser;Cheese 35+;Ser 35+;100;g;302;27,3;20,4;0
+Zbo¿a i produkty zbo¿owe;Flour spelt;M¹ka orkiszowa;100;g;348;13,2;1,7;67,4
+Zbo¿a i produkty zbo¿owe;Flour spelt wholemeal;M¹ka orkiszowa pe³noziarnista;100;g;332;14,4;2,3;56

@@ -16,6 +16,7 @@ from disher.models import Day_Dish, User_Day
 from . import calculations
 import time
 from django.core.mail import send_mail
+import mailersend
 
 user_has_diet_list = False
 
@@ -269,26 +270,59 @@ def register(request):
                     messages.error(
                         request, 'Email is already used. Try other email.', extra_tags="register")
                     return redirect('/register')
+                # if user_password == confirm_user_password:
+                #     user = User.objects.create_user(
+                #         user_name, user_email, user_password)
+                #     user.is_active = False
+                #     user.save()
+                #     signer = Signer()
+                #     signed_obj = signer.sign_object({"email": user_email})
+                #     token = signing.dumps(signed_obj)
+                #     host = request.get_host()
+                #     verification_link =  host + "/activate/" + token
+                #     html_message = f"Hello {user_name},\nWelcome to disherapp! To activate your account, please visit: {verification_link}\n\nBest regards,\nThe Disher Team"
+                #     print(html_message)
+                #     send_mail(
+                #     subject='Welcome to Our App',
+                #     message = html_message, 
+                #     from_email='disherwelcomapp@gmail.com',
+                #     recipient_list=[user_email],
+                #     fail_silently=False,)
+
+                #     messages.success(
+                #         request, 'Account created. Please activate account. ')
+                #     return redirect('/message')
                 if user_password == confirm_user_password:
+                    # Create user first
                     user = User.objects.create_user(
                         user_name, user_email, user_password)
                     user.is_active = False
                     user.save()
+
+                    # Prepare email content
                     signer = Signer()
                     signed_obj = signer.sign_object({"email": user_email})
                     token = signing.dumps(signed_obj)
                     host = request.get_host()
-                    verification_link =  host + "/activate/" + token
+                    verification_link = f"{host}/activate/{token}"
                     html_message = f"Hello {user_name},\nWelcome to disherapp! To activate your account, please visit: {verification_link}\n\nBest regards,\nThe Disher Team"
-                    send_mail(
-                    subject='Welcome to Our App',
-                    message = html_message, 
-                    from_email='disherwelcomapp@gmail.com',
-                    recipient_list=[user_email],
-                    fail_silently=False,)
+                    print(html_message)
+                    # Send email with error handling
+                    try:
+                        send_mail(
+                            subject='Welcome to Our App',
+                            message=html_message,
+                            from_email='disherteam@gmail.com',
+                            recipient_list=[user_email],
+                            fail_silently=False,  # Changed to True
+                        )
+                    except Exception as mail_error:
+                        # Log the error but don't fail registration
+                        print(f"Email sending failed: {mail_error}")
+                        # Optionally add a message about manual activation
 
                     messages.success(
-                        request, 'Account created. Please activate account. ')
+                        request, 'Account created. Please activate account.')
                     return redirect('/message')
                 else:
                     messages.error(
@@ -359,7 +393,7 @@ def change_user_email(request):
                     send_mail(
                         subject='Change email',
                         message = html_message,
-                        from_email='disherwelcomapp@gmail.com',
+                        from_email='disherteam@gmail.com',
                         recipient_list=[new_email],
                         fail_silently=False,)
                     return redirect('/message')
@@ -477,6 +511,11 @@ def copy_dish(request, day_id, dish_id, element_id):
 
 
 def reset(request):
+
+    login_status = CheckIfUserIsLogged()
+    user_status = login_status.get_user_status(request)
+    context = {"user_status": user_status}
+
     if request.method == "POST":
         form = ResetForm(request.POST)
         if form.is_valid():
@@ -486,24 +525,22 @@ def reset(request):
                 signed_obj = signer.sign_object({"email": user_email})
                 token = signing.dumps(signed_obj)
                 host = request.get_host()
-                verification_link =  host + "/reset/" + token
-                html_message = f"Hello,\n We are sending reset link to change your password in Disherapp ! To change password , please visit: {verification_link}\n\nBest regards,\nThe Disher Team"
+                verification_link = host + "/reset/" + token
+                html_message = f"Hello,\nWe are sending reset link to change your password in Disherapp! To change password, please visit: {verification_link}\n\nBest regards,\nThe Disher Team"
+                print(html_message)
                 send_mail(
                     subject='Reset password',
-                    message = html_message,
-                    from_email='disherwelcomapp@gmail.com',
+                    message=html_message,
+                    from_email='disherteam@gmail.com',
                     recipient_list=[user_email],
-                    fail_silently=False,)
-
-                messages.success(request, 'On your email was sent reset link.')
+                    fail_silently=False,
+                )
+                messages.success(request, 'Reset link was sent to your email.')
                 return redirect('/message')
             except Exception as e:
-                messages.error(request, e, extra_tags="register")
-                return render(request, "disher/reset.html", context)
+                messages.error(request, str(e), extra_tags="register")
+                return redirect('/message')
 
-    login_status = CheckIfUserIsLogged()
-    user_status = login_status.get_user_status(request)
-    context = {"user_status": user_status}
     return render(request, "disher/reset.html", context)
 
 
@@ -771,7 +808,7 @@ def read_csv(request):
         test_product = ProductOperations()
         for row in reader:
             print(row[2].lower(),float(row[3].replace(',', '.')),  float(row[5].replace(',', '.')), float(row[6].replace(',', '.')), float(row[7].replace(',', '.')), float(row[8].replace(',', '.'))) 
-            test_product.createProduct(row[2].lower(),float(row[3].replace(',', '.')), float(row[5].replace(',', '.')), float(row[6].replace(',', '.')), float(row[7].replace(',', '.')), float(row[8].replace(',', '.')))
+            test_product.createProduct(row[2].lower(),float(row[5].replace(',', '.')), float(row[3].replace(',', '.')), float(row[6].replace(',', '.')), float(row[7].replace(',', '.')), float(row[8].replace(',', '.')))
              
     return HttpResponse('CSV read')
 

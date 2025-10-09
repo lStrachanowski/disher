@@ -256,10 +256,10 @@ let userRecepiesTemplate = (dish, index, option) => {
         let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-favourite-recepie-class" id="${index}">
             <div class="col-lg-6 col-12 p-1 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background"
                 id="user-recepie-${index}">
-                <div class="col-2 d-none d-sm-block  text-center m-3 font-bold cursor"> 
+                <div class="col-2 d-none d-md-block  text-center m-3 font-bold cursor"> 
                 ${selectedMealType}  
                 </div>
-                <div class="col-7 m-3  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
+                <div class="col-md-7 col-9 m-3 text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
                 <div class="col-2">
                      <img src="/static/img/share.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-share-size" onclick="copyToClipboard('/recepie/${dish.slug}')">
                 </div>
@@ -272,10 +272,10 @@ let userRecepiesTemplate = (dish, index, option) => {
         let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-recepie-class" id="u-${index}">
             <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between user-recepie-container white-background"
                 id="user-recepie-${index}">
-                <div class="col-2 d-none d-sm-block  text-center m-3 font-bold cursor"> 
+                <div class="col-2 d-none d-md-block  text-center m-3 font-bold cursor"> 
                 ${selectedMealType}  
                 </div>
-                <div class="col-7 m-3  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
+                <div class="col-10 col-sm-7 p-3   text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
                     <img src="/static/img/share.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
                     <img src="/static/img/options.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size m-3" id="recepie-options-id-click" onclick="optionsClick(${index})">
