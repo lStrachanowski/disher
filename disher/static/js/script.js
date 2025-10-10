@@ -278,7 +278,7 @@ let userRecepiesTemplate = (dish, index, option) => {
                 <div class="col-10 col-sm-7 p-3   text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
                 <div class="col-2 d-flex align-items-center justify-content-center  text-center">
                     <img src="/static/img/share.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-show" onclick="copyToClipboard('/recepie/${dish.slug}')">
-                    <img src="/static/img/options.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size m-3" id="recepie-options-id-click" onclick="optionsClick(${index})">
+                    <img src="/static/img/options.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size m-3" id="recepie-options-id-click">
                 </div>
             </div>
 
@@ -863,27 +863,47 @@ function setElementID(id, dbDayID) {
     }
 }
 
+document.addEventListener('click', function(e) {
+    // Check if clicked element is options icon or close icon
+    if (e.target.matches('#recepie-options-id-click') || 
+        e.target.matches('#recepie-options-id-close-click')) {
+        
+        const id = e.target.closest('.user-recepie-class').id.split('-')[1];
+        const elementId = `user-recepie-${id}`;
+        const optionsId = `user-options-${id}`;
+        const parentElement = document.getElementById(elementId);
+        const optionElement = document.getElementById(optionsId);
+
+        if (parentElement.style.display !== "none") {
+            parentElement.style.cssText = 'display:none !important';
+            optionElement.style.cssText = 'display:inline-flex!important';
+        } else {
+            parentElement.style.cssText = 'display:inline-flex !important';
+            optionElement.style.cssText = 'display:none !important';
+        }
+    }
+});
 
 // Is showing options in user recepie element
 let optionsClick = (id) => {
-    elementId = `user-recepie-${id}`;
-    optionsId = `user-options-${id}`;
-    parentElement = document.getElementById(elementId);
-    optionElement = document.getElementById(optionsId);
-    idList = document.querySelectorAll("[id^='user']");
-    for (let i = 0; i < idList.length; i++) {
-        if (elementId == idList[i].id) {
-            if (parentElement.style.display !== "none") {
-                parentElement.style.cssText = 'display:none !important';
-                optionElement.style.cssText = 'display:inline-flex!important';
-            } else {
-                parentElement.style.cssText = 'display:inline-flex !important';
-                optionElement.style.cssText = 'display:none !important';
-            }
-        } else {
+    // elementId = `user-recepie-${id}`;
+    // optionsId = `user-options-${id}`;
+    // parentElement = document.getElementById(elementId);
+    // optionElement = document.getElementById(optionsId);
+    // idList = document.querySelectorAll("[id^='user']");
+    // for (let i = 0; i < idList.length; i++) {
+    //     if (elementId == idList[i].id) {
+    //         if (parentElement.style.display !== "none") {
+    //             parentElement.style.cssText = 'display:none !important';
+    //             optionElement.style.cssText = 'display:inline-flex!important';
+    //         } else {
+    //             parentElement.style.cssText = 'display:inline-flex !important';
+    //             optionElement.style.cssText = 'display:none !important';
+    //         }
+    //     } else {
 
-        }
-    }
+    //     }
+    // }
 }
 
 
