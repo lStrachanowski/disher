@@ -16,5 +16,5 @@ def calculateShopList(arr):
     updated_data = []
     for name, (quantity, unit) in ingredient_list.items():
         updated_data.append([name, quantity, unit])
-        
+    updated_data.sort(key=lambda x: x[1], reverse=True)   
     return updated_data

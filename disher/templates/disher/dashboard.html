@@ -43,7 +43,7 @@
                     id="f-{{forloop.counter}}">
                     <div
                         class="col-lg-6 col-12 p-1 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background">
-                        <div class="col-2 d-none d-md-block  text-center m-3 font-bold cursor">
+                        <div class="col-2 d-none d-sm-block  text-center m-3 font-bold cursor">
                             {% if favourite.dish_type == 'B' %}
                             Śniadanie
                             {% elif favourite.dish_type == 'B2' %}
@@ -56,7 +56,7 @@
                             Kolacja
                             {% endif%}
                         </div>
-                        <div class="col-md-7 col-9 m-3  text-center cursor" onclick="location.href='/recepie/'+'{{favourite.slug}}'">
+                        <div class="col-md-7 col-sm-7 col-9 m-3  text-center cursor" onclick="location.href='/recepie/'+'{{favourite.slug}}'">
                             {{favourite.dish_name}}</div>
                         <div class="col-2">
                             <img src="/static/img/share.svg"

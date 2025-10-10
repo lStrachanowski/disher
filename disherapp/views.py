@@ -16,7 +16,6 @@ from disher.models import Day_Dish, User_Day
 from . import calculations
 import time
 from django.core.mail import send_mail
-import mailersend
 
 user_has_diet_list = False
 
