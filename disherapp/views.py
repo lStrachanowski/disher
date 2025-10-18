@@ -42,9 +42,10 @@ def recepie(request, slug):
     recepie_products_amounts = amount.getAllAmounts(products)
 
     ingridients = recepie_products_amounts
+    ingridients_dorted = sorted(ingridients, key=lambda x: x[1], reverse=True)
 
     favourite_status= FavouriteOperations().checkIfFavourite(request.user.id, slug)
-    context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients, "is_favourited":favourite_status}
+    context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients_dorted, "is_favourited":favourite_status}
     return render(request, "disher/recepie.html", context)
 
 @login_required(login_url='/login')

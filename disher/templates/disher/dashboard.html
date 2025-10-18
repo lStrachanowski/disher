@@ -35,7 +35,7 @@
         <div class="tab-content" id="pills-tabContent">
             <!-- Ulubione przepisy -->
             <div class="tab-pane fade show active" id="pills-favourite" role="tabpanel"
-                aria-labelledby="pills-favourite-tab" tabindex="0" >
+                aria-labelledby="pills-favourite-tab" tabindex="0">
                 <div class="col-12 empty-screen-font greey-font"></div>
 
                 {% for favourite in favourite_list|slice:":3" %}
@@ -56,14 +56,15 @@
                             Kolacja
                             {% endif%}
                         </div>
-                        <div class="col-md-7 col-sm-7 col-9 m-3  text-center cursor" onclick="location.href='/recepie/'+'{{favourite.slug}}'">
+                        <div class="col-md-7 col-sm-7 col-9 m-3  text-center cursor"
+                            onclick="location.href='/recepie/'+'{{favourite.slug}}'">
                             {{favourite.dish_name}}</div>
                         <div class="col-2">
                             <img src="/static/img/share.svg"
                                 class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-share-size"
                                 onclick="copyToClipboard('/recepie/'+'{{favourite.slug}}')">
                         </div>
-<!-- 
+                        <!-- 
                           <div class="col-7 m-3  text-center cursor" onclick="location.href='/recepie/'+'{{favourite.slug}}'">
                             {{favourite.dish_name}}</div>
                         <div class="col-2">
@@ -103,7 +104,8 @@
                             Kolacja
                             {% endif%}
                         </div>
-                        <div class="col-10 col-sm-7 p-3  text-center cursor" onclick="location.href='/recepie/'+'{{dish.slug}}'">
+                        <div class="col-10 col-sm-7 p-3  text-center cursor"
+                            onclick="location.href='/recepie/'+'{{dish.slug}}'">
                             {{dish.dish_name}}</div>
                         <div class="col-2 d-flex align-items-center justify-content-center  text-center">
                             <img src="/static/img/share.svg"
@@ -117,7 +119,8 @@
 
                     <div class="col-lg-6 col-12 d-flex align-items-center justify-content-between recepie-container white-background user-recepie-options-id"
                         id="user-options-{{ forloop.counter }}">
-                        <div class="col-4  text-center m-3 font-bold cursor dark-font" onclick="location.href='/recepie/edit/'+'{{dish.slug}}'">Edytuj</div>
+                        <div class="col-4  text-center m-3 font-bold cursor dark-font"
+                            onclick="location.href='/recepie/edit/'+'{{dish.slug}}'">Edytuj</div>
                         <div class="col-5  text-center cursor font-bold dark-font recepie-options-delete"
                             id="recepie-options-delete-click" onclick="deleteUserRecepie({{dish.id}})">Usuń</div>
                         <div class="col-2 d-flex align-items-center justify-content-center text-center">
@@ -234,152 +237,209 @@
                             <div class="container justify-content-center">
                                 <div class="h-100 d-flex justify-content-center align-items-center">
                                     <div class="loader" id="spinner_container" style="display: none;"></div>
-                                 </div>
-                            <div class="row justify-content-center" id="recepieContainer"></div>
+                                </div>
+                                <div class="row justify-content-center" id="recepieContainer"></div>
                             </div>
 
-                            <!-- kafelki ulubionych przepisów -->
-                            <div class="row justify-content-center" id="favouriteContainer">
-                                {% if favourite_list %}
-                                <label for="search" class="search-label mt-2 mb-2 cursor"
-                                    >Ulubione</label>
 
-                                <span class="row justify-content-center" id="favouriteRecepiesSpan">
-                                    {% for favourite in favourite_list %}
 
-                                    <div class="col-xl-3 col-lg-5 col-md-10  text-center recepie-container white-background m-3"
-                                        id="{{favourite.id}}">
-                                        <div class="d-flex row align-items-center align-items-stretch">
-                                            <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
-                                                onclick="location.href='/recepie/{{favourite.slug}}'">
-                                                {{favourite.dish_name}}</div>
-                                            {% if favourite.dish_type == 'B' %}
-                                            <div
-                                                class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-breakfast recepie-meal-border p-2">
-                                                {% if favourite.dish_type == 'B' %}
-                                                Śniadanie
-                                                {% elif favourite.dish_type == 'B2' %}
-                                                2 Śniadanie
-                                                {% elif favourite.dish_type == 'D' %}
-                                                Obiad
-                                                {% elif favourite.dish_type == 'D2' %}
-                                                Przekąska
-                                                {% elif favourite.dish_type == 'S' %}
-                                                Kolacja
-                                                {% endif%}
-                                            </div>
-                                            {% elif favourite.dish_type == 'B2' %}
-                                            <div
-                                                class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-second-breakfast recepie-meal-border p-2">
-                                                {% if favourite.dish_type == 'B' %}
-                                                Śniadanie
-                                                {% elif favourite.dish_type == 'B2' %}
-                                                2 Śniadanie
-                                                {% elif favourite.dish_type == 'D' %}
-                                                Obiad
-                                                {% elif favourite.dish_type == 'D2' %}
-                                                Przekąska
-                                                {% elif favourite.dish_type == 'S' %}
-                                                Kolacja
-                                                {% endif%}
-                                            </div>
-                                            {% elif favourite.dish_type == 'D' %}
-                                            <div
-                                                class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-dinner recepie-meal-border p-2">
-                                                {% if favourite.dish_type == 'B' %}
-                                                Śniadanie
-                                                {% elif favourite.dish_type == 'B2' %}
-                                                2 Śniadanie
-                                                {% elif favourite.dish_type == 'D' %}
-                                                Obiad
-                                                {% elif favourite.dish_type == 'D2' %}
-                                                Przekąska
-                                                {% elif favourite.dish_type == 'S' %}
-                                                Kolacja
-                                                {% endif%}
-                                            </div>
-                                            {% elif favourite.dish_type == 'D2' %}
-                                            <div
-                                                class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-snack recepie-meal-border p-2">
-                                                {% if favourite.dish_type == 'B' %}
-                                                Śniadanie
-                                                {% elif favourite.dish_type == 'B2' %}
-                                                2 Śniadanie
-                                                {% elif favourite.dish_type == 'D' %}
-                                                Obiad
-                                                {% elif favourite.dish_type == 'D2' %}
-                                                Przekąska
-                                                {% elif favourite.dish_type == 'S' %}
-                                                Kolacja
-                                                {% endif%}
-                                            </div>
-                                            {% elif favourite.dish_type == 'S' %}
-                                            <div
-                                                class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-supper recepie-meal-border p-2">
-                                                {% if favourite.dish_type == 'B' %}
-                                                Śniadanie
-                                                {% elif favourite.dish_type == 'B2' %}
-                                                2 Śniadanie
-                                                {% elif favourite.dish_type == 'D' %}
-                                                Obiad
-                                                {% elif favourite.dish_type == 'D2' %}
-                                                Przekąska
-                                                {% elif favourite.dish_type == 'S' %}
-                                                Kolacja
-                                                {% endif%}
-                                            </div>
-                                            {% endif %}
+                            <p class="d-inline-flex gap-1 mt-3">
+                                <button class="btn btn-success text-white rounded-pill py-3 px-5 " type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#favouriteContainer" aria-expanded="false"
+                                    aria-controls="favouriteContainer">
+                                    Ulubione przepisy
+                                </button>
+                            </p>
+                            <br>
+                            <p class="d-inline-flex gap-1 mt-3">
+                                <button class="btn btn-secondary text-white rounded-pill py-3 px-5 " type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#favouriteContainer" aria-expanded="false"
+                                    aria-controls="favouriteContainer">
+                                    Śniadania
+                                </button>
+                            </p>
+                              <p class="d-inline-flex gap-1 mt-3">
+                                <button class="btn btn-secondary text-white rounded-pill py-3 px-5 " type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#favouriteContainer" aria-expanded="false"
+                                    aria-controls="favouriteContainer">
+                                    2 Śniadania
+                                </button>
+                            </p>
+                              <p class="d-inline-flex gap-1 mt-3">
+                                <button class="btn btn-secondary text-white rounded-pill py-3 px-5 " type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#favouriteContainer" aria-expanded="false"
+                                    aria-controls="favouriteContainer">
+                                    Obiady
+                                </button>
+                            </p>
+                              <p class="d-inline-flex gap-1 mt-3">
+                                <button class="btn btn-secondary text-white rounded-pill py-3 px-5 " type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#favouriteContainer" aria-expanded="false"
+                                    aria-controls="favouriteContainer">
+                                    Przekąska
+                                </button>
+                            </p>
+                              <p class="d-inline-flex gap-1 mt-3">
+                                <button class="btn btn-secondary text-white rounded-pill py-3 px-5 " type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#favouriteContainer" aria-expanded="false"
+                                    aria-controls="favouriteContainer">
+                                    Kolacje
+                                </button>
+                            </p>
+                            <div class="collapse" id="favouriteContainer">
+                                <!-- kafelki ulubionych przepisów -->
+                                <div class="card card-body">
+                                    <div class="row justify-content-center" id="favouriteContainer">
+                                        {% if favourite_list %}
 
-                                            <div class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
-                                                <div class="col-12 min-h ">
-                                                    {{favourite.dish_description}}
-                                                </div>
-                                                <div class="col-12">
-                                                    <a href="/recepie/{{favourite.slug}}"
-                                                        class="font-bold">więcej...</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-4 p-2">
-                                                <div class="row justify-content-around">
-                                                    <div class="col-lg-12 p-1">
-                                                        <img src="/static/img/iconfire.svg" class="icon-size-15">
-                                                    </div>
-                                                    <div class="col-lg-12 recepie-font font-bold">
-                                                        {{favourite.dish_calories}} kcal
-                                                    </div>
-                                                    <div class="col-lg-12 p-1">
-                                                        <img src="/static/img/iconclock.svg" class="icon-size-15">
-                                                    </div>
-                                                    <div class="col-lg-12 recepie-font font-bold">
-                                                        {% if favourite.preparation_time == 'S' %}
-                                                        Szybkie
-                                                        {% elif favourite.preparation_time == 'M' %}
-                                                        Średni
-                                                        {% elif favourite.preparation_time == 'L' %}
-                                                        Długi
+                                        <span class="row justify-content-center" id="favouriteRecepiesSpan">
+                                            {% for favourite in favourite_list %}
+
+                                            <div class="col-xl-3 col-lg-5 col-md-10  text-center recepie-container white-background m-3"
+                                                id="{{favourite.id}}">
+                                                <div class="d-flex row align-items-center align-items-stretch">
+                                                    <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
+                                                        onclick="location.href='/recepie/{{favourite.slug}}'">
+                                                        {{favourite.dish_name}}</div>
+                                                    {% if favourite.dish_type == 'B' %}
+                                                    <div
+                                                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-breakfast recepie-meal-border p-2">
+                                                        {% if favourite.dish_type == 'B' %}
+                                                        Śniadanie
+                                                        {% elif favourite.dish_type == 'B2' %}
+                                                        2 Śniadanie
+                                                        {% elif favourite.dish_type == 'D' %}
+                                                        Obiad
+                                                        {% elif favourite.dish_type == 'D2' %}
+                                                        Przekąska
+                                                        {% elif favourite.dish_type == 'S' %}
+                                                        Kolacja
                                                         {% endif%}
                                                     </div>
+                                                    {% elif favourite.dish_type == 'B2' %}
+                                                    <div
+                                                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-second-breakfast recepie-meal-border p-2">
+                                                        {% if favourite.dish_type == 'B' %}
+                                                        Śniadanie
+                                                        {% elif favourite.dish_type == 'B2' %}
+                                                        2 Śniadanie
+                                                        {% elif favourite.dish_type == 'D' %}
+                                                        Obiad
+                                                        {% elif favourite.dish_type == 'D2' %}
+                                                        Przekąska
+                                                        {% elif favourite.dish_type == 'S' %}
+                                                        Kolacja
+                                                        {% endif%}
+                                                    </div>
+                                                    {% elif favourite.dish_type == 'D' %}
+                                                    <div
+                                                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-dinner recepie-meal-border p-2">
+                                                        {% if favourite.dish_type == 'B' %}
+                                                        Śniadanie
+                                                        {% elif favourite.dish_type == 'B2' %}
+                                                        2 Śniadanie
+                                                        {% elif favourite.dish_type == 'D' %}
+                                                        Obiad
+                                                        {% elif favourite.dish_type == 'D2' %}
+                                                        Przekąska
+                                                        {% elif favourite.dish_type == 'S' %}
+                                                        Kolacja
+                                                        {% endif%}
+                                                    </div>
+                                                    {% elif favourite.dish_type == 'D2' %}
+                                                    <div
+                                                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-snack recepie-meal-border p-2">
+                                                        {% if favourite.dish_type == 'B' %}
+                                                        Śniadanie
+                                                        {% elif favourite.dish_type == 'B2' %}
+                                                        2 Śniadanie
+                                                        {% elif favourite.dish_type == 'D' %}
+                                                        Obiad
+                                                        {% elif favourite.dish_type == 'D2' %}
+                                                        Przekąska
+                                                        {% elif favourite.dish_type == 'S' %}
+                                                        Kolacja
+                                                        {% endif%}
+                                                    </div>
+                                                    {% elif favourite.dish_type == 'S' %}
+                                                    <div
+                                                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-supper recepie-meal-border p-2">
+                                                        {% if favourite.dish_type == 'B' %}
+                                                        Śniadanie
+                                                        {% elif favourite.dish_type == 'B2' %}
+                                                        2 Śniadanie
+                                                        {% elif favourite.dish_type == 'D' %}
+                                                        Obiad
+                                                        {% elif favourite.dish_type == 'D2' %}
+                                                        Przekąska
+                                                        {% elif favourite.dish_type == 'S' %}
+                                                        Kolacja
+                                                        {% endif%}
+                                                    </div>
+                                                    {% endif %}
+
+                                                    <div
+                                                        class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
+                                                        <div class="col-12 min-h ">
+                                                            {{favourite.dish_description}}
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <a href="/recepie/{{favourite.slug}}"
+                                                                class="font-bold">więcej...</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4 p-2">
+                                                        <div class="row justify-content-around">
+                                                            <div class="col-lg-12 p-1">
+                                                                <img src="/static/img/iconfire.svg"
+                                                                    class="icon-size-15">
+                                                            </div>
+                                                            <div class="col-lg-12 recepie-font font-bold">
+                                                                {{favourite.dish_calories}} kcal
+                                                            </div>
+                                                            <div class="col-lg-12 p-1">
+                                                                <img src="/static/img/iconclock.svg"
+                                                                    class="icon-size-15">
+                                                            </div>
+                                                            <div class="col-lg-12 recepie-font font-bold">
+                                                                {% if favourite.preparation_time == 'S' %}
+                                                                Szybkie
+                                                                {% elif favourite.preparation_time == 'M' %}
+                                                                Średni
+                                                                {% elif favourite.preparation_time == 'L' %}
+                                                                Długi
+                                                                {% endif%}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <div
+                                                            class="d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelectorContainer">
+                                                            <button
+                                                                class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelector"
+                                                                data-bs-dismiss="modal" type="button"
+                                                                onclick="addMealToDay('{{user_day}}', '{{favourite.slug}}', '{{favourite.dish_name}}', ' {{favourite.dish_calories}}');">
+                                                                <div class="cross-button"></div>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <div
-                                                    class="d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelectorContainer">
-                                                    <button
-                                                        class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelector"
-                                                        data-bs-dismiss="modal" type="button"
-                                                        onclick="addMealToDay('{{user_day}}', '{{favourite.slug}}', '{{favourite.dish_name}}', ' {{favourite.dish_calories}}');">
-                                                        <div class="cross-button"></div>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                            {% endfor %}
+                                        </span>
+                                        <!-- <img src="/static/img/expand.svg"
+                                            class="user-recepie-icons-size cursor image-rotated"
+                                            onclick="hideFavouriteInModal();" id="expandFavouriteImageinModal">
+                                        {% endif %} -->
                                     </div>
 
-                                    {% endfor %}
-                                </span>
-                                <img src="/static/img/expand.svg" class="user-recepie-icons-size cursor image-rotated" onclick="hideFavouriteInModal();" id="expandFavouriteImageinModal">
-                                {% endif %}
+                                </div>
                             </div>
+
+
+
+
 
                             <div class="row justify-content-center" id="recepieContainer">
                             </div>

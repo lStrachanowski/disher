@@ -21,7 +21,7 @@
             {{ form.as_p }}
             <div class="row justify-content-center align-items-center">
                 <div class="form-group col-lg-10 col-md-12">
-                    <label for="dish_title" id="dish_label">Nazwa potrawy</label>
+                    <label for="dish_title" id="dish_label"  maxlength="50">Nazwa potrawy</label>
                     <input type="text" class="form-control" id="dish_title" name="dish_title" value="{{dish_name}}"
                         oninput="checkDishFielsdValidity();" required>
                 </div>
@@ -57,18 +57,18 @@
             <div class="row text-center mt-3" id="productsContainer">
                 <div class="col-12 d-flex align-items-center justify-content-center" id="productsContainerHeader">
                     <div class="col-12 d-flex align-items-center justify-content-around mb-1">
-                        <div class="col-lg-2  text-center dark-font font-bold">Produkt</div>
-                        <div class="col-lg-7  text-start dark-font font-bold ">Ilość</div>
-                        <div class="col-lg-2  text-center"></div>
+                        <div class="col-7  text-center dark-font font-bold">Produkt</div>
+                        <div class="col-2  text-start dark-font font-bold ">Ilość</div>
+                        <div class="col-2  text-center"></div>
                     </div>
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1" id="productsList">
                 </div>
                   {% for ingredient in recepie_ingridients %}
                     <div class="col-12 d-flex align-items-center justify-content-around  recepie-container  white-background cursor mt-2 m-1" id="productListItem-{{ingredient.0}}">
-                        <div class="col-lg-2  text-center m-3 font-bold cursor">{{ ingredient.1.0 }}</div>
-                        <div class="col-lg-7  text-start cursor">{{ ingredient.1.1 }} {{ ingredient.1.2}} </div>
-                        <div class="col-lg-2  text-center" onclick="deleteProductFromProductList('{{ ingredient.0 }}')">usuń</div>
+                        <div class="col-7  text-center p-3 font-bold cursor text-break">{{ ingredient.1.0 }}</div>
+                        <div class="col-2  text-start cursor">{{ ingredient.1.1 }} {{ ingredient.1.2}} </div>
+                        <div class="col-2  text-center p-1" onclick="deleteProductFromProductList('{{ ingredient.0 }}')">usuń</div>
                     </div>
                      {% endfor %}
             </div>

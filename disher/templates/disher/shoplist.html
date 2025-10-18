@@ -51,7 +51,9 @@
                     class="col-lg-6 col-12 d-flex align-items-center justify-content-around  recepie-container  white-background cursor">
                     <div class="col-7  text-center p-3 font-bold cursor text-break">{{item.0}}</div>
                     <div class="col-2  text-end cursor recepie-amount">{{item.1}} {{item.2}}</div>
-                    <div class="col-2  text-center p-1" onclick="removeFromShoplist('{{ forloop.counter }}')">usuń</div>
+                    <div class="col-2  text-center p-1" onclick="removeFromShoplist('{{ forloop.counter }}')">
+                        <img src="/static/img/close.svg" class="day-icons-options-size">
+                    </div>
                 </div>
             </div>
             {% endfor %} 

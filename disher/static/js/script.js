@@ -216,9 +216,9 @@ let dishProductSearchContainer = () => {
 let productListItem = (productName, quantity, unit, id) => {
     return `     <div
     class="col-12 d-flex align-items-center justify-content-around  recepie-container  white-background cursor mt-2 m-1" id="productListItem-${id}">
-    <div class="col-lg-2  text-center m-3 font-bold cursor">${productName}</div>
-    <div class="col-lg-7  text-start cursor">${quantity} ${unit}</div>
-    <div class="col-lg-2  text-center" onclick="deleteProductFromProductList('${id}')">usuń</div>
+    <div class="col-7  text-center p-3 font-bold cursor text-break">${productName}</div>
+    <div class="col-2  text-start cursor">${quantity} ${unit}</div>
+    <div class="col-2  text-center p-1" onclick="deleteProductFromProductList('${id}')">usuń</div>
     </div>`;
 }
 
@@ -253,9 +253,8 @@ let userRecepiesTemplate = (dish, index, option) => {
     }
 
     if (option == 'userFavourite') {
-        let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-favourite-recepie-class" id="${index}">
-            <div class="col-lg-6 col-12 p-1 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background"
-                id="user-recepie-${index}">
+        let template = ` <div class="col-12 d-flex align-items-center justify-content-center mt-2 m-1 user-favourite-recepie-class" id="f-${index}">
+            <div class="col-lg-6 col-12 p-1 d-flex align-items-center justify-content-between user-favourite-recepie-container white-background">
                 <div class="col-2 d-none d-sm-block  text-center m-3 font-bold cursor"> 
                 ${selectedMealType}  
                 </div>
@@ -1970,19 +1969,19 @@ function deleteOptionsElement(id) {
 }
 
 
-function hideFavouriteInModal() {
-    let expandImage = document.getElementById("expandFavouriteImageinModal");
-    let favouriteElement = document.getElementById("favouriteRecepiesSpan");
-    if (favouriteElement) {
-        if (favouriteElement.style.display === 'none') {
-            favouriteElement.style.display = 'flex';
-            expandImage.style.transform = "rotate(360deg)";
-        } else {
-            favouriteElement.style.display = 'none';
-            expandImage.style.transform = "rotate(180deg)";
-        }
-    }
-}
+// function hideFavouriteInModal() {
+//     let expandImage = document.getElementById("expandFavouriteImageinModal");
+//     let favouriteElement = document.getElementById("favouriteRecepiesSpan");
+//     if (favouriteElement) {
+//         if (favouriteElement.style.display === 'none') {
+//             favouriteElement.style.display = 'flex';
+//             expandImage.style.transform = "rotate(360deg)";
+//         } else {
+//             favouriteElement.style.display = 'none';
+//             expandImage.style.transform = "rotate(180deg)";
+//         }
+//     }
+// }
 
 
 async function checkDishName() {
