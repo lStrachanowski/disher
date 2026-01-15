@@ -13,130 +13,142 @@
         <div class="col-10 align-items-center text-center recepie-container white-background mt-2 m-1">
             <div class="d-flex row align-items-stretch justify-content-center pb-2">
                 <div
-                    class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height">
+                    class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border-recepie-site p-2 min-height">
 
                     {% if user.is_authenticated %}
-                    <div class="col-2">
+                    <div class="col-2 p-2">
                         <img src="/static/img/iconleft.svg" class="icon-size-full-recpie cursor"
                             onclick="location.href='/user/dashboard'">
                     </div>
                     {% else %}
-                    <div class="col-2">
+                    <div class="col-2 p-2">
                         <img src="/static/img/iconleft.svg" class="icon-size-full-recpie cursor"
                             onclick="location.href='/'">
                     </div>
                     {% endif %}
-                    <div class="col-10 m-2">
+                    <div class="col-10 m-2 header-text-shadow">
                         {{recepie.dish_name}}
                     </div>
                 </div>
 
-                {% if recepie.dish_type == 'B' %}
                 <div
                     class="d-flex align-items-center justify-content-center col-4 recepie-meal-breakfast recepie-header-font recepie-meal-color-breakfast recepie-meal-border p-2">
+
+                    {% if recepie.dish_type == 'B' %}
+                    Śniadanie
                     {% elif recepie.dish_type == 'B2' %}
-                    <div
-                        class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-second-breakfast recepie-meal-border p-2">
-
-                        {% elif recepie.dish_type == 'D' %}
-                        <div
-                            class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-dinner recepie-meal-border p-2">
-
-                            {% elif recepie.dish_type == 'D2' %}
-                            <div
-                                class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-snack recepie-meal-border p-2">
-
-                                {% elif recepie.dish_type == 'S' %}
-                                <div
-                                    class="d-flex align-items-center justify-content-center col-4  recepie-header-font recepie-meal-color-supper recepie-meal-border p-2">
-
-                                    {% endif%}
-
-                                    {% if recepie.dish_type == 'B' %}
-                                    Śniadanie
-                                    {% elif recepie.dish_type == 'B2' %}
-                                    2 Śniadanie
-                                    {% elif recepie.dish_type == 'D' %}
-                                    Obiad
-                                    {% elif recepie.dish_type == 'D2' %}
-                                    Przekąska
-                                    {% elif recepie.dish_type == 'S' %}
-                                    Kolacja
-                                    {% endif%}
-                                </div>
-
-                                <div
-                                    class="d-flex row col-lg-8 col-sm-12 pt-4 pl-4 pr-4 pb-2 recepie-font recepie-font-spacing text-start mt-1">
-                                    <h3 class="font-bold">{{recepie.dish_name}}</h3>
-                                    <div class="mt-2">
-                                        {{recepie.dish_description}}
-                                    </div>
-                                    <div class="mt-2">
-                                        <h3 class="font-bold m-2">Składniki</h3>
-                                        <div class="col-12 col-md-6">
-                                            <ul class="list-group list-group-flush">
-                                                {% for product in ingridients %}
-                                                <li
-                                                    class="list-group-item m-1 d-flex justify-content-between align-items-center">
-                                                    <span style="width: 30px;">{{ product.1 }}</span>
-                                                    <span style="width: 30px;">{{ product.2 }}</span>
-                                                    <b class="flex-grow-1">{{ product.0 }}</b>
-                                                </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 p-3 justify-content-center align-items-center">
-                                    <div class="row justify-content-around">
-                                        <div class="col-lg-12 p-1">
-                                            <img src="/static/img/iconfire.svg" class="icon-size-full-recpie">
-                                        </div>
-                                        <div class="col-lg-12 recepie-font font-bold">
-                                            {{recepie.dish_calories}} kcal
-                                        </div>
-                                        <div class="col-lg-12 p-1">
-                                            <img src="/static/img/iconclock.svg" class="icon-size-full-recpie">
-                                        </div>
-                                        <div class="col-lg-12  recepie-font font-bold">
-                                            {% if recepie.preparation_time == 'S' %}
-                                            Szybkie
-                                            {% elif recepie.preparation_time == 'M' %}
-                                            Średni
-                                            {% elif recepie.preparation_time == 'L' %}
-                                            Długi
-                                            {% endif%}
-                                        </div>
-                                        {% if user.is_authenticated %}
-                                        <div class="col-lg-12 recepie-font-size font-bold greey-font mt-2">
-                                            Ulubione
-                                        </div>
-                                        <div class=" col-12 d-flex align-items-center justify-content-center">
-                                            {% if is_favourited %}
-                                            <img src="/static/img/star_full.svg" class="icon-size-full-recpie cursor"
-                                                onclick="replaceImage('{{recepie.slug}}')" id="starImage">
-                                            {% else %}
-                                            <img src="/static/img/star.svg" class="icon-size-full-recpie cursor"
-                                                onclick="replaceImage('{{recepie.slug}}')" id="starImage">
-                                            {% endif %}
-
-                                        </div>
-                                        {%endif %}
-                                        <!-- <div class="col-lg-12 recepie-font-size font-bold greey-font mt-2">
-                            Dodaj do listy..
-                        </div>
-                        <div class=" col-12 d-flex align-items-center justify-content-center">
-                            <div class="add-button d-flex align-items-center justify-content-center cursor m-2">
-                                <div class="cross-button"></div>
-                            </div>
-                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    2 Śniadanie
+                    {% elif recepie.dish_type == 'D' %}
+                    Obiad
+                    {% elif recepie.dish_type == 'D2' %}
+                    Przekąska
+                    {% elif recepie.dish_type == 'S' %}
+                    Kolacja
+                    {% endif%}
                 </div>
 
-                {% endblock %}
+                <div
+                    class="d-flex row col-lg-8 col-sm-12 pt-4 pl-4 pr-4 pb-2 recepie-font recepie-font-spacing text-start mt-1">
+                    <div class="mt-2">
+                        <h3 class="font-bold">Sposób przygotwania:</h3>
+                        <ul>
+                            {% for zdanie in recepie.dish_description %}
+                            <li class="p-1">{{ zdanie }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="mt-2">
+                        <h3 class="font-bold mt-2">Składniki</h3>
+                        <div class="col-12 col-md-6">
+                            <ul class="list-group list-group-flush">
+                                {% for product in ingridients %}
+                                <li class="list-group-item m-1 d-flex justify-content-between align-items-center">
+                                    <span style="width: 30px;">{{ product.1 }}</span>
+                                    <span style="width: 30px;">{{ product.2 }}</span>
+                                    <b class="flex-grow-1">{{ product.0 }}</b>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 p-3 justify-content-center align-items-center">
+                    <div class="row justify-content-around">
+                        <div class="col-lg-12 p-1">
+                            <img src="/static/img/iconfire.svg" class="icon-size-full-recpie">
+                        </div>
+                        <div class="col-lg-12 recepie-font font-bold">
+                            {{recepie.dish_calories}} kcal
+                        </div>
+                        <div class="col-lg-12 p-1">
+                            <img src="/static/img/iconclock.svg" class="icon-size-full-recpie">
+                        </div>
+                        <div class="col-lg-12  recepie-font font-bold">
+                            {% if recepie.preparation_time == 'S' %}
+                            5-30 min
+                            {% elif recepie.preparation_time == 'M' %}
+                            30-60 min
+                            {% elif recepie.preparation_time == 'L' %}
+                            60+ min
+                            {% endif%}
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div class="col-lg-12 recepie-font-size font-bold greey-font mt-2">
+                            Ulubione
+                        </div>
+
+                        <div class=" col-12 d-flex align-items-center justify-content-center">
+                            {% if is_favourited %}
+                            <img src="/static/img/star_full.svg" class="icon-size-full-recpie cursor"
+                                onclick="replaceImage('{{recepie.slug}}')" id="starImage">
+                            {% else %}
+                            <img src="/static/img/star.svg" class="icon-size-full-recpie cursor"
+                                onclick="replaceImage('{{recepie.slug}}')" id="starImage">
+                            {% endif %}
+                        </div>
+
+
+                        <div class="container py-4">
+                            <div class="row g-3">
+                                <div class="recepie-font font-bold mt-4">Wartości odżywcze (g):</div>
+                                <div class="col-4">
+                                    <div class="p-3 border-0 rounded-6 shadow-sm bg-white text-center">
+                                        <small class="text-uppercase fw-bold text-primary d-block mb-1"
+                                            style="font-size: 0.6rem;">Białko</small>
+                                        <span class="h5 fw-bold d-block mb-0">{{ nutrition_totals.protein }}</span>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="p-3 border-0 rounded-6 shadow-sm bg-white text-center">
+                                        <small class="text-uppercase fw-bold text-success d-block mb-1"
+                                            style="font-size: 0.6rem;">Węgle</small>
+                                        <span class="h5 fw-bold d-block mb-0">{{ nutrition_totals.fat }} </span>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="p-3 border-0 rounded-6 shadow-sm bg-white text-center">
+                                        <small class="text-uppercase fw-bold text-warning d-block mb-1"
+                                            style="font-size: 0.6rem;">Tłuszcz</small>
+                                        <span class="h5 fw-bold d-block mb-0">{{ nutrition_totals.carbs }}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        {%endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

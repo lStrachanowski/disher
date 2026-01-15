@@ -65,6 +65,8 @@ class ProductAmountOperations:
             print(e)
             return
     
+
+    
     def deleteAllAmounts(self, dish):
         """
         Deletes all Product_Amount entries associated with a given dish.
@@ -85,7 +87,7 @@ class ProductAmountOperations:
             print(e)
             return
 
-
+    
 class ProductOperations:
     def createProduct(self, name, calories, quantity, protein, fat, carbs):
         """
@@ -236,6 +238,24 @@ class ProductOperations:
         except Exception as e:
             print(e)
             return
+        
+    def getProductById(self, id):
+        """
+        Retrieves a product by its ID.
+
+        Args:
+            id (int): Product ID.
+
+        Returns:
+            Product: The Product object if found, else None.
+        """
+
+        try:
+            product_object = Product.objects.get(id=id)
+            return product_object
+        except Exception as e:
+            print(e)
+            return
 
 
 class DishOperations:
@@ -304,6 +324,25 @@ class DishOperations:
 
         try:
             dish_object = Dish.objects.get(dish_name=name)
+            return dish_object
+        except Exception as e:
+            print(e)
+            return
+        
+    
+    def getDishByType(self, dish_type):
+        """
+        Retrieves dishes by their type.
+
+        Args:
+            dish_type (str): Type of the dish.
+
+        Returns:
+            QuerySet: A Django QuerySet of Dish objects.
+        """
+
+        try:
+            dish_object = Dish.objects.filter(dish_type=dish_type)
             return dish_object
         except Exception as e:
             print(e)
@@ -387,6 +426,32 @@ class DishOperations:
             return all_dishes
         except Exception as e:
             print(e)
+
+    def getAllDishesGroupedByLetter(self):
+        """
+        Retrieves all dishes owned by the admin, sorted alphabetically and grouped by first letter.
+
+        Returns:
+            dict: A dictionary with first letters as keys and lists of dishes as values.
+        """
+
+        ADMIN_NAME = 'disher'
+        try:
+            all_dishes = Dish.objects.filter(dish_owner=ADMIN_NAME).order_by('dish_name')
+            grouped_dishes = {}
+            
+            for dish in all_dishes:
+                first_letter = dish.dish_name[0].upper() if dish.dish_name else '#'
+                if first_letter not in grouped_dishes:
+                    grouped_dishes[first_letter] = []
+                grouped_dishes[first_letter].append(dish)
+            
+            # Sort the dictionary by keys (letters)
+            sorted_grouped_dishes = dict(sorted(grouped_dishes.items()))
+            return sorted_grouped_dishes
+        except Exception as e:
+            print(e)
+            return {}
 
     def createDayDish(self, dish, meal):
         """

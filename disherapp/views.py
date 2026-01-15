@@ -10,11 +10,13 @@ from django.contrib import messages
 from django.core.signing import Signer
 from django.core import signing
 from django.db import models
+from django.db.models import Q
 import json
 from django.core.serializers.json import DjangoJSONEncoder
-from disher.models import Day_Dish, User_Day
+from disher.models import Dish, Day_Dish, User_Day
 from . import calculations
 import time
+import re
 from django.core.mail import send_mail
 
 user_has_diet_list = False
@@ -31,6 +33,8 @@ def index(request):
 def recepie(request, slug):
     recepies_data = DishOperations()
     recepie_for_template = recepies_data.getDishData(slug)
+    zdania = recepie_for_template.dish_description
+    recepie_for_template.dish_description = re.split(r'(?<=[.?!])\s+', zdania)
 
     login_status = CheckIfUserIsLogged()
     user_status = login_status.get_user_status(request)
@@ -44,9 +48,10 @@ def recepie(request, slug):
     ingridients = recepie_products_amounts
     ingridients_sorted = sorted(ingridients, key=lambda x: x[1], reverse=True)
 
+    nutrition_totals = calculations.calculateNutrition(slug, recepie_products_amounts)
 
     favourite_status= FavouriteOperations().checkIfFavourite(request.user.id, slug)
-    context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients_sorted, "is_favourited":favourite_status}
+    context = {"user_status": user_status, "recepie":recepie_for_template, "ingridients":ingridients_sorted, "is_favourited":favourite_status, "nutrition_totals":nutrition_totals}
     return render(request, "disher/recepie.html", context)
 
 @login_required(login_url='/login')
@@ -69,9 +74,14 @@ def dashboard(request):
         favourite_for_template.append(recepies_data.getDishById(element.dish_id))
 
     user_dishes = recepies_data.findUserDishes(user_name = request.user.get_username())
-  
+    
+    # Get grouped recipes
+    grouped_recepies = recepies_data.getAllDishesGroupedByLetter()
+    total_recipes = sum(len(dishes) for dishes in grouped_recepies.values())
+
     context = {"user_status": user_status, "user_dishes":user_dishes,
-               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value, "favourite_list":favourite_for_template}
+               "user_has_diet_list": user_has_diet_list, "recepies":recepies_for_template, "user_day": request.global_value, "favourite_list":favourite_for_template,
+               "grouped_recepies": grouped_recepies, "total_recipes": total_recipes}
     return render(request, "disher/dashboard.html", context)
 
 @login_required(login_url='/login')
@@ -84,6 +94,41 @@ def daydata(request):
         data = {}
         data['message'] = 'No data'
         return JsonResponse(json.dumps(data), safe=False)
+
+@login_required(login_url='/login')
+
+def days_nutrition(request):
+    recepies_data = DishOperations()
+    day = DayOperations()
+    amount = ProductAmountOperations()
+    all_days = day.getDay(request.user.id)
+    days_dishes = []
+    for user_day in all_days:
+        result = {"day_id": user_day.id, "dishes": [{"slug": d.dish.slug, "amounts": amount.getAllAmounts(recepies_data.getDish(d.dish.dish_name))} for d in user_day.user_day_dish.all()]}
+        days_dishes.append(result)
+
+    days_total_nutrition = []
+    for day_dishes in days_dishes:  # każdy dzień
+        day_nutrition_totals = {"protein": 0, "fat": 0, "carbs": 0}
+        for dish in day_dishes['dishes']:      # każde danie w dniu
+            slug = dish["slug"]
+            amounts = dish["amounts"]
+            nutrition_totals = calculations.calculateNutrition(slug, amounts)
+            day_nutrition_totals["protein"] += nutrition_totals["protein"]
+            day_nutrition_totals["fat"] += nutrition_totals["fat"]
+            day_nutrition_totals["carbs"] += nutrition_totals["carbs"]
+        days_total_nutrition.append({"day_id": day_dishes["day_id"], "day_nutrition_totals": day_nutrition_totals})
+        day_nutrition_totals = {"protein": 0, "fat": 0, "carbs": 0}
+
+    rounded = [
+    {
+      'day_id': d['day_id'],
+      'day_nutrition_totals': {k: round(float(v), 2) for k, v in d['day_nutrition_totals'].items()}
+    }
+    for d in days_total_nutrition]   
+    print("rounded_days_total_nutrition", rounded)
+
+    return JsonResponse(json.dumps(rounded), safe=False)
 
 @login_required(login_url='/login')
 def user_profil(request):
@@ -666,26 +711,68 @@ def create_day(request):
     user_has_diet_list = True
     return data
 
+# def get_recepie_search(request, recepiename):
+#     data = {}
+#     data['dish_data'] = []
+#     recepie= DishOperations()
+#     if not request.user.is_authenticated:
+#         recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=['disher'])
+#         for recepie_item in recepie_data:
+#             data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
+#                                     "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
+#                                     "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
+#         return JsonResponse(data, safe=False)
+    
+#     else:
+#         recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=[request.user.username, 'disher'])
+#         for recepie_item in recepie_data:
+#             data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
+#                                     "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
+#                                     "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
+#         return JsonResponse(data, safe=False)
+
+
 def get_recepie_search(request, recepiename):
     data = {}
     data['dish_data'] = []
-    recepie= DishOperations()
+    recepie = DishOperations()
+    # Build simple fuzzy variants (handles common singular/plural/ending differences)
+    q = recepiename.strip()
+    variants = set()
+    if q:
+        if len(q) >= 3:
+            variants.add(q)
+        # add shortened stems (remove last 1-3 chars)
+        for i in range(1, 4):
+            candidate = q[:-i]
+            if len(candidate) >= 3:
+                variants.add(candidate)
+        # add common ending variants
+        for ending in ['a', 'i', 'y', 'e']:
+            candidate = q + ending
+            if len(candidate) >= 3:
+                variants.add(candidate)
+    print("variants:", variants)
+    # build Q object ORing all variants
+    query_filter = Q()
+    for v in variants:
+        query_filter |= Q(dish_name__icontains=v)
+
     if not request.user.is_authenticated:
-        recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=['disher'])
+        recepie_data = Dish.objects.filter(query_filter, dish_owner__in=['disher']).order_by('dish_name')
         for recepie_item in recepie_data:
-            data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
-                                    "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
-                                    "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
+            data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time,
+                                     "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
+                                     "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
+        return JsonResponse(data, safe=False)
+    else:
+        recepie_data = Dish.objects.filter(query_filter, dish_owner__in=[request.user.username, 'disher']).order_by('dish_name')
+        for recepie_item in recepie_data:
+            data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time,
+                                     "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
+                                     "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
         return JsonResponse(data, safe=False)
     
-    else:
-        recepie_data = recepie.findDish(recepiename).filter(dish_owner__in=[request.user.username, 'disher'])
-        for recepie_item in recepie_data:
-            data['dish_data'].append({"name":recepie_item.dish_name, "preparation_time":recepie_item.preparation_time, 
-                                    "dish_type":recepie_item.dish_type, "dish_calories": recepie_item.dish_calories,
-                                    "dish_description":recepie_item.dish_description, "dish_slug":recepie_item.slug, "dish_id":recepie_item.id})
-        return JsonResponse(data, safe=False)
-
 @login_required(login_url='/login')
 def get_days_product_list(request, days):
     days_id = days.split(",")
@@ -827,3 +914,9 @@ def check_dish_name(request, dish_name):
         data['status'] = True
         return JsonResponse(data, safe=False)
     
+@login_required(login_url='/login')
+def get_dish_by_type(request, dish_type):
+    dish = DishOperations()
+    dishes = dish.getDishByType(dish_type)
+    data = list(dishes.values())
+    return JsonResponse(data, safe=False)

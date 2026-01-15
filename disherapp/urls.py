@@ -43,5 +43,6 @@ urlpatterns = [
     path('getrecepiesearch/<str:recepiename>', views.get_recepie_search, name="getRecepieSearch"),
     path('user/productslist/<str:days>', views.get_days_product_list, name="getDaysProductList"),
     path('readcsv/', views.read_csv, name="readCSV"),
-
+    path('getdishbytype/<str:dish_type>', views.get_dish_by_type, name="getDishByType"),
+    path('getdaysnutrition/', views.days_nutrition, name="daysNutrition"),
 ]

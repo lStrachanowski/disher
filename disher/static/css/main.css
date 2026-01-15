@@ -5,12 +5,12 @@
   --menu-color: rgb(2, 48, 71);
   --search-label: rgb(96, 86, 86);
   --serch-input-border: rgb(167, 167, 167);
-  --recepie-header: rgb(127, 183, 190);
+  --recepie-header: rgb(103, 216, 90);
   --recepie-header-hover: rgb(139, 199, 207);
   --breakfast-color: rgb(95, 173, 86);
   --second-breakfast-color: rgb(242, 193, 78);
   --dinner-color: rgb(247, 129, 84);
-  --blue-add-color: rgb(95, 168, 211);
+  --blue-add-color: rgb(8, 88, 135);
   --snack-color: rgb(180, 67, 108);
   --supper-color: rgb(121, 104, 110);
   --greey: rgb(194, 194, 194);
@@ -30,6 +30,10 @@ a {
   text-decoration: none;
 }
 
+.search-background-color{
+    background-color: var(--background-blue);
+}
+
 .white-background {
   background-color: var(--white);
 }
@@ -43,9 +47,18 @@ a {
   transition: all .3s cubic-bezier(0, 0, .5, 1);
 }
 
+.header-text-shadow{
+ text-shadow: 1px 1px 3px rgba(138, 138, 138, 1);
+}
+
 .recepie-header-border {
+  border-radius: 15px 15px 0px 0px;
+}
+
+.recepie-header-border-recepie-site {
   border-radius: 15px 0px 0px 0px;
 }
+
 
 .recepie-meal-color-breakfast {
   background-color: var(--breakfast-color);
@@ -69,7 +82,7 @@ a {
 
 .recepie-header-font {
   color: var(--white);
-  font-size: 0.85rem;
+  font-size: 0.90rem;
   font-weight: 600;
 }
 
@@ -106,6 +119,15 @@ a {
 
 .recepie-container:hover {
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.24);
+}
+
+.accordion-body-custom {
+    padding: 0;
+    margin: 0;
+}
+
+.card-custom {
+    border: 0px;
 }
 
 .logo {
@@ -186,6 +208,7 @@ a {
   transform: rotate(90deg);
 }
 
+
 .cross-button {
   height: 3px;
   width: 20px;
@@ -236,11 +259,11 @@ a {
 }
 
 .min-h {
-  min-height: 160px;
-  max-height: 170px;
+  min-height: 120px;
+  max-height: 140px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 7; 
+  -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
 }
 
@@ -373,6 +396,7 @@ a {
   align-items: center;
   justify-content: center;
 }
+
 
 
 

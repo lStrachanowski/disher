@@ -1,3 +1,42 @@
+/* Fade-in animation for appearing items */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade-out animation for disappearing items */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.all-recepie-item-border{
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+/* Apply animation to new items */
+.user-recepie-container {
+    animation: fadeInSlide 0.3s ease-in-out;
+}
+
+/* Smooth arrow rotation */
+#expandImage {
+    transition: transform 0.3s ease-in-out;
+}
+
+
 .user-recepie-icons-padding {
     padding: 5px 10px;
 }
@@ -48,7 +87,19 @@
     transition: all .3s cubic-bezier(0, 0, .5, 1);
 }
 
+.user-favourite-recepie-container-all {
+    border-radius: 15px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
+    transition: all .3s cubic-bezier(0, 0, .5, 1);
+}
+
 .user-favourite-recepie-container:hover {
+    background-color: var(--user-recepie-hover-color);
+    cursor: pointer;
+    padding: 3px;
+}
+
+.user-favourite-recepie-container-all:hover {
     background-color: var(--user-recepie-hover-color);
     cursor: pointer;
     padding: 3px;

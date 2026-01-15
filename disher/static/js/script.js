@@ -17,6 +17,8 @@ var COPY_DISH = '/user/copydish/';
 var DAYS_PRODUCTS_LIST = '/user/productslist/';
 var DELETE_USER_RECEPIE = '/user/deleteuserrecepie/';
 var CHECK_DISH_NAME = '/user/checkdishname/';
+var GET_DAYS_NUTRITION_URL = window.location.protocol + "//" + window.location.host + '/getdaysnutrition/';
+var GET_DISH_BY_TYPE_URL = window.location.protocol + "//" + window.location.host + '/getdishbytype/';
 var SEARCH_DATA_URL = window.location.protocol + "//" + window.location.host + '/getproductsearch/';
 var SEARCH_RECEPIE_URL = window.location.protocol + "//" + window.location.host + '/getrecepiesearch/';
 var SEARCH_USER_RESEPIES = window.location.protocol + "//" + window.location.host + '/recepie/getuserrecepies/';
@@ -25,6 +27,7 @@ var tempAddedProduct = null;
 var productList = [];
 var expandUserRecepieValue = false;
 var expandUserFavouritesRecepieValue = false;
+var productSearchResultSelected = false;
 let productContainer = document.getElementById("addProductContainer");
 let saveButtonContainer = document.getElementById("productButtonsContainer");
 let productLoader = document.getElementById("productLoader");
@@ -72,17 +75,14 @@ xhttp.send();
 
 // Template with meal element added to user day
 let dishElementTemplate = (elementId, mealName, selectedValue) => {
-    return `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id="${elementId}">
-    <div class="col-6 text-start p-2 ${selectedValue}">
+    return `<div class="d-flex day-element m-3 p-2 align-items-center" data-bs-toggle="collapse" data-bs-target="#${elementId}-collapse" aria-expanded="false" aria-controls="${elementId}-collapse" id="${elementId}" onclick="showSearchMealModal('add-${elementId}');">
+    <div class="col-6 text-start p-2 ${selectedValue}" >
        ${mealName}
     </div>
     <div class="col-3">
     </div>
-    <button class="col-2 add-button add-button-day d-flex align-items-center justify-content-center text-center cursor" onclick="showSearchMealModal('add-${elementId}');">
-    <div class="cross-button cross-button-day" id="add-${elementId}" ></div>
-    </button>
     <div class="col-2 text-end">
-        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="deleteMealElement('${elementId}');">
+        <img src="/static/img/close.svg" class="day-icons-options-size" onclick="handleDelete(event, '${elementId}');" >
     </div>
     </div>
     `
@@ -166,6 +166,34 @@ let dayElementTemplate = (id, number) => {
             <div class="col-2 text-end p-2">
                 <img src="/static/img/close.svg" class="day-options-icon-color day-icons-options-size" onclick="dayEditOptionsClick('${id}')">
             </div>
+        </div>
+
+        <div class="d-flex nutrition-element m-3 p-2  align-items-center justify-content-center">
+            <div class="col-4 d-flex flex-column align-items-center justify-content-center">
+                <div class="col-6 text-center">
+                Białko:
+                </div>
+                <div class="col-6 text-center font-bold" id="${id}-protein-value">
+                0
+                </div>
+            </div>
+                 <div class="col-4 d-flex flex-column align-items-center justify-content-center">
+                <div class="col-6 text-center">
+                Węgle:
+                </div>
+                <div class="col-6 text-center font-bold" id="${id}-carbs-value">
+                0
+                </div>
+            </div>
+                 <div class="col-4 d-flex flex-column align-items-center justify-content-center">
+                <div class="col-6 text-center">
+                Tłuszcz:
+                </div>
+                <div class="col-6 text-center font-bold" id="${id}-fat-value">
+                0
+                </div>
+            </div>
+
         </div>
 
         <div class="col-12 empty-day-font greey-font" id="day-${number}-add">Dodaj posiłek</div>
@@ -258,10 +286,11 @@ let userRecepiesTemplate = (dish, index, option) => {
                 <div class="col-2 d-none d-sm-block  text-center m-3 font-bold cursor"> 
                 ${selectedMealType}  
                 </div>
-                <div class="col-md-7 col-sm-7 col-9 m-3  text-center cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
+                <div class="col-md-7 col-sm-7 col-9 m-3 cursor"  onclick="location.href='/recepie/${dish.slug}'">  ${dish.dish_name}</div>
                 <div class="col-2">
                      <img src="/static/img/share.svg" class="cursor user-recepie-icons-padding user-recepie-icons-size user-recepie-icons-share-size" onclick="copyToClipboard('/recepie/${dish.slug}')">
                 </div>
+      
             </div>
         </div>`
         return template;
@@ -297,9 +326,24 @@ let userRecepiesTemplate = (dish, index, option) => {
     }
 }
 
-let recepieSearchResultItem = (dishData) => {
+function handleDelete(event, elementId) {
+    // This prevents the click from "bubbling up" to the parent div
+    event.stopPropagation();
+
+    // Now run your actual delete logic
+    deleteMealElement(elementId);
+}
+
+async function recepieType(recepie_type) {
+    let dishData = await getDishByType(recepie_type);
+    let container = null;
     let meal_type = "";
-    let container = document.getElementById("recepieContainer");
+
+    if (recepie_type == 'B') container = document.getElementById("bContainerDiv");
+    if (recepie_type == 'D') container = document.getElementById("dContainerDiv");
+    if (recepie_type == 'D2') container = document.getElementById("d2ContainerDiv");
+    if (recepie_type == 'S') container = document.getElementById("sContainerDiv");
+
     let day_id = globalElementId.split("-")[1];
     for (v in symbolTable) {
         if (symbolTable[v].includes(globalElementId.split('-')[3])) {
@@ -310,24 +354,109 @@ let recepieSearchResultItem = (dishData) => {
     if (dishData && dishData.length > 0) {
         dishData.forEach(recepie => {
             const recepieDiv = document.createElement("div");
-            recepieDiv.className = "col-xl-3 col-lg-5 col-md-10 text-center recepie-container white-background m-3";
+            recepieDiv.className = "col-10 text-center user-favourite-recepie-container-all m-3 recepie-search-result-container cursor all-recepie-item-border p-3 p-md-1 addMealButtonSelector  white-background";
+            recepieDiv.id = recepie.id;
+            recepieDiv.setAttribute("type", "button");
+            recepieDiv.setAttribute("data-bs-dismiss", "modal");
+            recepieDiv.onclick = function () {
+                addMealToDay(globalElementId, recepie.slug, recepie.dish_name, recepie.dish_calories, meal_type, day_id, 'true');
+            };
+            recepieDiv.innerHTML = `
+                                                            <div
+                                                                class="d-flex row align-items-center justify-content-center align-items-center">
+                                                                <div
+                                                                    class="d-flex align-items-center justify-content-center col-12 col-md-6 p-1 p-md-2 min-height">
+                                                                    ${recepie.dish_name}
+                                                                </div>
+                                                                <div class="col-4 col-md-2">
+                                                                    ${recepie.dish_calories} kcal
+                                                                </div>
+
+                                                                <div class="col-4 col-md-2 ">
+                                                                    ${getPreparationTimeName(recepie.preparation_time)}
+                                                                </div>
+                                                            </div>
+                                            
+
+            `;
+            // recepieDiv.innerHTML = `
+            //         <div class="d-flex row align-items-center align-items-stretch">
+            //             <div class="d-flex align-items-center justify-content-center col-12 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor header-text-shadow"
+            //                 onclick="location.href='/recepie/${recepie.slug}'">
+            //                 ${recepie.dish_name}
+            //             </div>
+
+            //             <div class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
+            //                 <div class="col-12 min-h ">
+            //                     ${recepie.dish_description}
+            //                 </div>
+
+            //             </div>
+            //             <div class="col-4 p-2">
+            //                 <div class="row justify-content-around">
+            //                     <div class="col-lg-12 p-1">
+            //                         <img src="/static/img/iconfire.svg" class="icon-size-15">
+            //                     </div>
+            //                     <div class="col-lg-12 recepie-font font-bold">
+            //                         ${recepie.dish_calories} kcal
+            //                     </div>
+            //                     <div class="col-lg-12 p-1">
+            //                         <img src="/static/img/iconclock.svg" class="icon-size-15">
+            //                     </div>
+            //                     <div class="col-lg-12 recepie-font font-bold">
+            //                         ${getPreparationTimeName(recepie.preparation_time)}
+            //                     </div>
+            //                 </div>
+            //             </div>
+            //             <div class="col-12 d-flex justify-content-center">
+            //                 <div class="d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelectorContainer">
+            //                     <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelector"
+            //                         data-bs-dismiss="modal" type="button"
+            //                         onclick="addMealToDay( '${globalElementId}', '${recepie.slug}', '${recepie.dish_name}', '${recepie.dish_calories}', '${meal_type}', '${day_id}', 'true');">
+            //                         <div class="cross-button"></div>
+            //                     </button>
+            //                 </div>
+            //             </div>
+            //         </div>
+            //     `;
+            container.appendChild(recepieDiv);
+        });
+    } else {
+        const recepieDiv = document.createElement("div");
+        recepieDiv.className = "col-8 col-lg-6 recepie-container white-background m-3 p-3 text-center";
+        recepieDiv.innerHTML = 'Brak wyników wyszukiwania.';
+        container.appendChild(recepieDiv);
+    }
+}
+
+
+let recepieSearchResultItem = (dishData, containerId) => {
+    let meal_type = "";
+    let container = document.getElementById(containerId);
+    let day_id = globalElementId.split("-")[1];
+    for (v in symbolTable) {
+        if (symbolTable[v].includes(globalElementId.split('-')[3])) {
+            meal_type = v;
+        }
+    }
+    container.replaceChildren();
+    if (dishData && dishData.length > 0) {
+        dishData.forEach(recepie => {
+            const recepieDiv = document.createElement("div");
+            recepieDiv.className = "col-xl-3 col-lg-5 col-md-10 text-center recepie-container white-background m-3 ";
             recepieDiv.id = recepie.id;
             recepieDiv.innerHTML = `
                     <div class="d-flex row align-items-center align-items-stretch">
-                        <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
+                        <div class="d-flex align-items-center justify-content-center col-12 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor header-text-shadow"
                             onclick="location.href='/recepie/${recepie.dish_slug}'">
                             ${recepie.name}
                         </div>
-                        <div class="d-flex align-items-center justify-content-center col-4 recepie-header-font ${getDishTypeClass(recepie.dish_type)} recepie-meal-border p-2">
-                            ${getDishTypeName(recepie.dish_type)}
-                        </div>
+             
                         <div class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
                             <div class="col-12 min-h ">
                                 ${recepie.dish_description}
                             </div>
-                            <div class="col-12">
-                                <a href="/recepie/${recepie.slug}" class="font-bold">więcej...</a>
-                            </div>
+                        
                         </div>
                         <div class="col-4 p-2">
                             <div class="row justify-content-around">
@@ -360,16 +489,16 @@ let recepieSearchResultItem = (dishData) => {
         });
     } else {
         const recepieDiv = document.createElement("div");
-        recepieDiv.className = "col-12 text-center";
-        recepieDiv.innerHTML = 'Nothing to show';
+        recepieDiv.className = "col-8 col-lg-6 recepie-container white-background m-3 p-3 text-center";
+        recepieDiv.innerHTML = 'Brak wyników wyszukiwania.';
         container.appendChild(recepieDiv);
     }
 }
 
 
 
-let indexRecepieSearchResultItem = (dishData) => {
-    let container = document.getElementById("recepieContainer");
+let indexRecepieSearchResultItem = (dishData, containerId) => {
+    let container = document.getElementById(containerId);
     container.replaceChildren();
     if (dishData && dishData.length > 0) {
         dishData.forEach(recepie => {
@@ -378,54 +507,46 @@ let indexRecepieSearchResultItem = (dishData) => {
             recepieDiv.id = recepie.id;
             recepieDiv.innerHTML = `
                     <div class="d-flex row align-items-center align-items-stretch">
-                        <div class="d-flex align-items-center justify-content-center col-8 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor"
+                        <div class="d-flex align-items-center justify-content-center col-12 recepie-header-color recepie-header-font recepie-header-border p-2 min-height cursor header-text-shadow"
                             onclick="location.href='/recepie/${recepie.dish_slug}'">
                             ${recepie.name}
                         </div>
-                        <div class="d-flex align-items-center justify-content-center col-4 recepie-header-font ${getDishTypeClass(recepie.dish_type)} recepie-meal-border p-2">
-                            ${getDishTypeName(recepie.dish_type)}
-                        </div>
-                        <div class="col-8 p-3 recepie-font recepie-font-spacing text-start d-block">
-                            <div class="col-12 min-h ">
-                                ${recepie.dish_description}
-                            </div>
-                            <div class="col-12">
-                                <a href="/recepie/${recepie.slug}" class="font-bold">więcej...</a>
-                            </div>
-                        </div>
-                        <div class="col-4 p-2">
-                            <div class="row justify-content-around">
-                                <div class="col-lg-12 p-1">
-                                    <img src="/static/img/iconfire.svg" class="icon-size-15">
-                                </div>
-                                <div class="col-lg-12 recepie-font font-bold">
-                                    ${recepie.dish_calories} kcal
-                                </div>
-                                <div class="col-lg-12 p-1">
-                                    <img src="/static/img/iconclock.svg" class="icon-size-15">
-                                </div>
-                                <div class="col-lg-12 recepie-font font-bold">
-                                    ${getPreparationTimeName(recepie.preparation_time)}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 d-flex justify-content-center">
-                            <div class="d-flex align-items-center justify-content-center cursor m-2 mb-3 addMealButtonSelectorContainer">
-                              <button class="add-button d-flex align-items-center justify-content-center cursor m-2 mb-3" data-bs-dismiss="modal" type="button" onclick="location.href='/user/dashboard'">
-                                    <div class="cross-button"></div>
-                                </button>
-                                </button>
-                            </div>
-                        </div>
+            
+                             <div class="col-12 p-2">
+            <div class="row justify-content-around">
+
+                <div class="col-6">
+                    <div class="col-lg-12 p-1">
+                        <img src="/static/img/iconfire.svg" class="icon-size-15">
                     </div>
-                `;
+                    <div class="col-lg-12 recepie-font font-bold">
+                        ${recepie.dish_calories} kcal
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="col-lg-12 p-1">
+                        <img src="/static/img/iconclock.svg" class="icon-size-15">
+                    </div>
+                    <div class="col-lg-12 recepie-font font-bold">
+                        ${getPreparationTimeName(recepie.preparation_time)}
+                    </div>
+                </div>
+
+                <div class="col-12  recepie-font px-4 py-3 recepie-font-spacing d-block">
+                    <div class="col-12 min-h">
+                        ${recepie.dish_description}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
             container.appendChild(recepieDiv);
         });
     } else {
         const recepieDiv = document.createElement("div");
-        recepieDiv.className = "col-12 text-center";
+        recepieDiv.className = "col-8 col-lg-6 recepie-container white-background m-3 p-3 text-center";
         recepieDiv.id = "noResultsMessage";
-        recepieDiv.innerHTML = 'Nothing to show';
+        recepieDiv.innerHTML = 'Brak wyników wyszukiwania';
         container.appendChild(recepieDiv);
         setTimeout(() => {
             const noResultsMessage = document.getElementById("noResultsMessage");
@@ -460,9 +581,9 @@ function getDishTypeName(dishType) {
 
 function getPreparationTimeName(preparationTime) {
     switch (preparationTime) {
-        case 'S': return 'Szybkie';
-        case 'M': return 'Średni';
-        case 'L': return 'Długi';
+        case 'S': return '5-30 min';
+        case 'M': return '30-60 min';
+        case 'L': return '60+ min';
         default: return '';
     }
 }
@@ -490,6 +611,7 @@ let addMealToDay = async (id, slug, dish, calories, meal_type, day_id, new_eleme
     if (new_element == 'true') {
         newMealId = await addNewElementData(day_id, slug, meal_type);
         fetchDataFromWeb(countCalories);
+        renderDayNutritionData();
     }
     // Generating globalElementId
     if (meal_type) {
@@ -514,7 +636,7 @@ let addMealToDay = async (id, slug, dish, calories, meal_type, day_id, new_eleme
     let collapseMEal = document.getElementById(globalElementId + "-collapse");
 
     if (!collapseMEal) {
-        // When there is no other day wit meal
+        // When there is no other day with meal
         const htmlWithMeal = mealElementTemplate(globalElementId, slug, dish);
         let selectedDay = document.getElementById(globalElementId);
         if (selectedDay) {
@@ -634,12 +756,17 @@ let buttonTemplate = (id) => {
 let addDay = (id) => {
     let parent = document.getElementById("mainDashboard");
     parent.insertAdjacentHTML('afterend', dayElementTemplate("day" + id, id));
+    // Apply animation to newly created day
+    let newDay = document.getElementById("day" + id + "-container");
+    if (newDay) {
+        newDay.style.animation = "fadeInSlide 0.3s ease-in-out";
+    }
 }
 
-function clearInput() {
-    const inputElement = document.getElementById("search");
-    inputElement.value = '';
-}
+// function clearInput() {
+//     const inputElement = document.getElementById("search");
+//     inputElement.value = '';
+// }
 
 function readCookie(parameter) {
     let cookie = document.cookie.split(';');
@@ -664,17 +791,54 @@ async function createDataView() {
         let cookie_id = readCookie('user_id');
         if (user_id === cookie_id) {
             fetchDataFromCookies(dayChange);
+            await renderDayNutritionData();
         } else {
-            fetchDataFromWeb(dayChange);
+            await fetchDataFromWeb((data) => {
+                dayChange(data);
+            });
+            await renderDayNutritionData();
             setUserIdLCookie();
         }
     } else {
-        fetchDataFromWeb(dayChange);
+        await fetchDataFromWeb((data) => {
+            dayChange(data);
+        });
+        await renderDayNutritionData();
         setUserIdLCookie();
     }
 }
 
+function getNutritionCounterElement(id, nutritionSum) {
+    document.getElementById("day" + id + "-protein-value").innerHTML = nutritionSum.day_nutrition_totals.protein;
+    document.getElementById("day" + id + "-carbs-value").innerHTML = nutritionSum.day_nutrition_totals.carbs;
+    document.getElementById("day" + id + "-fat-value").innerHTML = nutritionSum.day_nutrition_totals.fat;
+}
 
+async function getDayNutritionData() {
+    try {
+        const response = await fetch(GET_DAYS_NUTRITION_URL);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        const nutritionData = JSON.parse(data);
+        return nutritionData;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+async function renderDayNutritionData() {
+    try {
+        const response = getDayNutritionData();
+        const nutritionData = await response;
+        for (day of nutritionData) {
+            getNutritionCounterElement(day.day_id, day);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
 
 function checkForDataInCookies() {
     let data = readCookie('data');
@@ -862,11 +1026,11 @@ function setElementID(id, dbDayID) {
     }
 }
 
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     // Check if clicked element is options icon or close icon
-    if (e.target.matches('#recepie-options-id-click') || 
+    if (e.target.matches('#recepie-options-id-click') ||
         e.target.matches('#recepie-options-id-close-click')) {
-        
+
         const id = e.target.closest('.user-recepie-class').id.split('-')[1];
         const elementId = `user-recepie-${id}`;
         const optionsId = `user-options-${id}`;
@@ -1064,11 +1228,11 @@ let addDishMeal = (id) => {
     let elementId = dayId + "-" + selectedValue;
     globalElementId = elementId;
     let mealName = translateTable[selectedValue];
-    let mealNAmeLowerCase = mealName.toLowerCase();
+    let mealNameLowerCase = mealName.toLowerCase();
     globalMealName = mealName;
     globalSelectedValue = selectedValue;
     if (document.getElementById(elementId)) {
-        if (confirm(`Masz już ${mealNAmeLowerCase}, chcesz dodać kolejne ?`)) {
+        if (confirm(`Masz już ${mealNameLowerCase}, chcesz dodać kolejne ?`)) {
             let number = document.getElementsByClassName(selectedValue).length;
             elementId = elementId + "-" + number
             globalElementId = elementId;
@@ -1091,12 +1255,23 @@ let addDishMeal = (id) => {
  * 
  * */
 let deleteMealElement = (id) => {
-    let selectedElement = document.getElementById(id);
-    selectedElement.remove();
-    let selectedElementCollapse = document.getElementById("day" + id + "-collapse");
-    if (selectedElementCollapse) {
-        selectedElementCollapse.remove();
+    if (!confirm('Czy na pewno chcesz usunąć ten element?')) {
+        return;
     }
+    let selectedElement = document.getElementById(id);
+    let selectedElementCollapse = document.getElementById("day" + id + "-collapse");
+
+    if (selectedElement) {
+        selectedElement.style.animation = "fadeOut 0.3s ease-in-out forwards";
+    }
+    if (selectedElementCollapse) {
+        selectedElementCollapse.style.animation = "fadeOut 0.3s ease-in-out forwards";
+    }
+
+    setTimeout(() => {
+        if (selectedElement) selectedElement.remove();
+        if (selectedElementCollapse) selectedElementCollapse.remove();
+    }, 300);
 }
 
 /**Is deleting element in user day, which was populated with dish
@@ -1105,19 +1280,34 @@ let deleteMealElement = (id) => {
  * 
  * */
 async function deleteMealOptionElement(id, day_id, meal_id) {
+    if (!confirm('Czy na pewno chcesz usunąć ten posiłek?')) {
+        return;
+    }
     try {
         // Poczekaj na zakończenie asynchronicznej funkcji deleteMealInDb
         await deleteMealInDb(day_id, meal_id);
 
-        // Usuń elementy z DOM
+        // Animacja i usuwanie elementów z DOM
         let selectedElement = document.getElementById(id);
-        if (selectedElement) selectedElement.remove();
-
         let selectedOptionsElement = document.getElementById(id + "-edit-options");
-        if (selectedOptionsElement) selectedOptionsElement.remove();
-
         let selectedOptionsElementCollapse = document.getElementById(id + "-collapse");
-        if (selectedOptionsElementCollapse) selectedOptionsElementCollapse.remove();
+
+        if (selectedElement) {
+            selectedElement.style.animation = "fadeOut 0.3s ease-in-out forwards";
+        }
+        if (selectedOptionsElement) {
+            selectedOptionsElement.style.animation = "fadeOut 0.3s ease-in-out forwards";
+        }
+        if (selectedOptionsElementCollapse) {
+            selectedOptionsElementCollapse.style.animation = "fadeOut 0.3s ease-in-out forwards";
+        }
+
+        setTimeout(() => {
+            if (selectedElement) selectedElement.remove();
+            if (selectedOptionsElement) selectedOptionsElement.remove();
+            if (selectedOptionsElementCollapse) selectedOptionsElementCollapse.remove();
+            renderDayNutritionData();
+        }, 300);
     } catch (error) {
         console.error('Error deleting meal option element:', error);
     }
@@ -1131,17 +1321,22 @@ async function deleteMealOptionElement(id, day_id, meal_id) {
  * */
 
 async function deleteDay(id) {
-    try {
-        // Poczekaj na zakończenie asynchronicznej funkcji deleteDayInDb
-        await deleteDayInDb(id);
+    if (confirm('Czy na pewno chcesz usunąć ten dzień?')) {
+        try {
+            // Poczekaj na zakończenie asynchronicznej funkcji deleteDayInDb
+            await deleteDayInDb(id);
 
-        // Usuń element z DOM
-        let dayElement = document.getElementById(id + '-container');
-        if (dayElement) {
-            dayElement.remove();
+            // Usuń element z DOM
+            let dayElement = document.getElementById(id + '-container');
+            if (dayElement) {
+                dayElement.style.animation = "fadeOut 0.3s ease-in-out forwards";
+                setTimeout(() => {
+                    dayElement.remove();
+                }, 300);
+            }
+        } catch (error) {
+            console.error('Error deleting day:', error);
         }
-    } catch (error) {
-        console.error('Error deleting day:', error);
     }
 }
 
@@ -1152,42 +1347,6 @@ let removeSearchResults = () => {
         element.remove();
     });
 }
-
-// function searchProduct() {
-//     const productJson = document.getElementById("json_data");
-//     const producJsonParsed = JSON.parse(productJson.value);
-//     var inputValue = document.getElementById("dish_product_search").value;
-//     const toRemove = document.querySelectorAll(".product-search-result");
-
-//     if (inputValue.length >= 3) {
-//         if (productList.length > 0) {
-//             let productListCheck = productList.some(value => value.name == inputValue);
-//             if (productListCheck) {
-//                 var getParent = document.getElementById("productBox");
-//                 removeSearchResults();
-//                 getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
-//             } else {
-//                 fetchSearchReasultsFromWeb(inputValue);
-//             }
-//         }
-
-//         if (producJsonParsed.length > 0) {
-//             let productJsonCheck = producJsonParsed.some(value => value.name == inputValue);
-//             if (productJsonCheck) {
-//                 var getParent = document.getElementById("productBox");
-//                 removeSearchResults();
-//                 getParent.insertAdjacentHTML('afterend', searchResultTemplateProductMessages("Produkt jest już na liście!", 1));
-//             } else {
-//                 fetchSearchReasultsFromWeb(inputValue);
-//             }
-//         }
-//     } 
-//     else {
-//         if (toRemove) {
-//             removeSearchResults();
-//         }
-//     }
-// }
 
 
 function searchProduct() {
@@ -1335,6 +1494,10 @@ let showProductContainer = () => {
     saveButtonContainer.style.display = 'flex';
     saveButton.disabled = true;
     addContainertBox.style.display = "none";
+    const fields = ["dish_product_search", "dish_product_amount", "product_unit"];
+    fields.forEach(id => {
+        document.getElementById(id).addEventListener('input', checkProductFieldsValidity);
+    });
 }
 
 let deleteProductFromProductList = (id) => {
@@ -1406,6 +1569,7 @@ let saveProduct = () => {
     inputProduct.value = '';
     addContainertBox.style.display = "block";
     productsContainerHeader.style.visibility = "visible";
+    productSearchResultSelected = false;
 }
 
 let productCancelButton = () => {
@@ -1420,6 +1584,7 @@ let productCancelButton = () => {
     if (inputProduct) {
         inputProduct.value = '';
     }
+    productSearchResultSelected = false;
     removeSearchResults();
 }
 
@@ -1435,14 +1600,18 @@ let chooseProduct = (name, id) => {
     tempAddedProduct = { "name": name, "id": id };
     const searchbox = document.getElementById("dish_product_search");
     searchbox.value = name;
+    productSearchResultSelected = true;
+    checkProductFieldsValidity();
     removeSearchResults();
 }
+
+
 
 let checkProductFieldsValidity = () => {
     const productName = document.getElementById("dish_product_search");
     const productAmount = document.getElementById("dish_product_amount");
     const productUnit = document.getElementById("product_unit");
-    if (productName.checkValidity() == true && productAmount.checkValidity() == true && productAmount.value > 0 && productUnit.checkValidity() == true) {
+    if (productName.checkValidity() == true && productAmount.checkValidity() == true && productAmount.value > 0 && productUnit.checkValidity() == true && productSearchResultSelected == true) {
         saveButton.disabled = false;
     } else {
         saveButton.disabled = true;
@@ -1455,6 +1624,7 @@ let checkDishFielsdValidity = () => {
     const dishTitle = document.getElementById("dish_title");
     const dishDuration = document.getElementById("duration");
     const dishType = document.getElementById("type_of_meal");
+
     if (dishTitle.checkValidity() == true && dishDuration.checkValidity() == true && dishType.checkValidity() == true && dishDescription.checkValidity() == true) {
         saveDishButton.disabled = false;
     } else {
@@ -1540,7 +1710,27 @@ async function copyMeal(element_id, day_id, dish_id) {
 
         const data = await response.json();
         const elementData = JSON.parse(data);
-        addMealToDay(elementData.element_id, elementData.slug, elementData.name, elementData.cal, elementData.type, elementData.day_id, elementData.new_element);
+        // Wait for DOM insertion done by addMealToDay, then animate the created elements
+        await addMealToDay(elementData.element_id, elementData.slug, elementData.name, elementData.cal, elementData.type, elementData.day_id, elementData.new_element);
+
+        // Apply fade-in animation to newly copied elements (if present)
+        try {
+            const idsToAnimate = [
+                elementData.element_id,
+                elementData.element_id + "-collapse",
+                elementData.element_id + "-edit-options",
+                elementData.element_id + "-container"
+            ];
+            idsToAnimate.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.style.animation = "fadeInSlide 0.3s ease-in-out";
+                }
+            });
+        } catch (e) {
+            // ignore animation failures
+            console.warn('Animation apply failed:', e);
+        }
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -1583,16 +1773,21 @@ async function fetchRecepieSearchResultsFromWeb(searchQuery) {
 }
 
 
-async function searchRecepie(index) {
-    let inputValue = document.getElementById("search").value;
+
+async function searchRecepie(index, inputId, containerId) {
+    let inputValue = document.getElementById(inputId).value;
     if (inputValue.length > 2) {
         try {
             document.getElementById("spinner_container").style.display = "block";
             const data = await fetchRecepieSearchResultsFromWeb(inputValue);
-            if (!index) {
-                recepieSearchResultItem(data.dish_data);
-            } else {
-                indexRecepieSearchResultItem(data.dish_data);
+            if (index == 'modal') {
+                recepieSearchResultItem(data.dish_data, containerId);
+            }
+            if (index == 'main') {
+                indexRecepieSearchResultItem(data.dish_data, containerId);
+            }
+            if (index == 'dashboard') {
+                indexRecepieSearchResultItem(data.dish_data, containerId);
             }
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -1600,10 +1795,14 @@ async function searchRecepie(index) {
             document.getElementById("spinner_container").style.display = "none";
         }
     } else {
-        if (!index) {
-            recepieSearchResultItem("");
-        } else {
-            indexRecepieSearchResultItem("");
+        if (index == 'modal') {
+            recepieSearchResultItem("", containerId);
+        }
+        if (index == 'main') {
+            indexRecepieSearchResultItem("", containerId);
+        }
+        if (index == 'dashboard') {
+            indexRecepieSearchResultItem("", containerId);
         }
         document.getElementById("spinner_container").style.display = "none";
     }
@@ -1766,6 +1965,7 @@ async function removeFromFavourite(slug) {
 }
 
 async function getUserFavouriteRecepies() {
+
     let expandImage = document.getElementById("expandFavouriteImage");
     try {
         const response = await fetch(GET_USER_FAVOURITE_RESEPIES);
@@ -1773,7 +1973,6 @@ async function getUserFavouriteRecepies() {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
-
         if (expandUserFavouritesRecepieValue) {
             let numberOfDisplayedElements = document.getElementsByClassName("user-favourite-recepie-container").length;
             if (data.userFavouritesDishes.length > numberOfDisplayedElements) {
@@ -1795,7 +1994,11 @@ async function getUserFavouriteRecepies() {
             if (userRecepiesList.length >= 2) {
                 userRecepiesList.forEach((element, index) => {
                     if (index > 2) {
-                        element.remove();
+                        // Add fade-out animation before removing
+                        element.style.animation = "fadeOut 0.3s ease-in-out forwards";
+                        setTimeout(() => {
+                            element.remove();
+                        }, 300); // Match the animation duration
                     }
 
                 });
@@ -1818,6 +2021,7 @@ async function getUserRecepies(expand) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
+
         if (expandUserRecepieValue || expand) {
             let numberOfDisplayedElements = document.getElementsByClassName("user-recepie-container").length;
             if (data.userDishes.length > numberOfDisplayedElements) {
@@ -1829,10 +2033,10 @@ async function getUserRecepies(expand) {
                     let newDishElement = userRecepiesTemplate(element, counter, 'userCreated');
                     selectedParent.insertAdjacentHTML('afterend', newDishElement);
                 }
-
                 expandImage.style.transform = "rotate(180deg)";
             }
         }
+
         if (!expandUserRecepieValue) {
             let userRecepiesList = document.querySelectorAll(".user-recepie-class");
             expandImage.style.transform = "rotate(360deg)";
@@ -1840,21 +2044,23 @@ async function getUserRecepies(expand) {
                 userRecepiesList.forEach((element, index) => {
                     let elementId = parseInt(element.id.split("-")[1], 10);
                     if (elementId > 3) {
-                        element.remove();
+                        // Add fade-out animation before removing
+                        element.style.animation = "fadeOut 0.3s ease-in-out forwards";
+                        setTimeout(() => {
+                            element.remove();
+                        }, 300); // Match the animation duration
                     }
                 });
             }
         }
+
         addEventListenersToRecepies();
         return data;
-
-
-
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
-}
+} deleteDay
 
 if (document.getElementById('expandImage')) {
     document.getElementById('expandImage').addEventListener('click', () => {
@@ -1969,21 +2175,6 @@ function deleteOptionsElement(id) {
 }
 
 
-// function hideFavouriteInModal() {
-//     let expandImage = document.getElementById("expandFavouriteImageinModal");
-//     let favouriteElement = document.getElementById("favouriteRecepiesSpan");
-//     if (favouriteElement) {
-//         if (favouriteElement.style.display === 'none') {
-//             favouriteElement.style.display = 'flex';
-//             expandImage.style.transform = "rotate(360deg)";
-//         } else {
-//             favouriteElement.style.display = 'none';
-//             expandImage.style.transform = "rotate(180deg)";
-//         }
-//     }
-// }
-
-
 async function checkDishName() {
     let dishName = document.getElementById("dish_title").value;
     if (dishName.length > 2) {
@@ -2020,21 +2211,27 @@ if (yourTab) {
     toggleDishesTab('pills-favourite-tab');
 }
 
+
 function toggleDishesTab(tab) {
-    let yourTab = document.getElementById("pills-contact-tab");
-    let favTab = document.getElementById("pills-favourite-tab");
-    if (yourTab && favTab) {
-        if (tab === 'pills-contact-tab') {
-            yourTab.style.fontWeight = "bold";
-            yourTab.style.color = "#5fad56";
-            favTab.style.fontWeight = "normal";
-            favTab.style.color = "";
-        } else {
-            favTab.style.fontWeight = "bold";
-            favTab.style.color = "#5fad56";
-            yourTab.style.fontWeight = "normal";
-            yourTab.style.color = "";
+    const tabs = {
+        'pills-userrecepie-tab': document.getElementById("pills-userrecepie-tab"),
+        'pills-search-tab': document.getElementById("pills-search-tab"),
+        'pills-favourite-tab': document.getElementById("pills-favourite-tab"),
+        'pills-allrecepies-tab': document.getElementById("pills-allrecepies-tab")
+    };
+
+    // Reset all tabs
+    Object.values(tabs).forEach(tabElement => {
+        if (tabElement) {
+            tabElement.style.fontWeight = "normal";
+            tabElement.style.color = "";
         }
+    });
+
+    // Activate selected tab
+    if (tabs[tab]) {
+        tabs[tab].style.fontWeight = "bold";
+        tabs[tab].style.color = "#5fad56";
     }
 }
 
@@ -2047,6 +2244,24 @@ document.addEventListener('click', function (e) {
 
 
 function clearInput() {
-    document.getElementById("dish_product_search").value = "";
+    const searchInput = document.getElementById("search");
+    if (searchInput) {
+        searchInput.value = "";
+    }
     removeSearchResults();
+}
+
+async function getDishByType(dish_type) {
+    var path = GET_DISH_BY_TYPE_URL + dish_type;
+    try {
+        const response = await fetch(path);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
